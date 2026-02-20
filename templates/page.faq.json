@@ -1,0 +1,380 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "content"
+      }
+    },
+    "16457242689a58d7f3": {
+      "type": "accordion",
+      "blocks": {
+        "164572426857089649-0": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "text": "<p>Unfortunately, we do not currently offer this service. However, we are looking to introduce this in the very near future.</p>"
+          }
+        },
+        "tab_content_9VzkMP": {
+          "type": "tab_content",
+          "disabled": true,
+          "settings": {
+            "question": "Place your question or heading here",
+            "text": "<p>Here you can place an explanation or answer to the question.</p>"
+          }
+        },
+        "tab_content_9PExzw": {
+          "type": "tab_content",
+          "disabled": true,
+          "settings": {
+            "question": "Place your question or heading here",
+            "text": "<p>Here you can place an explanation or answer to the question.</p>"
+          }
+        },
+        "164572426857089649-1": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How do I know if my order has been placed successfully?",
+            "text": "<p>You will receive an Order Confirmation email once your order has been successfully placed. Please make sure your email address is correct and check your Spam/Junk folder if you do not see the confirmation email. If you still cannot find one, please check ‘MY ACCOUNT’&gt;'MY ORDERS' or contact <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com </a> .</p>"
+          }
+        },
+        "164572426857089649-2": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Do A.SHIMUS offer gift receipts and gift wrapping?",
+            "text": "<p>Unfortunately, we do not currently offer this service, however we are looking to introduce this in the near future.</p>"
+          }
+        },
+        "tab_content_FgW39K": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How do I use a discount/promotional code?",
+            "text": "<p>+ Click ‘THE SHOPPING BAG ICON’ (top right hand side of the page)</p><p>+ Click ‘CHECKOUT’</p><p>+ Click ‘PROMOTIONAL CODE’, then enter the Discount/Promotional Code and click ‘APPLY’ <br/><br/></p><ul><li>The Shopping Bag page will refresh to display the updated discount price, and a confirmation message will appear at the top indicating whether the code has been successfully applied.<br/><br/></li><li>Note: When an order is placed using a promotional code and includes multiple items, the discount value is distributed across each item based on its pro-rated value. Any refund for an item purchased in such an order will be reduced by the discount value attributed to it. The ‘discount’ will not be refunded.<br/><br/>Please note our Promotional/Discount Offers are subject to the below Terms + Conditions:<br/><br/></li><li>+ Valid only on full-priced items, not on sale or promotional items unless stated. + Cannot be combined with other offers. + Valid for a limited time as specified; outside that period, previous purchases are ineligible. + Returns reducing spend below qualifying level may result in deduction of offer value from refund. + Intended recipient use only; proof of entitlement may be requested. + Orders are subject to acceptance; improper code use may cancel order. + Refer to specific offer terms in marketing material. + Subject to stock availability; offers can be withdrawn, amended, or extended anytime without notice. + Orders cannot be amended once placed; codes cannot be applied retrospectively.</li></ul><p><br/>If you are experiencing any problems, please contact us at <a href=\"mailto:customersupport@a-shimus.com\" title=\"customersupport@a-shimus.com\">customersupport@a-shimus.com</a> <em>before</em> proceeding with your order as we are unable to amend orders once they are placed or apply discounts retrospectively.</p>"
+          }
+        },
+        "tab_content_p8Ap6V": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Can I make changes/amend my order once it has been placed?",
+            "text": "<p>Unfortunately, we cannot amend orders once they are placed. We may be able to cancel your existing order and ask you to place a new order.</p><p>Please Note: Once orders are placed, the order is immediately processed LIVE with our warehouse. If an order has commenced being processed, we will not be able to cancel your order and it will be necessary to send your existing order back to us following our Returns Policy.</p>"
+          }
+        },
+        "tab_content_t8xeHN": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Is it possible to cancel my order?",
+            "text": "<p>Yes, customers may request to cancel their order within 20 minutes of placing it by signing into their account, locating the order, and selecting ‘CANCEL ORDER’. We recommend you email us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> in the first instance so we can arrange for your order cancellation prior to it being dispatched. Once orders have been placed they cannot be put on hold or amended; single lines from orders cannot cancelled and additional items cannot be added. Only entire orders can be cancelled.</p>"
+          }
+        },
+        "tab_content_pnXmRL": {
+          "type": "tab_content",
+          "settings": {
+            "question": "I have received my order but something is missing, what do I do?",
+            "text": "<p>If something is missing from your order, in the first instance please check your Shipment Confirmation email and your A.SHIMUS invoice to see if your order has been part-dispatched. The missing item may have been on pre-purchase and will be dispatched at a later date. This information will be visible in the Product Description online. If the missing item is not on pre-purchase or you find a discrepancy, please contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p>"
+          }
+        }
+      },
+      "block_order": [
+        "164572426857089649-0",
+        "tab_content_9VzkMP",
+        "tab_content_9PExzw",
+        "164572426857089649-1",
+        "164572426857089649-2",
+        "tab_content_FgW39K",
+        "tab_content_p8Ap6V",
+        "tab_content_t8xeHN",
+        "tab_content_pnXmRL"
+      ],
+      "settings": {
+        "title": "ORDERS",
+        "description": "",
+        "faq_icon": "caret",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "164572438470d85add": {
+      "type": "accordion",
+      "blocks": {
+        "164572438495310fd3-0": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Do any tax charges apply?",
+            "text": "<p>Prices displayed on the website are exclusive of sales taxes. When you proceed to purchase your order, sales tax (where applicable) will be calculated on the total merchandise value and displayed in checkout. When international shipment becomes available, the total you pay when placing your order at checkout includes all tax and duties owed to customs in your country of delivery. Please note that this is dependent on your local customs and importing regulations, which may change without notice. <br/><br/>In case of return you will receive a refund of all applicable taxes and duties, although, the local customs fee and shipping cost is non-refundable. Please note: The postal fee charged does not include possible taxes and duties, which may be applied by customs in the country where the order originated. The responsibility for any customs duties, foreign taxes or other fees on the postal fee, which may be imposed, will rest with the customer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "164572438495310fd3-0"
+      ],
+      "settings": {
+        "title": "PAYMENT",
+        "description": "",
+        "faq_icon": "caret",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "1645724424d6db0e5a": {
+      "type": "accordion",
+      "blocks": {
+        "164572442464b4aa49-0": {
+          "type": "tab_content",
+          "settings": {
+            "question": "What shipping options do you provide?",
+            "text": "<p>Visit <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">the Shipping page</a> for our current US Delivery services and costs.</p>"
+          }
+        },
+        "164572442464b4aa49-1": {
+          "type": "tab_content",
+          "settings": {
+            "question": "What shipping provider do you use?",
+            "text": "<p>US orders are shipped with UPS, FedEx or DHL.</p>"
+          }
+        },
+        "164572442464b4aa49-2": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Can I change the address on my order once it has been placed?",
+            "text": "<p>Unfortunately, once orders have been placed the address cannot be amended. Please email us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> immediately and we will cancel your order. You will be able to create a new order with the correct address.</p>"
+          }
+        },
+        "tab_content_DTLKEY": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Can you deliver to a PO box?",
+            "text": "<p>Unfortunately, our courier cannot deliver to PO boxes as we require a signature for delivery.</p>"
+          }
+        },
+        "tab_content_bKUcR9": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Can I upgrade my delivery after I have placed my order?",
+            "text": "<p>Unfortunately, it is not possible to change your delivery choice once the order has been placed.</p>"
+          }
+        },
+        "tab_content_p7jiqt": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Can I track my order once it has been dispatched?",
+            "text": "<p>The shipper will email you full tracking details. Please use the waybill number to track your parcels destination.</p>"
+          }
+        },
+        "tab_content_AnmjMw": {
+          "type": "tab_content",
+          "settings": {
+            "question": "I have a problem with my delivery, what should I do?",
+            "text": "<p>Please don’t hesitate to contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p>"
+          }
+        }
+      },
+      "block_order": [
+        "164572442464b4aa49-0",
+        "164572442464b4aa49-1",
+        "164572442464b4aa49-2",
+        "tab_content_DTLKEY",
+        "tab_content_bKUcR9",
+        "tab_content_p7jiqt",
+        "tab_content_AnmjMw"
+      ],
+      "settings": {
+        "title": "SHIPPING AND DELIVERY",
+        "description": "",
+        "faq_icon": "caret",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "accordion_jkAGLd": {
+      "type": "accordion",
+      "blocks": {
+        "tab_content_8894n3": {
+          "type": "tab_content",
+          "settings": {
+            "question": "What is your returns policy?",
+            "text": "<p>Please see our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">Return Policy</a> .</p>"
+          }
+        },
+        "tab_content_7jUYNr": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How do I return my item?",
+            "text": "<p>Items purchased on this website are eligible for return provided that they are returned within 21 days of the item's delivery date in new, unused, unworn, unwashed, unaltered, and undamaged condition, in the original packaging with all tags and labels attached. If for some reason you are not completely satisfied with your purchase, we offer free returns as part of our customer service.<br/>Please note that the below instructions are for US RETURNS ONLY.</p><p>US Returns</p><ol><li><a href=\"https://account.a-shimus.com/orders\" title=\"https://account.a-shimus.com/orders\">Click HERE</a> to start your return and select your order.</li><li>Select items you’d like to return and click “Request Return”. </li><li>Select a reason for return, then click the “Request Return” button. This helps us improve to make sure you love your purchase next time!</li><li>We will send you free return label via email after confirming your return request.</li><li>Your parcel is now ready to be taken to your nearest UPS parcel shop.</li></ol><p><br/>It can take up to 10 business days for your return to reach us from the date of posting using our free returns service. We will send you an email notification once your refund has been processed.<br/>The money will then clear back to your original method of payment within 10 business days, depending on your bank's processing times.</p>"
+          }
+        },
+        "tab_content_bwnDjc": {
+          "type": "tab_content",
+          "settings": {
+            "question": "When will I receive my refund?",
+            "text": "<p>It can take up to 28 days for your return to reach us from the date of posting. We will send you an email notification once your refund has been processed. Once your return has been received at our warehouse, we will inspect its condition. A confirmation email will be sent to the account holder once the refund is processed. This may take longer during peak and sale periods.</p>"
+          }
+        },
+        "tab_content_4DKpJ8": {
+          "type": "tab_content",
+          "settings": {
+            "question": "What should I do if my item is faulty?",
+            "text": "<p>We thoroughly inspect all of our products before shipping to ensure the highest possible standards, but if for some reason the product you have received is damaged or faulty, please contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p><p>If one of your items becomes faulty within 6 months of receiving it, we can offer you a full refund or exchange. Any items that become faulty within 6-12 months may be eligible for an exchange or refund to store credit at company discretion.</p><p>Any item(s) returned as faulty will be inspected by our Garment Technician. Any item(s) that are returned damaged as a result of wear and tear will not be considered as faulty and will be returned back to the customer. (Examples of wear and tear are item(s) that are returned soiled, marked or with any stains or perfume odors, material that contains fabric pulls, snags or bobbles or garments washed incorrectly.)</p>"
+          }
+        },
+        "tab_content_kgAPbf": {
+          "type": "tab_content",
+          "settings": {
+            "question": "I have lost my invoice/returns paperwork, how do I obtain another online returns form?",
+            "text": "<p>Neither invoice nor returns form is needed to request a return.<br/>You can submit your return request directly from <a href=\"https://account.a-shimus.com/orders\" title=\"https://account.a-shimus.com/orders\">your order page </a>.<br/>Please contact us at <a href=\"mailto:customersupport@a-shimus.com\" title=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> if you have any other questions. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_8894n3",
+        "tab_content_7jUYNr",
+        "tab_content_bwnDjc",
+        "tab_content_4DKpJ8",
+        "tab_content_kgAPbf"
+      ],
+      "settings": {
+        "title": "Returns",
+        "description": "",
+        "faq_icon": "caret",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "accordion_3LQCBX": {
+      "type": "accordion",
+      "blocks": {
+        "tab_content_DfamPz": {
+          "type": "tab_content",
+          "settings": {
+            "question": "I would like to provide feedback on my recent experience with A.SHIMUS, who should I contact?",
+            "text": "<p>We welcome customer feedback any time. Please contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p>"
+          }
+        },
+        "tab_content_JJfthT": {
+          "type": "tab_content",
+          "settings": {
+            "question": "The item I want is showing as \"out of stock\", how do I know if it will be restocked?",
+            "text": "<p>If the product is “Coming Soon” or due to be “Re-Stocked”, we will display this message in the Product Description. Click ‘Notify Me’ and register your email address. We will send you an email notification when this item is in stock and ready for purchase!</p><p>If there is no message in the Product Description, we may be sold out however we do recommend checking with us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p>"
+          }
+        },
+        "tab_content_GtJYLV": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Where can I find your sizing information?",
+            "text": "<p>You can find our general sizing and measuring guide under the Size Guide online and at the back of the brochure however for specific garment measurements you can find this by clicking ‘SIZE GUIDE’ on the relevant product page.</p><p>Alternatively, you're welcome to contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a> .</p>"
+          }
+        },
+        "tab_content_PUzgCw": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How do I wash my garment?",
+            "text": "<p>Our clothing is made from high quality fabrics and often require special care. Please ensure you follow the wash care instructions which can be found on the inside seam of the garment or the ‘FABRIC CARE’ section on the relevant product page.</p>"
+          }
+        },
+        "tab_content_RHgCwp": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How can I be added to the A.SHIMUS mailing list?",
+            "text": "<p>Scroll to the bottom of the A.SHIMUS home page and you will find a blank space to type your e-mail address, then click “SIGN UP” button. Alternatively you can contact us at <a href=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a>  with your Name, Address, Zip code and Phone Number and we will add you to our mailing list.</p>"
+          }
+        },
+        "tab_content_V94gtT": {
+          "type": "tab_content",
+          "settings": {
+            "question": "How can I be removed from the A.SHIMUS mailing list?",
+            "text": "<p>Please submit your details using the form on this page to unsubscribe from our mailing list. Please allow up to 6 weeks for this request to take effect due to processing lead times with the mailing distribution provider.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_DfamPz",
+        "tab_content_JJfthT",
+        "tab_content_GtJYLV",
+        "tab_content_PUzgCw",
+        "tab_content_RHgCwp",
+        "tab_content_V94gtT"
+      ],
+      "settings": {
+        "title": "Miscellaneous",
+        "description": "",
+        "faq_icon": "caret",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "contact_form_8hWKyX": {
+      "type": "contact-form",
+      "blocks": {
+        "name_input_TBGddR": {
+          "type": "name_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "email_input_iGb68L": {
+          "type": "email_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "tel_input_gnTGEX": {
+          "type": "tel_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        },
+        "message_input_Qbe8DV": {
+          "type": "message_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "name_input_TBGddR",
+        "email_input_iGb68L",
+        "tel_input_gnTGEX",
+        "message_input_Qbe8DV"
+      ],
+      "settings": {
+        "form_width": "narrow",
+        "title": "Contact us",
+        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_color_scheme": "white",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16457242689a58d7f3",
+    "164572438470d85add",
+    "1645724424d6db0e5a",
+    "accordion_jkAGLd",
+    "accordion_3LQCBX",
+    "contact_form_8hWKyX"
+  ]
+}

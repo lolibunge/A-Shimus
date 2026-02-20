@@ -1,0 +1,141 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "23cda6f6-bcd5-4472-ba45-6258490f5b2a": {
+      "type": "countdown",
+      "blocks": {
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Summer flash sale"
+          }
+        },
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-2": {
+          "type": "countdown_timer",
+          "settings": {
+            "hide_when_complete": false,
+            "end_date": "",
+            "end_time": "",
+            "time_labels": false
+          }
+        },
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-3": {
+          "type": "text",
+          "settings": {
+            "text": "10% off on all immunity-boosting smoothies"
+          }
+        },
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-4": {
+          "type": "button",
+          "settings": {
+            "link": "/",
+            "label": "Shop sale",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-1",
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-2",
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-3",
+        "template--14753824079942__23cda6f6-bcd5-4472-ba45-6258490f5b2a-1678905038aa47c95f-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "height_desktop": "original",
+        "text_alignment": "center",
+        "section_width": "full",
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#ffffff",
+        "background_color": "#e6e5e7",
+        "overlay_color": "#262428",
+        "overlay_opacity": 0
+      }
+    },
+    "image_with_text_overlay_iYRCzB": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_kNpiJj": {
+          "type": "heading",
+          "settings": {
+            "title": "COLLECTIONS",
+            "font_size_desktop": 39,
+            "font_size_mobile": 30,
+            "heading_bottom_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_kNpiJj"
+      ],
+      "name": "t:sections.image--image-with-text-overlay.presets.name",
+      "settings": {
+        "image_desktop": "shopify://shop_images/250422_A.SHIMUS12019r_ai_O_o_ui_u_eO_uu.jpg",
+        "height_desktop": "450px",
+        "text_position_desktop": "top_left",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 100,
+        "image_mobile": "shopify://shop_images/250422_A.SHIMUS12019r_f64d95c6-f67f-48d6-887c-84438bdfb769.jpg",
+        "height_mobile": "250px",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "parallax",
+        "section_width": "full",
+        "section_margin_top": 0,
+        "section_margin_bottom": 10,
+        "text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 10
+      }
+    },
+    "main": {
+      "type": "template--collections-list",
+      "settings": {
+        "banner-image-size": "30vh",
+        "parallax": true,
+        "show_options": "selected",
+        "selected_collections": [
+          "view-all",
+          "dresses",
+          "tops",
+          "pants",
+          "knitewear-and-cardigans",
+          "jackets-and-coats",
+          "skirts"
+        ],
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "layout": "grid",
+        "items_per_row": 3
+      }
+    }
+  },
+  "order": [
+    "23cda6f6-bcd5-4472-ba45-6258490f5b2a",
+    "image_with_text_overlay_iYRCzB",
+    "main"
+  ]
+}

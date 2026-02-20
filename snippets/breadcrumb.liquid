@@ -1,0 +1,101 @@
+<!-- /snippets/breadcrumb.liquid -->
+{% comment %}
+  Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{% endcomment %}
+<nav class="breadcrumb nav-link-animated--custom" aria-label="breadcrumbs" data-breadcrumb>
+  <span class="breadcrumb-item">
+    <a class="animated-link--item" href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}">
+      <span class="label-font">{{ 'general.breadcrumbs.home' | t }}</span>
+    </a>
+  </span>
+  {% if template contains 'product' %}
+    {% assign breadcrumb_collection = null %}
+    
+    {% comment %} 1. First check if there's a collection in context {% endcomment %}
+    {% if collection.handle %}
+      {% assign breadcrumb_collection = collection %}
+    {% else %}
+      {% comment %} 2. Try to extract from URL {% endcomment %}
+      {% assign url_parts = request.url | split: '?' %}
+      {% if url_parts[1] %}
+        {% assign params_string = url_parts[1] %}
+        {% assign params = params_string | split: '&' %}
+        {% for param in params %}
+          {% assign key_value = param | split: '=' %}
+          {% if key_value[0] == 'collection' %}
+            {% assign collection_handle_param = key_value[1] %}
+            {% comment %} Search for the collection in the product's collections {% endcomment %}
+            {% for col in product.collections %}
+              {% if col.handle == collection_handle_param %}
+                {% assign breadcrumb_collection = col %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+    
+    {% comment %} 3. DO NOT use fallback - let JavaScript handle it {% endcomment %}
+    {% comment %} If we get here without a collection, show a placeholder that JavaScript will update {% endcomment %}
+    {% if breadcrumb_collection %}
+      <span class="breadcrumb-divider" aria-hidden="true">/</span>
+      <span class="breadcrumb-item" data-collection-item>
+        <a class="animated-link--item" href="{{ breadcrumb_collection.url }}" title="{{ breadcrumb_collection.title }}" data-collection-link>
+          <span class="label-font" data-collection-title>{{ breadcrumb_collection.title }}</span>
+        </a>
+      </span>
+    {% else %}
+      {% comment %} Placeholder for JavaScript to update {% endcomment %}
+      <span class="breadcrumb-divider" aria-hidden="true" data-collection-divider>/</span>
+      <span class="breadcrumb-item" data-collection-item style="display: none;">
+        <a class="animated-link--item" href="#" data-collection-link>
+          <span class="label-font" data-collection-title></span>
+        </a>
+      </span>
+    {% endif %}
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+    <span class="breadcrumb-item">
+      <span class="label-font">{{ product.title }}</span>
+    </span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+    <span class="breadcrumb-item">
+      <span class="label-font">{{ collection.title }}</span>
+    </span>
+  {% elsif template.name == 'blog' %}
+
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+    {% if current_tags %}
+      <span class="breadcrumb-item">
+        <a class="animated-link--item" href="{{ blog.url }}" title="{{ blog.title }}">
+          <span class="label-font">{{ blog.title }}</span>
+        </a>
+      </span>
+      <span class="breadcrumb-divider" aria-hidden="true">/</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% endif %}
+
+  {% elsif template.name == 'article' %}
+
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+    <span class="breadcrumb-item">
+      <a class="animated-link--item" href="{{ blog.url }}" title="{{ blog.title }}">
+        <span class="label-font">{{ blog.title }}</span>
+      </a>
+    </span>
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+    <span class="breadcrumb-item">
+      <span class="label-font">{{ article.title }}</span>
+    </span>
+
+  {% elsif template contains 'page' %}
+{% comment %}
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+{% endcomment %}
+  {% else %}
+
+    <span class="breadcrumb-divider" aria-hidden="true">/</span>
+
+  {% endif %}
+</nav>

@@ -1,0 +1,84 @@
+/* Place any CSS overrides in this file. */
+
+.homepage-indiv-section-wrapper.grid--full.homepage-featured-content-wrapper{
+    overflow: hidden;
+}
+#swym-wishlist-render-container {
+  padding: 0 20px;
+}/*
+.swym-wishlist-collections-v2-container {
+  top: 17px !important;
+}*/
+.section-header-wrapper.header-align--center {
+  padding-right: 30px;
+}
+.rte.footer-article.text-link-animated.richtext-block p {
+  font-family: "acumin-pro", "SainteColombe", sans-serif;
+}
+.blog-post-card__title{
+    text-transform: initial;
+}
+/***************************************************************************************/
+.template-page #breadcrumbs {
+  display: none;
+}
+body .wrapper-spacing--h {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+body .slider-nav--left-and-right .width--content {
+  max-width: 100%;
+}
+.product-grid--title-font-body .text-truncate--line {
+  font-weight: 600;
+  font-size: 14px;
+}
+.site-nav--link-text.animated-underline {
+  font-weight: bold;
+  font-size: 13px;
+}
+.homepage-collection-grid-inner .grid-item__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.h3.footer-header {
+  font-weight: 600;
+  font-size: 14px;
+}
+.footer-content.nav-link-animated li a,
+.content-footer p {
+  font-size: 13px;
+}
+.blog-post-card__title a {
+  font-size: 16px;
+}
+.breadcrumb.nav-link-animated--custom span {
+  font-size: 13px;
+}
+.h1.product-details-product-title,
+.section-title.text-link-animated {
+  font-size: 26px;
+}
+.product-form-block #ProductPrice .money {
+  font-size: 16px;
+}
+#refund-policy .rte li,
+#shipping-policy .rte li {
+  font-family: arial;
+}
+@media(max-width: 768px){
+  body .featured-products-wrapper .wrapper-spacing--h {
+    padding-left: 30px;
+    padding-right: 0;
+  }/*
+  .featured-products-wrapper .swiper.swiper-initialized.swiper-horizontal.swiper-ios.swiper-backface-hidden {
+    padding-right: 30px;
+  }*/
+  .template-index grid-slider {
+    padding-right: 30px !important;
+  } 
+  .featured-products-wrapper .swiper-scrollbar.large-hide.swiper-scrollbar-horizontal {
+    left: -10px;
+  }
+}

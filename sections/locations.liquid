@@ -1,0 +1,335 @@
+<div class="locations-section section-{{ section.id }}-padding" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="locations-title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    <div class="locations-grid">
+      {% for block in section.blocks %}
+        <div class="location-item" {{ block.shopify_attributes }}>
+          
+          {% if block.settings.location_title != blank %}
+            <h3 class="location-number">
+              <span class="number-badge">{{ forloop.index }}</span>
+              {{ block.settings.location_title }}
+            </h3>
+          {% endif %}
+
+          <div class="">
+            {% if block.settings.image != blank %}
+                <div class="location-image">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 800 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="800"
+                    height="{{ 800 | divided_by: block.settings.image.aspect_ratio | round }}"
+                  >
+                </div>
+              {% endif %}
+            <div class="location-content">
+              
+
+              <div class="location-info location-left">
+                {% if block.settings.subtitle != blank %}
+                  <h4 class="location-subtitle">{{ block.settings.subtitle }}</h4>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <div class="location-description">
+                    {{ block.settings.description }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="location-right">
+                {% if block.settings.link_url != blank and block.settings.link_text != blank %}
+                    <a href="{{ block.settings.link_url }}" class="location-link">
+                    {{ block.settings.link_text }}
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+
+            
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Locations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "Our Locations"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "location_title",
+          "label": "Location Title",
+          "default": "MADISON AVENUE, NY"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "980 Madison Ave"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>New York, NY, 10075</p><p>madison.nyc@meandem.com</p><p>+1 (646) 8956 137</p><p><br></p><p>Monday - Saturday: 10:00am - 6:00pm</p><p>Sunday: 12:00pm - 5:00pm</p><p>Wheelchair accessible</p>"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Get Directions"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Locations",
+      "blocks": [
+        {
+          "type": "location"
+        },
+        {
+          "type": "location"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.locations-section {
+  padding: 50px 0;
+}
+
+.page-width {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.locations-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.location-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 60px;
+}
+
+.location-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.location-number {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+}
+
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+margin-top: 20px;
+}
+
+.location-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.location-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+    max-height: 435px;
+}
+
+.location-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.location-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.location-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.location-description p {
+  margin: 0 0 8px 0;
+}
+
+.location-right {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0;
+}
+
+.location-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.location-link:hover {
+  background-color: #333;
+}
+
+.location-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (max-width: 989px) {
+  .location-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .location-right {
+    justify-content: flex-start;
+  }
+
+  .locations-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .location-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .locations-section {
+    padding: 30px 0;
+  }
+
+  .locations-title {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+  }
+
+  .locations-grid {
+    gap: 40px;
+  }
+
+  .location-item {
+    padding-bottom: 40px;
+  }
+
+  .location-number {
+    font-size: 0.85rem;
+  }
+
+  .location-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+{% endstylesheet %}

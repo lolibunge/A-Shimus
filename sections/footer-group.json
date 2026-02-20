@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer-main": {
+      "type": "footer-main",
+      "blocks": {
+        "menu": {
+          "type": "menu",
+          "settings": {
+            "menu_title": "About Us",
+            "footer_linklist": "footer1"
+          }
+        },
+        "5c637888-418b-4cc8-baea-a83083df2e8c": {
+          "type": "menu",
+          "settings": {
+            "menu_title": "Customer Care",
+            "footer_linklist": "footer2"
+          }
+        },
+        "text_YLeCyF": {
+          "type": "text",
+          "settings": {
+            "title": "Contact Us",
+            "richtext": "<p>Email us at<br/><a href=\"mailto:customersupport@a-shimus.com\" title=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a></p>"
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "social_title": "Connect"
+          }
+        }
+      },
+      "block_order": [
+        "menu",
+        "5c637888-418b-4cc8-baea-a83083df2e8c",
+        "text_YLeCyF",
+        "social"
+      ],
+      "settings": {
+        "alignment": "left",
+        "heading_font_size": 16,
+        "color_scheme": "accent"
+      }
+    },
+    "footer-bottom": {
+      "type": "footer-bottom",
+      "custom_css": [
+        ".nav-link-animated--custom {display: none;}"
+      ],
+      "settings": {
+        "show_methods_of_payment": true,
+        "center_content_on_desktop": true,
+        "footer_text": "",
+        "show_currency_selector": false,
+        "show_locale_selector": false,
+        "color_scheme": "accent"
+      }
+    }
+  },
+  "order": [
+    "footer-main",
+    "footer-bottom"
+  ]
+}

@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "newsletter_ptptcE": {
+      "type": "newsletter",
+      "name": "t:all.Newsletter",
+      "settings": {
+        "newsletter_heading": "Join our Mailing List",
+        "newsletter_description": "",
+        "textAlignment": "left",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "rich_text_frQkYK": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_cVeBkt": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>お客様にご満足いただけるよう、ご購入後に万が一お直しが必要になった場合に備えて、ストアクレジットをご用意しております。<br/>下記のお直しフォームにご記入いただくだけで、次回のご注文が1回限り10%割引となります。<br/><br/>お客様からのフィードバックに基づき、サイズ選びの改善に継続的に取り組んでおります。<br/><br/>お直しされた商品は交換・返品できませんのでご了承ください。</p>",
+            "text_size": 14,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "richtext_cVeBkt"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "center",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "1746784825a5f02c84": {
+      "type": "apps",
+      "blocks": {
+        "powerful_form_builder_app_block_dLQJGV": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODkzNDc=\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_dLQJGV"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter_ptptcE",
+    "rich_text_frQkYK",
+    "1746784825a5f02c84"
+  ]
+}

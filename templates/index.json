@@ -1,0 +1,529 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "35b28867-77fd-4573-8212-101b3b8e2245": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "button_R48wtk": {
+          "type": "button",
+          "settings": {
+            "first_button_link": "/",
+            "first_button_label": "",
+            "second_button_link": "shopify://pages/craftsmanship",
+            "second_button_label": "Japanese Craftsmanship",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "buttons_background": "#242424",
+            "buttons_text": "#ffffff",
+            "buttons_bottom_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "button_R48wtk"
+      ],
+      "custom_css": [
+        ".dynamic-section-button--button_t94NfT.btn {padding-left: 10px; padding-right: 10px;}"
+      ],
+      "settings": {
+        "image_desktop": "shopify://shop_images/final_web.jpg",
+        "height_desktop": "original",
+        "text_position_desktop": "left",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 60,
+        "image_mobile": "shopify://shop_images/final_web.jpg",
+        "height_mobile": "original",
+        "text_position_mobile": "bottom_center",
+        "text_alignment_mobile": "left",
+        "section_link": "",
+        "animation_style": "none",
+        "section_width": "full",
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#242424",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 0
+      }
+    },
+    "3643d38b-24f2-4040-ab67-4b4b44a63aab": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".product-card__image .theme-img.block-radius {object-fit: contain !important;}"
+      ],
+      "settings": {
+        "title": "New Collection",
+        "description": "<p><a href=\"/collections/new-arrivals\" title=\"New Arrivals\">Shop Now</a></p>",
+        "section_header_alignment": "center",
+        "collection": "25-fall-winter",
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "override_button_colors": true,
+        "button_background_color": "#371313",
+        "button_text_color": "#ffffff",
+        "show_view_all": false,
+        "button_position": "below_products",
+        "button_alignment": "center",
+        "buttons_style": "filled",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "layout_style": "slider",
+        "products_to_show": 8,
+        "grid-desktop": 4,
+        "grid-mobile": "2",
+        "colors": "white"
+      }
+    },
+    "collection_list_WKYj39": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_F6TCFb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dresses",
+            "collection_img": "shopify://shop_images/WhatsApp_Image_2026-02-15_at_14.30.56.jpg",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "featured_collection_HUGVVm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "jackets-and-coats",
+            "collection_img": "shopify://shop_images/image_2.jpg",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "featured_collection_8qaPFp": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "knitewear-and-cardigans",
+            "collection_img": "shopify://shop_images/A.SHIMUS_Image_B.png",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "featured_collection_LjMCtt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pants",
+            "collection_img": "shopify://shop_images/PANTS_NEW.jpg",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "featured_collection_eHHUQT": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "skirts",
+            "collection_img": "shopify://shop_images/SKIRT_NEW.jpg",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "featured_collection_8EQgNy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "tops",
+            "collection_img": "shopify://shop_images/image_4.jpg",
+            "subheading": "",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_F6TCFb",
+        "featured_collection_HUGVVm",
+        "featured_collection_8qaPFp",
+        "featured_collection_LjMCtt",
+        "featured_collection_eHHUQT",
+        "featured_collection_8EQgNy"
+      ],
+      "name": "t:sections.collection--collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_header_alignment": "center",
+        "items-per-row": 3,
+        "content-position": "below-image",
+        "image_shape": "tall",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section-width": "full",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "remove-spacing": false,
+        "colors": "white"
+      }
+    },
+    "featured_collection_Kqn9qw": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".product-card__image .theme-img.block-radius {object-fit: contain !important;}"
+      ],
+      "settings": {
+        "title": "Our Tweed Collection",
+        "description": "<p><a href=\"/collections/our-tweed-collection\" title=\"Our Tweed Collection\">Shop Japanese Signature Tweeds</a></p>",
+        "section_header_alignment": "center",
+        "collection": "our-tweed-collection",
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "override_button_colors": true,
+        "button_background_color": "#371313",
+        "button_text_color": "#ffffff",
+        "show_view_all": false,
+        "button_position": "below_products",
+        "button_alignment": "center",
+        "buttons_style": "filled",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "layout_style": "slider",
+        "products_to_show": 8,
+        "grid-desktop": 4,
+        "grid-mobile": "2",
+        "colors": "white"
+      }
+    },
+    "testimonials_r8BxQi": {
+      "type": "testimonials",
+      "blocks": {
+        "text_UzJXMi": {
+          "type": "text",
+          "settings": {
+            "stars": 5,
+            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
+            "customer_name": "John Smith",
+            "link": ""
+          }
+        },
+        "text_gP6zEC": {
+          "type": "text",
+          "settings": {
+            "stars": 5,
+            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
+            "customer_name": "John Smith",
+            "link": ""
+          }
+        },
+        "text_3iq4mT": {
+          "type": "text",
+          "settings": {
+            "stars": 5,
+            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
+            "customer_name": "John Smith",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_UzJXMi",
+        "text_gP6zEC",
+        "text_3iq4mT"
+      ],
+      "disabled": true,
+      "name": "t:sections.text--testimonials.presets.name",
+      "settings": {
+        "title": "Testimonials",
+        "description": "",
+        "section_header_alignment": "center",
+        "circle_images": true,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "rich_text_VcennU": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_hrBGy9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Elevated Workwear for Petite women",
+            "heading--text-size": 20,
+            "heading_bottom_spacing": 20
+          }
+        },
+        "richtext_LRNbnx": {
+          "type": "richtext",
+          "settings": {
+            "text": "",
+            "text_size": 14,
+            "text_bottom_spacing": 20
+          }
+        },
+        "button_g7HKBe": {
+          "type": "button",
+          "settings": {
+            "button_link": "",
+            "button_text": "Learn More",
+            "buttons_style": "underlined",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff",
+            "button_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "heading_hrBGy9",
+        "richtext_LRNbnx",
+        "button_g7HKBe"
+      ],
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "center",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "50b03afc-6c7a-4252-94c2-7579c9d3b3ee": {
+      "type": "collage",
+      "blocks": {
+        "83447c73-f480-4c7d-8508-249f594f3aa3": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS12208.jpg",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "heading_size": 28,
+            "mobile_position": "md-max-align-center md-max-justify-left",
+            "heading_size_mobile": 28,
+            "heading": "2025 Fall / Winter Collection",
+            "url": "shopify://collections/25-fall-winter",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#262428",
+            "button_color": "#e6e5e7",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "0d4c44b0-cb7c-43dc-829a-743dfa47a878": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11633re_70569023-afca-4b0a-9161-25172f3a3463.jpg",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "heading_size": 28,
+            "mobile_position": "md-max-align-top md-max-justify-left",
+            "heading_size_mobile": 28,
+            "heading": "Lookbook",
+            "url": "shopify://pages/lookbook",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#262428",
+            "button_color": "#e6e5e7",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_Tf6HGB": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Cocktails_boutique_store_front.jpg",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "heading_size": 28,
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "heading_size_mobile": 22,
+            "heading": "Find Us In-Store",
+            "url": "shopify://pages/find-us",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "83447c73-f480-4c7d-8508-249f594f3aa3",
+        "0d4c44b0-cb7c-43dc-829a-743dfa47a878",
+        "image_Tf6HGB"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_header_alignment": "center",
+        "section_width": "full",
+        "remove_spacing": false,
+        "block_alignment": "center",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "width_1": "3",
+        "height_1": "2",
+        "width_2": "3",
+        "height_2": "2",
+        "width_3": "3",
+        "height_3": "2",
+        "width_4": "2",
+        "height_4": "2",
+        "width_5": "2",
+        "height_5": "2",
+        "width_6": "1",
+        "height_6": "6",
+        "color_scheme": "white"
+      }
+    },
+    "3f1d5abc-4a41-4b0f-98ca-29a6a3d95949": {
+      "type": "blog-posts",
+      "blocks": {
+        "blog_dt6BAx": {
+          "type": "blog",
+          "settings": {
+            "blog": "blog"
+          }
+        }
+      },
+      "block_order": [
+        "blog_dt6BAx"
+      ],
+      "settings": {
+        "title": "blog",
+        "description": "",
+        "section_header_alignment": "left",
+        "show_image": true,
+        "image_shape": "wide",
+        "post_limit": 3,
+        "show_tags": false,
+        "blog_show_date": false,
+        "show_author": false,
+        "show_reading_time": false,
+        "show_comment_count": false,
+        "show_excerpt": false,
+        "show_read_more": false,
+        "heading_font": "heading",
+        "heading_font_size": 20,
+        "alignment": "center",
+        "buttons_style": "underlined",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "layout_style_desktop": "slider",
+        "hover_navigation_desktop": "left-and-right",
+        "peek_desktop": true,
+        "images_per_row_desktop": 3,
+        "layout_style_mobile": "slider",
+        "navigation_mobile": "dots",
+        "section_width": "full",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "contact_form_rhN6m6": {
+      "type": "contact-form",
+      "blocks": {
+        "name_input_dxGKWB": {
+          "type": "name_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "email_input_dUQizk": {
+          "type": "email_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "tel_input_XtBVNm": {
+          "type": "tel_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        },
+        "message_input_CVtcDQ": {
+          "type": "message_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "name_input_dxGKWB",
+        "email_input_dUQizk",
+        "tel_input_XtBVNm",
+        "message_input_CVtcDQ"
+      ],
+      "disabled": true,
+      "name": "t:sections.section--contact-form.presets.name",
+      "settings": {
+        "title": "Contact us",
+        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
+        "section_header_alignment": "center",
+        "form_width": "narrow",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_color_scheme": "white",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "35b28867-77fd-4573-8212-101b3b8e2245",
+    "3643d38b-24f2-4040-ab67-4b4b44a63aab",
+    "collection_list_WKYj39",
+    "featured_collection_Kqn9qw",
+    "testimonials_r8BxQi",
+    "rich_text_VcennU",
+    "50b03afc-6c7a-4252-94c2-7579c9d3b3ee",
+    "3f1d5abc-4a41-4b0f-98ca-29a6a3d95949",
+    "contact_form_rhN6m6"
+  ]
+}

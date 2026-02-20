@@ -1,0 +1,411 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "94a50e02-c7cb-4f8e-8809-f281c98044d2": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "text_VPAxBn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Add an image paired with text to give focus to your chosen product, collection, or blog post.</p>",
+            "font_size_desktop": 16,
+            "font_size_mobile": 16,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "text_VPAxBn"
+      ],
+      "settings": {
+        "image_desktop": "shopify://shop_images/model-with-leather-jacket-over-shoulders_c7e51b4f-18a0-4aa2-ba13-27dc2619d44c.jpg",
+        "height_desktop": "650px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 0
+      }
+    },
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "63d055aa-9706-43b0-b3c8-49b4a2e53ef9": {
+      "type": "rich-text",
+      "blocks": {
+        "a52c67a4-24a0-4020-93a2-4b06cdc1c155": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.</p>",
+            "text_size": 16,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "a52c67a4-24a0-4020-93a2-4b06cdc1c155"
+      ],
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "left",
+        "section_padding_top": 60,
+        "section_padding_bottom": 0,
+        "colors": "white"
+      }
+    },
+    "image_with_text_E3jDNa": {
+      "type": "image-with-text",
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/model-in-neutral-colors-by-window_cbfea284-0566-47ee-9223-dcc40b66688a.jpg",
+        "title": "About Us",
+        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "button_label": "",
+        "button_link": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section_padding_top": 70,
+        "section_padding_bottom": 0,
+        "text_overlapping_image": false,
+        "section-width": "full",
+        "layout": "left",
+        "text_alignment": "center",
+        "colors": "white"
+      }
+    },
+    "image_with_text_9pBMMU": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/womens-fall-fashion-in-autumn-landscape_2b64f4c9-574c-4a93-87ad-cb9eaca2ebcf.jpg",
+        "title": "Share brand or product details",
+        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "button_label": "",
+        "button_link": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section_padding_top": 70,
+        "section_padding_bottom": 0,
+        "text_overlapping_image": false,
+        "section-width": "full",
+        "layout": "right",
+        "text_alignment": "center",
+        "colors": "white"
+      }
+    },
+    "image_with_text_overlay_AihaRJ": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_X6Anqg": {
+          "type": "heading",
+          "settings": {
+            "title": "",
+            "font_size_desktop": 28,
+            "font_size_mobile": 28,
+            "heading_bottom_spacing": 25
+          }
+        },
+        "text_QWUtFD": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "font_size_desktop": 16,
+            "font_size_mobile": 16,
+            "text_bottom_spacing": 20
+          }
+        },
+        "button_Mq3fcJ": {
+          "type": "button",
+          "settings": {
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "buttons_background": "#e68819",
+            "buttons_text": "#ffffff",
+            "buttons_bottom_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_X6Anqg",
+        "text_QWUtFD",
+        "button_Mq3fcJ"
+      ],
+      "settings": {
+        "image_desktop": "shopify://shop_images/close-up-leather-jacket-over-shoulders.jpg",
+        "height_desktop": "original",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
+        "section_margin_top": 95,
+        "section_margin_bottom": 0,
+        "text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 0
+      }
+    },
+    "accordion_TKxgek": {
+      "type": "accordion",
+      "blocks": {
+        "tab_content_MNYm8A": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "text": "<p>Here you can place an explanation or answer to the question.</p>"
+          }
+        },
+        "tab_content_9yHhea": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "text": "<p>Here you can place an explanation or answer to the question.</p>"
+          }
+        },
+        "tab_content_VJaYm4": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "text": "<p>Here you can place an explanation or answer to the question.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_MNYm8A",
+        "tab_content_9yHhea",
+        "tab_content_VJaYm4"
+      ],
+      "settings": {
+        "title": "Frequently asked questions",
+        "description": "",
+        "faq_icon": "plus_minus",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "text_adverts_wtdmwR": {
+      "type": "text-adverts",
+      "blocks": {
+        "text_M3fdh7": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        },
+        "text_Mh7GYn": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        },
+        "text_QeghYP": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_M3fdh7",
+        "text_Mh7GYn",
+        "text_QeghYP"
+      ],
+      "settings": {
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "colors": "light"
+      }
+    },
+    "slideshow_DTTcqe": {
+      "type": "slideshow",
+      "blocks": {
+        "image_MhYw7G": {
+          "type": "image",
+          "settings": {
+            "title": "Make a great \nfirst impression",
+            "text": "Add images and text to give focus to your chosen product, collection, or blog post",
+            "first_button_label": "Shop now",
+            "first_button_link": "",
+            "second_button_label": "Learn more",
+            "second_button_link": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "image": "shopify://shop_images/clothes-on-a-rack-in-a-clothing-store.jpg",
+            "desktop-caption-heading-size": 60,
+            "desktop-caption-body-text-size": 24,
+            "text_position": "center_left",
+            "mobile-caption-heading-size": 36,
+            "mobile-caption-body-text-size": 16,
+            "mobile_text_position": "center_left",
+            "image_overlay": "#242424",
+            "image_overlay_opacity": 0,
+            "caption-text": "#ffffff"
+          }
+        },
+        "image_NgjwMW": {
+          "type": "image",
+          "settings": {
+            "title": "Promote your \ntop earners",
+            "text": "Showcase key products or collections to maximise your profits",
+            "first_button_label": "Shop now",
+            "first_button_link": "",
+            "second_button_label": "Learn more",
+            "second_button_link": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "image": "shopify://shop_images/photo-of-people-shopping-in-a-clothing-store.jpg",
+            "desktop-caption-heading-size": 60,
+            "desktop-caption-body-text-size": 24,
+            "text_position": "center_left",
+            "mobile-caption-heading-size": 36,
+            "mobile-caption-body-text-size": 16,
+            "mobile_text_position": "center_left",
+            "image_overlay": "#242424",
+            "image_overlay_opacity": 0,
+            "caption-text": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "image_MhYw7G",
+        "image_NgjwMW"
+      ],
+      "settings": {
+        "slide_transition_delay": 5,
+        "slide_navigation_style": "dots",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "desktop_height": "medium",
+        "mobile_height": "full_screen"
+      }
+    },
+    "gallery_BEbQRt": {
+      "type": "gallery",
+      "blocks": {
+        "image_k8KUAg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/shirts-on-hangers-on-display.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_font_color": "#ffffff",
+            "overlay_color": "#242424",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "image_r4N3Xn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hand-on-hip-and-posing-in-retail-store.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_font_color": "#ffffff",
+            "overlay_color": "#242424",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "image_gXa6pH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/smiling-woman-poses.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "show-gradient-overlay": false,
+            "overlay_font_color": "#ffffff",
+            "overlay_color": "#242424",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "image_k8KUAg",
+        "image_r4N3Xn",
+        "image_gXa6pH"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "grid_image_size": "square",
+        "content-position": "overlay",
+        "buttons_style": "filled",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section-width": "content",
+        "remove-spacing": false,
+        "full-width": false,
+        "colors": "white"
+      }
+    }
+  },
+  "order": [
+    "94a50e02-c7cb-4f8e-8809-f281c98044d2",
+    "main",
+    "63d055aa-9706-43b0-b3c8-49b4a2e53ef9",
+    "image_with_text_E3jDNa",
+    "image_with_text_9pBMMU",
+    "image_with_text_overlay_AihaRJ",
+    "accordion_TKxgek",
+    "text_adverts_wtdmwR",
+    "slideshow_DTTcqe",
+    "gallery_BEbQRt"
+  ]
+}

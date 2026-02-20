@@ -1,0 +1,336 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "94a50e02-c7cb-4f8e-8809-f281c98044d2": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "text_VPAxBn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Add an image paired with text to give focus to your chosen product, collection, or blog post.</p>",
+            "font_size_desktop": 16,
+            "font_size_mobile": 16,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "text_VPAxBn"
+      ],
+      "settings": {
+        "image_desktop": "shopify://shop_images/a-woman-immersed-in-her-laptop-and-monitor_a75ce995-cddf-4552-ac19-3b631ce5636b.jpg",
+        "height_desktop": "650px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#ffffff",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 0
+      }
+    },
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "63d055aa-9706-43b0-b3c8-49b4a2e53ef9": {
+      "type": "rich-text",
+      "blocks": {
+        "a52c67a4-24a0-4020-93a2-4b06cdc1c155": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.Your text will appear here.</p>",
+            "text_size": 16,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "a52c67a4-24a0-4020-93a2-4b06cdc1c155"
+      ],
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "left",
+        "section_padding_top": 60,
+        "section_padding_bottom": 0,
+        "colors": "white"
+      }
+    },
+    "collage_zznmX3": {
+      "type": "collage",
+      "blocks": {
+        "image_UJYXnp": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders_c7e51b4f-18a0-4aa2-ba13-27dc2619d44c.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#E68819",
+            "button_color": "#FFFFFF",
+            "desktop_position": "md-min-align-bottom md-min-justify-right",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#FFFFFF",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "text_BRKUpG": {
+          "type": "text",
+          "settings": {
+            "heading": "Include text details",
+            "heading_size": 30,
+            "text": "Use text paired with images or videos to create a captivating brand story, explain details of your products, or highlight store promotions.",
+            "text_alignment": "left",
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#E68819",
+            "button_color": "#FFFFFF",
+            "desktop_position": "md-min-align-center md-min-justify-center",
+            "background_color": "#fffffc",
+            "text_color": "#371313"
+          }
+        }
+      },
+      "block_order": [
+        "image_UJYXnp",
+        "text_BRKUpG"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "remove_spacing": false,
+        "section_width": "content",
+        "width_1": "3",
+        "height_1": "3",
+        "width_2": "1.5",
+        "height_2": "3",
+        "width_3": "3",
+        "height_3": "3",
+        "width_4": "2",
+        "height_4": "2",
+        "width_5": "2",
+        "height_5": "2",
+        "width_6": "1",
+        "height_6": "4",
+        "block_alignment": "center",
+        "color_scheme": "white"
+      }
+    },
+    "template_product_info_columns_CFKBKW": {
+      "type": "template--product--info-columns",
+      "blocks": {
+        "image_and_text_FBCUR7": {
+          "type": "image_and_text",
+          "settings": {
+            "image": "shopify://shop_images/graphic-designer-at-work.jpg",
+            "grid_image_size": "tall",
+            "heading": "Heading",
+            "text": "<p>Use text paired with images to create a captivating brand story, explain details of your products, or highlight store promotions.</p>",
+            "button_link": "",
+            "button_text": ""
+          }
+        },
+        "image_and_text_TTEeKC": {
+          "type": "image_and_text",
+          "settings": {
+            "image": "shopify://shop_images/designer-at-desk.jpg",
+            "grid_image_size": "tall",
+            "heading": "Heading",
+            "text": "<p>Use text paired with images to create a captivating brand story, explain details of your products, or highlight store promotions.</p>",
+            "button_link": "",
+            "button_text": ""
+          }
+        },
+        "image_and_text_AE9Dnh": {
+          "type": "image_and_text",
+          "settings": {
+            "image": "shopify://shop_images/receiving-shipping-box-on-ipad.jpg",
+            "grid_image_size": "tall",
+            "heading": "Heading",
+            "text": "<p>Use text paired with images to create a captivating brand story, explain details of your products, or highlight store promotions.</p>",
+            "button_link": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_and_text_FBCUR7",
+        "image_and_text_TTEeKC",
+        "image_and_text_AE9Dnh"
+      ],
+      "settings": {
+        "title": "Job Category",
+        "description": "<p>Emphasise your messaging</p>",
+        "buttons_style": "underlined",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "maximum_width": 500,
+        "columns_per_row": 3,
+        "text_alignment": "center",
+        "vertical_alignment": "top",
+        "text_alignment_mobile": "center",
+        "hover_navigation_desktop": "left-and-right",
+        "section_width": "full",
+        "section_padding_top": 25,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "image_with_text_E3jDNa": {
+      "type": "image-with-text",
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/team-sales-business-meeting.jpg",
+        "title": "Share brand or product details",
+        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "button_label": "",
+        "button_link": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section_padding_top": 70,
+        "section_padding_bottom": 0,
+        "text_overlapping_image": false,
+        "section-width": "full",
+        "layout": "left",
+        "text_alignment": "center",
+        "colors": "white"
+      }
+    },
+    "image_with_text_9pBMMU": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/rack-of-womens-clothing.jpg",
+        "title": "Share brand or product details",
+        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "button_label": "",
+        "button_link": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section_padding_top": 70,
+        "section_padding_bottom": 0,
+        "text_overlapping_image": false,
+        "section-width": "full",
+        "layout": "right",
+        "text_alignment": "center",
+        "colors": "white"
+      }
+    },
+    "custom_html_YqtWKd": {
+      "type": "custom-html",
+      "blocks": {
+        "html_ncTULc": {
+          "type": "html",
+          "settings": {
+            "code": "<table border=\"1\" cellspacing=\"0\" cellpadding=\"8\">\n  <tbody>\n<tr>\n    <th>Company Name</th>\n    <th>A.SHIMUS</th>\n  </tr>\n  <tr>\n    <td>Address</td>\n    <td>1234 Elm Street, Suite 567, New York, NY, 10001, USA</td>\n  </tr>\n  <tr>\n    <td>Phone Number</td>\n    <td>+1 (123) 456-7890</td>\n  </tr>\n  <tr>\n    <td>Email</td>\n    <td>contact@abccorp.com</td>\n  </tr>\n  <tr>\n    <td>Established</td>\n    <td>2010</td>\n  </tr>\n</tbody>\n</table>",
+            "width": "100%",
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "html_ncTULc"
+      ],
+      "settings": {
+        "title": "About Us",
+        "description": "",
+        "section_width": "content",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    },
+    "contact_form_Rz3HLw": {
+      "type": "contact-form",
+      "blocks": {
+        "name_input_nXmrqP": {
+          "type": "name_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "email_input_n6FmUK": {
+          "type": "email_input",
+          "settings": {
+            "required": true,
+            "input_width": "partial"
+          }
+        },
+        "tel_input_8UkfaR": {
+          "type": "tel_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        },
+        "message_input_7jDBmn": {
+          "type": "message_input",
+          "settings": {
+            "required": true,
+            "input_width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "name_input_nXmrqP",
+        "email_input_n6FmUK",
+        "tel_input_8UkfaR",
+        "message_input_7jDBmn"
+      ],
+      "settings": {
+        "form_width": "narrow",
+        "title": "Contact us",
+        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_color_scheme": "white",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "94a50e02-c7cb-4f8e-8809-f281c98044d2",
+    "main",
+    "63d055aa-9706-43b0-b3c8-49b4a2e53ef9",
+    "collage_zznmX3",
+    "template_product_info_columns_CFKBKW",
+    "image_with_text_E3jDNa",
+    "image_with_text_9pBMMU",
+    "custom_html_YqtWKd",
+    "contact_form_Rz3HLw"
+  ]
+}

@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.wrapper-spacing--v--template {padding-top: 50px; }}"
+      ],
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "rich_text_b4HF3L": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_JMnExK": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>お客様にご満足いただけるよう、ご購入後に万が一お直しが必要になった場合に備えて、ストアクレジットをご用意しております。<br/>下記のお直しフォームにご記入いただくだけで、次回のご注文が1回限り10%割引となります。<br/><br/>お客様からのフィードバックに基づき、サイズ選びの改善に継続的に取り組んでおります。<br/><br/>お直しされた商品は交換・返品できませんのでご了承ください。</p>",
+            "text_size": 14,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "richtext_JMnExK"
+      ],
+      "name": "t:sections.text--rich-text.presets.name",
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "center",
+        "section_padding_top": 0,
+        "section_padding_bottom": 60,
+        "colors": "white"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_b4HF3L"
+  ]
+}

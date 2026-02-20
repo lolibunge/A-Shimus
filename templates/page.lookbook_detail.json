@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "collage_xgY7dr": {
+      "type": "collage",
+      "blocks": {
+        "image_ycJRrk": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11447r.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-bottom md-min-justify-right",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_zMpDre": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11256r.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_4a84hH": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11473r.jpg",
+            "heading": "",
+            "heading_size": 60,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "mobile_position": "md-max-align-center md-max-justify-center",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_6PDaEq": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11598re.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-bottom md-min-justify-right",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_HbyqBf": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11372re.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-bottom md-min-justify-right",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_bNQgbK": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11633re_70569023-afca-4b0a-9161-25172f3a3463.jpg",
+            "heading": "",
+            "heading_size": 30,
+            "url": "",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-bottom md-min-justify-right",
+            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "image_ycJRrk",
+        "image_zMpDre",
+        "image_4a84hH",
+        "image_6PDaEq",
+        "image_HbyqBf",
+        "image_bNQgbK"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "remove_spacing": false,
+        "section_width": "content",
+        "width_1": "2",
+        "height_1": "1.666667",
+        "width_2": "2",
+        "height_2": "1.666667",
+        "width_3": "2",
+        "height_3": "1.666667",
+        "width_4": "2",
+        "height_4": "1.666667",
+        "width_5": "2",
+        "height_5": "1.666667",
+        "width_6": "2",
+        "height_6": "1.666667",
+        "block_alignment": "flex-start",
+        "color_scheme": "white"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collage_xgY7dr"
+  ]
+}

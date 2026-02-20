@@ -1,0 +1,1323 @@
+<!doctype html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+<head>
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  {%- comment -%}DemoStoreRequirements{%- endcomment -%}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {%- unless settings.type_header_font.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'photoswipe.min.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'theme.min.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}">
+    <link rel="icon" type="image/png" sizes="194x194" href="{{ settings.favicon | image_url: width: 194, height: 194, crop: 'center' }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | image_url: width: 192, height: 192, crop: 'center' }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}">
+  {% endif %}
+
+  {%- unless settings.type_header_font.system? -%}
+    {% # theme-check-disable AssetPreload %}
+    <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {% # theme-check-enable AssetPreload %}
+  {%- endunless -%}
+  {%- unless settings.type_base_font.system? -%}
+    {% # theme-check-disable AssetPreload %}
+    <link rel="preload" as="font" href="{{ settings.type_base_font | font_url }}" type="font/woff2" crossorigin>
+    {% # theme-check-enable AssetPreload %}
+  {%- endunless -%}
+
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {% render 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="rgba({{ settings.color_primary.rgba }})">
+
+  <!-- CSS ================================================== -->
+  {% render 'css-variables' %}
+  {% style %}
+
+    @font-face {
+      font-family: "SainteColombe";
+      font-display: auto;
+      src: url("{{ 'SainteColombe-Regular.otf' | file_url }}") format("opentype");
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    html {
+      box-sizing: border-box;
+      background-color: var(--body-color);
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background-color: var(--body-color);
+      min-height: 100%;
+      margin: 0;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-columns: 100%;
+      overflow-x: hidden;
+      font-family: "acumin-pro", "SainteColombe", sans-serif;
+    }
+
+    h1, h2 {
+      font-family: "SainteColombe", sans-serif;
+    }
+    
+    h3, h4, h5, h6 {
+      font-family: "SainteColombe", sans-serif;
+    }
+
+    p {
+      font-family: "acumin-pro", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .sr-only-focusable:active, .sr-only-focusable:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+    }
+  {% endstyle %}
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  <script defer src="{{ 'eventBus.js' | asset_url }}"></script>
+
+  <script type="text/javascript">
+		window.wetheme = {
+			name: 'Flow',
+			webcomponentRegistry: {
+        registry: {},
+				checkScriptLoaded: function(key) {
+					return window.wetheme.webcomponentRegistry.registry[key] ? true : false
+				},
+        register: function(registration) {
+            if(!window.wetheme.webcomponentRegistry.checkScriptLoaded(registration.key)) {
+              window.wetheme.webcomponentRegistry.registry[registration.key] = registration
+            }
+        }
+      }
+    };
+	</script>
+
+  {% if template contains 'customers' %}
+    {% # theme-check-disable ParserBlockingScriptTag %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {% # theme-check-enable ParserBlockingScriptTag %}
+  {% endif %}
+
+  {% if template.name == 'article' %}
+    <script src="{{ 'textSlideshow.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="{% if template == 'page.contact' %}contact-page {% endif %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% unless settings.animations_enabled %} animations-disabled{% endunless %}{% if settings.page_fade_enabled %} page-fade{% endif %}{% if settings.ken_burns_enabled %} hover-zoom-enabled{% endif %}{% if settings.product-grid != 'natural' %} images-aspect-ratio{% endif %} border-radius-{{ settings.border_radius }}">
+  <a class="btn skip-to-content-link sr-only" href="#MainContent">
+    {{ 'general.accessibility.skip_to_content' | t }}
+  </a>
+
+  {% comment %} Cart {% endcomment %}
+  <safe-load-scripts class="hidden">
+    <script src="{{ 'component-cart-quantity.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-quantity"></script>
+  </safe-load-scripts>
+  <safe-load-scripts class="hidden">
+    <script src="{{ 'component-cart-update.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-update"></script>
+  </safe-load-scripts>
+  {% if settings.drawer--override_button_colors %}
+    {% render 'button-color-overrides' with
+      id: 'drawer-filled',
+      style: 'filled',
+      text_color: settings.drawer--button_text_color,
+      background_color: settings.drawer--button_background_color
+    %}
+    {% render 'button-color-overrides' with
+      id: 'drawer-outlined',
+      style: 'outlined',
+      text_color: settings.drawer--button_text_color,
+      background_color: settings.drawer--button_background_color
+    %}
+    {% render 'button-color-overrides' with
+      id: 'drawer-underlined',
+      style: 'underlined',
+      text_color: settings.drawer--button_text_color,
+      background_color: settings.drawer--button_background_color
+    %}
+  {% endif %}
+
+  {% comment %} Cart drawer {% endcomment %}
+  {% if settings.cart_type == 'drawer' %}
+    <safe-load-scripts class="hidden">
+      <script src="{{ 'component-cart-drawer.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-drawer"></script>
+    </safe-load-scripts>
+    <safe-load-scripts class="hidden">
+      <script src="{{ 'component-cart-update-modal.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-update-modal"></script>
+    </safe-load-scripts>
+    {% if settings.show_cart_recommendations %}
+      <safe-load-scripts class="hidden">
+        <script src="{{ 'component-cart-recommendations.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-recommendations"></script>
+      </safe-load-scripts>
+      {% endif %}
+    {% render 'cart-drawer' %}
+  {% endif %}
+
+  {% comment %} Size guide drawer - replaces right-drawer for size guides {% endcomment %}
+  {% render 'size-guide-drawer' %}
+
+  <div id="DrawerOverlay" class="drawer-overlay"></div>
+  <div id="ThemeModal" class="theme-modal width--modal"></div>
+  <div id="QuizOverlay" class="quiz-overlay"></div>
+  <div id="QuizModal" class="quiz-modal width--modal"></div>
+
+  <div 
+    id="PageContainer" 
+    data-editor-open="{{ request.design_mode }}" 
+    data-cart-action="{{ settings.add_to_cart_action }}" 
+    data-cart-type="{{ settings.cart_type }}" 
+    data-language-url="{{ localization.language.root_url }}" 
+    data-show-currency-code="{{ settings.show_currency_code }}"
+    data-currency-code="{{ 1299 | money_with_currency | split: ' ' | last }}"
+  >
+    {% sections 'header-group' %}
+    {% sections 'overlay-group' %}
+
+    {% if settings.enable_breadcrumbs %}
+      {% unless template == 'index' or template == 'cart' or template == 'search' or template == 'blog' %}
+        {% unless template.name == 'collection' or template == 'list-collections' or template.name == 'product' %}
+          {{ 'component-breadcrumbs.min.css' | asset_url | stylesheet_tag }}
+          <div id="breadcrumbs" class="wrapper-padded wrapper-spacing--h">
+            {% render 'breadcrumb' %}
+          </div>
+        {% endunless %}
+      {% endunless %}
+    {% endif %}
+
+    {% if template == 'index' %}
+      <div id="MainContent" class="homepage-wrapper">
+    {% elsif template == 'cart' or template contains 'customers/' %}
+      <div id="MainContent" class="main-content page-main--wrapper">
+    {% else %}
+      <div id="MainContent" class="wrapper main-content page-main--wrapper">
+    {% endif %}
+
+        {{ content_for_layout }}
+      </div>
+  </div>
+
+  <div class="footer-wrapper">
+    {% sections 'footer-group' %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script defer type="module" src="{{ 'theme.min.js' | asset_url }}"></script>
+  <script defer src="{{ 'SafeLoadScripts.js' | asset_url }}"></script>
+
+  {% if settings.popup--enable or settings.popup--test-mode %}
+    {% render 'popup' %}
+    {% if settings.desktop-popup-style == 'fullscreen' %}
+      <div id="PopupOverlay" class="popup-overlay"></div>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.enable_verification_popup or settings.verification-pop-up__test-mode %}
+    {% render 'verification-popup' %}
+  {% endif %}
+
+  {% render 'back-to-top-button' %}
+
+  <script>
+    window.routes = {
+      cart_add_url: '{{ routes.cart_add_url }}',
+      cart_change_url: '{{ routes.cart_change_url }}',
+      cart_update_url: '{{ routes.cart_update_url }}',
+      cart_url: '{{ routes.cart_url }}',
+      predictive_search_url: '{{ routes.predictive_search_url }}',
+    }
+  </script>
+
+  <script type="application/json" id="wetheme-global">
+    {
+      {% comment %}Translations that will be used in javascript section handling{% endcomment %}
+      "translations": {
+        "addToCart": {{ 'products.product.add_to_cart' | t | json }},
+        "preorder": {{ 'products.product.preorder' | t | json }},
+        "added": {{ 'products.product.added' | t | json }},
+        "soldOut": {{ 'products.product.sold_out' | t | json }},
+        "unavailable": {{ 'products.product.unavailable' | t | json }},
+        "no_results_html": {{ 'general.search.no_results_html' | t | json }},
+        "results_for_html": {{ 'general.search.results_for_html' | t | json }},
+        "products": {{ 'general.search.products' | t | json }},
+        "pages": {{ 'general.search.pages' | t | json }},
+        "collections": {{ 'general.search.collections' | t | json }},
+        "articles": {{ 'general.search.articles' | t | json }},
+        "suggestions": {{ 'general.search.suggestions' | t | json }},
+        "quick_shop": {{ 'products.product.quick_shop' | t | json }},
+        "view_options": {{ 'products.product.view_options' | t | json }},
+        "read_more_html": {{ 'products.product.read_more_html' | t | json }},
+        "read_less_html": {{ 'products.product.read_less_html' | t | json }},
+        "youve_viewed": {{ 'collections.paginate.youve_viewed' | t | json }},
+        "load_more": {{ 'collections.paginate.load_more' | t | json }},
+        "productAdded": {{ 'products.product.added' | t | json }},
+        "loading": {{ 'collections.paginate.loading' | t | json }},
+        "giftwrap_label": {{ 'products.general.giftwrap_label' | t | json }},
+        "yes": {{ 'products.general.yes' | t | json }},
+        "days": {{ 'general.time.days' | t | json }},
+        "hours": {{ 'general.time.hours' | t | json }},
+        "minutes": {{ 'general.time.minutes' | t | json }},
+        "seconds": {{ 'general.time.seconds' | t | json }},
+        "required_input_error": {{ 'general.forms.required_input_error' | t | json }},
+        "required_upload_error": {{ 'general.forms.required_upload_error' | t | json }},
+        "required_checkbox_error": {{ 'general.forms.required_checkbox_error' | t | json }},
+        "required_dropdown_error": {{ 'general.forms.required_dropdown_error' | t | json }},
+        "max_filesize_error": {{ 'general.forms.max_filesize_error' | t | json }},
+        "qr_image_alt": {{ 'gift_cards.issued.qr_image_alt' | t | json }}
+      },
+      "moneyFormat": {{ shop.money_format | json }},
+      "giftwrapProduct": {{ settings.giftwrap_product_selector | json }}
+    }
+  </script>
+  {% if request.design_mode %}<script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>{% endif %}
+
+  {% if settings.animations_enabled %}
+    {{ 'animate.min.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  {% if settings.popup--enable or settings.popup--test-mode %}
+    {{ 'component-popup.min.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  {% if settings.enable_verification_popup or settings.verification-pop-up__test-mode %}
+    {{ 'component-verification-popup.min.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  <!-- Wishlist 動作コード START -->
+        
+  <script>
+  if (!customElements.get('swym-header-icon')) {
+    class SwymHeaderIcon extends HTMLElement {
+      constructor() {
+        super();
+        if (!window.SwymCallbacks) window.SwymCallbacks = [];
+        window.SwymCallbacks.push(this._initializeSwymButton.bind(this));
+      }
+      async _initializeSwymButton(swat) {
+        this.button = this.querySelector('button');
+        if (this.button) {
+          this.button.addEventListener('click', () => {
+            swat.ui.open();
+          });
+        }
+        this.counter = this.querySelector(".swym-wishlist-header-counter");
+        this.heart = document.querySelector("svg.swym-svg");
+        if (this.counter) {
+          const heart = this.heart;
+          const counter = this.counter;
+          counter.style.display = "none";
+          async function getListsData() {
+            return new Promise(async (resolve, reject) => {
+              swat.fetchLists({
+                callbackFn: data => resolve(data),
+                onError: error => reject(error)
+              });
+            });
+          }
+          const listData = await getListsData();
+          let products = [];
+          for (const list of listData) {
+            for (const product of list.listcontents) {
+              products.push(product);
+            }
+          }
+          if(products.length !== 0) {
+            counter.style.display = "";
+            heart.setAttribute('fill', '#371313');
+            this.counter.innerHTML = products.length;
+            swat.evtLayer.addEventListener(swat.JSEvents.addedToWishlist, () => {
+              const counterCount = +counter.innerHTML;
+              counter.innerHTML = counterCount + 1;
+            });
+            swat.evtLayer.addEventListener(swat.JSEvents.removedFromWishlist, () => {
+              const counterCount = +counter.innerHTML;
+              if (counterCount > 0) counter.innerHTML = counterCount - 1;
+            });
+          }
+        }
+      }
+    }
+    customElements.define('swym-header-icon', SwymHeaderIcon);
+  }
+
+  //検索条件一部削除
+  document.addEventListener("DOMContentLoaded", function () {
+  const sortBy = document.querySelector("#SortBy");
+  if (sortBy) {
+    ["title-ascending", "title-descending", "created-ascending"].forEach(value => {
+      const option = sortBy.querySelector(`option[value="${value}"]`);
+      if (option) option.remove();
+    });
+  }
+});
+// Wishlist 動作コード END
+
+// Inicializar cada swiper de producto individualmente
+function initProductSwipers() {
+  const productSwipers = document.querySelectorAll('.grid-view-item-image-swiper');
+  
+  productSwipers.forEach((swiperEl) => {
+    // Verificar si ya fue inicializado
+    if (swiperEl.swiper) return;
+    
+    const imageCount = parseInt(swiperEl.dataset.imageCount) || 0;
+    
+    // Solo inicializar swiper si hay más de 1 imagen
+    if (imageCount > 1) {
+      const pagination = swiperEl.querySelector('.grid-view-item-image-pagination');
+      
+      const productSwiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: false,
+        touchEventsTarget: 'wrapper',
+        nested: true,
+        resistance: true,
+        resistanceRatio: 0,
+        allowTouchMove: true,
+        preventInteractionOnTransition: false,
+        pagination: {
+          el: pagination,
+          type: 'bullets',
+          clickable: true,
+          dynamicBullets: false,
+          bulletClass: 'swiper-pagination-bullet',
+          bulletActiveClass: 'swiper-pagination-bullet-active',
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '"></span>';
+          },
+        },
+        on: {
+          touchStart: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+          touchMove: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+          touchEnd: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+        },
+      });
+      
+      // Forzar actualización de paginación después de inicialización
+      if (productSwiper.pagination) {
+        productSwiper.pagination.render();
+        productSwiper.pagination.update();
+      }
+
+      // Forzar object-fit: contain en todas las imágenes del swiper (sobrescribe estilos inline)
+      const images = swiperEl.querySelectorAll('img');
+      images.forEach((img) => {
+        // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
+        img.style.setProperty('object-fit', 'contain', 'important');
+        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        img.style.setProperty('object-position', 'center', 'important');
+        img.style.setProperty('-webkit-object-position', 'center', 'important');
+        img.style.setProperty('max-width', '100%', 'important');
+        img.style.setProperty('max-height', '100%', 'important');
+      });
+
+      // También forzar cuando las imágenes se carguen
+      images.forEach((img) => {
+        if (img.complete) {
+          img.style.setProperty('object-fit', 'contain', 'important');
+          img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        } else {
+          img.addEventListener('load', function() {
+            this.style.setProperty('object-fit', 'contain', 'important');
+            this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+            this.style.setProperty('object-position', 'center', 'important');
+            this.style.setProperty('-webkit-object-position', 'center', 'important');
+          }, { once: true });
+        }
+      });
+
+      // Prevenir propagación de eventos touch al swiper principal (método adicional)
+      const wrapper = swiperEl.querySelector('.swiper-wrapper');
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isHorizontalSwipe = false;
+      
+      // Encontrar el swiper principal (grid-slider) más cercano
+      const findParentGridSlider = (element) => {
+        let parent = element.closest('grid-slider');
+        if (!parent) {
+          parent = element.closest('[data-grid-slider-wrapper]')?.querySelector('grid-slider');
+        }
+        return parent;
+      };
+      
+      const parentGridSlider = findParentGridSlider(swiperEl);
+      
+      if (wrapper) {
+        wrapper.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          isHorizontalSwipe = false;
+          
+          // Desactivar temporalmente el swiper principal
+          if (parentGridSlider && parentGridSlider.swiper) {
+            parentGridSlider.swiper.allowTouchMove = false;
+          }
+          
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+        
+        wrapper.addEventListener('touchmove', (e) => {
+          if (!touchStartX || !touchStartY) return;
+          
+          const touchCurrentX = e.touches[0].clientX;
+          const touchCurrentY = e.touches[0].clientY;
+          const diffX = Math.abs(touchCurrentX - touchStartX);
+          const diffY = Math.abs(touchCurrentY - touchStartY);
+          
+          // Determinar si es un swipe horizontal (más horizontal que vertical)
+          if (diffX > diffY && diffX > 10) {
+            isHorizontalSwipe = true;
+            // Mantener desactivado el swiper principal durante swipe horizontal
+            if (parentGridSlider && parentGridSlider.swiper) {
+              parentGridSlider.swiper.allowTouchMove = false;
+            }
+          }
+          
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+        
+        wrapper.addEventListener('touchend', (e) => {
+          // Reactivar el swiper principal después de un delay
+          setTimeout(() => {
+            if (parentGridSlider && parentGridSlider.swiper) {
+              parentGridSlider.swiper.allowTouchMove = true;
+            }
+          }, 100);
+          
+          touchStartX = 0;
+          touchStartY = 0;
+          isHorizontalSwipe = false;
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+      }
+      
+      // También prevenir en el contenedor principal
+      swiperEl.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+      
+      swiperEl.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+      
+      swiperEl.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+    }
+  });
+}
+
+// Función para forzar object-fit: contain en todas las imágenes de productos
+function forceContainOnProductImages() {
+  const productImageContainers = document.querySelectorAll('.product-card-image-container, .grid-view-item-image-swiper');
+  
+  productImageContainers.forEach((container) => {
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
+      img.style.setProperty('object-fit', 'contain', 'important');
+      img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      img.style.setProperty('object-position', 'center', 'important');
+      img.style.setProperty('-webkit-object-position', 'center', 'important');
+      img.style.setProperty('max-width', '100%', 'important');
+      img.style.setProperty('max-height', '100%', 'important');
+      
+      // También forzar cuando la imagen se cargue
+      if (img.complete) {
+        img.style.setProperty('object-fit', 'contain', 'important');
+        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      } else {
+        img.addEventListener('load', function() {
+          this.style.setProperty('object-fit', 'contain', 'important');
+          this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          this.style.setProperty('object-position', 'center', 'important');
+          this.style.setProperty('-webkit-object-position', 'center', 'important');
+        }, { once: true });
+      }
+    });
+  });
+}
+
+// Inicializar al cargar la página
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    initProductSwipers();
+    forceContainOnProductImages();
+  });
+} else {
+  initProductSwipers();
+  forceContainOnProductImages();
+}
+
+// Reinicializar después de cargas dinámicas
+setTimeout(() => {
+  initProductSwipers();
+  forceContainOnProductImages();
+}, 500);
+setTimeout(() => {
+  initProductSwipers();
+  forceContainOnProductImages();
+}, 1000);
+
+// Ejecutar también después de que todo se cargue
+window.addEventListener('load', forceContainOnProductImages);
+
+// Observer para imágenes que se agreguen dinámicamente
+if (typeof MutationObserver !== 'undefined') {
+  const imageObserver = new MutationObserver(() => {
+    forceContainOnProductImages();
+  });
+
+  // Observar cambios en el DOM
+  if (document.body) {
+    imageObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+}
+</script>
+
+  {% if request.design_mode %}
+    <script type="application/json" id="theme-analytics">
+      {
+        "shop_email": {{ shop.email | json }},
+        "shop_name": {{ shop.name | json }},
+        "shop_url": {{ shop.url | json }}
+      }
+    </script>
+    {% # theme-check-disable RemoteAsset %}
+    <script src="https://themes.weareeight.workers.dev/analytics.js" type="module"></script>
+    {% # theme-check-enable RemoteAsset %}
+  {% endif %}
+  <script>
+    (function() {
+      'use strict';
+      
+      // PART 1: Save and modify links on collection page
+      if (window.location.pathname.includes('/collections/')) {
+        var pathParts = window.location.pathname.split('/').filter(function(part) { return part; });
+        var collectionIndex = pathParts.indexOf('collections');
+        
+        if (collectionIndex !== -1 && pathParts[collectionIndex + 1]) {
+          var collectionHandle = pathParts[collectionIndex + 1];
+          
+          // Modify ALL product links to add the parameter
+          function addCollectionToLinks() {
+            var productLinks = document.querySelectorAll('a[href*="/products/"]');
+            
+            for (var i = 0; i < productLinks.length; i++) {
+              var link = productLinks[i];
+              var currentHref = link.getAttribute('href');
+              
+              // Only modify if it doesn't already have the collection parameter
+              if (currentHref && !currentHref.includes('collection=')) {
+                var separator = currentHref.includes('?') ? '&' : '?';
+                var newHref = currentHref + separator + 'collection=' + collectionHandle;
+                link.setAttribute('href', newHref);
+              }
+            }
+          }
+          
+          // Execute immediately
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', addCollectionToLinks);
+          } else {
+            addCollectionToLinks();
+          }
+          
+          // Execute after delays to catch dynamically loaded content
+          setTimeout(addCollectionToLinks, 100);
+          setTimeout(addCollectionToLinks, 500);
+          setTimeout(addCollectionToLinks, 1000);
+          
+          // Use MutationObserver to catch dynamically added links
+          var observer = new MutationObserver(function(mutations) {
+            addCollectionToLinks();
+          });
+          
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+          
+          // Save to sessionStorage as backup
+          document.addEventListener('click', function(e) {
+            var target = e.target;
+            var link = target.closest ? target.closest('a[href*="/products/"]') : null;
+            
+            // Fallback for browsers without closest
+            if (!link && target.tagName === 'A' && target.href && target.href.includes('/products/')) {
+              link = target;
+            } else if (!link) {
+              var parent = target.parentElement;
+              while (parent && parent.tagName !== 'BODY') {
+                if (parent.tagName === 'A' && parent.href && parent.href.includes('/products/')) {
+                  link = parent;
+                  break;
+                }
+                parent = parent.parentElement;
+              }
+            }
+            
+            if (link) {
+              sessionStorage.setItem('last_collection', collectionHandle);
+            }
+          });
+        }
+      }
+      
+      // PART 2: Update breadcrumb on product page
+      if (window.location.pathname.includes('/products/')) {
+        function updateBreadcrumb() {
+          // Try to get the parameter from URL
+          var collectionHandle = null;
+          
+          // Parse URL parameters manually for better compatibility
+          var search = window.location.search;
+          if (search) {
+            var params = search.substring(1).split('&');
+            for (var i = 0; i < params.length; i++) {
+              var pair = params[i].split('=');
+              if (pair[0] === 'collection') {
+                collectionHandle = decodeURIComponent(pair[1]);
+                break;
+              }
+            }
+          }
+          
+          // If no parameter, use sessionStorage
+          if (!collectionHandle) {
+            collectionHandle = sessionStorage.getItem('last_collection');
+          }
+          
+          if (collectionHandle) {
+            var collectionItem = document.querySelector('[data-collection-item]');
+            var collectionLink = document.querySelector('[data-collection-link]');
+            var collectionTitle = document.querySelector('[data-collection-title]');
+            
+            if (collectionLink && collectionTitle) {
+              // Show the element if it was hidden
+              if (collectionItem) {
+                collectionItem.style.display = '';
+              }
+              
+              // Update URL
+              collectionLink.href = '/collections/' + collectionHandle;
+              
+              // Update title (format the handle)
+              var words = collectionHandle.split('-');
+              var formattedWords = [];
+              for (var i = 0; i < words.length; i++) {
+                formattedWords.push(words[i].charAt(0).toUpperCase() + words[i].slice(1));
+              }
+              var formattedTitle = formattedWords.join(' ');
+              
+              collectionTitle.textContent = formattedTitle;
+              collectionLink.title = formattedTitle;
+            }
+          }
+        }
+        
+        // Execute when DOM is ready with multiple fallbacks
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updateBreadcrumb);
+        } else {
+          updateBreadcrumb();
+        }
+        
+        // Execute with multiple delays for safety
+        setTimeout(updateBreadcrumb, 50);
+        setTimeout(updateBreadcrumb, 100);
+        setTimeout(updateBreadcrumb, 300);
+        setTimeout(updateBreadcrumb, 500);
+      }
+    })();
+    </script>
+    <script>
+        const slideUp = document.getElementById('slide-up');
+        const popup = document.getElementById('popup');
+        const popupTriggers = document.querySelectorAll('a[href="#pop-news"]');
+        
+        popupTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (popup) {
+                    // Agregar las clases slide-up y visible al popup
+                    popup.classList.add('slide-up', 'visible');
+                }
+                if (slideUp) {
+                    // Cambiar visibility a visible en el div slide-up
+                    slideUp.style.visibility = 'visible';
+                }
+            });
+        });
+        
+        // Opcional: Para cerrar el popup
+        const closeButton = popup?.querySelector('[data-button-aria-label="Close"]');
+        if (closeButton) {
+            closeButton.addEventListener('click', function() {
+                if (popup) {
+                    popup.classList.remove('visible');
+                }
+                if (slideUp) {
+                    slideUp.style.visibility = 'hidden';
+                }
+            });
+        }
+    </script>
+    <!-- Wishlist 動作コード START -->
+        
+  <script>
+  if (!customElements.get('swym-header-icon')) {
+    class SwymHeaderIcon extends HTMLElement {
+      constructor() {
+        super();
+        if (!window.SwymCallbacks) window.SwymCallbacks = [];
+        window.SwymCallbacks.push(this._initializeSwymButton.bind(this));
+      }
+      async _initializeSwymButton(swat) {
+        this.button = this.querySelector('button');
+        if (this.button) {
+          this.button.addEventListener('click', () => {
+            swat.ui.open();
+          });
+        }
+        this.counter = this.querySelector(".swym-wishlist-header-counter");
+        this.heart = document.querySelector("svg.swym-svg");
+        if (this.counter) {
+          const heart = this.heart;
+          const counter = this.counter;
+          counter.style.display = "none";
+          async function getListsData() {
+            return new Promise(async (resolve, reject) => {
+              swat.fetchLists({
+                callbackFn: data => resolve(data),
+                onError: error => reject(error)
+              });
+            });
+          }
+          const listData = await getListsData();
+          let products = [];
+          for (const list of listData) {
+            for (const product of list.listcontents) {
+              products.push(product);
+            }
+          }
+          if(products.length !== 0) {
+            counter.style.display = "";
+            heart.setAttribute('fill', '#371313');
+            this.counter.innerHTML = products.length;
+            swat.evtLayer.addEventListener(swat.JSEvents.addedToWishlist, () => {
+              const counterCount = +counter.innerHTML;
+              counter.innerHTML = counterCount + 1;
+            });
+            swat.evtLayer.addEventListener(swat.JSEvents.removedFromWishlist, () => {
+              const counterCount = +counter.innerHTML;
+              if (counterCount > 0) counter.innerHTML = counterCount - 1;
+            });
+          }
+        }
+      }
+    }
+    customElements.define('swym-header-icon', SwymHeaderIcon);
+  }
+
+  //検索条件一部削除
+  document.addEventListener("DOMContentLoaded", function () {
+  const sortBy = document.querySelector("#SortBy");
+  if (sortBy) {
+    ["title-ascending", "title-descending", "created-ascending"].forEach(value => {
+      const option = sortBy.querySelector(`option[value="${value}"]`);
+      if (option) option.remove();
+    });
+  }
+});
+// Wishlist 動作コード END
+
+// Inicializar cada swiper de producto individualmente
+function initProductSwipers() {
+  const productSwipers = document.querySelectorAll('.grid-view-item-image-swiper');
+  
+  productSwipers.forEach((swiperEl) => {
+    // Verificar si ya fue inicializado
+    if (swiperEl.swiper) return;
+    
+    const imageCount = parseInt(swiperEl.dataset.imageCount) || 0;
+    
+    // Solo inicializar swiper si hay más de 1 imagen
+    if (imageCount > 1) {
+      const pagination = swiperEl.querySelector('.grid-view-item-image-pagination');
+      
+      const productSwiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: false,
+        touchEventsTarget: 'wrapper',
+        nested: true,
+        resistance: true,
+        resistanceRatio: 0,
+        allowTouchMove: true,
+        preventInteractionOnTransition: false,
+        pagination: {
+          el: pagination,
+          type: 'bullets',
+          clickable: true,
+          dynamicBullets: false,
+          bulletClass: 'swiper-pagination-bullet',
+          bulletActiveClass: 'swiper-pagination-bullet-active',
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '"></span>';
+          },
+        },
+        on: {
+          touchStart: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+          touchMove: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+          touchEnd: function(swiper, event) {
+            // Detener propagación al swiper principal
+            if (event) {
+              event.stopPropagation();
+            }
+          },
+        },
+      });
+      
+      // Forzar actualización de paginación después de inicialización
+      if (productSwiper.pagination) {
+        productSwiper.pagination.render();
+        productSwiper.pagination.update();
+      }
+
+      // Forzar object-fit: contain en todas las imágenes del swiper (sobrescribe estilos inline)
+      const images = swiperEl.querySelectorAll('img');
+      images.forEach((img) => {
+        // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
+        img.style.setProperty('object-fit', 'contain', 'important');
+        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        img.style.setProperty('object-position', 'center', 'important');
+        img.style.setProperty('-webkit-object-position', 'center', 'important');
+        img.style.setProperty('max-width', '100%', 'important');
+        img.style.setProperty('max-height', '100%', 'important');
+      });
+
+      // También forzar cuando las imágenes se carguen
+      images.forEach((img) => {
+        if (img.complete) {
+          img.style.setProperty('object-fit', 'contain', 'important');
+          img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        } else {
+          img.addEventListener('load', function() {
+            this.style.setProperty('object-fit', 'contain', 'important');
+            this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+            this.style.setProperty('object-position', 'center', 'important');
+            this.style.setProperty('-webkit-object-position', 'center', 'important');
+          }, { once: true });
+        }
+      });
+
+      // Prevenir propagación de eventos touch al swiper principal (método adicional)
+      const wrapper = swiperEl.querySelector('.swiper-wrapper');
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isHorizontalSwipe = false;
+      
+      // Encontrar el swiper principal (grid-slider) más cercano
+      const findParentGridSlider = (element) => {
+        let parent = element.closest('grid-slider');
+        if (!parent) {
+          parent = element.closest('[data-grid-slider-wrapper]')?.querySelector('grid-slider');
+        }
+        return parent;
+      };
+      
+      const parentGridSlider = findParentGridSlider(swiperEl);
+      
+      if (wrapper) {
+        wrapper.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          isHorizontalSwipe = false;
+          
+          // Desactivar temporalmente el swiper principal
+          if (parentGridSlider && parentGridSlider.swiper) {
+            parentGridSlider.swiper.allowTouchMove = false;
+          }
+          
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+        
+        wrapper.addEventListener('touchmove', (e) => {
+          if (!touchStartX || !touchStartY) return;
+          
+          const touchCurrentX = e.touches[0].clientX;
+          const touchCurrentY = e.touches[0].clientY;
+          const diffX = Math.abs(touchCurrentX - touchStartX);
+          const diffY = Math.abs(touchCurrentY - touchStartY);
+          
+          // Determinar si es un swipe horizontal (más horizontal que vertical)
+          if (diffX > diffY && diffX > 10) {
+            isHorizontalSwipe = true;
+            // Mantener desactivado el swiper principal durante swipe horizontal
+            if (parentGridSlider && parentGridSlider.swiper) {
+              parentGridSlider.swiper.allowTouchMove = false;
+            }
+          }
+          
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+        
+        wrapper.addEventListener('touchend', (e) => {
+          // Reactivar el swiper principal después de un delay
+          setTimeout(() => {
+            if (parentGridSlider && parentGridSlider.swiper) {
+              parentGridSlider.swiper.allowTouchMove = true;
+            }
+          }, 100);
+          
+          touchStartX = 0;
+          touchStartY = 0;
+          isHorizontalSwipe = false;
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+      }
+      
+      // También prevenir en el contenedor principal
+      swiperEl.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+      
+      swiperEl.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+      
+      swiperEl.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+      }, { passive: true, capture: true });
+    }
+  });
+}
+
+// Función para forzar object-fit: contain en todas las imágenes de productos
+function forceContainOnProductImages() {
+  const productImageContainers = document.querySelectorAll('.product-card-image-container, .grid-view-item-image-swiper');
+  
+  productImageContainers.forEach((container) => {
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
+      img.style.setProperty('object-fit', 'contain', 'important');
+      img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      img.style.setProperty('object-position', 'center', 'important');
+      img.style.setProperty('-webkit-object-position', 'center', 'important');
+      img.style.setProperty('max-width', '100%', 'important');
+      img.style.setProperty('max-height', '100%', 'important');
+      
+      // También forzar cuando la imagen se cargue
+      if (img.complete) {
+        img.style.setProperty('object-fit', 'contain', 'important');
+        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      } else {
+        img.addEventListener('load', function() {
+          this.style.setProperty('object-fit', 'contain', 'important');
+          this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          this.style.setProperty('object-position', 'center', 'important');
+          this.style.setProperty('-webkit-object-position', 'center', 'important');
+        }, { once: true });
+      }
+    });
+  });
+}
+
+// Inicializar al cargar la página
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    initProductSwipers();
+    forceContainOnProductImages();
+  });
+} else {
+  initProductSwipers();
+  forceContainOnProductImages();
+}
+
+// Reinicializar después de cargas dinámicas
+setTimeout(() => {
+  initProductSwipers();
+  forceContainOnProductImages();
+}, 500);
+setTimeout(() => {
+  initProductSwipers();
+  forceContainOnProductImages();
+}, 1000);
+
+// Ejecutar también después de que todo se cargue
+window.addEventListener('load', forceContainOnProductImages);
+
+// Observer para imágenes que se agreguen dinámicamente
+if (typeof MutationObserver !== 'undefined') {
+  const imageObserver = new MutationObserver(() => {
+    forceContainOnProductImages();
+  });
+
+  // Observar cambios en el DOM
+  if (document.body) {
+    imageObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+}
+</script>
+  {% render 'globo.swatch.custom' %}
+
+<script>
+(function() {
+  const HANDLE = "{{ product.handle | escape }}";
+  let pj = null;
+
+  async function getProductJSON() {
+    if (pj) return pj;
+    try {
+      const res = await fetch(`/products/${HANDLE}.js`);
+      pj = await res.json();
+    } catch(e) { pj = null; }
+    return pj;
+  }
+
+  function setUrlVariant(id) {
+    try {
+      const url = new URL(location.href);
+      url.searchParams.set('variant', String(id));
+      history.replaceState({}, '', url.toString());
+    } catch(e) {}
+  }
+
+  function updateFormVariant(id) {
+    const forms = document.querySelectorAll('form[action*="/cart/add"] input[name="id"]');
+    forms.forEach(inp => {
+      if (String(inp.value) !== String(id)) {
+        inp.value = String(id);
+        inp.dispatchEvent(new Event('change', {bubbles:true}));
+        inp.dispatchEvent(new Event('input',  {bubbles:true}));
+      }
+    });
+  }
+
+  // --- Flow が拾いそうなイベントをまとめて発火 ---
+  function broadcastVariant(variant) {
+    const detail = { variant, id: variant?.id, product: pj };
+    const evts = [
+      'theme:variant:change',   // Flow系でよく使われる
+      'variant:change',
+      'variant:changed',
+      'product:variant-change'
+    ];
+    evts.forEach(name => document.dispatchEvent(new CustomEvent(name, { detail })));
+
+    // <product-media> が持つ data-selected-variant を同期（Flowがこれを監視してる場合あり）
+    document.querySelectorAll('product-media, [data-selected-variant]').forEach(el => {
+      try { el.setAttribute('data-selected-variant', JSON.stringify(variant)); } catch(e){}
+    });
+  }
+
+  // ========== デスクトップ（grid）を強制切替 ==========
+  function forceSwapDesktopGrid(imgUrl) {
+    const gridMain = document.querySelector('product-media-grid [data-media-main]');
+    if (!gridMain || !imgUrl) return false;
+
+    // 1) まず一致する <img> を探してスクロール＆強調
+    const base = imgUrl.split('?')[0];
+    const match = gridMain.querySelector(`img[src*="${base}"], source[srcset*="${base}"]`);
+    if (match) {
+      const a = match.closest('a[data-main-media-link]');
+      a?.scrollIntoView({block:'nearest', inline:'nearest'});
+      // 視覚的に一番上に来るように先頭へ移動（副作用少）
+      const col = a.closest('.media-column--odd, .media-column--even') || gridMain;
+      col.insertBefore(a, col.firstElementChild);
+      return true;
+    }
+
+    // 2) 見つからなければ先頭の画像を置換（最終手段）
+    const firstA = gridMain.querySelector('a[data-main-media-link]');
+    const firstImg = firstA?.querySelector('img');
+    if (firstA && firstImg) {
+      firstA.href = imgUrl + '&width=1445';
+      firstImg.src = imgUrl + '&width=1445';
+      firstImg.setAttribute('srcset', imgUrl + ' 1x');
+      firstImg.loading = 'eager';
+      return true;
+    }
+    return false;
+  }
+
+  // ========== モバイル（swiper）を強制切替 ==========
+  function forceSwapMobileSwiper(mediaId, imgUrl) {
+    const sliderMain = document.querySelector('product-media [data-slider-main].swiper');
+    if (!sliderMain) return false;
+
+    // 1) 対象のスライドがあればそれを「アクティブ化」
+    if (mediaId) {
+      const target = sliderMain.querySelector(`.swiper-slide[data-media-id="${mediaId}"]`);
+      if (target) {
+        const wrap = sliderMain.querySelector('.swiper-wrapper');
+        // 先頭に移動すると視覚的に切り替わる（Swiper APIなしでもOK）
+        wrap.insertBefore(target, wrap.firstElementChild);
+        // activeクラス付け替え
+        wrap.querySelectorAll('.swiper-slide').forEach((s,i)=>{
+          s.classList.toggle('swiper-slide-active', i===0);
+          s.classList.toggle('swiper-slide-next', i===1);
+          s.style.pointerEvents = i===0 ? 'auto' : 'none';
+        });
+        return true;
+      }
+    }
+
+    // 2) mediaIdが無い/見つからない → 現在の active の画像を直接差し替え
+    if (imgUrl) {
+      const activeImg = sliderMain.querySelector('.swiper-slide-active img');
+      const activeLink = sliderMain.querySelector('.swiper-slide-active a[data-main-media-link]');
+      if (activeImg) {
+        activeImg.src = imgUrl + '&width=1445';
+        activeImg.setAttribute('srcset', imgUrl + ' 1x');
+        activeImg.loading = 'eager';
+      }
+      if (activeLink) activeLink.href = imgUrl + '&width=1445';
+      return true;
+    }
+    return false;
+  }
+
+  async function switchGallery(variantId) {
+    const data = await getProductJSON();
+    const v = data?.variants?.find(x => String(x.id) === String(variantId));
+    if (!v) return;
+
+    const mediaId = v.featured_media?.id || v.featured_image?.id || null;
+    const imgUrl  = (v.featured_media?.preview_image?.src || v.featured_image?.src || '').replace(/^https?:/,'');
+    // 1) Flowに合図
+    broadcastVariant(v);
+    // 2) デスクトップ強制
+    forceSwapDesktopGrid(imgUrl);
+    // 3) モバイル強制
+    forceSwapMobileSwiper(mediaId, imgUrl);
+  }
+
+  function extractVariantIdFromGlobo(target) {
+    // GLO の li / input に data-variantid が入っている
+    const li = target.closest('[data-variantid]');
+    if (li?.dataset?.variantid) return li.dataset.variantid;
+
+    // product-swatch（Flow純正）の data-swatch-variant-id
+    const se = target.closest('[data-swatch-variant-id]');
+    if (se?.dataset?.swatchVariantId) return se.dataset.swatchVariantId;
+
+    // hidden input の id 候補
+    const hidden = document.querySelector('form[action*="/cart/add"] input[name="id"]');
+    if (hidden?.value) return hidden.value;
+
+    // URL ?variant
+    try { return new URL(location.href).searchParams.get('variant'); } catch(e){}
+    return null;
+  }
+
+  function onAnyClickChange(e) {
+    const vid = extractVariantIdFromGlobo(e.target);
+    if (!vid) return;
+    setUrlVariant(vid);
+    updateFormVariant(vid);
+    switchGallery(vid);
+  }
+
+  document.addEventListener('click', onAnyClickChange, true);
+  document.addEventListener('change', onAnyClickChange, true);
+
+  // 直接 ?variant=xxx で来た時も同期
+  (function initFromUrl() {
+    let vid = null;
+    try { vid = new URL(location.href).searchParams.get('variant'); } catch(e){}
+    if (!vid) return;
+    updateFormVariant(vid);
+    switchGallery(vid);
+  })();
+})();
+</script>
+</body>
+</html>

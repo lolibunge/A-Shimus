@@ -1,0 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "locations_kHtd4e": {
+      "type": "locations",
+      "blocks": {
+        "location_TTeL7z": {
+          "type": "location",
+          "settings": {
+            "location_title": "COCKTAILS bOUTIQUE NYC",
+            "image": "shopify://shop_images/Cocktails_boutique_store_front_d8aaf7b7-a8a4-4ce9-aa78-73285bfae4c7.jpg",
+            "subtitle": "1011 Lexington Ave",
+            "description": "<p>New York, NY 10021</p><p><a href=\"https://www.google.com/search?sca_esv=09f2b9d0e2ee4b15&rlz=1C1RXQR_jaJP1165US1165&kgmid=/g/11jk14gy12&q=Cocktails+Boutique+NYC&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=3435ff7dfc47aec7&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1#\">+1 917-957-9441</a></p><p></p><p>Monday - Friday: 11:00am - 6:00pm</p><p>Saturday - Sunday: 12:00pm - 5:00pm</p>",
+            "link_url": "",
+            "link_text": "Get Directions"
+          }
+        },
+        "location_9gJbnE": {
+          "type": "location",
+          "settings": {
+            "location_title": "Flying Solo",
+            "image": "shopify://shop_images/flying_solo_google_map_v2.jpg",
+            "subtitle": "419 Broome St",
+            "description": "<p>New York, NY 10013</p><p><a href=\"https://www.google.com/search?sca_esv=09f2b9d0e2ee4b15&rlz=1C1RXQR_jaJP1165US1165&kgmid=/g/11h_1gb7w9&q=Flying+Solo&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=5bdcc42c02f746ac&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1#\">+1 646-982-1133</a></p><p></p><p>Monday - Sunday: 11:30am - 7:00pm</p>",
+            "link_url": "",
+            "link_text": "Get Directions"
+          }
+        }
+      },
+      "block_order": [
+        "location_TTeL7z",
+        "location_9gJbnE"
+      ],
+      "name": "Locations",
+      "settings": {
+        "title": "Our Locations",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "locations_kHtd4e"
+  ]
+}

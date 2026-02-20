@@ -1,0 +1,386 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "blocks": {
+        "text_6VewWF": {
+          "type": "text",
+          "settings": {
+            "title": "Title"
+          }
+        }
+      },
+      "block_order": [
+        "text_6VewWF"
+      ],
+      "disabled": true,
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "image_with_text_9pBMMU": {
+      "type": "image-with-text",
+      "custom_css": [
+        "@media (max-width: 768px) {.image-with-text .text-container {text-align: left !important; }}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ConvertOut-Resized-A.Shimus_04252025_11_of_23_1_7afc0e3a-fb83-419b-b9b5-fbe018ec3ade.jpg",
+        "layout": "left",
+        "title": "Our Story",
+        "text": "<p>A.SHIMUS creates modern workwear designed specifically for petite women. Fit and proportion are considered from the very beginning, so each piece feels balanced, intentional, and easy to wear… without the need for adjustments.</p><p>Our work is shaped by Japanese craftsmanship and a deep respect for how clothing is made. We collaborate closely with skilled artisans and small manufacturers in Japan, working carefully through fabric selection, tailoring, and construction. The result is clothing defined by quality, restraint, and attention to detail, rather than trend.</p><p>We design workwear to be practical and versatile. Clean silhouettes, thoughtful tailoring, and pieces that move comfortably through the day, from meetings and travel to everything that follows.</p><p>At its heart, A.SHIMUS exists to make getting dressed easier for women building their careers. By focusing on fit, craftsmanship, and purpose, we create garments designed to feel reliable, considered, and quietly confident - just like the women who wear them.</p>",
+        "text_alignment": "left",
+        "text_overlapping_image": false,
+        "button_link": "",
+        "button_label": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section-width": "content",
+        "section_padding_top": 70,
+        "section_padding_bottom": 70,
+        "colors": "white"
+      }
+    },
+    "image_with_text_YD3Yxk": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/IMG_4922.heic",
+        "layout": "right",
+        "title": "A Note from the Founder",
+        "text": "<p>A.SHIMUS was born from personal experience. As a petite woman working in professional environments, I spent years searching for clothing that felt appropriate, confident, and truly well-fitting, without needing alterations. Too often, workwear designed for smaller frames was an afterthought, forcing women to adjust themselves to the clothing rather than the other way around.</p><p>I started A.SHIMUS to change that.</p><p>From the beginning, my goal was to design garments specifically for petite women in business; pieces that feel intentional, balanced, and empowering. Fit is never secondary here, it’s the foundation. Every pattern, proportion, and detail is designed with care, so our clothing supports how women move, work, and show up each day.</p><p>Japanese craftsmanship has long inspired me for its respect for process, precision, and longevity. By partnering with skilled artisans and manufacturers in Japan, A.SHIMUS honors this tradition, creating clothing that is thoughtfully made, responsibly produced, and designed to endure beyond seasons.</p><p>A.SHIMUS is deeply personal, but it is built for a community. It exists to support women who are building careers, leading teams, and defining success on their own terms. My hope is that when you wear A.SHIMUS, you feel confident, capable, and entirely yourself.</p>",
+        "text_alignment": "left",
+        "text_overlapping_image": false,
+        "button_link": "",
+        "button_label": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section-width": "content",
+        "section_padding_top": 70,
+        "section_padding_bottom": 70,
+        "colors": "white"
+      }
+    },
+    "image_with_text_zxJF9e": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/pexels-bnwtake0405-19630352.jpg",
+        "layout": "left",
+        "title": "Japanese Standard Sizing",
+        "text": "<p>To perfect the silhouettes of our garments, they’re developed according to Japanese sizing, known for its precise tailoring and alignment with smaller frames.<br/><br/>More specifically, our size S corresponds to a Japanese 9AR, a carefully chosen reference that reflects the proportions of petite women.<br/><br/>While certain measurements – such as sleeve length and bust –<br/>are slightly more compact than the standard US sizing,<br/>A.SHIMUS garments are thoughtfully designed to enhance and flatter.<br/><br/>Additionally, most of our bottoms feature adjustable waistbands for added comfort.<br/>Please refer to our size chart for more details.</p>",
+        "text_alignment": "left",
+        "text_overlapping_image": false,
+        "button_link": "",
+        "button_label": "",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section-width": "content",
+        "section_padding_top": 70,
+        "section_padding_bottom": 70,
+        "colors": "white"
+      }
+    },
+    "image_with_text_c9LGX7": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/A.Shimus_03222025-981_1.jpg",
+        "layout": "right",
+        "title": "Perfect Fit Credit",
+        "text": "<p></p><p>Because we’re serious about ensuring our designs fit you well,<br/>in the rare case you do make alterations to your A.SHIMUS products,<br/>we’ll send you a voucher for use against your next purchase.<br/><br/>Simply let us know.<br/><br/></p>",
+        "text_alignment": "left",
+        "text_overlapping_image": false,
+        "button_link": "shopify://pages/perfect-fit-credit",
+        "button_label": "Learn More",
+        "buttons_style": "underlined",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section-width": "content",
+        "section_padding_top": 70,
+        "section_padding_bottom": 70,
+        "colors": "light"
+      }
+    },
+    "accordion_TKxgek": {
+      "type": "accordion",
+      "blocks": {
+        "tab_content_MNYm8A": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "open_by_default": false,
+            "text": "<p>Here you can place an explanation or answer to the question.</p>",
+            "page": ""
+          }
+        },
+        "tab_content_9yHhea": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "open_by_default": false,
+            "text": "<p>Here you can place an explanation or answer to the question.</p>",
+            "page": ""
+          }
+        },
+        "tab_content_VJaYm4": {
+          "type": "tab_content",
+          "settings": {
+            "question": "Place your question or heading here",
+            "open_by_default": false,
+            "text": "<p>Here you can place an explanation or answer to the question.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_MNYm8A",
+        "tab_content_9yHhea",
+        "tab_content_VJaYm4"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Frequently asked questions",
+        "description": "",
+        "section_header_alignment": "center",
+        "faq_icon": "plus_minus",
+        "section_width": "narrow",
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "colors": "white"
+      }
+    },
+    "text_adverts_wtdmwR": {
+      "type": "text-adverts",
+      "blocks": {
+        "text_M3fdh7": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        },
+        "text_Mh7GYn": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        },
+        "text_QeghYP": {
+          "type": "text",
+          "settings": {
+            "heading": "What makes you different",
+            "subheading": "Shout about your unique selling points",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_M3fdh7",
+        "text_Mh7GYn",
+        "text_QeghYP"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "colors": "light"
+      }
+    },
+    "slideshow_DTTcqe": {
+      "type": "slideshow",
+      "blocks": {
+        "image_MhYw7G": {
+          "type": "image",
+          "settings": {
+            "title": "Make a great \nfirst impression",
+            "text": "Add images and text to give focus to your chosen product, collection, or blog post",
+            "first_button_link": "",
+            "first_button_label": "Shop now",
+            "second_button_link": "",
+            "second_button_label": "Learn more",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "image": "shopify://shop_images/clothes-on-a-rack-in-a-clothing-store.jpg",
+            "text_position": "center_left",
+            "desktop-caption-heading-size": 60,
+            "desktop-caption-body-text-size": 24,
+            "mobile_text_position": "center_left",
+            "mobile-caption-heading-size": 36,
+            "mobile-caption-body-text-size": 16,
+            "caption-text": "#ffffff",
+            "image_overlay": "#242424",
+            "image_overlay_opacity": 0
+          }
+        },
+        "image_NgjwMW": {
+          "type": "image",
+          "settings": {
+            "title": "Promote your \ntop earners",
+            "text": "Showcase key products or collections to maximise your profits",
+            "first_button_link": "",
+            "first_button_label": "Shop now",
+            "second_button_link": "",
+            "second_button_label": "Learn more",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "image": "shopify://shop_images/photo-of-people-shopping-in-a-clothing-store.jpg",
+            "text_position": "center_left",
+            "desktop-caption-heading-size": 60,
+            "desktop-caption-body-text-size": 24,
+            "mobile_text_position": "center_left",
+            "mobile-caption-heading-size": 36,
+            "mobile-caption-body-text-size": 16,
+            "caption-text": "#ffffff",
+            "image_overlay": "#242424",
+            "image_overlay_opacity": 0
+          }
+        },
+        "image_BNL3Fj": {
+          "type": "image",
+          "settings": {
+            "title": "Make a great \nfirst impression",
+            "text": "Add images and text to give focus to your chosen product, collection, or blog post.",
+            "first_button_link": "",
+            "first_button_label": "Shop now",
+            "second_button_link": "",
+            "second_button_label": "Learn more",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "text_position": "center_left",
+            "desktop-caption-heading-size": 60,
+            "desktop-caption-body-text-size": 24,
+            "mobile_text_position": "center_left",
+            "mobile-caption-heading-size": 36,
+            "mobile-caption-body-text-size": 16,
+            "caption-text": "#ffffff",
+            "image_overlay": "#242424",
+            "image_overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_MhYw7G",
+        "image_NgjwMW",
+        "image_BNL3Fj"
+      ],
+      "disabled": true,
+      "settings": {
+        "desktop_height": "medium",
+        "mobile_height": "full_screen",
+        "slide_navigation_style": "dots",
+        "slide_transition_delay": 5,
+        "section_width": "full",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "background_color": "#000000"
+      }
+    },
+    "gallery_BEbQRt": {
+      "type": "gallery",
+      "blocks": {
+        "image_k8KUAg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/shirts-on-hangers-on-display.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "image_r4N3Xn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hand-on-hip-and-posing-in-retail-store.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        },
+        "image_gXa6pH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/smiling-woman-poses.jpg",
+            "link": "",
+            "subheading": "Subheading",
+            "title": "Heading",
+            "overlay-btn-text": "",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "image_k8KUAg",
+        "image_r4N3Xn",
+        "image_gXa6pH"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_header_alignment": "center",
+        "content-position": "overlay",
+        "full-width": false,
+        "grid_image_size": "square",
+        "buttons_style": "filled",
+        "section-width": "content",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "remove-spacing": false,
+        "colors": "white"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_9pBMMU",
+    "image_with_text_YD3Yxk",
+    "image_with_text_zxJF9e",
+    "image_with_text_c9LGX7",
+    "accordion_TKxgek",
+    "text_adverts_wtdmwR",
+    "slideshow_DTTcqe",
+    "gallery_BEbQRt"
+  ]
+}
