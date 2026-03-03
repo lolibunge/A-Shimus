@@ -1,0 +1,128 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "sections": {
+      "slideshow_8Re6hG": {
+        "type": "slideshow",
+        "blocks": {
+          "image_pK4dHU": {
+            "type": "image",
+            "settings": {
+              "title": "2026 Spring & Summer",
+              "desktop-caption-heading-size": 32,
+              "mobile-caption-heading-size": 28,
+              "text": "As winter recedes, a gentle shift stirs the air — a softening of edges, a return of color, a rhythm beneath stillness.",
+              "desktop-caption-body-text-size": 14,
+              "mobile-caption-body-text-size": 14,
+              "first_button_link": "",
+              "first_button_label": "",
+              "second_button_link": "",
+              "second_button_label": "",
+              "buttons_style": "outlined",
+              "override_button_colors": true,
+              "button-background": "#ffffff",
+              "button-text": "#ffffff",
+              "max_width": "450px",
+              "image": "shopify://shop_images/1762920542852_1.png",
+              "justify_content": "center",
+              "text_position": "center_end",
+              "mobile_max_width": "100%",
+              "mobile_image": "shopify://shop_images/1c07b2e24aa08bd63c5e888787e992911e248096_1_196aecd0-d32d-434f-9d02-3fc5a1e3296c.jpg",
+              "mobile_justify_content": "center",
+              "mobile_text_position": "center_center",
+              "caption-text": "#ffffff",
+              "image_overlay": "#000000",
+              "image_overlay_opacity": 20
+            }
+          }
+        },
+        "block_order": [
+          "image_pK4dHU"
+        ],
+        "custom_css": [],
+        "name": "t:sections.image--slideshow.presets.name",
+        "settings": {
+          "desktop_height": "extra_large",
+          "mobile_height": "extra_large",
+          "slide_navigation_style": "arrows",
+          "hidden_slide_fraction": true,
+          "navigation_background_color": "#000000B2",
+          "slide_position": "right",
+          "mobile_slide_position": "left",
+          "slide_transition_delay": 10,
+          "section_width": "full",
+          "section_padding_top": 0,
+          "section_padding_bottom": 0,
+          "background_color": "#000000"
+        }
+      },
+      "collection_expandable_Ge6iMt": {
+        "type": "collection-expandable",
+        "blocks": {
+          "collection_block_TXRAgK": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "new-arrivals",
+              "use_custom_image": true,
+              "custom_image": "shopify://shop_images/6f8813be7ac0b071169b1611f5efd0254f92cdad.jpg",
+              "button_label": "Discover the Collection"
+            }
+          },
+          "collection_block_zbkcin": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "hydrogen",
+              "use_custom_image": true,
+              "custom_image": "shopify://shop_images/997c4b05b4de5b9042b2f6785f9fb1440146e77c.jpg",
+              "button_label": "Discover the Collection"
+            }
+          },
+          "collection_block_XhJ3bH": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "new-arrivals",
+              "use_custom_image": true,
+              "custom_image": "shopify://shop_images/flying_solo_store_front_1.png",
+              "button_label": "Discover the Collection"
+            }
+          }
+        },
+        "block_order": [
+          "collection_block_TXRAgK",
+          "collection_block_zbkcin",
+          "collection_block_XhJ3bH"
+        ],
+        "name": "Collection Expandable",
+        "settings": {
+          "section_title": "",
+          "section_title_alignment": "center",
+          "section_title_spacing": 48,
+          "section_padding_top": 72,
+          "section_padding_bottom": 72,
+          "section_background_color": "#ffffff",
+          "section_text_color": "#000000",
+          "navigation_background_color": "#ffffff",
+          "navigation_text_color": "#000000",
+          "button_background_color": "#000000",
+          "button_text_color": "#ffffff",
+          "button_hover_background_color": "#333333",
+          "button_hover_text_color": "#ffffff",
+          "products_per_row_desktop": 4,
+          "products_per_row_tablet": 3,
+          "products_per_row_mobile": 2
+        }
+      }
+    },
+    "order": [
+      "slideshow_8Re6hG",
+      "collection_expandable_Ge6iMt"
+    ]
+  }
+  

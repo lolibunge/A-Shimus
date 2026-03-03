@@ -1,0 +1,510 @@
+{{ 'section-collection-expandable.css' | asset_url | stylesheet_tag }}
+
+<safe-load-scripts class="hidden">
+  <script src="{{ 'component-product-media-grid.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="product-media"></script>
+</safe-load-scripts>
+
+<style> 
+  #shopify-section-{{ section.id }} {
+    --section-background-color: {{ section.settings.section_background_color }};
+    --section-text-color: {{ section.settings.section_text_color }};
+    --button-background-color: {{ section.settings.button_background_color }};
+    --button-text-color: {{ section.settings.button_text_color }};
+    --button-hover-background-color: {{ section.settings.button_hover_background_color }};
+    --button-hover-text-color: {{ section.settings.button_hover_text_color }};
+    --navigation-background-color: {{ section.settings.navigation_background_color }};
+    --navigation-text-color: {{ section.settings.navigation_text_color }};
+    --section-padding-top: {{ section.settings.section_padding_top }}px;
+    --section-padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      --section-padding-top: 30px;
+      --section-padding-bottom: 60px;
+    }
+  }
+</style>
+
+<div
+  class="collection-expandable-section"
+  data-section-id="{{ section.id }}"
+  style="background-color: var(--section-background-color); color: var(--section-text-color); padding-top: var(--section-padding-top); padding-bottom: var(--section-padding-bottom);"
+>
+  <div class="collection-expandable-container">
+    {% if section.settings.section_title != blank %}
+      <h2
+        class="collection-expandable-section-title"
+        style="text-align: {{ section.settings.section_title_alignment }}; margin-bottom: {{ section.settings.section_title_spacing }}px;"
+      >
+        {{ section.settings.section_title }}
+      </h2>
+    {% endif %}
+
+    {% comment %} Collection Blocks Grid {% endcomment %}
+    <div class="collection-expandable-blocks" id="collection-blocks-{{ section.id }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'collection_block' %}
+          {% liquid
+            assign collection = collections[block.settings.collection]
+            assign use_custom_image = block.settings.use_custom_image
+            assign custom_image = block.settings.custom_image
+            assign collection_image = collection.image
+            assign display_image = blank
+            assign collection_title = collection.title | default: 'Collection'
+            assign collection_description = collection.description | default: ''
+
+            if collection_description == blank
+              assign collection_description = ' '
+            endif
+
+            if use_custom_image and custom_image != blank
+              assign display_image = custom_image
+            elsif collection_image != blank
+              assign display_image = collection_image
+            endif
+          %}
+
+          <div
+            class="collection-expandable-block"
+            data-collection-handle="{{ collection.handle }}"
+            data-block-id="{{ block.id }}"
+            {{ block.shopify_attributes }}
+          >
+            {% if display_image != blank %}
+              <div class="collection-expandable-block-image">
+                <img
+                  src="{{ display_image | image_url: width: 800 }}"
+                  alt="{{ collection_title | escape }}"
+                  loading="lazy"
+                  width="800"
+                  height="1000"
+                >
+              </div>
+            {% else %}
+              <div class="collection-expandable-block-image collection-expandable-block-image--placeholder">
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {% endif %}
+
+            <div class="collection-expandable-block-content">
+              <h3 class="collection-expandable-block-title">{{ collection_title }}</h3>
+              <button
+                class="collection-expandable-block-button"
+                data-collection-handle="{{ collection.handle }}"
+                data-block-id="{{ block.id }}"
+                style="background-color: var(--button-background-color); color: var(--button-text-color);"
+              >
+                {{ block.settings.button_label | default: 'Discover the Collection' }}
+              </button>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% comment %} Collection Data JSON {% endcomment %}
+    <script type="application/json" id="collection-data-{{ section.id }}">
+      {
+        "collection_blocks": [
+          {% for block in section.blocks %}
+            {% if block.type == 'collection_block' %}
+              {% liquid
+                assign collection = collections[block.settings.collection]
+                assign use_custom_image = block.settings.use_custom_image
+                assign custom_image = block.settings.custom_image
+                assign collection_image = collection.image
+                assign display_image = blank
+                assign collection_title = collection.title | default: 'Collection'
+                assign collection_description = collection.description | default: ''
+                assign collection_handle = collection.handle | default: ''
+
+                if collection_description == blank
+                  assign collection_description = ' '
+                endif
+
+                if use_custom_image and custom_image != blank
+                  assign display_image = custom_image | image_url: width: 800
+                elsif collection_image != blank
+                  assign display_image = collection_image | image_url: width: 800
+                endif
+              %}
+              {
+                "id": "{{ block.id }}",
+                "handle": "{{ collection_handle }}",
+                "title_collection": {{ collection_title | json }},
+                "description_collection": {{ collection_description | json }},
+                "image_collection": {{ display_image | json }},
+                "url_collection": {{ collection.url | json }},
+                "images_product": [
+                  {% liquid
+                    assign image_count = 0
+                  %}
+                  {% for product in collection.products limit: 50 %}
+                    {% if product.featured_image != blank %}
+                      {% if image_count > 0 %},{% endif %}
+                      {
+                        "thumbnail_src": {{ product.featured_image | image_url: width: 800 | json }},
+                        "full_src": {{ product.featured_image | image_url: width: 2000 | json }},
+                        "width": {{ product.featured_image.width | default: 800 | json }},
+                        "height": {{ product.featured_image.height | default: 1000 | json }},
+                        "alt": {{ product.featured_image.alt | default: product.title | json }}
+                      }
+                      {% liquid
+                        assign image_count = image_count | plus: 1
+                      %}
+                    {% endif %}
+                  {% endfor %}
+                ]
+              }{% unless forloop.last %},{% endunless %}
+            {% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+
+    {% comment %} Expanded Collection View {% endcomment %}
+    <div class="collection-expandable-expanded" id="expanded-collection-{{ section.id }}" style="display: none;">
+      {% comment %} Navigation Header {% endcomment %}
+      <div
+        class="collection-expandable-navigation"
+        style="background-color: var(--navigation-background-color); color: var(--navigation-text-color);"
+      >
+        <div class="collection-expandable-navigation-content">
+          <div class="collection-expandable-navigation-wrapper">
+            {% comment %} Left Navigation {% endcomment %}
+            <button
+              class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--prev"
+              data-section-id="{{ section.id }}"
+              data-direction="prev"
+              aria-label="Previous collection"
+            >
+              <svg
+                class="collection-expandable-navigation-arrow-icon"
+                width="12"
+                height="20"
+                viewBox="0 0 12 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0.282018 10.5118L10.3728 19.7544C10.5545 19.9121 10.7961 20 11.0473 20C11.2985 20 11.54 19.9121 11.7218 19.7544C11.8097 19.6767 11.8796 19.5838 11.9273 19.4812C11.975 19.3785 11.9996 19.2682 11.9996 19.1568C11.9996 19.0454 11.975 18.9351 11.9273 18.8324C11.8796 18.7298 11.8097 18.6369 11.7218 18.5592L2.26898 9.90006L11.7218 1.44724C11.8098 1.36963 11.8798 1.27674 11.9276 1.17409C11.9754 1.07144 12 0.961102 12 0.849634C12 0.738167 11.9754 0.627834 11.9276 0.525179C11.8798 0.422523 11.8098 0.329639 11.7218 0.252029C11.5422 0.0905666 11.2999 0 11.0473 0C10.7947 0 10.5523 0.0905666 10.3728 0.252029L0.473014 9.10386C0.407319 9.15806 0.352206 9.22198 0.310019 9.29292L0.283018 9.312C0.193761 9.38928 0.122665 9.48219 0.0740252 9.58514C0.0253859 9.68809 0.000211716 9.79893 2.47955e-05 9.91097C-0.000896454 10.0233 0.0236683 10.1347 0.0721855 10.2381C0.120703 10.3414 0.192132 10.4346 0.282018 10.5118Z" fill="black"/>
+              </svg>
+              <span class="collection-expandable-navigation-arrow-text" data-prev-collection-title></span>
+            </button>
+
+            {% comment %} Center Title and Description {% endcomment %}
+            <div class="collection-expandable-navigation-center">
+              <button
+                class="collection-expandable-navigation-center-button"
+                data-section-id="{{ section.id }}"
+                aria-label="Close collection"
+              >
+                <span class="collection-expandable-navigation-title" data-collection-title></span>
+                <div class="collection-expandable-navigation-description" data-collection-description></div>
+              </button>
+            </div>
+
+            {% comment %} Right Navigation {% endcomment %}
+            <button
+              class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--next"
+              data-section-id="{{ section.id }}"
+              data-direction="next"
+              aria-label="Next collection"
+            >
+              <span class="collection-expandable-navigation-arrow-text" data-next-collection-title></span>
+              <svg
+                class="collection-expandable-navigation-arrow-icon"
+                width="12"
+                height="20"
+                viewBox="0 0 12 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M11.718 10.5118L1.6272 19.7544C1.44546 19.9121 1.20391 20 0.95271 20C0.701507 20 0.459957 19.9121 0.278225 19.7544C0.190321 19.6767 0.120446 19.5838 0.0727328 19.4812C0.0250192 19.3785 0.000435415 19.2682 0.000435415 19.1568C0.000435415 19.0454 0.0250192 18.9351 0.0727328 18.8324C0.120446 18.7298 0.190321 18.6369 0.278225 18.5592L9.73102 9.90006L0.278225 1.44724C0.190197 1.36963 0.120211 1.27674 0.072419 1.17409C0.0246265 1.07144 0 0.961102 0 0.849634C0 0.738167 0.0246265 0.627834 0.072419 0.525179C0.120211 0.422523 0.190197 0.329639 0.278225 0.252029C0.457766 0.0905666 0.70014 0 0.95271 0C1.20528 0 1.44765 0.0905666 1.6272 0.252029L11.527 9.10386C11.5927 9.15806 11.6478 9.22198 11.69 9.29292L11.717 9.312C11.8062 9.38928 11.8773 9.48219 11.926 9.58514C11.9746 9.68809 11.9998 9.79893 12 9.91097C12.0009 10.0233 11.9763 10.1347 11.9278 10.2381C11.8793 10.3414 11.8079 10.4346 11.718 10.5118Z" fill="black"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} Products Grid {% endcomment %}
+      <product-media-grid
+        id="collection-expandable-media-{{ section.id }}"
+        data-pswp-main-class="pswp--custom-colors pswp--lookbook-transparent"
+        data-pswp-bg-opacity="0.75"
+      >
+        <div
+          class="collection-expandable-products-grid"
+          id="products-grid-{{ section.id }}"
+          data-media-main
+          data-products-per-row-desktop="{{ section.settings.products_per_row_desktop }}"
+          data-products-per-row-tablet="{{ section.settings.products_per_row_tablet }}"
+          data-products-per-row-mobile="{{ section.settings.products_per_row_mobile }}"
+        >
+          {% comment %} Products will be loaded dynamically via JavaScript {% endcomment %}
+        </div>
+      </product-media-grid>
+
+      {% comment %} Navigation Buttons {% endcomment %}
+      <div
+        class="collection-expandable-navigation-mobile"
+        style="background-color: var(--navigation-background-color); color: var(--navigation-text-color);"
+      >
+          <div class="collection-expandable-navigation-wrapper">
+            {% comment %} Left Navigation {% endcomment %}
+            <button
+              class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--prev"
+              data-section-id="{{ section.id }}"
+              data-direction="prev"
+              aria-label="Previous collection"
+            >
+              <svg
+                class="collection-expandable-navigation-arrow-icon"
+                width="12"
+                height="20"
+                viewBox="0 0 12 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0.282018 10.5118L10.3728 19.7544C10.5545 19.9121 10.7961 20 11.0473 20C11.2985 20 11.54 19.9121 11.7218 19.7544C11.8097 19.6767 11.8796 19.5838 11.9273 19.4812C11.975 19.3785 11.9996 19.2682 11.9996 19.1568C11.9996 19.0454 11.975 18.9351 11.9273 18.8324C11.8796 18.7298 11.8097 18.6369 11.7218 18.5592L2.26898 9.90006L11.7218 1.44724C11.8098 1.36963 11.8798 1.27674 11.9276 1.17409C11.9754 1.07144 12 0.961102 12 0.849634C12 0.738167 11.9754 0.627834 11.9276 0.525179C11.8798 0.422523 11.8098 0.329639 11.7218 0.252029C11.5422 0.0905666 11.2999 0 11.0473 0C10.7947 0 10.5523 0.0905666 10.3728 0.252029L0.473014 9.10386C0.407319 9.15806 0.352206 9.22198 0.310019 9.29292L0.283018 9.312C0.193761 9.38928 0.122665 9.48219 0.0740252 9.58514C0.0253859 9.68809 0.000211716 9.79893 2.47955e-05 9.91097C-0.000896454 10.0233 0.0236683 10.1347 0.0721855 10.2381C0.120703 10.3414 0.192132 10.4346 0.282018 10.5118Z" fill="black"/>
+              </svg>
+              <span class="collection-expandable-navigation-arrow-text" data-prev-collection-title></span>
+            </button>
+
+            {% comment %} Right Navigation {% endcomment %}
+            <button
+              class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--next"
+              data-section-id="{{ section.id }}"
+              data-direction="next"
+              aria-label="Next collection"
+            >
+              <span class="collection-expandable-navigation-arrow-text" data-next-collection-title></span>
+              <svg
+                class="collection-expandable-navigation-arrow-icon"
+                width="12"
+                height="20"
+                viewBox="0 0 12 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M11.718 10.5118L1.6272 19.7544C1.44546 19.9121 1.20391 20 0.95271 20C0.701507 20 0.459957 19.9121 0.278225 19.7544C0.190321 19.6767 0.120446 19.5838 0.0727328 19.4812C0.0250192 19.3785 0.000435415 19.2682 0.000435415 19.1568C0.000435415 19.0454 0.0250192 18.9351 0.0727328 18.8324C0.120446 18.7298 0.190321 18.6369 0.278225 18.5592L9.73102 9.90006L0.278225 1.44724C0.190197 1.36963 0.120211 1.27674 0.072419 1.17409C0.0246265 1.07144 0 0.961102 0 0.849634C0 0.738167 0.0246265 0.627834 0.072419 0.525179C0.120211 0.422523 0.190197 0.329639 0.278225 0.252029C0.457766 0.0905666 0.70014 0 0.95271 0C1.20528 0 1.44765 0.0905666 1.6272 0.252029L11.527 9.10386C11.5927 9.15806 11.6478 9.22198 11.69 9.29292L11.717 9.312C11.8062 9.38928 11.8773 9.48219 11.926 9.58514C11.9746 9.68809 11.9998 9.79893 12 9.91097C12.0009 10.0233 11.9763 10.1347 11.9278 10.2381C11.8793 10.3414 11.8079 10.4346 11.718 10.5118Z" fill="black"/>
+              </svg>
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'section-collection-expandable.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Collection Expandable",
+  "class": "collection-expandable-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Collections"
+    },
+    {
+      "type": "select",
+      "id": "section_title_alignment",
+      "label": "Title Alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "section_title_spacing",
+      "label": "Title Bottom Spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "navigation_background_color",
+      "label": "Navigation Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "navigation_text_color",
+      "label": "Navigation Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button Hover Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Product Grid"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "label": "Products Per Row (Desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_tablet",
+      "label": "Products Per Row (Tablet)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile",
+      "label": "Products Per Row (Mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection Block",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Image Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_image",
+          "label": "Use Custom Image",
+          "default": false,
+          "info": "If enabled, use custom image instead of collection image"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image",
+          "info": "Only used if 'Use Custom Image' is enabled"
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Discover the Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Expandable",
+      "blocks": [
+        {
+          "type": "collection_block"
+        },
+        {
+          "type": "collection_block"
+        },
+        {
+          "type": "collection_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

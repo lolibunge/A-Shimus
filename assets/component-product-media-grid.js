@@ -9070,21 +9070,26 @@ if (!customElements.get('product-media-grid')) {
 
     initPhotoSwipe() {
       /* ===== Initialize the PhotoSwipe lightbox for the product media gallery ===== */
-      const leftArrowSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="pswp__icn"><path d="M13 5L8 10L13 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      const mainClass = this.getAttribute('data-pswp-main-class') || 'pswp--custom-colors';
+      const bgOpacityAttr = this.getAttribute('data-pswp-bg-opacity');
+      const parsedBgOpacity = bgOpacityAttr !== null ? parseFloat(bgOpacityAttr) : NaN;
+      const bgOpacity = Number.isFinite(parsedBgOpacity) ? Math.min(Math.max(parsedBgOpacity, 0), 1) : 1;
+
+      const leftArrowSVG = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="pswp__icn"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0001 1.9331C17.9997 1.80947 17.9749 1.68713 17.9271 1.5731C17.8813 1.46063 17.8133 1.35859 17.7271 1.2731C17.5465 1.09706 17.3043 0.998535 17.0521 0.998535C16.7999 0.998535 16.5577 1.09706 16.3771 1.2731L6.30006 11.4541C6.20894 11.5388 6.13552 11.6408 6.08406 11.7541C6.03133 11.8683 6.00277 11.9922 6.00019 12.118C5.99761 12.2438 6.02106 12.3688 6.06906 12.4851C6.11689 12.603 6.18836 12.7099 6.27906 12.7991C6.31559 12.8356 6.35506 12.8691 6.39706 12.8991C6.42731 12.9391 6.46076 12.9765 6.49706 13.0111L16.3791 22.7531C16.5618 22.9172 16.7999 23.0059 17.0455 23.0012C17.291 22.9966 17.5257 22.899 17.7021 22.7281C17.7873 22.6453 17.8553 22.5464 17.9021 22.4371C17.9989 22.2127 18.004 21.9592 17.9161 21.7311C17.873 21.6194 17.8081 21.5174 17.7251 21.4311L8.28806 12.1311L17.7221 2.5931C17.8083 2.50762 17.8763 2.40557 17.9221 2.2931C17.9716 2.17943 17.9981 2.05707 18.0001 1.9331Z" fill="white"/></svg>';
       const zoomInSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="pswp__icn" id="pswp__icn--zoom-in"><path d="M6.66667 9.16667H9.16667M9.16667 9.16667H11.6667M9.16667 9.16667V6.66667M9.16667 9.16667V11.6667M14.1667 14.1667L17.5 17.5M2.5 9.16667C2.5 10.9348 3.20238 12.6305 4.45262 13.8807C5.70286 15.131 7.39856 15.8333 9.16667 15.8333C10.9348 15.8333 12.6305 15.131 13.8807 13.8807C15.131 12.6305 15.8333 10.9348 15.8333 9.16667C15.8333 7.39856 15.131 5.70286 13.8807 4.45262C12.6305 3.20238 10.9348 2.5 9.16667 2.5C7.39856 2.5 5.70286 3.20238 4.45262 4.45262C3.20238 5.70286 2.5 7.39856 2.5 9.16667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       const zoomOutSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="pswp__icn" id="pswp__icn--zoom-out"><path d="M14.1667 14.1667L17.5 17.5M6.66667 9.16667H11.6667M2.5 9.16667C2.5 10.9348 3.20238 12.6305 4.45262 13.8807C5.70286 15.131 7.39856 15.8333 9.16667 15.8333C10.9348 15.8333 12.6305 15.131 13.8807 13.8807C15.131 12.6305 15.8333 10.9348 15.8333 9.16667C15.8333 7.39856 15.131 5.70286 13.8807 4.45262C12.6305 3.20238 10.9348 2.5 9.16667 2.5C7.39856 2.5 5.70286 3.20238 4.45262 4.45262C3.20238 5.70286 2.5 7.39856 2.5 9.16667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       const zoomSVGs = zoomInSVG + zoomOutSVG;
       const closeSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="pswp__icn"><path d="M5.63086 14.3692L10 10L14.3692 14.3692M14.3692 5.63086L9.99919 10L5.63086 5.63086" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   
       const lightbox = new PhotoSwipeLightbox({
-        mainClass: 'pswp--custom-colors',
+        mainClass: mainClass,
         gallery: `product-media-grid[id="${this.mainMediaId}"] [data-media-main]`,
         children: 'a[data-main-media-link]',
-        bgOpacity: 1,
+        bgOpacity: bgOpacity,
         showAnimationDuration: 200,
         hideAnimationDuration: 200,
         arrowPrevSVG: leftArrowSVG,
-        arrowNextSVG: leftArrowSVG,       // right arrow is a flipped left arrow
+        arrowNextSVG: leftArrowSVG,       // right arrow uses PhotoSwipe's built-in horizontal flip
         zoomSVG: zoomSVGs,                // the switch between zoom-in and zoom-out icon happens with .pswp--zoomed-in class
         closeSVG: closeSVG,
         pswpModule: PhotoSwipe
