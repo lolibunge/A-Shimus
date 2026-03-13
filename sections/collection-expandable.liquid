@@ -40,41 +40,134 @@
       </h2>
     {% endif %}
 
-    {% comment %} Collection Blocks Grid {% endcomment %}
-    <div class="collection-expandable-blocks" id="collection-blocks-{{ section.id }}">
-      {% for block in section.blocks %}
-        {% if block.type == 'collection_block' %}
-          {% liquid
-            assign collection = collections[block.settings.collection]
-            assign use_custom_image = block.settings.use_custom_image
-            assign custom_image = block.settings.custom_image
-            assign collection_image = collection.image
-            assign display_image = blank
-            assign collection_title = collection.title | default: 'Collection'
-            assign collection_description = collection.description | default: ''
+    {% liquid
+      assign all_lookbooks = shop.metaobjects.lookbook.values
+      assign has_manual_lookbook_handles = false
 
-            if collection_description == blank
-              assign collection_description = ' '
+      for block in section.blocks
+        if block.type == 'collection_block' and block.settings.lookbook_handle != blank
+          assign has_manual_lookbook_handles = true
+          break
+        endif
+      endfor
+    %}
+
+    {% comment %} Lookbook Blocks Grid {% endcomment %}
+    <div class="collection-expandable-blocks" id="collection-blocks-{{ section.id }}">
+      {% liquid
+        assign rendered_lookbook_count = 0
+      %}
+
+      {% if has_manual_lookbook_handles %}
+        {% for block in section.blocks %}
+          {% if block.type == 'collection_block' %}
+            {% liquid
+              assign lookbook_handle = block.settings.lookbook_handle | handleize
+              assign lookbook_entry = shop.metaobjects.lookbook[lookbook_handle]
+            %}
+
+            {% if lookbook_entry != blank %}
+              {% liquid
+                assign lookbook_images = lookbook_entry.images.value
+                assign lookbook_cover_image = lookbook_entry.cover_image.value
+                assign display_image = blank
+                assign lookbook_title = lookbook_entry.title.value | default: lookbook_entry.system.handle | default: 'Lookbook'
+                assign button_label = block.settings.button_label | default: section.settings.default_button_label | default: 'Discover the Lookbook'
+
+                if block.settings.use_custom_image and block.settings.custom_image != blank
+                  assign display_image = block.settings.custom_image
+                elsif lookbook_cover_image != blank
+                  assign display_image = lookbook_cover_image
+                elsif lookbook_images != blank and lookbook_images.first != blank
+                  assign display_image = lookbook_images.first
+                endif
+              %}
+
+              <div
+                class="collection-expandable-block"
+                data-collection-handle="{{ lookbook_entry.system.handle }}"
+                data-block-id="{{ block.id }}"
+                {{ block.shopify_attributes }}
+              >
+                {% if display_image != blank %}
+                  <div class="collection-expandable-block-image">
+                    <img
+                      src="{{ display_image | image_url: width: 800 }}"
+                      alt="{{ lookbook_title | escape }}"
+                      loading="lazy"
+                      width="800"
+                      height="1000"
+                    >
+                  </div>
+                {% else %}
+                  <div class="collection-expandable-block-image collection-expandable-block-image--placeholder">
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {% endif %}
+
+                <div class="collection-expandable-block-content">
+                  <h3 class="collection-expandable-block-title">{{ lookbook_title }}</h3>
+                  <button
+                    class="collection-expandable-block-button"
+                    data-collection-handle="{{ lookbook_entry.system.handle }}"
+                    data-block-id="{{ block.id }}"
+                    style="background-color: var(--button-background-color); color: var(--button-text-color);"
+                  >
+                    {{ button_label }}
+                  </button>
+                </div>
+              </div>
+
+              {% liquid
+                assign rendered_lookbook_count = rendered_lookbook_count | plus: 1
+              %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% for lookbook_entry in all_lookbooks %}
+          {% liquid
+            assign lookbook_images = lookbook_entry.images.value
+            assign lookbook_cover_image = lookbook_entry.cover_image.value
+            assign display_image = blank
+            assign lookbook_title = lookbook_entry.title.value | default: lookbook_entry.system.handle | default: 'Lookbook'
+            assign lookbook_handle = lookbook_entry.system.handle
+            assign lookbook_block = section.blocks[forloop.index0]
+            assign block_id = lookbook_handle
+            assign button_label = section.settings.default_button_label | default: 'Discover the Lookbook'
+
+            if lookbook_block != blank and lookbook_block.type == 'collection_block'
+              assign block_id = lookbook_block.id
+
+              if lookbook_block.settings.button_label != blank
+                assign button_label = lookbook_block.settings.button_label
+              endif
             endif
 
-            if use_custom_image and custom_image != blank
-              assign display_image = custom_image
-            elsif collection_image != blank
-              assign display_image = collection_image
+            if lookbook_cover_image != blank
+              assign display_image = lookbook_cover_image
+            elsif lookbook_images != blank and lookbook_images.first != blank
+              assign display_image = lookbook_images.first
+            endif
+
+            if lookbook_block != blank and lookbook_block.type == 'collection_block' and lookbook_block.settings.use_custom_image and lookbook_block.settings.custom_image != blank
+              assign display_image = lookbook_block.settings.custom_image
             endif
           %}
 
           <div
             class="collection-expandable-block"
-            data-collection-handle="{{ collection.handle }}"
-            data-block-id="{{ block.id }}"
-            {{ block.shopify_attributes }}
+            data-collection-handle="{{ lookbook_handle }}"
+            data-block-id="{{ block_id }}"
+            {% if lookbook_block != blank and lookbook_block.type == 'collection_block' %}
+              {{ lookbook_block.shopify_attributes }}
+            {% endif %}
           >
             {% if display_image != blank %}
               <div class="collection-expandable-block-image">
                 <img
                   src="{{ display_image | image_url: width: 800 }}"
-                  alt="{{ collection_title | escape }}"
+                  alt="{{ lookbook_title | escape }}"
                   loading="lazy"
                   width="800"
                   height="1000"
@@ -87,67 +180,143 @@
             {% endif %}
 
             <div class="collection-expandable-block-content">
-              <h3 class="collection-expandable-block-title">{{ collection_title }}</h3>
+              <h3 class="collection-expandable-block-title">{{ lookbook_title }}</h3>
               <button
                 class="collection-expandable-block-button"
-                data-collection-handle="{{ collection.handle }}"
-                data-block-id="{{ block.id }}"
+                data-collection-handle="{{ lookbook_handle }}"
+                data-block-id="{{ block_id }}"
                 style="background-color: var(--button-background-color); color: var(--button-text-color);"
               >
-                {{ block.settings.button_label | default: 'Discover the Collection' }}
+                {{ button_label }}
               </button>
             </div>
           </div>
-        {% endif %}
-      {% endfor %}
+
+          {% liquid
+            assign rendered_lookbook_count = rendered_lookbook_count | plus: 1
+          %}
+        {% endfor %}
+      {% endif %}
+
+      {% if rendered_lookbook_count == 0 %}
+        <div class="collection-expandable-empty-state">No lookbooks found.</div>
+      {% endif %}
     </div>
 
-    {% comment %} Collection Data JSON {% endcomment %}
+    {% comment %} Lookbook Data JSON {% endcomment %}
     <script type="application/json" id="collection-data-{{ section.id }}">
       {
         "collection_blocks": [
-          {% for block in section.blocks %}
-            {% if block.type == 'collection_block' %}
-              {% liquid
-                assign collection = collections[block.settings.collection]
-                assign use_custom_image = block.settings.use_custom_image
-                assign custom_image = block.settings.custom_image
-                assign collection_image = collection.image
-                assign display_image = blank
-                assign collection_title = collection.title | default: 'Collection'
-                assign collection_description = collection.description | default: ''
-                assign collection_handle = collection.handle | default: ''
+          {% liquid
+            assign lookbook_json_count = 0
+          %}
 
-                if collection_description == blank
-                  assign collection_description = ' '
+          {% if has_manual_lookbook_handles %}
+            {% for block in section.blocks %}
+              {% if block.type == 'collection_block' %}
+                {% liquid
+                  assign lookbook_handle = block.settings.lookbook_handle | handleize
+                  assign lookbook_entry = shop.metaobjects.lookbook[lookbook_handle]
+                %}
+
+                {% if lookbook_entry != blank %}
+                  {% liquid
+                    assign lookbook_images = lookbook_entry.images.value
+                    assign lookbook_cover_image = lookbook_entry.cover_image.value
+                    assign display_image = blank
+                    assign lookbook_title = lookbook_entry.title.value | default: lookbook_entry.system.handle | default: 'Lookbook'
+                    assign lookbook_description = lookbook_entry.description.value | default: ''
+
+                    if block.settings.use_custom_image and block.settings.custom_image != blank
+                      assign display_image = block.settings.custom_image | image_url: width: 800
+                    elsif lookbook_cover_image != blank
+                      assign display_image = lookbook_cover_image | image_url: width: 800
+                    elsif lookbook_images != blank and lookbook_images.first != blank
+                      assign display_image = lookbook_images.first | image_url: width: 800
+                    endif
+                  %}
+                  {% if lookbook_json_count > 0 %},{% endif %}
+                  {
+                    "id": "{{ block.id }}",
+                    "handle": {{ lookbook_entry.system.handle | json }},
+                    "title_collection": {{ lookbook_title | json }},
+                    "description_collection": {{ lookbook_description | json }},
+                    "image_collection": {{ display_image | json }},
+                    "url_collection": null,
+                    "images_product": [
+                      {% liquid
+                        assign image_count = 0
+                      %}
+                      {% for lookbook_image in lookbook_images %}
+                        {% if lookbook_image != blank %}
+                          {% if image_count > 0 %},{% endif %}
+                          {
+                            "thumbnail_src": {{ lookbook_image | image_url: width: 800 | json }},
+                            "full_src": {{ lookbook_image | image_url: width: 2000 | json }},
+                            "width": {{ lookbook_image.width | default: 800 | json }},
+                            "height": {{ lookbook_image.height | default: 1000 | json }},
+                            "alt": {{ lookbook_image.alt | default: lookbook_title | json }}
+                          }
+                          {% liquid
+                            assign image_count = image_count | plus: 1
+                          %}
+                        {% endif %}
+                      {% endfor %}
+                    ]
+                  }
+                  {% liquid
+                    assign lookbook_json_count = lookbook_json_count | plus: 1
+                  %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {% for lookbook_entry in all_lookbooks %}
+              {% liquid
+                assign lookbook_images = lookbook_entry.images.value
+                assign lookbook_cover_image = lookbook_entry.cover_image.value
+                assign lookbook_title = lookbook_entry.title.value | default: lookbook_entry.system.handle | default: 'Lookbook'
+                assign lookbook_description = lookbook_entry.description.value | default: ''
+                assign lookbook_handle = lookbook_entry.system.handle
+                assign lookbook_block = section.blocks[forloop.index0]
+                assign block_id = lookbook_handle
+                assign display_image = blank
+
+                if lookbook_cover_image != blank
+                  assign display_image = lookbook_cover_image | image_url: width: 800
+                elsif lookbook_images != blank and lookbook_images.first != blank
+                  assign display_image = lookbook_images.first | image_url: width: 800
                 endif
 
-                if use_custom_image and custom_image != blank
-                  assign display_image = custom_image | image_url: width: 800
-                elsif collection_image != blank
-                  assign display_image = collection_image | image_url: width: 800
+                if lookbook_block != blank and lookbook_block.type == 'collection_block'
+                  assign block_id = lookbook_block.id
+                endif
+
+                if lookbook_block != blank and lookbook_block.type == 'collection_block' and lookbook_block.settings.use_custom_image and lookbook_block.settings.custom_image != blank
+                  assign display_image = lookbook_block.settings.custom_image | image_url: width: 800
                 endif
               %}
+              {% if forloop.index0 > 0 %},{% endif %}
               {
-                "id": "{{ block.id }}",
-                "handle": "{{ collection_handle }}",
-                "title_collection": {{ collection_title | json }},
-                "description_collection": {{ collection_description | json }},
+                "id": {{ block_id | json }},
+                "handle": {{ lookbook_handle | json }},
+                "title_collection": {{ lookbook_title | json }},
+                "description_collection": {{ lookbook_description | json }},
                 "image_collection": {{ display_image | json }},
-                "url_collection": {{ collection.url | json }},
+                "url_collection": null,
                 "images_product": [
                   {% liquid
                     assign image_count = 0
                   %}
-                  {% for product in collection.products limit: 50 %}
-                    {% if product.featured_image != blank %}
+                  {% for lookbook_image in lookbook_images %}
+                    {% if lookbook_image != blank %}
                       {% if image_count > 0 %},{% endif %}
                       {
-                        "thumbnail_src": {{ product.featured_image | image_url: width: 800 | json }},
-                        "full_src": {{ product.featured_image | image_url: width: 2000 | json }},
-                        "width": {{ product.featured_image.width | default: 800 | json }},
-                        "height": {{ product.featured_image.height | default: 1000 | json }},
-                        "alt": {{ product.featured_image.alt | default: product.title | json }}
+                        "thumbnail_src": {{ lookbook_image | image_url: width: 800 | json }},
+                        "full_src": {{ lookbook_image | image_url: width: 2000 | json }},
+                        "width": {{ lookbook_image.width | default: 800 | json }},
+                        "height": {{ lookbook_image.height | default: 1000 | json }},
+                        "alt": {{ lookbook_image.alt | default: lookbook_title | json }}
                       }
                       {% liquid
                         assign image_count = image_count | plus: 1
@@ -155,14 +324,14 @@
                     {% endif %}
                   {% endfor %}
                 ]
-              }{% unless forloop.last %},{% endunless %}
-            {% endif %}
-          {% endfor %}
+              }
+            {% endfor %}
+          {% endif %}
         ]
       }
     </script>
 
-    {% comment %} Expanded Collection View {% endcomment %}
+    {% comment %} Expanded Lookbook View {% endcomment %}
     <div class="collection-expandable-expanded" id="expanded-collection-{{ section.id }}" style="display: none;">
       {% comment %} Navigation Header {% endcomment %}
       <div
@@ -176,7 +345,7 @@
               class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--prev"
               data-section-id="{{ section.id }}"
               data-direction="prev"
-              aria-label="Previous collection"
+              aria-label="Previous lookbook"
             >
               <svg
                 class="collection-expandable-navigation-arrow-icon"
@@ -196,7 +365,7 @@
               <button
                 class="collection-expandable-navigation-center-button"
                 data-section-id="{{ section.id }}"
-                aria-label="Close collection"
+                aria-label="Close lookbook"
               >
                 <span class="collection-expandable-navigation-title" data-collection-title></span>
                 <div class="collection-expandable-navigation-description" data-collection-description></div>
@@ -208,7 +377,7 @@
               class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--next"
               data-section-id="{{ section.id }}"
               data-direction="next"
-              aria-label="Next collection"
+              aria-label="Next lookbook"
             >
               <span class="collection-expandable-navigation-arrow-text" data-next-collection-title></span>
               <svg
@@ -226,7 +395,7 @@
         </div>
       </div>
 
-      {% comment %} Products Grid {% endcomment %}
+      {% comment %} Images Grid {% endcomment %}
       <product-media-grid
         id="collection-expandable-media-{{ section.id }}"
         data-pswp-main-class="pswp--custom-colors pswp--lookbook-transparent"
@@ -240,7 +409,7 @@
           data-products-per-row-tablet="{{ section.settings.products_per_row_tablet }}"
           data-products-per-row-mobile="{{ section.settings.products_per_row_mobile }}"
         >
-          {% comment %} Products will be loaded dynamically via JavaScript {% endcomment %}
+          {% comment %} Images will be loaded dynamically via JavaScript {% endcomment %}
         </div>
       </product-media-grid>
 
@@ -255,7 +424,7 @@
               class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--prev"
               data-section-id="{{ section.id }}"
               data-direction="prev"
-              aria-label="Previous collection"
+              aria-label="Previous lookbook"
             >
               <svg
                 class="collection-expandable-navigation-arrow-icon"
@@ -275,7 +444,7 @@
               class="collection-expandable-navigation-arrow collection-expandable-navigation-arrow--next"
               data-section-id="{{ section.id }}"
               data-direction="next"
-              aria-label="Next collection"
+              aria-label="Next lookbook"
             >
               <span class="collection-expandable-navigation-arrow-text" data-next-collection-title></span>
               <svg
@@ -299,7 +468,7 @@
 
 {% schema %}
 {
-  "name": "Collection Expandable",
+  "name": "Lookbook Expandable",
   "class": "collection-expandable-wrapper",
   "settings": [
     {
@@ -310,7 +479,7 @@
       "type": "inline_richtext",
       "id": "section_title",
       "label": "Section Title",
-      "default": "Collections"
+      "default": "Lookbook"
     },
     {
       "type": "select",
@@ -419,13 +588,19 @@
       "default": "#ffffff"
     },
     {
+      "type": "text",
+      "id": "default_button_label",
+      "label": "Default Button Label",
+      "default": "Discover the Lookbook"
+    },
+    {
       "type": "header",
-      "content": "Product Grid"
+      "content": "Lookbook Grid"
     },
     {
       "type": "range",
       "id": "products_per_row_desktop",
-      "label": "Products Per Row (Desktop)",
+      "label": "Images Per Row (Desktop)",
       "min": 2,
       "max": 6,
       "step": 1,
@@ -434,7 +609,7 @@
     {
       "type": "range",
       "id": "products_per_row_tablet",
-      "label": "Products Per Row (Tablet)",
+      "label": "Images Per Row (Tablet)",
       "min": 2,
       "max": 4,
       "step": 1,
@@ -443,7 +618,7 @@
     {
       "type": "range",
       "id": "products_per_row_mobile",
-      "label": "Products Per Row (Mobile)",
+      "label": "Images Per Row (Mobile)",
       "min": 1,
       "max": 3,
       "step": 1,
@@ -453,12 +628,13 @@
   "blocks": [
     {
       "type": "collection_block",
-      "name": "Collection Block",
+      "name": "Lookbook Block",
       "settings": [
         {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
+          "type": "text",
+          "id": "lookbook_handle",
+          "label": "Lookbook Handle",
+          "info": "Optional. Use an existing lookbook entry handle. Leave blank to auto-load all lookbooks."
         },
         {
           "type": "header",
@@ -469,7 +645,7 @@
           "id": "use_custom_image",
           "label": "Use Custom Image",
           "default": false,
-          "info": "If enabled, use custom image instead of collection image"
+          "info": "If enabled, use custom image instead of the cover image from the lookbook entry"
         },
         {
           "type": "image_picker",
@@ -485,14 +661,14 @@
           "type": "text",
           "id": "button_label",
           "label": "Button Label",
-          "default": "Discover the Collection"
+          "default": "Discover the Lookbook"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection Expandable",
+      "name": "Lookbook Expandable",
       "blocks": [
         {
           "type": "collection_block"

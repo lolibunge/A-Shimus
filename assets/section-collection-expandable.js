@@ -486,7 +486,7 @@
     productsGrid.innerHTML = '';
     
     if (!imagesArray || imagesArray.length === 0) {
-      productsGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No products found in this collection.</div>';
+      productsGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No images found in this lookbook.</div>';
       return;
     }
     
