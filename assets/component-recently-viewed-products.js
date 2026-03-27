@@ -17,7 +17,7 @@ if (!customElements.get('recently-viewed-products')) {
     cacheDOMElements() {
       this.sectionId = this.getAttribute('data-wetheme-section-id');
       this.isPreviewMode = this.getAttribute('data-is-preview-mode') == 'true';
-      this.wrapper = this.closest('data-recently-viewed-wrapper');
+      this.wrapper = this.closest('[data-recently-viewed-wrapper]');
       if (!this.sectionId || !this.wrapper) return;
     }
 
@@ -104,11 +104,16 @@ if (!customElements.get('recently-viewed-products')) {
           // Replace the children of this element with the imported nodes from the parsed HTML
           this.replaceChildren(...recentlyViewedProductsElement.childNodes);
 
+          // Show the wrapper if it was hidden
+          if (this.wrapper) {
+            this.wrapper.style.display = '';
+          }
+
           // Re-initialize quick add, quick view, etc
           window.eventBus.emit('recentlyViewed:updated');
         } else {
           // If no child elements, hide the section containing this custom element
-          if (!this.isPreviewMode) this.wrapper.style.display = 'none';
+          if (!this.isPreviewMode && this.wrapper) this.wrapper.style.display = 'none';
         }
       } catch (e) {
         // Don't log errors for aborted requests

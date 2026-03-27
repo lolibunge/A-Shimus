@@ -1,22 +1,73 @@
 {{ 'section-featured-collection.min.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-  /* Estilos para los dots de paginación del swiper de imágenes de productos */
+  /* Ensure grid-view-item-image container has proper height */
+  .grid-view-item-image {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+  
+  .grid-view-item-image a.grid__image {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+  
+  /* Override image-height--natural for swiper - ensure it works within grid layout */
+  .grid-view-item-image a.grid__image.image-height--natural {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    position: relative;
+  }
+  
+  .grid-view-item-image a.grid__image.image-height--natural .grid-view-item-image-swiper {
+    grid-column-start: auto !important;
+    grid-column-end: auto !important;
+    grid-row-start: auto !important;
+    grid-row-end: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto;
+    padding-bottom: 133.33%;
+    aspect-ratio: 3 / 4;
+    position: relative;
+  }
+  
+  @supports (aspect-ratio: 3 / 4) {
+    .grid-view-item-image a.grid__image.image-height--natural .grid-view-item-image-swiper {
+      padding-bottom: 0;
+    }
+  }
+  
+  /* Styles for product image swiper pagination dots */
   .grid-view-item-image-swiper {
     position: relative;
     width: 100%;
     overflow: hidden;
     background: #f9f9f9;
-    /* Altura responsiva basada en aspect-ratio - compatible con iOS */
-    padding-bottom: 133.33%; /* 4/3 = 1.3333 = 133.33% (formato 3:4 vertical) */
-    height: 0;
-    /* Fallback para navegadores modernos */
+    /* Responsive height based on aspect-ratio - iOS compatible */
     aspect-ratio: 3 / 4;
-    /* Fix para iOS/Safari */
+    /* Fallback for older browsers using padding-bottom technique */
+    padding-bottom: 133.33%; /* 4/3 = 1.3333 = 133.33% (3:4 vertical format) */
+    /* Fix for iOS/Safari */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
-
+  
+  /* Override height: 0 if it exists, use aspect-ratio instead */
+  @supports (aspect-ratio: 3 / 4) {
+    .grid-view-item-image-swiper {
+      height: auto;
+      padding-bottom: 0;
+    }
+  }
+  
   .grid-view-item-image-swiper .swiper-wrapper {
     display: flex;
     position: absolute;
@@ -24,10 +75,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* Fix para iOS - asegurar que el wrapper ocupe todo el espacio */
+    /* Fix for iOS - ensure wrapper takes all space */
     min-height: 100%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+  }
+  
+  /* Ensure wrapper has proper height when parent uses padding-bottom */
+  @supports not (aspect-ratio: 3 / 4) {
+    .grid-view-item-image-swiper .swiper-wrapper {
+      height: 100%;
+      /* When parent has padding-bottom, 100% refers to the padding area */
+      top: 0;
+      bottom: 0;
+    }
   }
 
   .grid-view-item-image-swiper .swiper-slide {
@@ -42,7 +103,7 @@
     overflow: hidden;
   }
 
-  /* Contenedor de imagen con altura responsiva - mismo tamaño para todas */
+  /* Image container with responsive height - same size for all */
   .product-card-image-container {
     width: 100%;
     height: 100%;
@@ -51,54 +112,96 @@
     align-items: center;
     justify-content: center;
     background: #ffffff;
-    /* Asegurar que el contenedor respete los límites del slide */
+    /* Ensure container respects slide boundaries */
     box-sizing: border-box;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    /* Prevenir overflow - crítico para evitar cortes */
+    /* Prevent overflow - critical to avoid cropping */
     overflow: hidden;
-    /* Asegurar que no se salga del contenedor padre */
+    /* Ensure it doesn't overflow parent container */
     max-width: 100%;
     max-height: 100%;
+    min-height: 100%;
   }
-
-  /* Posicionar dots SOBRE la imagen */
-  .grid-view-item-image-pagination {
-    position: absolute !important;
-    bottom: 15px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+  
+  /* Ensure responsive-image-wrapper has proper height */
+  .product-card-image-container .responsive-image-wrapper {
+    width: 100% !important;
     display: flex !important;
-    gap: 6px;
-    z-index: 100 !important;
-    pointer-events: none;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    min-height: 100% !important;
+  }
+  
+  /* Ensure swiper slides and images are visible even when swiper is not initialized */
+  .grid-view-item-image-swiper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 200px !important; /* Fallback minimum height */
+  }
+  
+  .grid-view-item-image-swiper .swiper-wrapper {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+  
+  .grid-view-item-image-swiper .swiper-slide {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+    min-height: 100% !important;
+  }
+  
+  .grid-view-item-image-swiper .swiper-slide .product-card-image-container {
+    min-height: 100% !important;
+  }
+  
+  .grid-view-item-image-swiper .swiper-slide .responsive-image-wrapper {
+    width: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    align-items: start !important;
+    justify-content: center !important;
+  }
+  
+  .grid-view-item-image-swiper .swiper-slide img,
+  .grid-view-item-image-swiper .swiper-slide .responsive-image-wrapper img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
-
-  .grid-view-item-image-pagination .swiper-pagination-bullet {
-    width: 8px !important;
-    height: 8px !important;
-    background: rgba(255, 255, 255, 0.7) !important;
-    border: 1.5px solid rgba(0, 0, 0, 0.3) !important;
-    border-radius: 50% !important;
+  
+  /* Force active slide to be visible */
+  .grid-view-item-image-swiper .swiper-slide-active {
+    display: flex !important;
+    visibility: visible !important;
     opacity: 1 !important;
-    transition: all 0.3s ease !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-    display: inline-block !important;
-    margin: 0 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-
-  .grid-view-item-image-pagination .swiper-pagination-bullet-active {
-    background: rgb(55, 19, 19) !important;
+  
+  .grid-view-item-image-swiper .swiper-slide-active img {
+    display: block !important;
+    visibility: visible !important;
     opacity: 1 !important;
-    transform: scale(1.3) !important;
-    border-color: rgba(0, 0, 0, 0.5) !important;
   }
 
-  /* Asegurar que las imágenes NO se corten - todas con la misma altura */
-  /* Especificidad máxima para sobrescribir estilos inline */
+  /* Ensure images are NOT cropped - all with the same height */
+  /* Maximum specificity to override inline styles */
   .grid-view-item-image-swiper .swiper-slide img,
   .grid-view-item-image-swiper .swiper-slide img.theme-img,
   .grid-view-item-image-swiper .swiper-slide img.js,
@@ -109,12 +212,14 @@
     height: auto !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    object-fit: contain !important; /* Mostrar toda la imagen sin recortar - sobrescribe inline styles */
-    -webkit-object-fit: contain !important; /* Fix para Safari/iOS */
-    object-position: center !important; /* Sobrescribe inline styles */
-    -webkit-object-position: center !important; /* Fix para Safari/iOS */
-    display: block;
-    /* Asegurar que la imagen no se salga del contenedor */
+    object-fit: cover !important; /* Show entire image without cropping - overrides inline styles */
+    -webkit-object-fit: cover !important; /* Fix for Safari/iOS */
+    object-position: center !important; /* Overrides inline styles */
+    -webkit-object-position: center !important; /* Fix for Safari/iOS */
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* Ensure image doesn't overflow container */
     box-sizing: border-box;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -146,11 +251,14 @@
     height: auto !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    object-fit: contain !important; /* Sobrescribe estilos inline */
-    -webkit-object-fit: contain !important; /* Fix para Safari/iOS */
-    object-position: center !important; /* Sobrescribe estilos inline */
-    -webkit-object-position: center !important; /* Fix para Safari/iOS */
-    /* Asegurar que la imagen no se salga */
+    object-fit: cover !important; /* Overrides inline styles */
+    -webkit-object-fit: cover !important; /* Fix for Safari/iOS */
+    object-position: center !important; /* Overrides inline styles */
+    -webkit-object-position: center !important; /* Fix for Safari/iOS */
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* Ensure image doesn't overflow */
     box-sizing: border-box;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -209,8 +317,8 @@
     .grid-view-item-image-swiper .swiper-slide img,
     .grid-view-item-image-swiper .swiper-slide picture img,
     .grid-view-item-image-swiper .swiper-slide .responsive-image__wrapper img {
-      object-fit: contain !important;
-      -webkit-object-fit: contain !important; /* Fix para Safari/iOS */
+      object-fit: cover !important;
+      -webkit-object-fit: cover !important; /* Fix para Safari/iOS */
       object-position: center;
       -webkit-object-position: center; /* Fix para Safari/iOS */
       max-width: 100%;
@@ -262,8 +370,8 @@
     .grid-view-item-image-swiper .swiper-slide .responsive-image__wrapper img {
       max-width: 100% !important;
       max-height: 100% !important;
-      object-fit: contain !important;
-      -webkit-object-fit: contain !important;
+      object-fit: cover !important;
+      -webkit-object-fit: cover !important;
       width: auto !important;
       height: auto !important;
     }
@@ -294,17 +402,10 @@
       padding-right: 20px;
     }
     
-    /* Cuando hay 1 producto por fila en mobile - mostrar preview del siguiente */
-    .product-grid--slider-enabled[data-slides-per-view-mobile="1"] .swiper-slide {
-      width: calc(100% - 20px) !important;
-      margin-right: 20px !important;
-      flex-shrink: 0;
-    }
-    
-    /* Cuando hay 2 productos por fila en mobile - mostrar preview del siguiente */
-    .product-grid--slider-enabled[data-slides-per-view-mobile="2"] .swiper-slide {
-      width: calc(50% - 10px) !important;
-      margin-right: 20px !important;
+    /* Mobile slider slides - dynamic width based on slides per view */
+    /* The grid-slider component will handle the width calculation via JavaScript */
+    /* This CSS ensures proper spacing and preview visibility */
+    .product-grid--slider-enabled .swiper-slide {
       flex-shrink: 0;
     }
     
@@ -361,7 +462,20 @@
   %}
 {% endif %}
 
-{% if section.settings.show_view_all %}
+{% comment %} Load scripts based on content type {% endcomment %}
+{% if section.settings.content_type == 'recommendations' %}
+  {% unless request.visual_preview_mode %}
+    <safe-load-scripts class="hidden">
+      <script src="{{ 'component-product-recommendations.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="product-recommendations"></script>
+    </safe-load-scripts>
+  {% endunless %}
+{% elsif section.settings.content_type == 'recently-viewed' %}
+  <safe-load-scripts class="hidden">
+    <script src="{{ 'component-recently-viewed-products.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-recently-viewed"></script>
+  </safe-load-scripts>
+{% endif %}
+
+{% if section.settings.show_view_all and section.settings.content_type == 'collection' %}
   {% capture view_all_button %}
     {%- liquid
       assign view_all_label = 'Shop Now'
@@ -410,7 +524,7 @@
   class="wrapper-spacing--v wrapper-spacing--h color-scheme--{{ section.settings.colors }}{% if request.visual_preview_mode %} section-preview{% else %} show-on-scroll{% endif %}{% if section.settings.layout_style == 'slider' %} slider-nav--{{ settings.hover_navigation_desktop }}{% endif %}{% if header_has_content %} {{ header_button_align_class }}{% endif %}"
   data-wetheme-section-type="collection--featured-collection" 
   data-wetheme-section-id="{{ section.id }}"
-  style="--padding-section-top: {{ section.settings.section_padding_top }}px; --padding-section-bottom: {{ section.settings.section_padding_bottom }}px;"
+  style="--padding-section-top-mobile: {{ section.settings.section_padding_top_mobile }}px; --padding-section-bottom-mobile: {{ section.settings.section_padding_bottom_mobile }}px; --padding-section-top: {{ section.settings.section_padding_top }}px; --padding-section-bottom: {{ section.settings.section_padding_bottom }}px;"
 >
   <div class="width--content">
     {% comment %} Section title and description {% endcomment %}
@@ -422,7 +536,9 @@
       {% endif %}
     </div>
 
-    <div class="homepage-indiv-section-wrapper grid--full homepage-featured-content-wrapper">
+    <div class="homepage-indiv-section-wrapper grid--full homepage-featured-content-wrapper
+    position-btn-layout__{{ settings.hover_navigation_desktop }}
+    ">
       {% liquid 
         assign collection = collections[section.settings.collection]
         assign tablet_item_width = 'medium--one-third'
@@ -441,66 +557,363 @@
             assign desktop_item_width = 'large--one-sixth'
         endcase
 
-        case section.settings.grid-mobile
-          when "1"
-          assign mobile_item_width = 'small--one-whole'
-          when "2"
+        # Handle mobile grid width based on rounded value (for CSS classes)
+        assign mobile_grid_value = section.settings.grid-mobile | round
+        case mobile_grid_value
+          when 1
+            assign mobile_item_width = 'small--one-whole'
+          when 2
             assign mobile_item_width = 'small--one-half'
+          when 3
+            assign mobile_item_width = 'small--one-third'
+          else
+            # Default to one-half if value is between 2 and 3
+            if mobile_grid_value >= 2
+              assign mobile_item_width = 'small--one-half'
+            else
+              assign mobile_item_width = 'small--one-whole'
+            endif
         endcase
 
         assign grid_item_width = desktop_item_width | append: ' ' | append: tablet_item_width | append: ' ' | append: mobile_item_width
         assign product_limit = section.settings.products_to_show
         
-        # Calcular valor decimal para mostrar preview del siguiente producto en mobile
-        assign mobile_slides_per_view = section.settings.grid-mobile
+        # Use the range value directly for slider slides per view (supports decimals)
         if section.settings.layout_style == 'slider'
-          if section.settings.grid-mobile == "1"
-            assign mobile_slides_per_view = "1.4"
-          elsif section.settings.grid-mobile == "2"
-            assign mobile_slides_per_view = "2.4"
-          endif
+          # Use the value directly from the range slider (already supports decimals like 1.4, 2.3, etc.)
+          assign mobile_slides_per_view = section.settings.grid-mobile
+        else
+          # For grid layout, round to nearest integer
+          assign mobile_slides_per_view = section.settings.grid-mobile | round
         endif
       %}
 
-      <div 
-        class="grid-uniform product-grid--wrapper{% if section.settings.layout_style == 'slider' %} product-grid--slider-enabled{% endif %}"
-        {%- if section.settings.layout_style == 'slider' -%} data-grid-slider-wrapper{%- endif -%}
-      >
-        {%- if section.settings.layout_style == 'slider' -%}
-          <safe-load-scripts class="hidden">
-            <script src="{{ 'component-grid-slider.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="grid-slider"></script>
-          </safe-load-scripts>
+      {% comment %} Render based on content type {% endcomment %}
+      {% if section.settings.content_type == 'recommendations' %}
+        {% comment %} Product Recommendations {% endcomment %}
+        <product-recommendations
+          class="product-recommendations"
+          data-recommendations-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+          data-wetheme-section-type="collection--featured-collection"
+          data-wetheme-section-id="{{ section.id }}"
+        >
+          {%- if recommendations.performed and recommendations.products_count > 0 or request.visual_preview_mode -%}
+            <div class="product-page-related-products product-sticker-stop width--content">
+              <div data-grid-slider-wrapper>
+                <div class="product-grid--wrapper{% if section.settings.layout_style == 'slider' %} product-grid--slider-enabled{% endif %}">
+                  {%- if section.settings.layout_style == 'slider' -%}
+                    <safe-load-scripts class="hidden">
+                      <script src="{{ 'component-grid-slider.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="grid-slider"></script>
+                    </safe-load-scripts>
 
-          <!-- navigation -->
-          {% assign navigation_id = 'navigation--' | append: section.id %}
-          <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ settings.hover_navigation_desktop }}">
-            <div class="swiper-button--prev btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
-              {% render 'theme-icon', icon: 'chevron_left' %}
-            </div>
-            <div class="swiper-button--next btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
-              {% render 'theme-icon', icon: 'chevron_right' %}
-            </div>
-          </div>
-          {% if section.settings.override_button_colors %}
-            {% render 'button-color-overrides' with
-              id: navigation_id,
-              style: 'filled',
-              text_color: section.settings.button_text_color,
-              background_color: section.settings.button_background_color
-            %}
-          {% endif %}
+                    <!-- navigation -->
+                    {% assign navigation_id = 'navigation--' | append: section.id %}
+                    <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ settings.hover_navigation_desktop }}">
+                      <div class="swiper-button--prev btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                        {% render 'theme-icon', icon: 'chevron_left_long' %}
+                      </div>
+                      <div class="swiper-button--next btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                        {% render 'theme-icon', icon: 'chevron_right_long' %}
+                      </div>
+                    </div>
+                    {% if section.settings.override_button_colors %}
+                      {% render 'button-color-overrides' with
+                        id: navigation_id,
+                        style: 'filled',
+                        text_color: section.settings.button_text_color,
+                        background_color: section.settings.button_background_color
+                      %}
+                    {% endif %}
 
-          <grid-slider 
-            class="swiper"
-            data-slides-per-view-desktop="{{ section.settings.grid-desktop }}"
-            data-slides-per-view-mobile="{{ mobile_slides_per_view }}"
-            data-product-limit="{{ product_limit }}"
-            data-grid-spacing-desktop="{{ settings.grid_spacing }}"
-            data-grid-spacing-mobile="{{ settings.grid_spacing | times: 0.75 }}"
-            data-animate-overflow-container
+                    <grid-slider 
+                      class="swiper"
+                      data-slides-per-view-desktop="{{ section.settings.grid-desktop }}"
+                      data-slides-per-view-mobile="{{ mobile_slides_per_view | round: 1 }}"
+                      data-product-limit="{{ product_limit }}"
+                      data-grid-spacing-desktop="{{ settings.grid_spacing }}"
+                      data-grid-spacing-mobile="{{ settings.grid_spacing | times: 0.75 }}"
+                      data-animate-overflow-container
+                    >
+                      <div class="swiper-wrapper">
+                  {%- endif -%}
+
+                  {% unless request.visual_preview_mode %}
+                    {%- for product in recommendations.products -%}
+                      {%- unless grid_item_width -%}
+                        {%- assign grid_item_width = 'large--one-third medium--one-half' -%}
+                      {%- endunless -%}
+                      {% capture animation_attr %}
+                        data-animate
+                        data-animate-order="{% render 'block-animation-offset', 
+                          title: section.settings.title, 
+                          description: section.settings.description, 
+                          base: forloop.index 
+                        %}"
+                        data-animate-overflow-item
+                      {% endcapture %}
+
+                      <div class="grid__item{% if section.settings.layout_style == 'slider' %} swiper-slide {{ grid_item_width }}{% else %} {{ grid_item_width }}{% endif %}" {{ animation_attr }}>
+                        <div class="grid-view-item">
+                          {% assign badge_anim_order = forloop.index | plus: 2 %}
+                          {% render 'grid-view-item',
+                            product: product,
+                            collection: null,
+                            enable_badges: settings.show_badges,
+                            grid_count_desktop: section.settings.grid-desktop,
+                            grid_count_mobile: section.settings.grid-mobile,
+                            section_color_scheme: section.settings.colors,
+                            section_id: section.id,
+                            badge_anim_order: badge_anim_order,
+                            show_highlight: section.settings.show_highlight,
+                            highlight_icon: section.settings.highlight_icon,
+                            highlight_custom_icon: section.settings.highlight_custom_icon,
+                            highlight_heading: section.settings.highlight_heading,
+                            highlight_reference: section.settings.highlight_reference,
+                            highlight_text_color: section.settings.highlight_text_color,
+                            highlight_background_color: section.settings.highlight_background_color,
+                            highlight_alignment: section.settings.highlight_alignment,
+                            highlight_font_size: section.settings.highlight_font_size,
+                            highlight_collapsible_tab: section.settings.highlight_collapsible_tab,
+                            highlight_open_close_icon: section.settings.highlight_open_close_icon,
+                            highlight_button_borders: section.settings.highlight_button_borders %}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  {% endunless %}
+
+                  {% if request.visual_preview_mode %}
+                    {% for i in (1..section.settings.products_to_show) %}
+                      {% capture svg_index %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {% capture svg_index_reversed %}{% cycle 6, 5, 4, 3, 2, 1 %}{% endcapture %}
+                      {% if section.settings.layout_style == 'slider' %}
+                        <div class="grid__item {{ grid_item_width }} swiper-slide">
+                      {% else %}
+                        <div class="grid__item {{ grid_item_width }} featured-product--grid-item">
+                      {% endif %}
+                        {% render 'grid-view-item-placeholder',
+                          svg_index: svg_index,
+                          svg_index_reversed: svg_index_reversed,
+                          show_highlight: section.settings.show_highlight,
+                          highlight_icon: section.settings.highlight_icon,
+                          highlight_custom_icon: section.settings.highlight_custom_icon,
+                          highlight_heading: section.settings.highlight_heading,
+                          highlight_reference: section.settings.highlight_reference,
+                          highlight_text_color: section.settings.highlight_text_color,
+                          highlight_background_color: section.settings.highlight_background_color,
+                          highlight_alignment: section.settings.highlight_alignment,
+                          highlight_font_size: section.settings.highlight_font_size,
+                          highlight_collapsible_tab: section.settings.highlight_collapsible_tab,
+                          highlight_open_close_icon: section.settings.highlight_open_close_icon,
+                          highlight_button_borders: section.settings.highlight_button_borders %}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+
+                  {%- if section.settings.layout_style == 'slider' -%}
+                      </div>
+                    </grid-slider>
+
+                    <!-- pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- scrollbar -->
+                    {% if section.settings.show_scrollbar %}
+                    <div class="swiper-scrollbar large-hide"></div>
+                    {% endif %}
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </product-recommendations>
+
+      {% elsif section.settings.content_type == 'recently-viewed' %}
+        {% comment %} Recently Viewed Products {% endcomment %}
+        <div 
+          data-recently-viewed-wrapper
+          style="{% unless request.visual_preview_mode %}display: none;{% endunless %}"
+        >
+          <recently-viewed-products
+            class="recently-viewed-products collection width--content"
+            data-wetheme-section-type="collection--featured-collection"
+            data-wetheme-section-id="{{ section.id }}"
+            data-layout-style="{{ section.settings.layout_style }}"
+            data-layout-classes="{{ grid_item_width }}"
+            data-products-to-show="{{ section.settings.products_to_show }}"
+            data-quick-shop-desktop-enabled="{{ settings.enable_quick_shop_desktop }}"
+            data-quick-shop-mobile-enabled="{{ settings.enable_quick_shop_mobile }}"
+            data-is-preview-mode="{{ request.visual_preview_mode }}"
+            {% if request.page_type == 'product' %}exclude-id="{{ product.id }}"{% endif %}
           >
-            <div class="swiper-wrapper">
-        {%- endif -%}
+            <div class="wrapper" role="main" data-grid-slider-wrapper>
+              <div class="product-grid--wrapper{% if section.settings.layout_style == 'slider' %} product-grid--slider-enabled{% endif %}"{% if section.settings.layout_style == 'grid' %} id="recently-viewed-products"{% endif %}>
+                {%- if section.settings.layout_style == 'slider' -%}
+                  <safe-load-scripts class="hidden">
+                    <script src="{{ 'component-grid-slider.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="grid-slider"></script>
+                  </safe-load-scripts>
+
+                  <!-- navigation -->
+                  {% assign navigation_id = 'navigation--' | append: section.id %}
+                  <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ settings.hover_navigation_desktop }}">
+                    <div class="swiper-button--prev btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                      {% render 'theme-icon', icon: 'chevron_left_long' %}
+                    </div>
+                    <div class="swiper-button--next btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                      {% render 'theme-icon', icon: 'chevron_right_long' %}
+                    </div>
+                  </div>
+                  {% if section.settings.override_button_colors %}
+                    {% render 'button-color-overrides' with
+                      id: navigation_id,
+                      style: 'filled',
+                      text_color: section.settings.button_text_color,
+                      background_color: section.settings.button_background_color
+                    %}
+                  {% endif %}
+
+                  <grid-slider 
+                    class="swiper"
+                    data-slides-per-view-desktop="{{ section.settings.grid-desktop }}"
+                    data-slides-per-view-mobile="{{ mobile_slides_per_view | round: 1 }}"
+                    data-product-limit="{{ product_limit }}"
+                    data-grid-spacing-desktop="{{ settings.grid_spacing }}"
+                    data-grid-spacing-mobile="{{ settings.grid_spacing | times: 0.75 }}"
+                    data-animate-overflow-container
+                  >
+                    <div class="swiper-wrapper" id="recently-viewed-products">
+                {%- endif -%}
+
+                {% if request.visual_preview_mode %}
+                  {% for i in (1..section.settings.products_to_show) %}
+                    {% capture svg_index %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                    {% capture svg_index_reversed %}{% cycle 6, 5, 4, 3, 2, 1 %}{% endcapture %}
+                    {% if section.settings.layout_style == 'slider' %}
+                      <div class="grid__item {{ grid_item_width }} swiper-slide">
+                    {% else %}
+                      <div class="grid__item {{ grid_item_width }} featured-product--grid-item">
+                    {% endif %}
+                      {% render 'grid-view-item-placeholder',
+                        svg_index: svg_index,
+                        svg_index_reversed: svg_index_reversed,
+                        show_highlight: section.settings.show_highlight,
+                        highlight_icon: section.settings.highlight_icon,
+                        highlight_custom_icon: section.settings.highlight_custom_icon,
+                        highlight_heading: section.settings.highlight_heading,
+                        highlight_reference: section.settings.highlight_reference,
+                        highlight_text_color: section.settings.highlight_text_color,
+                        highlight_background_color: section.settings.highlight_background_color,
+                        highlight_alignment: section.settings.highlight_alignment,
+                        highlight_font_size: section.settings.highlight_font_size,
+                        highlight_collapsible_tab: section.settings.highlight_collapsible_tab,
+                        highlight_open_close_icon: section.settings.highlight_open_close_icon,
+                        highlight_button_borders: section.settings.highlight_button_borders %}
+                    </div>
+                  {% endfor %}
+                {% elsif search.performed and search.results_count > 0 %}
+                  {%- assign parsed_terms = search.terms | split: ' OR ' -%}
+                  {%- for parsed_term in parsed_terms -%}
+                    {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
+                    {%- assign product = search.results | where: 'id', id | first -%}
+                    {% capture animation_attr %}
+                      data-animate
+                      data-animate-order="{% render 'block-animation-offset', 
+                        title: section.settings.title, 
+                        description: section.settings.description, 
+                        base: forloop.index 
+                      %}"
+                      data-animate-overflow-item
+                    {% endcapture %}
+
+                    {%- if product != blank -%}
+                      {% if section.settings.layout_style == 'slider' %}
+                        <div class="grid__item {{ grid_item_width }} swiper-slide" {{ animation_attr }}>
+                      {% else %}
+                        <div class="grid__item {{ grid_item_width }} featured-product--grid-item" {{ animation_attr }}>
+                      {% endif %}
+                        {% assign badge_anim_order = forloop.index | plus: 2 %}
+                        {% render 'grid-view-item',
+                          product: product,
+                          collection: collection,
+                          enable_badges: settings.show_badges,
+                          grid_count_desktop: section.settings.grid-desktop,
+                          grid_count_mobile: section.settings.grid-mobile,
+                          section_id: section.id,
+                          badge_anim_order: badge_anim_order,
+                          show_highlight: section.settings.show_highlight,
+                          highlight_icon: section.settings.highlight_icon,
+                          highlight_custom_icon: section.settings.highlight_custom_icon,
+                          highlight_heading: section.settings.highlight_heading,
+                          highlight_reference: section.settings.highlight_reference,
+                          highlight_text_color: section.settings.highlight_text_color,
+                          highlight_background_color: section.settings.highlight_background_color,
+                          highlight_alignment: section.settings.highlight_alignment,
+                          highlight_font_size: section.settings.highlight_font_size,
+                          highlight_collapsible_tab: section.settings.highlight_collapsible_tab,
+                          highlight_open_close_icon: section.settings.highlight_open_close_icon,
+                          highlight_button_borders: section.settings.highlight_button_borders %}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {% endif %}
+
+                {%- if section.settings.layout_style == 'slider' -%}
+                    </div>
+                  </grid-slider>
+
+                  <!-- pagination -->
+                  <div class="swiper-pagination"></div>
+
+                  <!-- scrollbar -->
+                  {% if section.settings.show_scrollbar %}
+                  <div class="swiper-scrollbar large-hide"></div>
+                  {% endif %}
+                {%- endif -%}
+              </div>
+            </div>
+          </recently-viewed-products>
+        </div>
+
+      {% else %}
+        {% comment %} Collection (default) {% endcomment %}
+        <div 
+          class="grid-uniform product-grid--wrapper{% if section.settings.layout_style == 'slider' %} product-grid--slider-enabled{% endif %}"
+          {%- if section.settings.layout_style == 'slider' -%} data-grid-slider-wrapper{%- endif -%}
+        >
+          {%- if section.settings.layout_style == 'slider' -%}
+            <safe-load-scripts class="hidden">
+              <script src="{{ 'component-grid-slider.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="grid-slider"></script>
+            </safe-load-scripts>
+
+            <!-- navigation -->
+            {% assign navigation_id = 'navigation--' | append: section.id %}
+            <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ settings.hover_navigation_desktop }}">
+              <div class="swiper-button--prev btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                {% render 'theme-icon', icon: 'chevron_left_long' %}
+              </div>
+              <div class="swiper-button--next btn dynamic-section-button--{{ navigation_id }} swiper-button--grid-slider">
+                {% render 'theme-icon', icon: 'chevron_right_long' %}
+              </div>
+            </div>
+            {% if section.settings.override_button_colors %}
+              {% render 'button-color-overrides' with
+                id: navigation_id,
+                style: 'filled',
+                text_color: section.settings.button_text_color,
+                background_color: section.settings.button_background_color
+              %}
+            {% endif %}
+
+            <grid-slider 
+              class="swiper"
+              data-slides-per-view-desktop="{{ section.settings.grid-desktop }}"
+              data-slides-per-view-mobile="{{ mobile_slides_per_view | round: 1 }}"
+              data-product-limit="{{ product_limit }}"
+              data-grid-spacing-desktop="{{ settings.grid_spacing }}"
+              data-grid-spacing-mobile="{{ settings.grid_spacing | times: 0.75 }}"
+              data-animate-overflow-container
+            >
+              <div class="swiper-wrapper">
+          {%- endif -%}
           {% for product in collection.products limit: product_limit %}
             
             {% comment %}
@@ -614,11 +1027,14 @@
           <div class="swiper-pagination"></div>
 
           <!-- scrollbar -->
+          {% if section.settings.show_scrollbar %}
           <div class="swiper-scrollbar large-hide"></div>
+          {% endif %}
         {%- endif -%}
       </div>
+      {% endif %}
 
-      {% if section.settings.button_position == 'below_products' %}
+      {% if section.settings.button_position == 'below_products' and section.settings.content_type == 'collection' %}
           {{ view_all_button }}
       {% endif %}
     </div>
@@ -659,9 +1075,30 @@
       "content": "t:all.Product_card_settings_reference"
     },
     {
+      "type": "select",
+      "id": "content_type",
+      "label": "Content type",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection"
+        },
+        {
+          "value": "recommendations",
+          "label": "Product recommendations"
+        },
+        {
+          "value": "recently-viewed",
+          "label": "Recently viewed products"
+        }
+      ],
+      "default": "collection"
+    },
+    {
       "id": "collection",
       "type": "collection",
-      "label": "t:all.Collection"
+      "label": "t:all.Collection",
+      "info": "Select a collection to display products from"
     },
     {
       "type": "header",
@@ -1009,6 +1446,12 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "show_scrollbar",
+      "label": "Show scrollbar",
+      "default": false
+    },
+    {
       "type": "select",
       "id": "button_position",
       "label": "t:all.Position",
@@ -1064,7 +1507,7 @@
       "label": "t:all.Spacing_top",
       "min": 0,
       "max": 150,
-      "step": 5,
+      "step": 2,
       "unit": "t:all.px",
       "default": 60
     },
@@ -1074,7 +1517,31 @@
       "label": "t:all.Spacing_bottom",
       "min": 0,
       "max": 150,
-      "step": 5,
+      "step": 2,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Layout (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "t:all.Spacing_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "t:all.Spacing_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
       "unit": "t:all.px",
       "default": 60
     },
@@ -1113,20 +1580,14 @@
       "default": 4
     },
     {
-      "type": "radio",
+      "type": "range",
       "id": "grid-mobile",
+      "min": 1,
+      "max": 3,
+      "step": 0.2,
       "label": "t:all.Product_per_row_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:all.1"
-        },
-        {
-          "value": "2",
-          "label": "t:all.2"
-        }
-      ],
-      "default": "2"
+      "default": 2,
+      "info": "Number of products visible per row on mobile devices. Use decimal values (e.g., 1.4) to show a preview of the next product."
     },
     {
       "type": "header",
@@ -1170,9 +1631,6 @@
     }
   ],
   "disabled_on": {
-    "templates": [
-      "collection"
-    ],
     "groups": [
       "header",
       "footer",

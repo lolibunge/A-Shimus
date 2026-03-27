@@ -1,0 +1,520 @@
+{% comment %}
+  As Featured In – Logo Carousel (Swiper.js)
+{% endcomment %}
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+>
+
+<style>
+  .featured-in-section {
+    position: relative;
+  }
+
+  .featured-in {
+    padding: 72px 0;
+    background: #fff;
+  }
+
+  .featured-in .featured-in__title {
+    color: #000;
+    font-family: Grosa, sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .featured-in__swiper {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  .featured-in__swiper-mobile {
+    display: none;
+  }
+
+  .featured-in__swiper-row {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .featured-in__swiper-row-2 {
+    margin-top: 24px;
+    transform: translateX(10px);
+  }
+
+  .featured-in__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    max-width: fit-content;
+  }
+
+  .featured-in__slide img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .featured-in__divider {
+    position: absolute;
+    top: 0;
+    left: 48px;
+    width: calc(100% - 96px);
+    height: 1px;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .featured-in__divider {
+    left: 24px;
+    width: calc(100% - 48px);
+  }
+    .featured-in__swiper {
+      display: none;
+    }
+
+    .featured-in__swiper-mobile {
+      display: block;
+      padding: 32px 0 0 0;
+    }
+
+    .featured-in__swiper-row {
+      padding: 0;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .featured-in__swiper-row .swiper-wrapper {
+      display: flex !important;
+      will-change: transform;
+      width: fit-content !important;
+    }
+
+    .featured-in__swiper-row-1 .swiper-wrapper {
+      animation: slideRow1 20s linear infinite !important;
+    }
+
+    .featured-in__swiper-row-2 .swiper-wrapper {
+      animation: slideRow2 25s linear infinite !important;
+    }
+
+    @keyframes slideRow1 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-33.333333%);
+      }
+    }
+
+    @keyframes slideRow2 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-33.333333%);
+      }
+    }
+
+    .featured-in__swiper-row-2 {
+      margin-top: 24px;
+      transform: translateX(10px);
+    }
+
+    .featured-in__slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      padding: 0;
+      flex-shrink: 0;
+      touch-action: pan-y;
+      pointer-events: auto;
+    }
+
+    .featured-in__slide img {
+      height: 30px;
+    }
+
+    .featured-in {
+      padding: 60px 0;
+      overflow: hidden;
+    }
+
+    .featured-in .featured-in__title {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<section class="featured-in">
+  <hr class="featured-in__divider">
+  {% if section.settings.title != blank %}
+    <div class="featured-in__title">
+      {{ section.settings.title }}
+    </div>
+  {% endif %}
+
+  <div class="swiper featured-in__swiper">
+    <div class="swiper-wrapper">
+      {% assign logo_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.logo != blank %}
+          {% assign logo_count = logo_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+      {% for i in (1..3) %}
+        {% assign block_counter = 0 %}
+        {% for block in section.blocks %}
+          {% if block.settings.logo != blank %}
+            {% assign block_counter = block_counter | plus: 1 %}
+            <div
+              class="swiper-slide featured-in__slide"
+              data-original-index="{{ block_counter }}"
+              {% if i == 1 %}
+                {{- block.shopify_attributes -}}
+              {% endif %}
+            >
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}" target="_blank" rel="noopener">
+                  <img
+                    src="{{ block.settings.logo | image_url: height: 80 }}"
+                    alt="{{ block.settings.alt | escape }}"
+                    loading="lazy"
+                  >
+                </a>
+              {% else %}
+                <img
+                  src="{{ block.settings.logo | image_url: height: 80 }}"
+                  alt="{{ block.settings.alt | escape }}"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="featured-in__swiper-mobile">
+    <div class="swiper featured-in__swiper-row featured-in__swiper-row-1">
+      <div class="swiper-wrapper">
+        {% for i in (1..3) %}
+          {% assign block_counter = 0 %}
+          {% for block in section.blocks %}
+            {% if block.settings.logo != blank %}
+              {% assign block_counter = block_counter | plus: 1 %}
+              {% assign is_odd = block_counter | modulo: 2 %}
+              {% if is_odd == 1 %}
+                <div
+                  class="swiper-slide featured-in__slide"
+                  data-original-index="{{ block_counter }}"
+                  {% if i == 1 %}
+                    {{ block.shopify_attributes }}
+                  {% endif %}
+                >
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}" target="_blank" rel="noopener">
+                      <img
+                        src="{{ block.settings.logo | image_url: height: 80 }}"
+                        alt="{{ block.settings.alt | escape }}"
+                        loading="lazy"
+                      >
+                    </a>
+                  {% else %}
+                    <img
+                      src="{{ block.settings.logo | image_url: height: 80 }}"
+                      alt="{{ block.settings.alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="swiper featured-in__swiper-row featured-in__swiper-row-2">
+      <div class="swiper-wrapper">
+        {% for i in (1..3) %}
+          {% assign block_counter = 0 %}
+          {% for block in section.blocks %}
+            {% if block.settings.logo != blank %}
+              {% assign block_counter = block_counter | plus: 1 %}
+              {% assign is_even = block_counter | modulo: 2 %}
+              {% if is_even == 0 %}
+                <div
+                  class="swiper-slide featured-in__slide"
+                  data-original-index="{{ block_counter }}"
+                >
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}" target="_blank" rel="noopener">
+                      <img
+                        src="{{ block.settings.logo | image_url: height: 80 }}"
+                        alt="{{ block.settings.alt | escape }}"
+                        loading="lazy"
+                      >
+                    </a>
+                  {% else %}
+                    <img
+                      src="{{ block.settings.logo | image_url: height: 80 }}"
+                      alt="{{ block.settings.alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiperEl = document.querySelector('.featured-in__swiper');
+    const swiperRow1El = document.querySelector('.featured-in__swiper-row-1');
+    const swiperRow2El = document.querySelector('.featured-in__swiper-row-2');
+
+    function isMobileView() {
+      return window.innerWidth <= 768;
+    }
+
+    // Desktop slider
+    if (swiperEl && !isMobileView()) {
+      const swiper = new Swiper('.featured-in__swiper', {
+      loop: true,
+      loopedSlides: 6,
+      speed: 1600,
+      autoplay: {
+        delay: 10,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+      },
+      slidesPerView: 3,
+      spaceBetween: 60,
+      watchSlidesProgress: true,
+      allowSlidePrev: true,
+      allowSlideNext: true,
+      breakpoints: {
+        768: {
+          slidesPerView: 4,
+          loopedSlides: 4,
+          spaceBetween: 80,
+        },
+        1024: {
+          slidesPerView: 5,
+          loopedSlides: 5,
+          spaceBetween: 80,
+        },
+        1400: {
+          slidesPerView: 6,
+          loopedSlides: 6,
+          spaceBetween: 80,
+        },
+        1600: {
+          slidesPerView: 6.5,
+          loopedSlides: 6.5,
+          spaceBetween: 80,
+        },
+      },
+      on: {
+        init: function () {
+          if (this.autoplay && this.autoplay.running === false) {
+            this.autoplay.start();
+          }
+        },
+        resize: function () {
+          if (this.autoplay && this.autoplay.running === false) {
+            this.autoplay.start();
+          }
+        },
+      },
+    });
+
+      if (swiper.autoplay && swiper.autoplay.running === false) {
+        swiper.autoplay.start();
+      }
+
+      window.featuredInSwiper = swiper;
+    }
+
+    function initMobileSliders() {
+      if (window.featuredInSwiperRow1 || window.featuredInSwiperRow2) {
+        return;
+      }
+
+      if (!isMobileView() || !swiperRow1El || !swiperRow2El) {
+        return;
+      }
+
+      const mobileContainer = document.querySelector('.featured-in__swiper-mobile');
+      if (mobileContainer && window.getComputedStyle(mobileContainer).display === 'none') {
+        setTimeout(initMobileSliders, 100);
+        return;
+      }
+
+      const row1Slides = swiperRow1El.querySelectorAll('.swiper-slide').length;
+      const row2Slides = swiperRow2El.querySelectorAll('.swiper-slide').length;
+      const row1SlidesPerView = 2;
+      const row2SlidesPerView = 1.8;
+
+      const swiperRow1 = new Swiper('.featured-in__swiper-row-1', {
+        loop: false,
+        rewind: false,
+        speed: 0,
+        autoplay: false,
+        allowTouchMove: false,
+        slidesPerView: row1SlidesPerView,
+        spaceBetween: 60,
+      });
+      
+      const swiperRow2 = new Swiper('.featured-in__swiper-row-2', {
+        loop: false,
+        rewind: false,
+        speed: 0,
+        autoplay: false,
+        allowTouchMove: false,
+        slidesPerView: row2SlidesPerView,
+        spaceBetween: 60,
+      });
+
+      setTimeout(() => {
+        const wrapper1 = swiperRow1El.querySelector('.swiper-wrapper');
+        const wrapper2 = swiperRow2El.querySelector('.swiper-wrapper');
+        
+        if (wrapper1) {
+          wrapper1.style.display = 'flex';
+          wrapper1.style.width = 'fit-content';
+          wrapper1.style.animation = 'slideRow1 20s linear infinite';
+        }
+        
+        if (wrapper2) {
+          wrapper2.style.display = 'flex';
+          wrapper2.style.width = 'fit-content';
+          wrapper2.style.animation = 'slideRow2 25s linear infinite';
+        }
+      }, 100);
+
+      window.featuredInSwiperRow1 = swiperRow1;
+      window.featuredInSwiperRow2 = swiperRow2;
+    }
+
+    initMobileSliders();
+
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        if (isMobileView() && !window.featuredInSwiperRow1) {
+          initMobileSliders();
+        }
+      }, 250);
+    });
+
+    if (swiperEl) {
+      function isDesktop() {
+        return window.innerWidth >= 1024;
+      }
+
+      function pauseAutoplay() {
+        const desktopSwiper = window.featuredInSwiper;
+        if (isDesktop() && desktopSwiper && desktopSwiper.autoplay && desktopSwiper.autoplay.running) {
+          desktopSwiper.autoplay.pause();
+        }
+      }
+
+      function resumeAutoplay() {
+        const desktopSwiper = window.featuredInSwiper;
+        if (isDesktop() && desktopSwiper && desktopSwiper.autoplay) {
+          desktopSwiper.autoplay.resume();
+        }
+      }
+
+      function addHoverListeners() {
+        const slides = swiperEl.querySelectorAll('.featured-in__slide');
+        const images = swiperEl.querySelectorAll('.featured-in__slide img');
+        const links = swiperEl.querySelectorAll('.featured-in__slide a');
+
+        slides.forEach(function (slide) {
+          slide.addEventListener('mouseenter', pauseAutoplay);
+          slide.addEventListener('mouseleave', resumeAutoplay);
+        });
+
+        images.forEach(function (image) {
+          image.addEventListener('mouseenter', pauseAutoplay);
+          image.addEventListener('mouseleave', resumeAutoplay);
+        });
+
+        links.forEach(function (link) {
+          link.addEventListener('mouseenter', pauseAutoplay);
+          link.addEventListener('mouseleave', resumeAutoplay);
+        });
+      }
+
+      setTimeout(addHoverListeners, 100);
+      swiperEl.addEventListener('mouseenter', pauseAutoplay);
+      swiperEl.addEventListener('mouseleave', resumeAutoplay);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "As Featured In",
+  "class": "featured-in-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "As Featured In"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text",
+          "default": "Featured logo"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "As Featured In",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %}

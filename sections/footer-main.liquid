@@ -1,10 +1,12 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
 <footer
-  class="footer-main {{ section.settings.color_scheme }} flex-full color-scheme--{{ section.settings.color_scheme }} site-footer{% if template contains 'product' %}{% if settings.related_products_enable %}{% else %} product-sticker-stop{% endif %}{% endif %} footer-alignment--{{ section.settings.alignment }}"
+  class="footer-main  wrapper-spacing--h {{ section.settings.color_scheme }} flex-full color-scheme--{{ section.settings.color_scheme }} site-footer{% if template contains 'product' %}{% if settings.related_products_enable %}{% else %} product-sticker-stop{% endif %}{% endif %} footer-alignment--{{ section.settings.alignment }}"
   data-wetheme-section-type="footer-main" data-wetheme-section-id="{{ section.id }}"
   style="--footer-heading-font-size: {{ section.settings.heading_font_size }}px;"
 >
 	<div 
-    class="footer-main--inner wrapper-spacing--h"
+    class="footer-main--inner"
     style="grid-template-columns: repeat({{ section.blocks.size }}, 1fr);"
   >
     {% for block in section.blocks %}
@@ -23,6 +25,12 @@
 
             {% assign menu = linklists[block.settings.footer_linklist] %}
             <div class="links-footer{% if forloop.first %} border-none padding-none{% endif %}" {{ block.shopify_attributes }}>
+              <div class="footer--dropdown-icon-plus">
+                {% render 'theme-icon', icon: 'plus'  %}
+              </div>
+              <div class="footer--dropdown-icon-minus close">
+                {% render 'theme-icon', icon: 'minus'  %}
+              </div>
               {% unless block.settings.menu_title == "" %}
                 <div class="h3 footer-header">{{ block.settings.menu_title | escape }}</div>
               {% endunless %}
@@ -123,6 +131,28 @@
               <div class="h3 footer-header">{{ block.settings.newsletter_title | escape }}</div>
             {% endunless %}
 
+            {% unless block.settings.newsletter_address == "" %}
+              <div  class="footer-address">
+                {% render 'theme-icon', icon: 'location' %}
+                <a href="{{ block.settings.newsletter_address_url }}">
+                  {{ block.settings.newsletter_address }}
+                </a>
+              </div>
+            {% endunless %}
+            
+            {% unless block.settings.newsletter_logo == blank %}
+              <div class="newsletter-footer--logo">
+                {{
+                  block.settings.newsletter_logo
+                  | image_url: width: 200
+                  | image_tag:
+                  loading: 'lazy',
+                  widths: '100, 200, 300, 400',
+                  alt: block.settings.newsletter_logo.alt | escape
+                }}
+              </div>
+            {% endunless %}
+
             <div class="newsletter-footer--wrapper">
               {% if block.settings.footer_newsletter_description != empty %}
                 <div class="rte footer-article text-link-animated richtext-block">{{ block.settings.footer_newsletter_description }}</div>
@@ -173,6 +203,7 @@
     {% endfor %}
   </div>
 </footer>
+<script defer src="{{ 'footer-main.js' | asset_url }}"></script>
 
 {% schema %}
 {
@@ -283,9 +314,25 @@
           "default": "Newsletter"
         },
         {
+          "type": "image_picker",
+          "id": "newsletter_logo",
+          "label": "Newsletter logo"
+        },
+        {
           "type": "richtext",
           "id": "footer_newsletter_description",
           "label": "t:sections.footer-main.blocks.newsletter.settings.footer_newsletter_description.label"
+        },
+        {
+          "type": "text",
+          "id": "newsletter_address",
+          "label": "Address",
+          "default": "Find Us In Store"
+        },
+        {
+          "type": "url",
+          "id": "newsletter_address_url",
+          "label": "Address URL",
         },
         {
           "type": "header",

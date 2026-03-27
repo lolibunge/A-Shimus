@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "wrapper": "div.collection-wrapper.wrapper",
   "sections": {
     "collection-header": {
@@ -38,18 +38,19 @@
     "product-grid": {
       "type": "template--collection",
       "custom_css": [
-        "select#SortBy option[value=\"title-ascending\"],select#SortBy option[value=\"title-descending\"],select#SortBy option[value=\"created-ascending\"] {display: none;}"
+        "select#SortBy option[value=\"title-ascending\"],select#SortBy option[value=\"title-descending\"],select#SortBy option[value=\"created-ascending\"] {display: block;}"
       ],
       "settings": {
-        "products-per-page": 10,
-        "desktop-products-per-row": 3,
-        "mobile-products-per-row": "1",
-        "pagination_options": "pagination_default",
-        "desktop_position": "topbar",
+        "colors": "dark",
+        "products-per-page": 4,
+        "desktop-products-per-row": 4,
+        "tablet-products-per-row": 3,
+        "mobile-products-per-row": "2",
+        "pagination_options": "pagination_load_more",
         "enable_sorting": true,
         "enable_filtering": true,
-        "enable_collection_title": false,
-        "enable_collection_description": false,
+        "enable_collection_title": true,
+        "enable_collection_description": true,
         "show_swatch_filter_labels": true,
         "show_highlight": false,
         "highlight_icon": "heart",
@@ -63,10 +64,83 @@
         "highlight_open_close_icon": "plus_minus",
         "highlight_button_borders": false
       }
+    },
+    "featured_collection_7nUDzE": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Similar Items",
+        "description": "",
+        "section_header_alignment": "center",
+        "content_type": "collection",
+        "collection": "new-arrivals",
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "override_button_colors": true,
+        "button_background_color": "#7b6859",
+        "button_text_color": "#242424",
+        "show_view_all": false,
+        "show_scrollbar": false,
+        "button_position": "below_products",
+        "button_alignment": "center",
+        "buttons_style": "filled",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30,
+        "layout_style": "slider",
+        "products_to_show": 8,
+        "grid-desktop": 4,
+        "grid-mobile": 2.2,
+        "colors": "dark"
+      }
+    },
+    "editorial_content_jdGytg": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_yE3gpz": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Why Made in Japan",
+            "show_heading_desktop": false,
+            "show_heading_mobile": true,
+            "text": "<p>Casual elegance and modern refinement define the a.shimus women’s collection. Thoughtfully designed for everyday versatility, each piece highlights subtle details and considered materials that reflect a quiet, timeless sensibility. Effortlessly balanced between structure and ease, the collection embodies a contemporary approach to femininity—where comfort, restraint, and craftsmanship come together with understated confidence.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 3,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_yE3gpz"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
     }
   },
   "order": [
     "collection-header",
-    "product-grid"
+    "product-grid",
+    "featured_collection_7nUDzE",
+    "editorial_content_jdGytg"
   ]
 }

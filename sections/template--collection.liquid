@@ -1,12 +1,12 @@
 {{ 'template-collection.min.css' | asset_url | stylesheet_tag: preload: true }}
 
-{%-liquid 
+{%- liquid
   assign filtering_enabled = false
   if section.settings.enable_filtering or section.settings.enable_sorting
     if collection.all_products_count > 1
       assign filtering_enabled = true
     endif
-  endif 
+  endif
 
   assign header_enabled = false
   if section.settings.enable_collection_description and collection.description != blank
@@ -17,19 +17,63 @@
   endif
 -%}
 
-<section class="shopify-section wrapper-spacing--v--template wrapper-spacing--h">
+<section class="shopify-section section-collection-grid color-scheme--{{ section.settings.colors }}">
   {% if settings.enable_breadcrumbs %}
-                <div id="breadcrumbs" class="width--content" style="margin-bottom: 20px;">
-                  {% render 'breadcrumb' %}
-                </div>
-              {% endif %}
-  <div class="width--content collection_grid{% if filtering_enabled or header_enabled %} filtering_enabled--{{ section.settings.desktop_position }}{% endif %}">
+    <div id="breadcrumbs" class="width--content">
+      {% render 'breadcrumb' %}
+    </div>
+  {% endif %}
 
+  {%- liquid
+    if section.settings.enable_collection_title and collection.title != blank
+      assign collection_title = true
+    endif
+
+    if section.settings.enable_collection_description and collection.description != blank
+      assign collection_description = true
+    endif
+  -%}
+
+  {% if collection_title or collection_description %}
+    <div class="collection-info template-title--wrapper">
+      {% if collection_title %}
+        <h1 class="page--title template-title">{{ collection.title }}</h1>
+      {% endif %}
+
+      {% if collection_description %}
+        <div class="rte collection-info__description template-description text-link-animated">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="bar-control-collection only-desktop-flex width--content">
+    
+    <div id="toggle-filter">
+      <button type="button" class="toggle-filtering-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.29357 2.72895H0.559224C0.250616 2.72895 0 2.47832 0 2.16969C0 1.86107 0.250616 1.61044 0.559224 1.61044H3.29357C3.54035 0.684002 4.38576 0 5.38986 0C6.39395 0 7.23933 0.68347 7.48614 1.61044H13.4406C13.7492 1.61044 13.9999 1.86107 13.9999 2.16969C13.9999 2.47832 13.7492 2.72895 13.4406 2.72895H7.48614C7.23937 3.65538 6.39396 4.33939 5.38986 4.33939C4.38577 4.33939 3.54039 3.65592 3.29357 2.72895ZM6.44101 2.16969C6.44101 1.58965 5.96988 1.1185 5.38987 1.1185C4.80986 1.1185 4.33873 1.58965 4.33873 2.16969C4.33873 2.74974 4.80986 3.22089 5.38987 3.22089C5.96988 3.22089 6.44101 2.74974 6.44101 2.16969ZM8.12421 7.55925H0.559925C0.251316 7.55925 0.000700396 7.30862 0.000700396 7C0.000700396 6.69137 0.251316 6.44074 0.559925 6.44074H8.12421C8.37098 5.51431 9.21639 4.83031 10.2205 4.83031C11.2246 4.83031 12.07 5.51378 12.3168 6.44074H13.4407C13.7493 6.44074 13.9999 6.69137 13.9999 7C13.9999 7.30862 13.7493 7.55925 13.4407 7.55925H12.3168C12.07 8.48569 11.2246 9.16969 10.2205 9.16969C9.21639 9.16969 8.37103 8.48622 8.12421 7.55925ZM11.2716 7C11.2716 6.41996 10.8005 5.9488 10.2205 5.9488C9.64049 5.9488 9.16937 6.41996 9.16937 7C9.16937 7.58004 9.64049 8.0512 10.2205 8.0512C10.8005 8.0512 11.2716 7.58004 11.2716 7ZM3.29371 12.3896H0.559365C0.250756 12.3896 0.000140079 12.1389 0.000140079 11.8303C0.000140079 11.5217 0.250756 11.2711 0.559365 11.2711H3.29371C3.54049 10.3446 4.3859 9.66061 5.39 9.66061C6.39409 9.66061 7.23946 10.3441 7.48628 11.2711H13.4408C13.7494 11.2711 14 11.5217 14 11.8303C14 12.1389 13.7494 12.3896 13.4408 12.3896H7.48628C7.23951 13.316 6.3941 14 5.39 14C4.38591 14 3.54053 13.3165 3.29371 12.3896ZM6.44115 11.8303C6.44115 11.2503 5.97002 10.7791 5.39001 10.7791C4.81 10.7791 4.33887 11.2503 4.33887 11.8303C4.33887 12.4104 4.81 12.8815 5.39001 12.8815C5.97002 12.8815 6.44115 12.4104 6.44115 11.8303Z" fill="black"/>
+        </svg>
+        <span>Show filters</span>
+      </button>
+    </div>
+    <div class="controls-wrapper">
+      <div class="collection-results-count">
+        <span class="collection-results-count__number">{{ collection.products_count }}</span>
+        <span class="collection-results-count__label">{{ 'general.search.results' | t }}</span>
+      </div>
+      <div id="sorting-container-desktop-bar"></div>
+    </div>
+  </div>
+
+  <div class="width--content collection_grid{% if filtering_enabled or header_enabled %} filtering_enabled--sidebar{% endif %} filters-hidden">
     {% unless filtering_enabled == false and header_enabled == false %}
-      {% render 'main-collection-filtering-sorting' with 
-        collection: collection, 
+      {%
+        render 'main-collection-filtering-sorting' with
+        collection: collection,
         classes: "grid-area--filtering",
-        desktop_position: section.settings.desktop_position,
+        desktop_position: 'sidebar',
         enable_collection_title: section.settings.enable_collection_title,
         enable_collection_description: section.settings.enable_collection_description,
         enable_filtering: section.settings.enable_filtering,
@@ -37,10 +81,12 @@
       %}
     {% endunless %}
 
-    {% render 'main-collection-grid' with
+    {%
+      render 'main-collection-grid' with
       classes: "grid-area--collection",
       blocks: section.blocks,
       desktop_products_per_row: section.settings.desktop-products-per-row,
+      tablet_products_per_row: section.settings.tablet-products-per-row,
       mobile_products_per_row: section.settings.mobile-products-per-row,
       products_per_page: section.settings.products-per-page,
       pagination_options: section.settings.pagination_options,
@@ -57,7 +103,6 @@
       highlight_open_close_icon: section.settings.highlight_open_close_icon,
       highlight_button_borders: section.settings.highlight_button_borders
     %}
-
   </div>
 </section>
 
@@ -65,6 +110,34 @@
 {
   "name": "t:sections.template--collection.name",
   "settings": [
+    {
+      "type": "header",
+      "content": "t:all.Color"
+    },
+    {
+      "type": "select",
+      "id": "colors",
+      "label": "t:all.Color_scheme",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "t:all.Default"
+        },
+        {
+          "value": "light",
+          "label": "t:all.First"
+        },
+        {
+          "value": "accent",
+          "label": "t:all.Second"
+        },
+        {
+          "value": "dark",
+          "label": "t:all.Third"
+        }
+      ]
+    },
     {
       "type": "paragraph",
       "content": "t:all.Product_card_settings_reference"
@@ -90,6 +163,15 @@
       "step": 1,
       "label": "t:all.Products_per_row_on_desktop",
       "default": 4
+    },
+    {
+      "type": "range",
+      "id": "tablet-products-per-row",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Products per row (tablet)",
+      "default": 2
     },
     {
       "type": "select",
@@ -130,23 +212,6 @@
     {
       "type": "header",
       "content": "t:sections.template--collection.settings.header-5.content"
-    },
-    {
-      "type": "select",
-      "id": "desktop_position",
-      "options": [
-        {
-          "value": "topbar",
-          "label": "t:all.Top_bar"
-        },
-        {
-          "value": "sidebar",
-          "label": "t:all.Sidebar"
-        }
-      ],
-      "default": "topbar",
-      "label": "t:all.Desktop_position",
-      "visible_if": "{{ section.settings.enable_filtering or section.settings.enable_sorting }}"
     },
     {
       "type": "checkbox",
@@ -492,3 +557,389 @@
   ]
 }
 {% endschema %}
+
+<script>
+  (function() {
+    // Move sorting components to bar-control-collection
+    function moveSortingToBar() {
+      const collectionFilteringForm = document.querySelector('collection-filtering-form');
+      if (!collectionFilteringForm) return;
+      
+      // Move desktop sorting
+      const sortingBarDesktop = document.querySelector('.sorting--desktop-bar');
+      const sortingContainerDesktop = document.getElementById('sorting-container-desktop-bar');
+      
+      if (sortingBarDesktop && sortingContainerDesktop && !sortingContainerDesktop.contains(sortingBarDesktop)) {
+        sortingBarDesktop.style.display = '';
+        sortingContainerDesktop.appendChild(sortingBarDesktop);
+        
+        // Update the select ID to match the original for JavaScript compatibility
+        const selectDesktop = sortingBarDesktop.querySelector('select');
+        if (selectDesktop && selectDesktop.id === 'SortBydesktop-bar') {
+          selectDesktop.id = 'SortBydesktop';
+          // Remove name attribute to prevent it from being included in form submission
+          // The hidden input sort_by_input will handle the actual form submission
+          selectDesktop.removeAttribute('name');
+          selectDesktop.setAttribute('form', 'CollectionFiltersForm');
+        }
+        
+        // Hide the original desktop sort select inside the form and change its ID to avoid conflicts
+        const originalSortingDesktop = collectionFilteringForm.querySelector('.facets__form-inner.desktop .collection-filters__item.sorting');
+        if (originalSortingDesktop) {
+          originalSortingDesktop.style.display = 'none';
+          // Change the ID of the original select to avoid ID conflicts
+          const originalSelectDesktop = originalSortingDesktop.querySelector('#SortBydesktop');
+          if (originalSelectDesktop && originalSelectDesktop.id === 'SortBydesktop') {
+            originalSelectDesktop.id = 'SortBydesktop-original';
+          }
+        }
+      }
+      
+      // Move mobile sorting
+      const sortingBarMobile = document.querySelector('.sorting--mobile-bar');
+      const sortingContainerMobile = document.getElementById('sorting-container-mobile-bar');
+      
+      if (sortingBarMobile && sortingContainerMobile && !sortingContainerMobile.contains(sortingBarMobile)) {
+        sortingBarMobile.style.display = '';
+        sortingContainerMobile.appendChild(sortingBarMobile);
+        
+        // Update the select ID to match the original for JavaScript compatibility
+        const selectMobile = sortingBarMobile.querySelector('select');
+        if (selectMobile && selectMobile.id === 'SortBymobile-bar') {
+          selectMobile.id = 'SortBymobile';
+          // Remove name attribute to prevent it from being included in form submission
+          // The hidden input sort_by_input will handle the actual form submission
+          selectMobile.removeAttribute('name');
+          selectMobile.setAttribute('form', 'CollectionFiltersForm');
+        }
+        
+        // Hide the original mobile sort select inside the form and change its ID to avoid conflicts
+        const originalSortingMobile = collectionFilteringForm.querySelector('.facets__form-inner.mobile .collection-filters__item.sorting');
+        if (originalSortingMobile) {
+          originalSortingMobile.style.display = 'none';
+          // Change the ID of the original select to avoid ID conflicts
+          const originalSelectMobile = originalSortingMobile.querySelector('#SortBymobile');
+          if (originalSelectMobile && originalSelectMobile.id === 'SortBymobile') {
+            originalSelectMobile.id = 'SortBymobile-original';
+          }
+        }
+      }
+      
+      // Re-bind event listeners to include the moved selects
+      // The custom element instance has the bindSortByEventListeners method
+      if (collectionFilteringForm.bindSortByEventListeners) {
+        collectionFilteringForm.bindSortByEventListeners();
+      }
+    }
+    
+    // Try to move sorting immediately and also after DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(moveSortingToBar, 200);
+      });
+    } else {
+      setTimeout(moveSortingToBar, 200);
+    }
+    
+    // Also try after a longer delay to ensure collection-filtering-form is fully initialized
+    setTimeout(moveSortingToBar, 500);
+    
+    const toggleButton = document.querySelector('#toggle-filter .toggle-filtering-btn');
+    const collectionGrid = document.querySelector('.collection_grid.filtering_enabled--sidebar');
+    const filterArea = document.querySelector('.grid-area--filtering');
+    const buttonLabel = toggleButton?.querySelector('span');
+    const gridClassesInput = document.getElementById('grid_item_width_classes');
+    const gridItems = document.querySelectorAll('.collection-main-body .grid__item');
+
+    if (!toggleButton || !collectionGrid || !filterArea || !buttonLabel) return;
+
+    const originalGridClasses = gridClassesInput ? gridClassesInput.value : '';
+
+    // Map desktop width classes to one fewer item per row
+    function getReducedDesktopClasses(classString) {
+      if (!classString) return classString;
+      const mapping = {
+        'large--one-half': 'large--one-whole',
+        'large--one-third': 'large--one-half',
+        'large--one-quarter': 'large--one-third',
+        'large--one-fifth': 'large--one-quarter',
+        'large--one-sixth': 'large--one-fifth'
+      };
+
+      return classString
+        .split(' ')
+        .map(cls => mapping[cls] || cls)
+        .join(' ');
+    }
+
+    const reducedGridClasses = getReducedDesktopClasses(originalGridClasses);
+
+    const LARGE_DESKTOP_CLASSES = [
+      'large--one-whole',
+      'large--one-half',
+      'large--one-third',
+      'large--one-quarter',
+      'large--one-fifth',
+      'large--one-sixth'
+    ];
+
+    const MEDIUM_TABLET_CLASSES = [
+      'medium--one-whole',
+      'medium--one-half',
+      'medium--one-third',
+      'medium--one-quarter',
+      'medium--one-fifth',
+      'medium--one-sixth'
+    ];
+
+    function applyGridDesktopClasses(classString) {
+      if (!classString || !gridItems.length) return;
+      const classList = classString.split(' ').filter(Boolean);
+
+      gridItems.forEach(item => {
+        item.classList.remove(...LARGE_DESKTOP_CLASSES);
+        classList.forEach(cls => {
+          if (cls.startsWith('large--')) {
+            item.classList.add(cls);
+          }
+        });
+      });
+    }
+
+    // Map tablet width classes to one fewer item per row
+    function getReducedTabletClass(tabletClass) {
+      if (!tabletClass) return tabletClass;
+      const mapping = {
+        'medium--one-whole': 'medium--one-whole', // Already at minimum
+        'medium--one-half': 'medium--one-whole',
+        'medium--one-third': 'medium--one-half',
+        'medium--one-quarter': 'medium--one-third',
+        'medium--one-fifth': 'medium--one-quarter',
+        'medium--one-sixth': 'medium--one-fifth'
+      };
+
+      return mapping[tabletClass] || tabletClass;
+    }
+
+    function applyGridTabletClasses(classString, isVisible) {
+      if (!classString || !gridItems.length) return;
+      const classList = classString.split(' ').filter(Boolean);
+      const tabletClass = classList.find(cls => cls.startsWith('medium--'));
+
+      if (!tabletClass) return;
+
+      const currentTabletProductsPerRow = parseInt('{{ section.settings.tablet-products-per-row }}') || 2;
+
+      gridItems.forEach(item => {
+        item.classList.remove(...MEDIUM_TABLET_CLASSES);
+        if (isVisible) {
+          // Filters visible: use reduced tablet columns (one less)
+          const reducedTabletClass = getReducedTabletClass(tabletClass);
+          if (reducedTabletClass && reducedTabletClass.startsWith('medium--')) {
+            item.classList.add(reducedTabletClass);
+          }
+        } else {
+          // Filters hidden: use original tablet columns
+          item.classList.add(tabletClass);
+        }
+      });
+    }
+
+    // Function to update the label based on visibility state
+    function updateButtonLabel(isVisible) {
+      buttonLabel.textContent = isVisible ? 'Hidden filters' : 'Show filters';
+    }
+
+    // Function to check if filters are visible
+    function isFiltersVisible() {
+      return !collectionGrid.classList.contains('filters-hidden');
+    }
+
+    // Function to update promotional cards grid columns attribute
+    function updatePromotionalCardsGridColumns(effectiveColumns) {
+      const promotionalCards = document.querySelectorAll('.promotional-card');
+      promotionalCards.forEach(card => {
+        card.setAttribute('data-promotional-card-grid-columns', effectiveColumns);
+      });
+    }
+
+    // Initialize grid classes based on initial visibility
+    function syncGridClassesWithState(isVisible) {
+      if (!gridClassesInput || !gridItems.length || !originalGridClasses) return;
+
+      const currentDesktopProductsPerRow = parseInt('{{ section.settings.desktop-products-per-row }}');
+      let effectiveColumns = currentDesktopProductsPerRow;
+
+      if (isVisible) {
+        // Filters visible: use reduced desktop columns (one less)
+        effectiveColumns = currentDesktopProductsPerRow - 1;
+        gridClassesInput.value = reducedGridClasses;
+        applyGridDesktopClasses(reducedGridClasses);
+        applyGridTabletClasses(originalGridClasses, true);
+      } else {
+        // Filters hidden: use original desktop columns
+        effectiveColumns = currentDesktopProductsPerRow;
+        gridClassesInput.value = originalGridClasses;
+        applyGridDesktopClasses(originalGridClasses);
+        applyGridTabletClasses(originalGridClasses, false);
+      }
+      
+      // Update promotional cards grid columns attribute
+      updatePromotionalCardsGridColumns(effectiveColumns);
+    }
+
+    // Set filters hidden by default
+    collectionGrid.classList.add('filters-hidden');
+    
+    // Check initial state
+    const isInitiallyVisible = isFiltersVisible();
+    updateButtonLabel(isInitiallyVisible);
+    syncGridClassesWithState(isInitiallyVisible);
+
+    // Add event listener to button
+    toggleButton.addEventListener('click', function() {
+      const isCurrentlyVisible = isFiltersVisible();
+
+      if (isCurrentlyVisible) {
+        // Hide filters
+        collectionGrid.classList.add('filters-hidden');
+        updateButtonLabel(false);
+        syncGridClassesWithState(false);
+      } else {
+        // Show filters
+        collectionGrid.classList.remove('filters-hidden');
+        updateButtonLabel(true);
+        syncGridClassesWithState(true);
+      }
+    });
+  })();
+
+  // Custom Load More button styling for Figma design
+  (function() {
+    function updateLoadMoreButton() {
+      const pagination = document.querySelector('.pagination--load-more');
+      if (!pagination) return;
+
+      const paginationElement = pagination.closest('.pagination');
+      if (!paginationElement) return;
+
+      const totalItems = parseInt(paginationElement.getAttribute('data-paginate-items'), 10);
+      const currentOffset = parseInt(paginationElement.getAttribute('data-paginate-offset'), 10);
+      const pageSize = parseInt(paginationElement.getAttribute('data-paginate-size'), 10);
+      
+      if (isNaN(totalItems) || isNaN(currentOffset) || isNaN(pageSize)) return;
+
+      const currentEnd = currentOffset + pageSize;
+      const remainingItems = totalItems - currentEnd;
+      const nextPageSize = Math.min(pageSize, remainingItems);
+
+      // Update progress text to show "1-20 of 100 products"
+      const progressText = pagination.querySelector('.pagination__progress-text');
+      if (progressText) {
+        const start = currentOffset + 1;
+        const end = currentEnd;
+        progressText.textContent = `${start}-${end} of ${totalItems} products`;
+      }
+
+      // Hide progress bar
+      const progressBar = pagination.querySelector('.progress-bar');
+      if (progressBar) {
+        progressBar.style.display = 'none';
+      }
+
+      // Update button text to "VIEW X MORE"
+      const buttonText = pagination.querySelector('.btn--load-more--text');
+      if (buttonText && nextPageSize > 0) {
+        buttonText.textContent = `VIEW ${nextPageSize} MORE`;
+      }
+    }
+
+    // Run on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateLoadMoreButton, 500);
+      });
+    } else {
+      setTimeout(updateLoadMoreButton, 500);
+    }
+
+    // Watch for dynamically added load more buttons
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) {
+              if (node.classList && (node.classList.contains('pagination__load-more') || node.classList.contains('pagination'))) {
+                setTimeout(updateLoadMoreButton, 200);
+              }
+              if (node.querySelector && node.querySelector('.pagination__load-more')) {
+                setTimeout(updateLoadMoreButton, 200);
+              }
+            }
+          });
+        }
+        // Also check if pagination was replaced
+        if (mutation.type === 'childList' && mutation.target.classList && mutation.target.classList.contains('pagination')) {
+          setTimeout(updateLoadMoreButton, 200);
+        }
+      });
+    });
+
+    const paginationContainer = document.querySelector('.collection_grid .pagination');
+    if (paginationContainer) {
+      observer.observe(paginationContainer, { childList: true, subtree: true });
+    }
+
+    // Watch for changes in the entire collection grid
+    const collectionGrid = document.querySelector('.collection_grid');
+    if (collectionGrid) {
+      observer.observe(collectionGrid, { childList: true, subtree: true });
+    }
+
+    // Also update after a delay to catch any late updates
+    setInterval(function() {
+      if (document.querySelector('.pagination--load-more .pagination__load-more')) {
+        const buttonText = document.querySelector('.pagination--load-more .btn--load-more--text');
+        if (buttonText && !buttonText.textContent.includes('VIEW') && !buttonText.textContent.includes('MORE')) {
+          updateLoadMoreButton();
+        }
+      }
+    }, 1000);
+  })();
+
+  // Initialize product image swipers for collection page
+  (function() {
+    function initCollectionProductSwipers() {
+      if (typeof initProductSwipers === 'function') {
+        initProductSwipers();
+      }
+    }
+
+    // Run on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initCollectionProductSwipers, 500);
+      });
+    } else {
+      setTimeout(initCollectionProductSwipers, 500);
+    }
+
+    // Watch for dynamically added products (load more)
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && (node.classList && node.classList.contains('grid__item'))) {
+              setTimeout(initCollectionProductSwipers, 200);
+            }
+          });
+        }
+      });
+    });
+
+    const collectionGrid = document.querySelector('.collection-main-body-inner');
+    if (collectionGrid) {
+      observer.observe(collectionGrid, { childList: true, subtree: true });
+    }
+  })();
+</script>

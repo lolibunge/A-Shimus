@@ -1,0 +1,314 @@
+{{ 'section-image-text-blocks.min.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="image-text-blocks-section"
+  data-wetheme-section-type="image--image-text-blocks"
+  data-wetheme-section-id="{{ section.id }}"
+  style="--section-background-color: {{ section.settings.section_background_color }}; --section-text-color: {{ section.settings.section_text_color }}; --section-padding-top: {{ section.settings.section_padding_top }}px; --section-padding-bottom: {{ section.settings.section_padding_bottom }}px; --section-padding-top-mobile: {{ section.settings.section_padding_top_mobile }}px; --section-padding-bottom-mobile: {{ section.settings.section_padding_bottom_mobile }}px;"
+>
+  {% comment %} Section title and description {% endcomment %}
+  {% if section.settings.section_title != blank or section.settings.section_description != blank %}
+    <div class="width--content">
+      {% render 'dynamic-section-header' with 
+        section_title: section.settings.section_title, 
+        section_description: section.settings.section_description, 
+        alignment: section.settings.section_header_alignment
+      %}
+    </div>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div class="image-text-blocks-container width--content">
+      <div class="image-text-blocks-grid image-text-blocks-grid--{{ section.settings.blocks_per_row }}">
+        {% for block in section.blocks %}
+          <div class="image-text-block" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <div class="image-text-block__image-wrapper">
+                {% render 'responsive-image' with block.settings.image, allow_stretch: true, manual: true, %}
+              </div>
+            {% endif %}
+
+            <div class="image-text-block__content">
+              {% if block.settings.title != blank %}
+                <h3 class="image-text-block__title">{{ block.settings.title | escape }}</h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="image-text-block__description text-link-animated">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.button_label != blank and block.settings.button_url != blank %}
+                <div class="image-text-block__button-wrapper">
+                  {% if section.settings.override_button_colors %}
+                    {% render 'button-color-overrides' with
+                      id: block.id,
+                      style: section.settings.buttons_style,
+                      text_color: section.settings.button_text_color,
+                      background_color: section.settings.button_background_color
+                    %}
+                  {% endif %}
+                  
+                  {% render 'dynamic-section-button' with
+                    id: block.id,
+                    link: block.settings.button_url,
+                    label: block.settings.button_label,
+                    style: section.settings.buttons_style,
+                    div_classes: 'image-text-block__button',
+                    a_classes: 'image-text-block__button-link'
+                  %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div class="width--content">
+      <div class="placeholder-noblocks">
+        {{ 'general.onboarding.no_content' | t }}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Image Text Blocks",
+  "class": "image-text-blocks-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:all.Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "t:all.Heading",
+      "default": "Image Text Blocks"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "t:all.Description"
+    },
+    {
+      "type": "text_alignment",
+      "id": "section_header_alignment",
+      "label": "t:all.Alignment",
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "t:all.Layout"
+    },
+    {
+      "type": "select",
+      "id": "blocks_per_row",
+      "label": "Blocks per row (Desktop)",
+      "default": "3",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "t:all.Spacing_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "t:all.Spacing_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "t:all.Spacing_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "t:all.Spacing_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "t:all.px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:all.Color"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "t:all.Button_color"
+    },
+    {
+      "type": "checkbox",
+      "id": "override_button_colors",
+      "label": "t:all.Button_color_override",
+      "default": false,
+      "info": "t:all.Button_color_override_info"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:all.Primary_color",
+      "default": "#E68819",
+      "visible_if": "{{ section.settings.override_button_colors }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:all.Secondary_color",
+      "default": "#ffffff",
+      "visible_if": "{{ section.settings.override_button_colors }}"
+    },
+    {
+      "type": "select",
+      "id": "buttons_style",
+      "label": "Button Style",
+      "default": "outlined",
+      "options": [
+        {
+          "value": "filled",
+          "label": "t:all.Filled"
+        },
+        {
+          "value": "outlined",
+          "label": "t:all.Outlined"
+        },
+        {
+          "value": "underlined",
+          "label": "t:all.Underlined"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_text_block",
+      "name": "Image Text Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:all.Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:all.Image"
+        },
+        {
+          "type": "header",
+          "content": "t:all.Content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:all.Heading",
+          "default": "Block Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:all.Description",
+          "default": "<p>Add a description for this block.</p>"
+        },
+        {
+          "type": "header",
+          "content": "t:all.Button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "t:all.Button_link"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:all.Button_label",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Text Blocks",
+      "blocks": [
+        {
+          "type": "image_text_block",
+          "settings": {
+            "title": "With Magokoro Spirit / 真心をこめて",
+            "button_label": "DISCOVER THE STORY"
+          }
+        },
+        {
+          "type": "image_text_block",
+          "settings": {
+            "title": "Meet our Manufacture",
+            "button_label": "OUR INTERVIEW WITH CEO"
+          }
+        },
+        {
+          "type": "image_text_block",
+          "settings": {
+            "title": "Our Stores",
+            "button_label": "FIND US IN STORE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

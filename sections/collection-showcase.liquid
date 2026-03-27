@@ -1,0 +1,273 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+{{ 'section-collection-showcase.min.css' | asset_url | stylesheet_tag }}
+{% liquid
+  if section.settings.collection != blank
+    assign collection = collections[section.settings.collection]
+    assign products = collection.products
+  else
+    assign collection = blank
+    assign products = blank
+  endif
+%}
+
+<div class="collection-showcase" data-section-id="{{ section.id }}">
+  <div class="collection-showcase-container">
+    {% if section.settings.title != blank %}
+      <h2 class="section-title" style="text-align: {{ section.settings.title_alignment }}; margin-bottom: 48px;">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if collection != blank and products.size > 0 %}
+      <div class="collection-showcase-wrapper">
+        {% comment %} Left side - Secondary image of selected product {% endcomment %}
+        <div class="collection-showcase-secondary-image" id="secondary-image-{{ section.id }}">
+          {% comment %} Will be populated by JavaScript {% endcomment %}
+        </div>
+
+        {% comment %} Right side - Product carousel {% endcomment %}
+        <div class="collection-showcase-carousel">
+          <div 
+            class="swiper collection-showcase-products-swiper" 
+            id="products-swiper-{{ section.id }}"
+            data-slides-per-view-mobile="{{ section.settings.slides_per_view_mobile }}"
+            data-slides-per-view-tablet="{{ section.settings.slides_per_view_tablet }}"
+            data-slides-per-view-desktop="{{ section.settings.slides_per_view_desktop }}"
+            data-space-between-mobile="{{ section.settings.space_between_mobile }}"
+            data-space-between-tablet="{{ section.settings.space_between_tablet }}"
+            data-space-between-desktop="{{ section.settings.space_between_desktop }}"
+          >
+            <div class="swiper-wrapper">
+              {% for product in products limit: section.settings.products_to_show %}
+                {% liquid
+                  assign second_image_url = ''
+                  assign second_image_alt = ''
+                  if product.media.size > 1
+                    assign second_media = product.media[1]
+                    if second_media.media_type == 'image'
+                      assign second_image_url = second_media | image_url: width: 800
+                      assign second_image_alt = second_media.alt | escape
+                    endif
+                  endif
+                %}
+                <div 
+                  class="swiper-slide" 
+                  data-product-id="{{ product.id }}"
+                  data-product-handle="{{ product.handle }}"
+                  {% if second_image_url != blank %}data-second-image-product="{{ second_image_url }}" data-second-image-alt="{{ second_image_alt }}"{% endif %}
+                  {% if product.featured_media %}data-featured-image-product="{{ product.featured_media | image_url: width: 800 }}" data-featured-image-alt="{{ product.featured_media.alt | escape }}"{% endif %}
+                >
+                  <div class="collection-showcase-product-image">
+                    {% if product.featured_media %}
+                      <img 
+                        src="{{ product.featured_media | image_url: width: 600 }}"
+                        alt="{{ product.featured_media.alt | escape }}"
+                        width="600"
+                        height="800"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: 'icon icon--placeholder' }}
+                    {% endif %}
+                  </div>
+                  <div class="collection-showcase-product-info">
+                    <div class="collection-showcase-product-title">{{ product.title }}</div>
+                    <div class="collection-showcase-product-price">
+                      {{ product.price | money }}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            {% comment %} Navigation buttons {% endcomment %}
+            <div class="collection-showcase-navigation collection-showcase-navigation--prev" id="nav-prev-{{ section.id }}">
+              {% render 'theme-icon', icon: 'chevron_left_arrow' %}
+            </div>
+            <div class="collection-showcase-navigation collection-showcase-navigation--next" id="nav-next-{{ section.id }}">
+              {% render 'theme-icon', icon: 'chevron_right_arrow' %}
+            </div>
+          </div>
+
+          {% comment %} Pagination {% endcomment %}
+          {% if section.settings.pagination_style == 'thumbnails' %}
+            {% comment %} Pagination with product thumbnails {% endcomment %}
+            <div class="collection-showcase-pagination collection-showcase-pagination--thumbnails" id="pagination-{{ section.id }}">
+              {% for product in products limit: section.settings.products_to_show %}
+                <div 
+                  class="collection-showcase-pagination-item {% if forloop.first %}active{% endif %}"
+                  data-product-id="{{ product.id }}"
+                  data-slide-index="{{ forloop.index0 }}"
+                >
+                  {% if product.featured_media %}
+                    <img 
+                      src="{{ product.featured_media | image_url: width: 160 }}"
+                      alt="{{ product.title | escape }}"
+                      width="160"
+                      height="160"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'icon icon--placeholder' }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            {% comment %} Native Swiper pagination (dots) {% endcomment %}
+            <div class="collection-showcase-pagination collection-showcase-pagination--dots" id="pagination-{{ section.id }}"></div>
+          {% endif %}
+        </div>
+      </div>
+    {% elsif section.settings.collection == blank %}
+      <div class="collection-showcase-empty">
+        <p>Please select a collection in the section settings.</p>
+      </div>
+    {% else %}
+      <div class="collection-showcase-empty">
+        <p>No products found in this collection.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer data-flow-load-key="swiper"></script>
+<script src="{{ 'component-collection-showcase.js' | asset_url }}" defer data-flow-load-key="collection-showcase"></script>
+
+{% schema %}
+{
+  "name": "Collection Showcase",
+  "class": "section-collection-showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 3,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "pagination_style",
+      "label": "Pagination style",
+      "options": [
+        {
+          "value": "thumbnails",
+          "label": "Product thumbnails"
+        },
+        {
+          "value": "dots",
+          "label": "Dots (native Swiper)"
+        }
+      ],
+      "default": "thumbnails"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "label": "Slides per view (mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1,
+      "info": "Number of slides visible on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "label": "Slides per view (tablet)",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1,
+      "info": "Number of slides visible on tablet devices (768px+)"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "label": "Slides per view (desktop)",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1,
+      "info": "Number of slides visible on desktop devices (1024px+)"
+    },
+    {
+      "type": "range",
+      "id": "space_between_mobile",
+      "label": "Space between slides (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 24,
+      "unit": "px",
+      "info": "Space between slides on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "space_between_tablet",
+      "label": "Space between slides (tablet)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 24,
+      "unit": "px",
+      "info": "Space between slides on tablet devices (768px+)"
+    },
+    {
+      "type": "range",
+      "id": "space_between_desktop",
+      "label": "Space between slides (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 32,
+      "unit": "px",
+      "info": "Space between slides on desktop devices (1024px+)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Showcase"
+    }
+  ]
+}
+{% endschema %}

@@ -50,35 +50,35 @@
           "type": "tab_content",
           "settings": {
             "question": "Do you ship overseas?",
-            "text": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.<\/p>"
+            "text": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
           }
         },
         "16456333831a200dc8-1": {
           "type": "tab_content",
           "settings": {
             "question": "How long will it take to get my order?",
-            "text": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.<\/p>"
+            "text": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
           }
         },
         "16456333831a200dc8-2": {
           "type": "tab_content",
           "settings": {
             "question": "Can I return my order?",
-            "text": "<p>We always aim for make sure our customers love our products, but if you do need to return an order, we’re happy to help. Just email us directly and we’ll take you through the process.<\/p>"
+            "text": "<p>We always aim for make sure our customers love our products, but if you do need to return an order, we’re happy to help. Just email us directly and we’ll take you through the process.</p>"
           }
         },
         "b8952142-22e1-4b16-b9bd-9e42747928c9": {
           "type": "tab_content",
           "settings": {
             "question": "Can I get my product personalized?",
-            "text": "<p>It depends on the creator and the product. All options are outlined on the product page, so look out for customization options there.<\/p>"
+            "text": "<p>It depends on the creator and the product. All options are outlined on the product page, so look out for customization options there.</p>"
           }
         },
         "a379cb7a-ba34-48da-b0af-2b0379b8db62": {
           "type": "tab_content",
           "settings": {
             "question": "Are these Q&As real?",
-            "text": "<p>No. This is demonstration content, designed to showcase how these page could look with your own content.<\/p>"
+            "text": "<p>No. This is demonstration content, designed to showcase how these page could look with your own content.</p>"
           }
         }
       },
@@ -92,10 +92,7 @@
       "settings": {
         "title": "Frequently asked questions",
         "description": "",
-        "faq_icon": "caret",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "colors": "white"
+        "faq_icon": "caret"
       }
     },
     "164563343647211871": {
@@ -112,7 +109,7 @@
         "9f90cfb3-0430-4b6c-90df-8309138e865a": {
           "type": "richtext",
           "settings": {
-            "text": "<p>Check out our frequently asked questions page for our full list of most common queries.<\/p>",
+            "text": "<p>Check out our frequently asked questions page for our full list of most common queries.</p>",
             "text_size": 14,
             "text_bottom_spacing": 20
           }
@@ -120,7 +117,7 @@
         "c1f278da-fb1a-46ad-9d1f-1e169afa696c": {
           "type": "button",
           "settings": {
-            "button_link": "\/",
+            "button_link": "/",
             "button_text": "SEE FAQS",
             "buttons_style": "filled",
             "override_button_colors": false,
@@ -192,12 +189,11 @@
         "template--14753984643142__057a50d5-3fee-4ea2-a832-2d38f47b959a-16788945317184afd8-3"
       ],
       "settings": {
-        "form_width": "narrow",
         "title": "Contact us",
-        "description": "<p>Have a question, or want a product recommendation? Get in touch.<\/p>",
+        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
+        "form_width": "narrow",
         "section_padding_top": 60,
         "section_padding_bottom": 60,
-        "section_color_scheme": "white",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff"
@@ -206,16 +202,16 @@
     "f9008be2-cc52-4777-becc-c975f680a054": {
       "type": "map",
       "settings": {
-        "heading": "Our store",
-        "address": "<p>123 Fake St.<br>Toronto, Canada<\/p><p>Mon - Fri, 10am - 9pm<br>Saturday, 11am - 9pm<br>Sunday, 11am - 5pm<\/p>",
         "map_address": "Ottawa, 151 O'Connor Street, Ground Floor, Canada",
+        "layout": "left",
+        "text_alignment": "center",
+        "heading": "Our store",
+        "address": "<p>123 Fake St.<br>Toronto, Canada</p><p>Mon - Fri, 10am - 9pm<br>Saturday, 11am - 9pm<br>Sunday, 11am - 5pm</p>",
         "button_text": "Get directions",
         "buttons_style": "filled",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff",
-        "layout": "left",
-        "text_alignment": "center",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
         "colors": "light"

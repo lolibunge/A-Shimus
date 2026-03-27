@@ -1,0 +1,105 @@
+{{ 'wishlist-page.css' | asset_url | stylesheet_tag }}
+
+<div 
+  class="wishlist-page-section" 
+  data-wishlist-page
+  data-products-per-row-desktop="{{ section.settings.products_per_row_desktop }}"
+  data-products-per-row-tablet="{{ section.settings.products_per_row_tablet }}"
+  data-products-per-row-mobile="{{ section.settings.products_per_row_mobile }}"
+>
+  <div class="wishlist-page-container">
+    <div class="wishlist-page-header">
+      <h1 class="wishlist-page-title">{{ page.title | default: 'My Wishlist' }}</h1>
+      
+      <div class="wishlist-page-actions">
+        <button 
+          type="button" 
+          class="btn btn-clear-wishlist" 
+          data-clear-wishlist
+          aria-label="Clear all wishlist items"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <div class="wishlist-page-content">
+      <div class="wishlist-empty-message" data-wishlist-empty style="display: none;">
+        <div class="wishlist-empty-content">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor" opacity="0.3"/>
+          </svg>
+          <h2>Your wishlist is empty</h2>
+          <p>Start adding products to your wishlist to see them here.</p>
+          <a href="/collections/all" class="btn btn-primary">Continue Shopping</a>
+        </div>
+      </div>
+
+      <div class="wishlist-grid" data-wishlist-grid>
+        {% comment %} Products will be loaded dynamically via JavaScript {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'wishlist-page.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Wishlist Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Settings"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "My Wishlist"
+    },
+    {
+      "type": "header",
+      "content": "Grid Settings"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "label": "Products Per Row (Desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_tablet",
+      "label": "Products Per Row (Tablet)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile",
+      "label": "Products Per Row (Mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

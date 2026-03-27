@@ -40,7 +40,7 @@
       "shop": "Shop"
     },
     "newsletter_form": {
-      "newsletter_email": "email@example.com",
+      "newsletter_email": "Enter E-mail",
       "submit": "Subscribe",
       "confirmation": "Thanks for subscribing"
     },
@@ -527,7 +527,7 @@
       "account": "Account",
       "logged_in_as_html": "Logged in as {{ first_name }}",
       "log_out": "Log out",
-      "log_in": "Log in",
+      "log_in": "Sign in",
       "create_account": "Create account"
     },
     "header": {

@@ -1,36 +1,70 @@
 {{ 'section-contact-form.min.css' | asset_url | stylesheet_tag }}
 
-{% liquid 
+{% liquid
   assign width_class = ''
   if section.settings.form_width == 'narrow'
     assign width_class = 'width--narrow'
   endif
 %}
 
-<section class="section-contact-form wrapper-spacing--v wrapper-spacing--h color-scheme--{{ section.settings.section_color_scheme }}{% if request.visual_preview_mode %} section-preview{% else %} show-on-scroll{% endif %}" 
-  data-wetheme-section-type="section--contact-form" 
+<style>
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.section_background_color }};
+    color: {{ section.settings.section_text_color }};
+    padding: 72px 48px;
+  }
+
+  #shopify-section-{{ section.id }} input, 
+  #shopify-section-{{ section.id }} textarea,
+  #shopify-section-{{ section.id }} input::placeholder,
+  #shopify-section-{{ section.id }} textarea::placeholder {
+    color: {{ section.settings.section_text_color }};
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding: 60px 24px;
+    }
+  }
+</style>
+
+<section
+  class="section-contact-form section-{{ section.settings.column_layout }} {% if request.visual_preview_mode %} section-preview{% else %} show-on-scroll{% endif %}"
+  data-wetheme-section-type="section--contact-form"
   data-wetheme-section-id="{{ section.id }}"
   style="--padding-section-top: {{ section.settings.section_padding_top }}px; --padding-section-bottom: {{ section.settings.section_padding_bottom }}px;"
-  >
-
+>
   {% comment %} Section title and description {% endcomment %}
-  {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description, alignment: section.settings.section_header_alignment, wrapper_classes: width_class %}
+  {% render 'dynamic-section-header' with section_title: section.settings.title, alignment: section.settings.section_header_alignment, wrapper_classes: width_class %}
 
-    <div
-      data-animate
-      data-animate-order="{% render 'block-animation-offset', 
-        title: section.settings.title, 
-        description: section.settings.description, 
+  <div
+    data-animate
+    data-animate-order="
+      {% render 'block-animation-offset',
+        title: section.settings.title,
+        description: section.settings.description,
         base: 1
-      %}"
+      %}
+    "
+  >
+    <div
+      {% if section.settings.form_width == 'narrow' %}
+        class="{{ width_class }}"
+      {% endif %}
     >
-
-      <div{% if section.settings.form_width == 'narrow' %} class="{{ width_class }}"{% endif %}>
-
+      {% if section.settings.description != blank %}
+        <div
+          class="section-description subdued-text text-link-animated"
+          data-animate
+          data-animate-order="2"
+          style="text-align: {{ section.settings.section_header_alignment }};"
+        >
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
       {% unless section.blocks.size == 0 %}
         <div>
           {% form 'contact', id: 'ContactForm', class: 'section-contact-form--form' %}
-
             {% if form.errors %}
               <div class="w-full">
                 {{ form.errors | default_errors }}
@@ -106,9 +140,8 @@
                   assign phoneInputVal = customer.phone
                 endif
               %}
-              
-              {% case block.type %}
 
+              {% case block.type %}
                 {% when 'name_input' %}
                   <div class="{{ input_width }}">
                     {% liquid
@@ -149,14 +182,13 @@
                   <div class="{{ input_width }}">
                     {% render 'form-input' with type: 'text', has_label: false, animate_label: false, label_text: inputString, id: formId, placeholder: labelPlaceholder, value: form.body, name: inputName, required: block.settings.required, attributes: input_attr %}
                   </div>
-
               {% endcase %}
-
             {% endfor %}
-            
+
             {% if section.blocks.size > 0 %}
               {% if section.settings.override_button_colors %}
-                {% render 'button-color-overrides' with
+                {%
+                  render 'button-color-overrides' with
                   id: section.id,
                   style: 'filled',
                   text_color: section.settings.button_text_color,
@@ -165,10 +197,11 @@
               {% endif %}
               <div class="section-contact-form--submit-wrapper w-full text-link-animated">
                 {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
-              <button type="submit" class="btn dynamic-section-button--{{ section.id }}">{{ 'contact.form.send' | t }}</button>
+                <button type="submit" class="btn btn-contact-form dynamic-section-button--{{ section.id }}">
+                  {{ 'contact.form.send' | t }}
+                </button>
               </div>
             {% endif %}
-
           {% endform %}
         </div>
       {% else %}
@@ -176,10 +209,8 @@
           {{ 'general.onboarding.no_content' | t }}
         </div>
       {% endunless %}
-
-      </div>
-
     </div>
+  </div>
 </section>
 
 {% schema %}
@@ -216,6 +247,22 @@
     {
       "type": "header",
       "content": "t:all.Layout"
+    },
+    {
+      "type": "select",
+      "id": "column_layout",
+      "label": "Column layout",
+      "options": [
+        {
+          "value": "",
+          "label": "One column"
+        },
+        {
+          "value": "two_column",
+          "label": "Two column"
+        }
+      ],
+      "default": ""
     },
     {
       "type": "select",
@@ -258,28 +305,16 @@
       "content": "t:all.Color"
     },
     {
-      "type": "select",
-      "id": "section_color_scheme",
-      "label": "t:all.Color_scheme",
-      "default": "white",
-      "options": [
-        {
-          "value": "white",
-          "label": "t:all.Default"
-        },
-        {
-          "value": "light",
-          "label": "t:all.First"
-        },
-        {
-          "value": "accent",
-          "label": "t:all.Second"
-        },
-        {
-          "value": "dark",
-          "label": "t:all.Third"
-        }
-      ]
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section text color",
+      "default": "#000000"
     },
     {
       "type": "header",
@@ -463,8 +498,7 @@
   "presets": [
     {
       "name": "t:sections.section--contact-form.presets.name",
-      "settings": {
-      },
+      "settings": {},
       "blocks": [
         {
           "type": "name_input",
@@ -498,10 +532,7 @@
     }
   ],
   "disabled_on": {
-    "groups": [
-      "header",
-      "custom.overlay"
-    ]
+    "groups": ["header", "custom.overlay"]
   }
 }
 {% endschema %}

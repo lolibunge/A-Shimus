@@ -26,7 +26,7 @@ Testing Cypress integration
 {% endif %}
 
 {% assign contact-overlay = false %}
-{% if section.settings.overlay_header_contact and template == 'page.contact' %}
+{% if section.settings.overlay_header_contact and template.name == 'page.contact' %}
   {% assign contact-overlay = true %}
 {% endif %}
 
@@ -103,7 +103,7 @@ Testing Cypress integration
       <li>
         <a href="{{ routes.search_url }}" class="search-button standalone-icon--wrapper" aria-label="{{ 'layout.header.search' | t }}">
           {% if section.settings.show_icons %}
-            {% render 'theme-icon' with icon: 'search', iconSize: 20 %}
+            {% render 'theme-icon' with icon: 'search-v2', iconSize: 20 %}
           {% else %}
             <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
           {% endif %}
@@ -126,7 +126,7 @@ Testing Cypress integration
         <li>
           <a href="{{ routes.account_login_url }}" aria-label="{{ 'layout.customer.log_in' | t }}" class="log-in-button standalone-icon--wrapper">
             {% if section.settings.show_icons %}
-              {% render 'theme-icon' with icon: 'user', iconSize: 20 %}
+              {% render 'theme-icon' with icon: 'user-v2', iconSize: 20 %}
             {% else %}
               <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
             {% endif %}
@@ -136,9 +136,7 @@ Testing Cypress integration
     {% endif %}
 
     {% if section.settings.show_offers_drawer and section.settings.show_icons %}
-      <li>
-        {{ offers_icon_link }}
-      </li>
+      {{ offers_icon_link }}
     {% endif %}
 
     <li>
@@ -200,9 +198,101 @@ Testing Cypress integration
   }
 
   .mobile-nav__featured-item {
-    padding: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0;
     background: #fff;
+    height: 125px;
+    overflow: hidden;
+  }
+
+  .mobile-nav__promotions-slider {
+    position: relative;
+  }
+
+  .promotions-slider-wrapper {
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
+  }
+
+  .promotions-slider-container {
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .promotion-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .promotion-slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+
+  .promotion-slide-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  .promotion-slide-image {
+    width: 100px;
+    height: 125px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f6f5;
+  }
+
+  .promotion-slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .promotion-slide-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    gap: 8px;
+  }
+
+  .promotion-slide-title {
+    font-family: Grosa, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0;
+    color: #000;
+  }
+
+  .promotion-slide-subtitle {
+    font-family: Grosa, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 8%;
+    text-decoration-skip-ink: auto;
+    margin: 0;
+    color: #000;
   }
 
   .featured-item-container {
@@ -271,9 +361,7 @@ Testing Cypress integration
 
   /* Responsive featured item */
   @media screen and (max-width: 480px) {
-    .mobile-nav__featured-item {
-      padding: 15px 0;
-    }
+    
 
     .featured-item-title {
       font-size: 16px;
@@ -286,20 +374,21 @@ Testing Cypress integration
 
   .mobile-nav-split-container {
     display: flex;
-    /*height: calc(100vh - 60px);*/
-    min-height: 550px !important;
+    height: calc(100vh - 60px);
+    /* min-height: 550px !important; */
     overflow: hidden;
   }
 
   .mobile-nav--parents {
-    width: 50%;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    flex: 1 1 160px;
+    max-width: 160px;
+    min-width: fit-content;
     overflow-y: auto;
     flex-shrink: 0;
   }
 
   .mobile-nav--children {
-    width: 50%;
+    flex: 1;
     overflow-y: auto;
     background: rgba(0, 0, 0, 0.02);
   }
@@ -313,8 +402,10 @@ Testing Cypress integration
     font-family: "SainteColombe", sans-serif;
   }
 
-  .mobile-nav__parent-item.active {
-    background-color: rgba(0, 0, 0, 0.05);
+  .mobile-nav__parent-item.active,
+  .mobile-nav__parent-item.active button{
+    background-color: #F8F6F5;
+    color: #000000;
   }
 
   .mobile-nav__parent-link,
@@ -322,7 +413,6 @@ Testing Cypress integration
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5px;
     text-decoration: none;
     color: inherit;
     width: 100%;
@@ -335,7 +425,8 @@ Testing Cypress integration
   }
 
   body .mobile-nav__link.mobile-nav__parent-link {
-    padding: 15px 5px !important;
+    min-height: 49px;
+    padding: 0 12px 0 16px
   }
 
   .mobile-nav__parent-link svg,
@@ -347,35 +438,36 @@ Testing Cypress integration
 
   .mobile-nav__children-content {
     display: none;
-    padding: 15px;
   }
 
   .mobile-nav__children-content.active {
     display: block;
+    height: 100%;
   }
 
   .mobile-nav__children-content .mobile-nav__sublist {
     list-style: none;
     padding: 0;
     margin: 0;
+    background-color: #F8F6F5;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    height: auto !important;
+    height: 100% !important;
     max-height: none !important;
   }
 
   .mobile-nav__children-content .mobile-nav__item {
-    margin-bottom: 10px;
     display: block !important;
+    height: 49px;
   }
 
   .mobile-nav__children-content .mobile-nav__link {
-    display: block;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 49px;
     text-decoration: none;
     color: inherit;
-    border-radius: 4px;
     transition: background-color 0.2s;
   }
 
@@ -400,12 +492,6 @@ Testing Cypress integration
   /* Force show all children content in split view */
   .drawer--split-menu .mobile-nav__children-content.active * {
     visibility: visible !important;
-  }
-
-  .mobile-nav__children-content .mobile-promo--block {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0 0 0;
   }
 
   .mobile-nav__children-content .mega-menu--image-wrapper {
@@ -462,17 +548,6 @@ Testing Cypress integration
     font-size: 16px;
     letter-spacing: normal;
   }
-
-  /* Responsive adjustments */
-  @media screen and (max-width: 480px) {
-    .mobile-nav--parents {
-      width: 50%;
-    }
-
-    .mobile-nav--children {
-      width: 50%;
-    }
-  }
 {% endstyle %}
 
 <div
@@ -491,60 +566,99 @@ Testing Cypress integration
     <div class="mobile-nav-grid-container">
       <div class="mobile-nav__logo-title">
         <div class="mobile-nav__logo-title--inner">
+          <img src="{{ section.settings.logo | image_url: width: 120 }}" alt="{{ section.settings.logo.alt }}" width="120" height="auto">
           <a href="#" class="mobile-menu--close-btn standalone-icon--wrapper" aria-label="{{ 'layout.drawers.close_menu' | t }}" role="button">
-            {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.4667 17.3153L8.74586 9.59447L1.02499 17.3153C0.912387 17.4279 0.759667 17.4912 0.600425 17.4912C0.441182 17.4912 0.288462 17.4279 0.17586 17.3153C0.0632588 17.2027 0 17.05 0 16.8908C0 16.7315 0.0632588 16.5788 0.17586 16.4662L7.89673 8.74614L0.17586 1.02527C0.0632588 0.912563 4.18827e-05 0.759741 0.000116434 0.600424C0.000190986 0.441107 0.0635509 0.288345 0.176258 0.175744C0.288965 0.0631425 0.441786 -7.44858e-05 0.601103 6.58643e-08C0.76042 7.46176e-05 0.913182 0.0634346 1.02578 0.176141L8.74586 7.89621L16.4659 0.176141C16.5786 0.06354 16.7315 0.000323046 16.8908 0.000397598C17.0501 0.00047215 17.2029 0.0638321 17.3155 0.176539C17.4281 0.289246 17.4913 0.442067 17.4912 0.601384C17.4911 0.760701 17.4278 0.913463 17.3151 1.02606L9.59499 8.74614L17.3151 16.4662C17.3727 16.5215 17.4188 16.5877 17.4505 16.661C17.4823 16.7343 17.4991 16.8132 17.5 16.8931C17.5008 16.9729 17.4858 17.0522 17.4556 17.1262C17.4255 17.2001 17.3808 17.2673 17.3244 17.3239C17.2679 17.3804 17.2008 17.425 17.1268 17.4553C17.0529 17.4855 16.9736 17.5006 16.8938 17.4998C16.8139 17.4991 16.735 17.4823 16.6616 17.4506C16.5883 17.419 16.522 17.373 16.4667 17.3153Z" fill="black"/>
+            </svg>
           </a>
         </div>
       </div>
 
-      {% comment %} Featured Product/Collection Section {% endcomment %}
-      {% if section.settings.show_featured_mobile %}
-        <div class="mobile-nav__featured-item">
-          {% liquid
-            assign featured_url = ''
-            assign featured_image = null
-            assign featured_title = ''
-            assign show_featured = false
-
-            if section.settings.featured_type == 'product' and section.settings.featured_product_mobile != blank
-              assign featured_item = all_products[section.settings.featured_product_mobile]
-              if featured_item != blank
-                assign featured_url = featured_item.url
-                assign featured_image = featured_item.featured_image
-                assign featured_title = section.settings.featured_custom_title | default: featured_item.title
-                assign show_featured = true
-              endif
-            elsif section.settings.featured_type == 'collection' and section.settings.featured_collection_mobile != blank
-              assign featured_item = collections[section.settings.featured_collection_mobile]
-              if featured_item != blank
-                assign featured_url = featured_item.url
-                assign featured_image = featured_item.image
-                assign featured_title = section.settings.featured_custom_title | default: featured_item.title
-                assign show_featured = true
-              endif
-            endif
-          %}
-          
-          {% if show_featured %}
-            <div class="featured-item-container">
-              {% if featured_image %}
-                <div class="featured-item-image">
-                  <img src="{{ featured_image | image_url: width: 500 }}" alt="{{ featured_title }}" loading="lazy">
-                </div>
-              {% endif %}
-              <div class="featured-item-content">
-                <h3 class="featured-item-title">{{ featured_title }}</h3>
-                {% if section.settings.featured_subtitle %}
-                  <p class="featured-item-subtitle">{{ section.settings.featured_subtitle }}</p>
+      {% comment %} Promotions Slider Section {% endcomment %}
+      <div class="mobile-nav__featured-item mobile-nav__promotions-slider">
+        <div class="promotions-slider-wrapper">
+          <div class="promotions-slider-container">
+            {% assign menu = linklists[section.settings.main_linklist] %}
+            {% for link in menu.links %}
+              {% liquid
+                assign link-title = link.title | strip | downcase
+                assign link_index = forloop.index
+              %}
+              {% for block in section.blocks %}
+                {% liquid
+                  assign block-title = block.settings.mega-menu | strip | downcase
+                %}
+                {% if block-title == link-title %}
+                  {% if block.settings.mega_image_1 != blank %}
+                    <div class="promotion-slide" data-menu-index="{{ link_index }}">
+                      {% if block.settings.mega_image_link_1 != blank %}
+                        <a href="{{ block.settings.mega_image_link_1 }}" class="promotion-slide-link">
+                      {% endif %}
+                      <div class="promotion-slide-image">
+                        <img src="{{ block.settings.mega_image_1 | image_url: width: 600 }}" alt="{{ block.settings.mega_image_header_1 | default: 'Promotion' }}" loading="lazy" width="600" height="800">
+                      </div>
+                      <div class="promotion-slide-content">
+                        {% if block.settings.mega_image_header_1 != blank %}
+                          <h3 class="promotion-slide-title">{{ block.settings.mega_image_header_1 }}</h3>
+                        {% endif %}
+                        {% if block.settings.mega_image_subheader_1 != blank %}
+                          <p class="promotion-slide-subtitle">{{ block.settings.mega_image_subheader_1 }}</p>
+                        {% endif %}
+                      </div>
+                      {% if block.settings.mega_image_link_1 != blank %}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.mega_image_2 != blank %}
+                    <div class="promotion-slide" data-menu-index="{{ link_index }}">
+                      {% if block.settings.mega_image_link_2 != blank %}
+                        <a href="{{ block.settings.mega_image_link_2 }}" class="promotion-slide-link">
+                      {% endif %}
+                      <div class="promotion-slide-image">
+                        <img src="{{ block.settings.mega_image_2 | image_url: width: 600 }}" alt="{{ block.settings.mega_image_header_2 | default: 'Promotion' }}" loading="lazy" width="600" height="800">
+                      </div>
+                      <div class="promotion-slide-content">
+                        {% if block.settings.mega_image_header_2 != blank %}
+                          <h3 class="promotion-slide-title">{{ block.settings.mega_image_header_2 }}</h3>
+                        {% endif %}
+                        {% if block.settings.mega_image_subheader_2 != blank %}
+                          <p class="promotion-slide-subtitle">{{ block.settings.mega_image_subheader_2 }}</p>
+                        {% endif %}
+                      </div>
+                      {% if block.settings.mega_image_link_2 != blank %}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.mega_image_3 != blank %}
+                    <div class="promotion-slide" data-menu-index="{{ link_index }}">
+                      {% if block.settings.mega_image_link_3 != blank %}
+                        <a href="{{ block.settings.mega_image_link_3 }}" class="promotion-slide-link">
+                      {% endif %}
+                      <div class="promotion-slide-image">
+                        <img src="{{ block.settings.mega_image_3 | image_url: width: 600 }}" alt="{{ block.settings.mega_image_header_3 | default: 'Promotion' }}" loading="lazy" width="600" height="800">
+                      </div>
+                      <div class="promotion-slide-content">
+                        {% if block.settings.mega_image_header_3 != blank %}
+                          <h3 class="promotion-slide-title">{{ block.settings.mega_image_header_3 }}</h3>
+                        {% endif %}
+                        {% if block.settings.mega_image_subheader_3 != blank %}
+                          <p class="promotion-slide-subtitle">{{ block.settings.mega_image_subheader_3 }}</p>
+                        {% endif %}
+                      </div>
+                      {% if block.settings.mega_image_link_3 != blank %}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
                 {% endif %}
-                <a href="{{ featured_url }}" class="featured-item-button">
-                  {{ section.settings.featured_button_text | default: 'Shop Now' }}
-                </a>
-              </div>
-            </div>
-          {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
         </div>
-      {% endif %}
+      </div>
 
       <!-- begin mobile-nav split view -->
       <div class="mobile-nav-split-container">
@@ -568,9 +682,13 @@ Testing Cypress integration
                 assign show_second_promo_image = true
               endif
 
+              if block.settings.show_promo_3_in_mobile_drawer == true and block.settings.mega_image_3
+                assign show_third_promo_image = true
+              endif
+
               assign block-title = block.settings.mega-menu | strip | downcase
               if block-title == link-title
-                if show_first_promo_image == true or show_second_promo_image == true
+                if show_first_promo_image == true or show_second_promo_image == true or show_third_promo_image == true
                   assign is-mega-menu = true
                 endif
               endif
@@ -613,9 +731,13 @@ Testing Cypress integration
                 assign show_second_promo_image = true
               endif
 
+              if block.settings.show_promo_3_in_mobile_drawer == true and block.settings.mega_image_3
+                assign show_third_promo_image = true
+              endif
+
               assign block-title = block.settings.mega-menu | strip | downcase
               if block-title == link-title
-                if show_first_promo_image == true or show_second_promo_image == true
+                if show_first_promo_image == true or show_second_promo_image == true or show_third_promo_image == true
                   assign is-mega-menu = true
                 endif
               endif
@@ -625,9 +747,6 @@ Testing Cypress integration
             <div class="mobile-nav__children-content{% if first_with_children %} active{% endif %}" data-children-index="{{ forloop.index }}">
             {% assign first_with_children = false %}
               <ul class="mobile-nav__sublist">
-                <li class="mobile-nav__item mobile-nav__view-all">
-                  <a href="{{ link.url }}" class="mobile-nav__link">View All {{ link.title }}</a>
-                </li>
                 {% for sub_link in link.links %}
                   {% if sub_link.levels > 0 %}
                     <li class="mobile-nav__item {% if sub_link.active %} mobile-nav__item--active{% endif %}">
@@ -658,254 +777,8 @@ Testing Cypress integration
                     </li>
                   {% endif %}
                 {% endfor %}
-
-                {% if is-mega-menu %}
-                  <ul class="mobile-promo--block">
-                    {% for block in section.blocks %}
-  
-                      {% liquid
-                        assign link-title = link.title | strip | downcase
-                        assign block-title = block.settings.mega-menu | strip | downcase
-
-                        assign image_2_stretch = false
-                        assign crop_setting_2 = block.settings.image_2_aspect_ratio
-                        if crop_setting_2 == "square"
-                          assign image_2_crop = "aspect-ratio--square"
-                          assign image_2_stretch = true
-                        elsif crop_setting_2 == "tall"
-                          assign image_2_crop = "aspect-ratio--tall"
-                          assign image_2_stretch = true
-                        elsif crop_setting_2 == "wide"
-                          assign image_2_crop = "aspect-ratio--wide"
-                          assign image_2_stretch = true
-                        else
-                          assign image_2_crop = false
-                          assign image_2_stretch = false
-                        endif
-
-                        assign first_promo_has_text = false
-                        if block.settings.mega_image_header_1 != blank or block.settings.mega_image_subheader_1 != blank
-                          assign first_promo_has_text = true
-                        endif
-
-                        assign second_promo_has_text = false
-                        if block.settings.mega_image_header_2 != blank or block.settings.mega_image_subheader_2 != blank
-                          assign second_promo_has_text = true
-                        endif
-                      %}
-
-                      {% style %}
-                        .block-id-{{ block.id }} .overlay-text-on-image-promo-1 {
-                          color: rgba({{ block.settings.overlay_text_color_promo_1.rgba }}) !important;
-                        }
-
-                        .block-id-{{ block.id }} .overlay-text-on-image-promo-2 {
-                          color: rgba({{ block.settings.overlay_text_color_promo_2.rgba }}) !important;
-                        }
-                      {% endstyle %}
-  
-                      {% if link-title == block-title %}
-                        {% if block.settings.mega_image_1 and block.settings.show_promo_1_in_mobile_drawer %}
-                          {% render 'mega-menu-promo-card' with 
-                            promo_wrapper_classes: "mobile-nav__item",
-                            promo_block_id: block.id,
-                            promo_img: block.settings.mega_image_1,
-                            promo_img_crop: block.settings.image_1_aspect_ratio,
-                            promo_text_overlay: block.settings.overlay_text_on_image_promo_1,
-                            promo_text_heading: block.settings.mega_image_header_1,
-                            promo_text_subheading: block.settings.mega_image_subheader_1,
-                            promo_text_color: block.settings.overlay_text_color_promo_1,
-                            promo_link: block.settings.mega_image_link_1
-                          %}
-                        {% endif %}
-                          
-                        {% if block.settings.mega_image_2 and block.settings.show_promo_2_in_mobile_drawer %}
-                          {% render 'mega-menu-promo-card' with 
-                            promo_wrapper_classes: "mobile-nav__item",
-                            promo_block_id: block.id,
-                            promo_img: block.settings.mega_image_2,
-                            promo_img_crop: block.settings.image_2_aspect_ratio,
-                            promo_text_overlay: block.settings.overlay_text_on_image_promo_2,
-                            promo_text_heading: block.settings.mega_image_header_2,
-                            promo_text_subheading: block.settings.mega_image_subheader_2,
-                            promo_text_color: block.settings.overlay_text_color_promo_2,
-                            promo_link: block.settings.mega_image_link_2
-                          %}
-                        {% endif %}
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                {% endif %}
               </ul>
 
-              {% if is-mega-menu %}
-                <ul class="mobile-promo--block">
-                    {% for block in section.blocks %}
-
-                      {% liquid
-                        assign link-title = link.title | strip | downcase
-                        assign block-title = block.settings.mega-menu | strip | downcase
-
-                        assign image_1_stretch = false
-                        assign crop_setting_1 = block.settings.image_1_aspect_ratio
-                        if crop_setting_1 == "square"
-                          assign image_1_crop = "aspect-ratio--square"
-                          assign image_1_stretch = true
-                        elsif crop_setting_1 == "tall"
-                          assign image_1_crop = "aspect-ratio--tall"
-                          assign image_1_stretch = true
-                        elsif crop_setting_1 == "wide"
-                          assign image_1_crop = "aspect-ratio--wide"
-                          assign image_1_stretch = true
-                        else
-                          assign image_1_crop = false
-                          assign image_1_stretch = false
-                        endif
-
-                        assign image_2_stretch = false
-                        assign crop_setting_2 = block.settings.image_2_aspect_ratio
-                        if crop_setting_2 == "square"
-                          assign image_2_crop = "aspect-ratio--square"
-                          assign image_2_stretch = true
-                        elsif crop_setting_2 == "tall"
-                          assign image_2_crop = "aspect-ratio--tall"
-                          assign image_2_stretch = true
-                        elsif crop_setting_2 == "wide"
-                          assign image_2_crop = "aspect-ratio--wide"
-                          assign image_2_stretch = true
-                        else
-                          assign image_2_crop = false
-                          assign image_2_stretch = false
-                        endif
-
-                        assign first_promo_has_text = false
-                        if block.settings.mega_image_header_1 != blank or block.settings.mega_image_subheader_1 != blank
-                          assign first_promo_has_text = true
-                        endif
-
-                        assign second_promo_has_text = false
-                        if block.settings.mega_image_header_2 != blank or block.settings.mega_image_subheader_2 != blank
-                          assign second_promo_has_text = true
-                        endif
-                      %}
-
-                      {% style %}
-                        .block-id-{{ block.id }} .overlay-text-on-image-promo-1 {
-                          color: rgba({{ block.settings.overlay_text_color_promo_1.rgba }});
-                        }
-
-                        .block-id-{{ block.id }} .overlay-text-on-image-promo-2 {
-                          color: rgba({{ block.settings.overlay_text_color_promo_2.rgba }});
-                        }
-                      {% endstyle %}
-
-                      {% if link-title == block-title %}
-                        {% if block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %}
-                          <li class="mobile-nav__item {% if sub_link.active %} mobile-nav__item--active{% endif %}">
-                            <p class="mega-menu--empty" {% unless request.design_mode %}style="visibility:hidden;"{% endunless %}>
-                              {{ 'layout.header.mega_menu_empty' | t }}
-                            </p>
-                          </li>
-                        {% else %}
-                          {% if block.settings.mega_image_1 and block.settings.show_promo_1_in_mobile_drawer %}
-                            <li class="mobile-nav__item block-id-{{ block.id }}">
-                              <div class="inner mega-menu--image-wrapper">
-                                <div class="mega-menu--image{% if block.settings.overlay_text_on_image_promo_1 %} overlay--enabled{% endif %}{% if first_promo_has_text %} has-promo-text{% endif %}">
-                                  {% if block.settings.mega_image_link_1 %}
-                                    <a class="mega-menu-promo--image{% if image_1_crop %} mega-menu-aspect-ratio {{ image_1_crop }}{% endif %}" href="{{ block.settings.mega_image_link_1 }}">
-                                  {% else %}
-                                    <div class="mega-menu-promo--image{% if image_1_crop %} mega-menu-aspect-ratio {{ image_1_crop }}{% endif %}">
-                                  {% endif %}
-                                  {% capture img_props %}style="max-width: {{ block.settings.mega_image_1.width }}px"{% endcapture %}
-                        
-                                  {% render 'responsive-image' with block.settings.mega_image_1, allow_stretch: image_1_stretch, props: img_props %}
-                                  {% if block.settings.mega_image_link_1 %}
-                                    </a>
-                                  {% else %}
-                                    </div>
-                                  {% endif %}
-                        
-                                  <div class="mega-menu--text">
-                                    {% if block.settings.mega_image_header_1 %}
-                                      <p class="h4 mega-menu--image-title{% if block.settings.mega_image_subheader_1 != blank %} has-padding{% endif %}{% if block.settings.overlay_text_on_image_promo_1 %} overlay-text-on-image-promo-1{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% if block.settings.mega_image_link_1 %}
-                                          <a href="{{ block.settings.mega_image_link_1 }}" class="{% if block.settings.overlay_text_on_image_promo_1 %} overlay-text-on-image-promo-1{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% endif %}
-                                        {{ block.settings.mega_image_header_1 }}
-                                        {% if block.settings.mega_image_link_1 %}
-                                          </a>
-                                        {% endif %}
-                                      </p>
-                                    {% endif %}
-                                    {% if block.settings.mega_image_subheader_1 %}
-                                      <p class="h5 mega-menu--image-subtitle{% if block.settings.overlay_text_on_image_promo_1 %} overlay-text-on-image-promo-1{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% if block.settings.mega_image_link_1 %}
-                                          <a href="{{ block.settings.mega_image_link_1 }}" class="{% if block.settings.overlay_text_on_image_promo_1 %} overlay-text-on-image-promo-1{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% endif %}
-                                        {{ block.settings.mega_image_subheader_1 }}
-                                        {% if block.settings.mega_image_link_1 %}
-                                          </a>
-                                        {% endif %}
-                                      </p>
-                                    {% endif %}
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                          {% endif %}
-                          
-                          {% if block.settings.mega_image_2 and block.settings.show_promo_2_in_mobile_drawer %}
-                            <li class="mobile-nav__item block-id-{{ block.id }}">
-                              <div class="inner mega-menu--image-wrapper">
-                                <div class="mega-menu--image{% if block.settings.overlay_text_on_image_promo_2 %} overlay--enabled{% endif %}{% if second_promo_has_text %} has-promo-text{% endif %}">
-                                  {% if block.settings.mega_image_link_2 %}
-                                    <a class="mega-menu-promo--image{% if image_2_crop %} mega-menu-aspect-ratio {{ image_2_crop }}{% endif %}" href="{{ block.settings.mega_image_link_2 }}">
-                                  {% else %}
-                                    <div class="mega-menu-promo--image{% if image_2_crop %} mega-menu-aspect-ratio {{ image_2_crop }}{% endif %}">
-                                  {% endif %}
-                                  {% capture img_props %}style="max-width: {{ block.settings.mega_image_2.width }}px"{% endcapture %}
-                        
-                                  {% render 'responsive-image' with block.settings.mega_image_2, allow_stretch: image_2_stretch, props: img_props %}
-                                  {% if block.settings.mega_image_link_2 %}
-                                    </a>
-                                  {% else %}
-                                    </div>
-                                  {% endif %}
-                        
-                                  <div class="mega-menu--text">
-                                    {% if block.settings.mega_image_header_2 %}
-                                      <p class="h4 mega-menu--image-title{% if block.settings.mega_image_subheader_2 != blank %} has-padding{% endif %}{% if block.settings.overlay_text_on_image_promo_2 %} overlay-text-on-image-promo-2{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% if block.settings.mega_image_link_2 %}
-                                          <a href="{{ block.settings.mega_image_link_2 }}" class="{% if block.settings.overlay_text_on_image_promo_2 %} overlay-text-on-image-promo-2{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% endif %}
-                                        {{ block.settings.mega_image_header_2 }}
-                                        {% if block.settings.mega_image_link_2 %}
-                                          </a>
-                                        {% endif %}
-                                      </p>
-                                    {% endif %}
-                                    {% if block.settings.mega_image_subheader_2 %}
-                                      <p class="h5 mega-menu--image-subtitle{% if block.settings.overlay_text_on_image_promo_2 %} overlay-text-on-image-promo-2{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% if block.settings.mega_image_link_2 %}
-                                          <a href="{{ block.settings.mega_image_link_2 }}" class="{% if block.settings.overlay_text_on_image_promo_2 %} overlay-text-on-image-promo-2{% else %} default-menu-drawer-text-color{% endif %}">
-                                        {% endif %}
-                                        {{ block.settings.mega_image_subheader_2 }}
-                                        {% if block.settings.mega_image_link_2 %}
-                                          </a>
-                                        {% endif %}
-                                      </p>
-                                    {% endif %}
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                          {% endif %}
-                        {% endif %}
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </ul>
             </div>
           {% endif %}
         {% endfor %}
@@ -1162,7 +1035,7 @@ Testing Cypress integration
   {% endcapture %}
 
   <header class="site-header wrapper-spacing--h{% if section.settings.sticky_header %} header-is-sticky{% endif %}{% if section.settings.logo-placement == 'above' %} logo_above{% endif %}{% if collection-overlay or homepage-overlay or list-collection-overlay or contact-overlay or article-overlay %} overlay-header{% endif %}{% if section.settings.dropdown_alignment == 'center' %} dropdown-alignment--center{% endif %}{% if section.settings.overlay_logo %} overlay-logo{% endif %}">
-    <div class="site-header__wrapper site-header__wrapper--logo-{{ section.settings.logo-placement }} site-header__wrapper--{% if top_links != blank %}with{% else %}without{% endif %}-menu">
+    <div class="site-header__wrapper width--content site-header__wrapper--logo-{{ section.settings.logo-placement }} site-header__wrapper--{% if top_links != blank %}with{% else %}without{% endif %}-menu">
       <div class="site-header__wrapper__left">
         {% if section.settings.logo-placement == 'left' %}
           {{ header_logos }}
@@ -1203,53 +1076,47 @@ Testing Cypress integration
   {% endif %}
 
   <nav class="nav-bar mobile-nav-bar-wrapper{% if collection-overlay or homepage-overlay or list-collection-overlay or contact-overlay or article-overlay %} overlay-header{% endif %}{% if section.settings.overlay_logo %} overlay-logo{% endif %}">
-    <div class="wrapper-spacing--h">
-      <div class="mobile-nav-bar--inner">
-        <div class="mobile-grid--table">
+    <div class="mobile-nav-bar--inner">
+      <div class="mobile-grid--table">
+        <div class="logo-wrapper">
+          {{ header_logos }}
+        </div>
 
-          <div class="grid__item three-twelfths">
-            <div class="site-nav--mobile{% if section.settings.show_offers_drawer %} has-offers-icon{% endif %}">
-              <button type="button" aria-label="{{ 'layout.navigation.menu' | t }}" class="hamburger-nav-button icon-fallback-text site-nav__link js-drawer-open-left-link standalone-icon--wrapper" aria-controls="NavDrawer" aria-expanded="false">
-                {% render 'theme-icon' with icon: 'hamburger_nav', iconClasses: 'fa-2x', widthUnset: true %}
-                <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-              </button>
 
-              {% if section.settings.show_offers_drawer and section.settings.enable_search %}
-                {{ offers_icon_link }}
-              {% endif %}
-            </div>
-          </div>
+        <div class="right-side{% unless section.settings.enable_search or section.settings.show_offers_drawer %} text-right{% else %} has-second-icon{% endunless %}">
+          
+        <div class="site-nav--mobile">
 
-          <div class="grid__item six-twelfths">
-            {{ header_logos }}
-          </div>
-
-          <div class="grid__item three-twelfths right-side{% unless section.settings.enable_search or section.settings.show_offers_drawer %} text-right{% else %} has-second-icon{% endunless %}">
-            <div class="site-nav--mobile">
-
-              {% if section.settings.enable_search %}
-                <a href="{{ routes.search_url }}" class="search-button standalone-icon--wrapper" aria-label="{{ 'layout.header.search' | t }}" aria-controls="SearchDrawer" aria-expanded="false">
-                  <span class="icon-fallback-text">
-                    {% render 'theme-icon' with icon: 'search', iconSize: 20 %}
-                    <span class="fallback-text">{{ 'layout.header.search' | t }}</span>
-                  </span>
-                </a>
-              {% elsif section.settings.show_offers_drawer %}
-                {{ offers_icon_link }}
-              {% endif %}
-
-              <a href="{{ routes.cart_url }}" aria-label="{{ 'layout.cart.title' | t }}" class="{% if settings.cart_type == 'drawer' %}js-drawer-open-right-link {% endif %}site-nav__link{% if section.settings.cart_count %} cart-count-enabled {{ section.settings.cart-style }}{% endif %}{% if cart.item_count > 0 %} cart-count-visible{% endif %} standalone-icon--wrapper{% if section.settings.show_icons %} header-icons-enabled{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
+            {% if section.settings.enable_search %}
+              <a href="{{ routes.search_url }}" class="search-button standalone-icon--wrapper" aria-label="{{ 'layout.header.search' | t }}" aria-controls="SearchDrawer" aria-expanded="false">
                 <span class="icon-fallback-text">
-                  {% render 'theme-icon' with icon: section.settings.cart-style, iconClasses: 'fa-2x' %}
-                  {% if section.settings.cart_count %}
-                    <span class="cart-item-count-bubble cart-item-count-header cart-item-count-header--quantity{% if cart.item_count == 0 %} hide{% endif %}">{{ cart.item_count }}</span>
-                  {% endif %}
-                  <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+                  {% render 'theme-icon' with icon: 'search', iconSize: 20 %}
+                  <span class="fallback-text">{{ 'layout.header.search' | t }}</span>
                 </span>
               </a>
-            </div>
+            {% elsif section.settings.show_offers_drawer %}
+              {{ offers_icon_link }}
+            {% endif %}
+
+            <a href="{{ routes.cart_url }}" aria-label="{{ 'layout.cart.title' | t }}" class="{% if settings.cart_type == 'drawer' %}js-drawer-open-right-link {% endif %}site-nav__link{% if section.settings.cart_count %} cart-count-enabled {{ section.settings.cart-style }}{% endif %}{% if cart.item_count > 0 %} cart-count-visible{% endif %} standalone-icon--wrapper{% if section.settings.show_icons %} header-icons-enabled{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
+              <span class="icon-fallback-text">
+                {% render 'theme-icon' with icon: section.settings.cart-style, iconClasses: 'fa-2x' %}
+                {% if section.settings.cart_count %}
+                  <span class="cart-item-count-bubble cart-item-count-header cart-item-count-header--quantity{% if cart.item_count == 0 %} hide{% endif %}">{{ cart.item_count }}</span>
+                {% endif %}
+                <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+              </span>
+            </a>
+            
+            <button type="button" aria-label="{{ 'layout.navigation.menu' | t }}" class="hamburger-nav-button icon-fallback-text site-nav__link js-drawer-open-left-link standalone-icon--wrapper" aria-controls="NavDrawer" aria-expanded="false">
+              {% render 'theme-icon' with icon: 'hamburger_nav2', iconClasses: 'fa-2x', widthUnset: true %}
+              <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+            </button>
+
+              
           </div>
         </div>
+        
       </div>
     </div>
   </nav>
@@ -1353,6 +1220,30 @@ Testing Cypress integration
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const parentItems = document.querySelectorAll('.mobile-nav__parent-item');
+  const allSlides = document.querySelectorAll('.promotion-slide');
+  
+  // Initialize: Show first slide of first active menu item
+  function initializeSlider() {
+    const activeParent = document.querySelector('.mobile-nav__parent-item.active');
+    if (activeParent) {
+      const parentIndex = activeParent.getAttribute('data-parent-index');
+      if (parentIndex) {
+        const menuIndex = parseInt(parentIndex);
+        const matchingSlides = Array.from(allSlides).filter(function(slide) {
+          return parseInt(slide.getAttribute('data-menu-index')) === menuIndex;
+        });
+        if (matchingSlides.length > 0) {
+          matchingSlides[0].classList.add('active');
+        }
+      }
+    } else if (allSlides.length > 0) {
+      // If no active parent, show first slide
+      allSlides[0].classList.add('active');
+    }
+  }
+  
+  // Initialize on load
+  initializeSlider();
   
   parentItems.forEach(function(parentItem) {
     const parentElement = parentItem.querySelector('.mobile-nav__parent-link, .mobile-nav__parent-button');
@@ -1361,7 +1252,7 @@ document.addEventListener('DOMContentLoaded', function() {
       parentElement.addEventListener('click', function(e) {
         const parentIndex = parentItem.getAttribute('data-parent-index');
         
-        // Solo prevenir default si tiene hijos (es button)
+        // Prevent default if it has children (is button)
         if (parentIndex) {
           e.preventDefault();
           
@@ -1378,6 +1269,23 @@ document.addEventListener('DOMContentLoaded', function() {
           allChildrenContent.forEach(function(content) {
             content.classList.remove('active');
           });
+          
+          // Update promotions slider
+          const menuIndex = parseInt(parentIndex);
+          
+          // Hide all slides
+          allSlides.forEach(function(slide) {
+            slide.classList.remove('active');
+          });
+          
+          // Show first slide with matching menu index
+          const matchingSlides = Array.from(allSlides).filter(function(slide) {
+            return parseInt(slide.getAttribute('data-menu-index')) === menuIndex;
+          });
+          
+          if (matchingSlides.length > 0) {
+            matchingSlides[0].classList.add('active');
+          }
           
           // Show corresponding children content
           const targetContent = document.querySelector('.mobile-nav__children-content[data-children-index="' + parentIndex + '"]');
@@ -1481,12 +1389,12 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "range",
       "id": "logo_max_width",
-      "min": 50,
-      "max": 500,
-      "step": 5,
+      "min": 40,
+      "max": 300,
+      "step": 4,
       "unit": "t:all.px",
       "label": "t:all.Logo_width_on_desktop",
-      "default": 125
+      "default": 224
     },
     {
       "type": "range",
@@ -1940,6 +1848,73 @@ document.addEventListener('DOMContentLoaded', function() {
           "label": "t:all.Text",
           "default": "#FFFFFF",
           "visible_if": "{{ block.settings.overlay_text_on_image_promo_2 }}"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.blocks.content.settings.header-11.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "mega_image_3",
+          "label": "t:all.Image"
+        },
+        {
+          "type": "select",
+          "id": "image_3_aspect_ratio",
+          "label": "t:all.Shape",
+          "default": "square",
+          "options": [
+            {
+              "value": "natural",
+              "label": "t:all.Original"
+            },
+            {
+              "value": "square",
+              "label": "t:all.Square"
+            },
+            {
+              "value": "tall",
+              "label": "t:all.Tall"
+            },
+            {
+              "value": "wide",
+              "label": "t:all.Wide"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "mega_image_link_3",
+          "label": "t:all.Link"
+        },
+        {
+          "type": "text",
+          "id": "mega_image_header_3",
+          "label": "t:all.Heading"
+        },
+        {
+          "type": "text",
+          "id": "mega_image_subheader_3",
+          "label": "t:all.Subheading"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_promo_3_in_mobile_drawer",
+          "label": "t:all.Show_in_mobile_drawer",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "overlay_text_on_image_promo_3",
+          "label": "t:all.Overlay_text_on_image",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "overlay_text_color_promo_3",
+          "label": "t:all.Text",
+          "default": "#FFFFFF",
+          "visible_if": "{{ block.settings.overlay_text_on_image_promo_3 }}"
         }
       ]
     }

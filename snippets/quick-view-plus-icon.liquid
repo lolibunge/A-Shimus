@@ -1,0 +1,61 @@
+{% comment %}
+  Renders a plus icon button for quick view
+  
+  Accepts:
+    - product: The product object
+    - section: The section object (optional, will use default if not provided)
+{% endcomment %}
+
+<safe-load-scripts class="hidden">
+  <script src="{{ 'component-theme-modal.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="theme-modal"></script>
+</safe-load-scripts>
+
+{% liquid
+  assign quick_view_product_url = product.url
+%}
+
+<theme-modal 
+  data-is-quick-view 
+  {% if settings.quick_shop_button_display == 'over_image' %}data-focus-on-close="false"{% else %}data-focus-on-close="true"{% endif %} 
+  data-fetch-section 
+  data-product-url="{{ quick_view_product_url }}?variant={{ product.selected_or_first_available_variant.id }}" 
+  data-content-selector="[data-quick-view-product]" 
+  data-section-id="{% if section and section.id %}{{ section.id }}{% else %}quick-view-product{% endif %}"
+>
+  <button 
+    type="button"
+    aria-label="{{ 'products.general.view_options_for_product' | t: product: product.title }}" 
+    class="quick-view-plus-icon-btn"
+    data-modal-button
+    data-product-card-link
+  >
+    <svg width="32" height="32" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_154_1078)">
+        <path d="M15 25V17H7V15.5H15V7H16.5V15.5H25V17H16.5V25H15Z" fill="black"/>
+      </g>
+      <circle cx="16" cy="16" r="15.5" stroke="black"/>
+      <defs>
+        <clipPath id="clip0_154_1078">
+          <rect width="20" height="20" fill="white" transform="translate(6 6)"/>
+        </clipPath>
+      </defs>
+    </svg>
+  </button>
+
+  <template data-theme-modal-content>
+    <div 
+      data-modal-content 
+      class="theme-modal-content popup-shadow"
+    >
+      {% comment %} Close icon {% endcomment %}
+      <button type="button" data-close class="button-unstyled icon-fallback-text standalone-icon--wrapper" aria-label="{{ 'general.accessibility.dismiss.close' | t }}">
+        <span class="fallback-text">{{ 'general.accessibility.dismiss.close' | t }}</span>
+        {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+      </button>
+
+      <div class="theme-modal--inner">
+        {% comment %} Modal Content {% endcomment %}
+      </div>
+    </div>
+  </template>
+</theme-modal>

@@ -131,7 +131,12 @@
 {% if settings.header-border-color != 'rgba(0,0,0,0)' %}
   {% style %}
     .site-nav__dropdown.mega-menu-dropdown {
-      top: calc(100% + 1px);
+      top: calc(100% + 27px);
+    }
+    @media screen and (max-width: 1351px) {
+      .site-nav__dropdown.mega-menu-dropdown {
+        top: calc(100% + 13.5px);
+      }
     }
   {% endstyle %}
 {% endif %}

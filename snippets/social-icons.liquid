@@ -27,17 +27,11 @@
 
 <ul id="sm-icons" class="clearfix {{ wrapper_classes }}">
 
-  {% if settings.sm_facebook_link != blank %}
-    <li id="sm-facebook"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_facebook_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.facebook' | t }}">{% render 'theme-icon' with icon: 'facebook', iconClasses: icon_classes %}</a></li>
-  {% endif %}
 
   {% if settings.sm_x_link != blank %}
     <li id="sm-x"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_x_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.x' | t }}">{% render 'theme-icon' with icon: 'x', iconClasses: icon_classes %}</a></li>
   {% endif %}
 
-  {% if settings.sm_instagram_link != blank %}
-    <li id="sm-instagram"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_instagram_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.instagram' | t }}">{% render 'theme-icon' with icon: 'instagram', iconClasses: icon_classes %}</a></li>
-  {% endif %}
 
   {% if settings.sm_tumblr_link != blank %}
     <li id="sm-tumblr"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_tumblr_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.tumblr' | t }}">{% render 'theme-icon' with icon: 'tumblr', iconClasses: icon_classes %}</a></li>
@@ -47,8 +41,35 @@
     <li id="sm-pinterest"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_pinterest_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.pinterest' | t }}">{% render 'theme-icon' with icon: 'pinterest', iconClasses: icon_classes %}</a></li>
   {% endif %}
 
+
+  
+  {% if settings.sm_instagram_link != blank %}
+    <li id="sm-instagram"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_instagram_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.instagram' | t }}">
+      <img src="{{ 'icon instagram.png' | asset_url }}" alt="Instagram" width="26" height="27" />
+    {% comment %} {% render 'theme-icon' with icon: 'instagram', iconClasses: icon_classes %} {% endcomment %}
+      </a></li>
+  {% endif %}
+  
+  {% if settings.sm_linkedin_link != blank %}
+    <li id="sm-linkedin"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_linkedin_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.linkedin' | t }}">
+      <img src="{{ 'icon linkedin.png' | asset_url }}" alt="LinkedIn" width="20" height="19" />
+    {% comment %} {% render 'theme-icon' with icon: 'linkedin', iconClasses: icon_classes %} {% endcomment %}
+      </a></li>
+  {% endif %}
+
+    
+  {% if settings.sm_facebook_link != blank %}
+    <li id="sm-facebook"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_facebook_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.facebook' | t }}">
+     <img src="{{ 'icon facebook.png' | asset_url }}" alt="Facebook" width="22" height="22" />
+    {% comment %} {% render 'theme-icon' with icon: 'facebook', iconClasses: icon_classes %}</a></li> {% endcomment %}
+  {% endif %}
+
   {% if settings.sm_youtube_link != blank %}
-    <li id="sm-youtube"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_youtube_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.youtube' | t }}">{% render 'theme-icon' with icon: 'youtube', iconClasses: icon_classes %}</a></li>
+    <li id="sm-youtube"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_youtube_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.youtube' | t }}">
+      <img src="{{ 'icon youtube.png' | asset_url }}" alt="YouTube" width="25" height="18" />
+        
+    {% comment %} {% render 'theme-icon' with icon: 'youtube', iconClasses: icon_classes %} {% endcomment %}
+      </a></li>
   {% endif %}
 
   {% if settings.sm_vimeo_link != blank %}
@@ -65,10 +86,6 @@
 
   {% if settings.sm_houzz_link != blank %}
     <li id="sm-houzz"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_houzz_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.houzz' | t }}">{% render 'theme-icon' with icon: 'houzz', iconClasses: icon_classes %}</a></li>
-  {% endif %}
-
-  {% if settings.sm_linkedin_link != blank %}
-    <li id="sm-linkedin"><a class="standalone-icon--wrapper {{ icon_wrapper_classes }}" href="{{ settings.sm_linkedin_link }}" target="_blank" aria-label="{{ 'general.accessibility.social_media.linkedin' | t }}">{% render 'theme-icon' with icon: 'linkedin', iconClasses: icon_classes %}</a></li>
   {% endif %}
 
   {% if settings.sm_tiktok_link != blank %}

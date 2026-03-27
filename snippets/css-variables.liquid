@@ -136,9 +136,9 @@
 
   {% case settings.button_style %}
   {% when 'subtle' %}
-    --alt-btn-border-radius: 0.1rem;
+    --alt-btn-border-radius: 5px;
     {% when 'circle' %}
-    --alt-btn-border-radius: 1.875rem;
+    --alt-btn-border-radius: 50px;
     {% when 'rounded' %}
     --alt-btn-border-radius: 0.5rem;
   {% endcase %}
@@ -186,8 +186,7 @@
   --body-color-transparent50: color-mix(in srgb, var(--body-color), transparent 50%);
   --body-color-transparent90: color-mix(in srgb, var(--body-color), transparent 10%);
 
-  --body-overlay-color: color-mix(in srgb, var(--body-color-darken10), transparent 30%);
-
+  --body-overlay-color: #000000B2;
   --body-secondary-color: rgba({{ settings.color_body_bg_secondary.rgba }});
   --body-secondary-color-transparent00: color-mix(in srgb, var(--body-secondary-color), transparent 100%);
   --body-secondary-color-darken05: color-mix(in srgb, var(--body-secondary-color), transparent 95%);

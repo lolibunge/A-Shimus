@@ -18842,6 +18842,8 @@ if (!customElements.get('product-media')) {
         autoHeight: this.imageCropped == 'true' ? false : true,
         allowTouchMove: true,
         speed: this.mediaType == 'thumbnails' ? 0 : 600,
+        touchStartPreventDefault: false,
+        touchMoveStopPropagation: true,
         a11y: {
           enabled: true,
           scrollOnFocus: true,
@@ -18852,7 +18854,8 @@ if (!customElements.get('product-media')) {
         },
         pagination: {
           el: this.mediaType == 'paginated' ? this.mainMedia.querySelector(`.swiper-pagination-${this.instanceId}-${this.sectionId}`) : '',
-          type: 'fraction'
+          type: 'bullets',
+          clickable: true
         },
         navigation: {
           nextEl: this.mediaType == 'paginated' ? this.mainMedia.querySelector(`.arrow-next-${this.instanceId}-${this.sectionId}`) : this.mediaType == 'thumbnails' ? this.mainMedia.querySelector(`.arrow-next-${this.instanceId}-${this.sectionId}`) : '',
@@ -18937,6 +18940,8 @@ if (!customElements.get('product-media')) {
         direction: this.thumbnailPosition === 'below' ? 'horizontal' : 'vertical',
         slidesPerView: this.thumbnailPosition === 'below' ? 4.35 : this.slidesPerViewVertical,
         freeMode: true, // Enable freeMode for a natural scroll effect
+        touchStartPreventDefault: false,
+        touchMoveStopPropagation: true,
         breakpoints: {
           768: {
             spaceBetween: 15,

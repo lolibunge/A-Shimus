@@ -1,0 +1,201 @@
+.footer-wrapper .footer-main .footer-main--inner .newsletter-footer {
+  gap: 24px;
+  min-width: 300px;
+  flex: 1 1 444px;
+  max-width: 444px;
+  max-height: fit-content;
+}
+
+.newsletter-footer .newsletter-footer--wrapper .input-group {
+  flex-direction: row;
+  gap: 0;
+  border: 1px solid #000000;
+  height: 45px;
+}
+
+.newsletter-footer .newsletter-footer--wrapper .input-group .footer-email-submit {
+  padding: 12px 20px;
+  width: 185px;
+  font-family: Grosa, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  border-radius: 0;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+}
+
+.newsletter-footer .footer-address a {
+  font-family: Grosa, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0;
+  text-decoration-skip-ink: auto;
+}
+
+input:not(.alt-input):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="submit"]):not([type="hidden"]):not(.btn) {
+  border-color: #000000;
+}
+
+.bottom--footer {
+  border-top: 1px solid #d5d5d5;
+}
+
+.bottom--footer-row {
+  padding: 16px 0;
+  font-family: Grosa;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+.footer-wrapper .footer-bottom .footer-bottom--inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  max-width: 1594px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer--dropdown-icon-plus,
+.footer--dropdown-icon-minus {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .newsletter-footer {
+    width: 300px;
+  }
+
+  .newsletter-footer .newsletter-footer--wrapper .input-group .footer-email-submit {
+    padding: 10px;
+    width: 195px;
+  }
+}
+
+
+.newsletter-footer .footer-address {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+.newsletter-footer--logo {
+  width: 200px;
+  display: flex;
+}
+
+.newsletter-footer--logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .footer-wrapper .footer-bottom.wrapper-spacing--h {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .bottom--footer-row {
+    display: none !important;
+  }
+
+  .footer-main.wrapper-spacing--h {
+    padding: 0;
+  }
+
+  .newsletter-footer--logo {
+    width: 150px;
+  }
+
+  .footer-wrapper .footer-main .footer-main--inner .newsletter-footer {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .footer-wrapper .footer-main .footer-main--inner {
+    padding: 24px 24px 16px 24px !important;
+  }
+
+  .newsletter-footer .footer-address {
+    display: none;
+  }
+
+  .footer-wrapper .footer-main .footer-main--inner>* {
+    align-items: flex-start;
+  }
+
+  .footer-wrapper .footer-main .footer-main--inner #newsletter-footer_form {
+    padding: 0;
+  }
+
+  .newsletter-footer--wrapper .rte {
+    text-align: left;
+  }
+
+  .links-footer {
+    border-bottom: 1px solid #d5d5d5;
+    position: relative;
+    gap: 20px !important
+  }
+
+  .footer--dropdown-icon-plus,
+  .footer--dropdown-icon-minus {
+    display: initial;
+    pointer-events: cursor;
+    max-height: 200px;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+  }
+
+  .footer--dropdown-icon-plus.close,
+  .footer--dropdown-icon-minus.close {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  .links-footer ul {
+    align-items: flex-start;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  .links-footer ul.open {
+    pointer-events: initial;
+    max-height: 500px;
+    opacity: 1;
+    padding-bottom: 20px;
+  }
+
+  .social-media-footer ul li a {
+    justify-content: flex-start;
+  }
+
+  .bottom--footer {
+    align-items: self-start;
+    gap: 0px;
+    padding: 16px 0;
+  }
+
+  .bottom--footer---links li {
+    padding: 0;
+  }
+}

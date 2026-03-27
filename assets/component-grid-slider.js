@@ -9608,14 +9608,19 @@ class GridSlider extends HTMLElement {
     }
     
     // Set slides per view based on peek setting
-    const desktopSlides = parseInt(this.dataset.slidesPerViewDesktop, 10) || 4;
-    const mobileSlides = parseInt(this.dataset.slidesPerViewMobile, 10) || 2;
+    // Use parseFloat to support decimal values (e.g., 2.9, 1.4)
+    const desktopSlides = parseFloat(this.dataset.slidesPerViewDesktop) || 4;
+    const mobileSlides = this.dataset.slidesPerViewMobile ? parseFloat(this.dataset.slidesPerViewMobile) : 2;
     
     if (this.peekEnabled) {
-      this.slidesPerViewDesktop = desktopSlides + 0.5;
+      // When peek is enabled, add 0.5 to show preview of next slide
+      this.slidesPerViewDesktop = desktopSlides;
       this.slidesPerViewTablet = 3.5;
-      this.slidesPerViewMobile = mobileSlides === 1 ? mobileSlides + 0.08 : mobileSlides - 1 + 0.5;
+      // For mobile, if value is already a decimal (like 2.9), use it directly
+      // Otherwise, apply the old logic for integer values
+        this.slidesPerViewMobile = mobileSlides;
     } else {
+      // When peek is disabled, use the value directly (supports decimals)
       this.slidesPerViewDesktop = desktopSlides;
       this.slidesPerViewTablet = 3; // Default tablet to 3 when peek is disabled
       this.slidesPerViewMobile = mobileSlides;
@@ -9716,6 +9721,11 @@ class GridSlider extends HTMLElement {
     const prevEl = gridSliderWrapper?.querySelector('.swiper-button--prev');
     const gridSpacingMobile = parseInt(this.dataset.gridSpacingMobile, 10) || 15;
     const gridSpacingDesktop = parseInt(this.dataset.gridSpacingDesktop, 10) || 30;
+    
+    // Find the container with position-btn-layout class
+    const positionContainer = gridSliderWrapper?.closest('.homepage-indiv-section-wrapper');
+    // Check if the container has position-btn-layout__above class (navigation layout is 'above')
+    const hasAboveLayout = positionContainer?.classList.contains('position-btn-layout__above');
 
     this.swiperInstance = new Swiper(this, {
       modules: [A11y, Navigation, Scrollbar],
@@ -9730,8 +9740,28 @@ class GridSlider extends HTMLElement {
           
           if (this.isLocked) {
             gridSliderWrapper.classList.add('swiper-disabled');
+            // Remove position-btn-layout__above class when navigation is hidden
+            if (positionContainer && hasAboveLayout) {
+              positionContainer.classList.remove('position-btn-layout__above');
+            }
           } else {
             gridSliderWrapper.classList.remove('swiper-disabled');
+            // Add position-btn-layout__above class when navigation is visible
+            if (positionContainer && hasAboveLayout) {
+              positionContainer.classList.add('position-btn-layout__above');
+            }
+          }
+        },
+        lock: function () {
+          // Navigation is hidden, remove the margin class
+          if (positionContainer && hasAboveLayout) {
+            positionContainer.classList.remove('position-btn-layout__above');
+          }
+        },
+        unlock: function () {
+          // Navigation is visible, add the margin class
+          if (positionContainer && hasAboveLayout) {
+            positionContainer.classList.add('position-btn-layout__above');
           }
         }
       },

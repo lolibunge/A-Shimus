@@ -45,14 +45,14 @@
           <span class="label-font" data-collection-title>{{ breadcrumb_collection.title }}</span>
         </a>
       </span>
-    {% else %}
+    {% comment %} {% else %} {% endcomment %}
       {% comment %} Placeholder for JavaScript to update {% endcomment %}
-      <span class="breadcrumb-divider" aria-hidden="true" data-collection-divider>/</span>
-      <span class="breadcrumb-item" data-collection-item style="display: none;">
+      {% comment %}<span class="breadcrumb-divider" aria-hidden="true" data-collection-divider>/</span>
+      <span class="breadcrumb-item" data-collection-item>
         <a class="animated-link--item" href="#" data-collection-link>
           <span class="label-font" data-collection-title></span>
         </a>
-      </span>
+      </span> {% endcomment %}
     {% endif %}
     <span class="breadcrumb-divider" aria-hidden="true">/</span>
     <span class="breadcrumb-item">
@@ -94,8 +94,6 @@
     <span class="breadcrumb-divider" aria-hidden="true">/</span>
 {% endcomment %}
   {% else %}
-
     <span class="breadcrumb-divider" aria-hidden="true">/</span>
-
   {% endif %}
 </nav>

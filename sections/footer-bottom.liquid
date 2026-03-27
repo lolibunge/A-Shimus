@@ -5,10 +5,10 @@
 {% endif %}
 
 <div
-  class="footer-bottom flex-full {{ section.settings.color_scheme }} color-scheme--{{ section.settings.color_scheme }} site-footer{% if template contains 'product' %}{% if settings.related_products_enable %}{% else %} product-sticker-stop{% endif %}{% endif %} footer-alignment--{{ alignment }}"
+  class="footer-bottom wrapper-spacing--h flex-full {{ section.settings.color_scheme }} color-scheme--{{ section.settings.color_scheme }} site-footer{% if template contains 'product' %}{% if settings.related_products_enable %}{% else %} product-sticker-stop{% endif %}{% endif %} footer-alignment--{{ alignment }}"
   data-wetheme-section-type="footer-bottom" data-wetheme-section-id="{{ section.id }}"
 >
-	<div class="footer-bottom--inner wrapper-spacing--h">
+	<div class="footer-bottom--inner">
     <div class="bottom--footer">
       {% if section.settings.show_methods_of_payment or section.settings.show_locale_selector == true or section.settings.show_currency_selector == true or alignment == 'left' %}
         <div class="bottom--footer-row{% if section.settings.show_methods_of_payment %} bottom--footer--payment-methods{% endif %}">
@@ -21,7 +21,7 @@
             {%- if alignment == 'left' -%}
               <div class="bottom--footer---copyright copyright--desktop">
                 <ul class="bottom--footer---links">
-                  <li class="nav-link-animated"><a href="{{ routes.root_url }}"><span class="animated-underline">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name }}</span></a></li>
+                  <li class="nav-link-animated"><a href="{{ routes.root_url }}"><span class="animated-underline">{{ section.settings.footer_text }}</span></a></li>
                   <li class="nav-link-animated--custom">{{ powered_by_link | replace: '<a', '<a class="animated-link--item"' }}</li>
                 </ul>
               </div>
@@ -44,7 +44,7 @@
 
       <div class="bottom--footer---copyright copyright--mobile">
         <ul class="bottom--footer---links">
-          <li class="nav-link-animated"><a href="{{ routes.root_url }}"><span class="animated-underline">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name }}</span></a></li><!--
+          <li class="nav-link-animated"><a href="{{ routes.root_url }}"><span class="animated-underline">{{ section.settings.footer_text }}</span></a></li><!--
           --><li class="nav-link-animated--custom">{{ powered_by_link | replace: '<a', '<a class="animated-link--item"' }}</li>
         </ul>
       </div>

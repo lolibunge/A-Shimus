@@ -15,6 +15,7 @@
     * allow_stretch: allow upscaling the image to fit container (disabled by default)
     * loading: lazy loading of the image (enabled by default)
     * adaptive_ratio: aspect ratio of the image (e.g. 56%)
+    * manual: manual image positioning (disabled by default)
 
     Usage:
     {% render 'responsive-image' with product.image, class: 'product-image', alt: 'A simple product', default_size: '300x', props: 'data-id="1"' %}
@@ -67,8 +68,10 @@
 
 <img
   loading="{{ loading }}"
+  {% unless manual %}
   class="theme-img {{ class }} js"
-  style="{% unless allow_stretch %}max-width: {{ responsive-image.width }}px; max-height: {{ responsive-image.height }}px; {% endunless %}{{ styles }} {{ focal_point_styles }}"
+    style="{% unless allow_stretch %}max-width: {{ responsive-image.width }}px; max-height: {{ responsive-image.height }}px; {% endunless %}{{ styles }} {{ focal_point_styles }}"
+  {% endunless %}
   {% if alt %}
     alt="{{ alt | escape }}"
   {% else %}

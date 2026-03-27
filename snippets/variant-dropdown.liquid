@@ -31,7 +31,7 @@
           <script src="{{ 'component-size-guide-link.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="size-guide-link"></script>
         </safe-load-scripts>
 
-        <size-guide-link id="size-guide" class="text-link-animated">
+        <size-guide-link id="size-guide">
           <a data-size-guide-link id="size-guide-link" tabindex="0" href="{{ size_guide_page.url }}">{{ size_guide_label | default: size_guide_page.title }}</a>
         </size-guide-link>
       {%- endif -%}

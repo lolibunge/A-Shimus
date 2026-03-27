@@ -339,15 +339,15 @@
       {% comment %} ==== PAGINATION ==== {% endcomment %}
       {% if has_pagination and final_media_count > 1 %}
         <div class="media-slider-navigation arrows input-radius-clip">
-          <a href="#" class="flex-prev arrow-prev-{{ id }}-{{ section_id }} standalone-icon--wrapper">
+         {% comment %} <a href="#" class="flex-prev arrow-prev-{{ id }}-{{ section_id }} standalone-icon--wrapper">
             {% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
-          </a>
+          </a> {% endcomment %}
 
           <div class="swiper-pagination-{{ id }}-{{ section_id }}"></div>
 
-          <a href="#" class="flex-next arrow-next-{{ id }}-{{ section_id }} standalone-icon--wrapper">
+          {% comment %} <a href="#" class="flex-next arrow-next-{{ id }}-{{ section_id }} standalone-icon--wrapper">
             {% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
-          </a>
+          </a> {% endcomment %}
         </div>
       {% endif %}
 

@@ -1,5 +1,6 @@
-{%- if section.blocks.size > 0 -%}
+{{ 'section-announcements-bar.css' | asset_url | stylesheet_tag }}
 
+{%- if section.blocks.size > 0 -%}
   {%- liquid
     assign social_icons = false
     if settings.sm_facebook_link != blank or settings.sm_x_link != blank or settings.sm_youtube_link != blank or settings.sm_flickr_link != blank or settings.sm_pinterest_link != blank or settings.sm_instagram_link != blank or settings.sm_tumblr_link != blank or settings.sm_pinterest_link != blank or settings.sm_youtube_link != blank or settings.sm_vimeo_link != blank or settings.sm_flickr_link != blank or settings.sm_snapchat_link != blank or settings.sm_houzz_link != blank or settings.sm_linkedin_link != blank or settings.sm_tiktok_link != blank
@@ -28,15 +29,26 @@
     endif
   -%}
 
-  <div class="announcement_bar" data-wetheme-section-type="announcement-bar" data-wetheme-section-id="{{ section.id }}" data-social-media-enabled="{{ enable_social_icons }}">
-    {% render 'animated-background-text-colors' with 
-      section_blocks: section.blocks, 
-      announcement_bar_layout: announcement_bar_layout, 
-      enable_social_icons: enable_social_icons  
+  <div
+    class="announcement_bar"
+    data-wetheme-section-type="announcement-bar"
+    data-wetheme-section-id="{{ section.id }}"
+    data-social-media-enabled="{{ enable_social_icons }}"
+  >
+    {%
+      render 'animated-background-text-colors' with
+      section_blocks: section.blocks,
+      announcement_bar_layout: announcement_bar_layout,
+      enable_social_icons: enable_social_icons
     %}
+    <svg class="announcement_bar_close_x" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.731617 0.125526C0.56425 -0.0418419 0.292893 -0.0418419 0.125526 0.125526C-0.0418419 0.292893 -0.0418419 0.56425 0.125526 0.731617L5.39391 6L0.125526 11.2684C-0.0418419 11.4358 -0.0418419 11.7071 0.125526 11.8745C0.292893 12.0418 0.56425 12.0418 0.731617 11.8745L6 6.60609L11.2684 11.8745C11.4358 12.0418 11.7071 12.0418 11.8745 11.8745C12.0418 11.7071 12.0418 11.4358 11.8745 11.2684L6.60609 6L11.8745 0.731617C12.0418 0.56425 12.0418 0.292893 11.8745 0.125526C11.7071 -0.0418419 11.4358 -0.0418419 11.2684 0.125526L6 5.39391L0.731617 0.125526Z" fill="white"/>
+    </svg>
   </div>
-  
 {%- endif -%}
+
+
+<script defer src="{{ 'section-announcements-bar.js' | asset_url }}"></script>
 
 {% schema %}
 {
@@ -76,6 +88,46 @@
           "id": "announcement_text_color",
           "label": "t:all.Text",
           "default": "#262428"
+        },
+        {
+          "type": "select",
+          "id": "announcement_alignment",
+          "label": "Text alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "announcement_alignment_mobile",
+          "label": "Text alignment (mobile)",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
         }
       ]
     }
@@ -112,9 +164,7 @@
     }
   ],
   "enabled_on": {
-    "groups": [
-      "header"
-    ]
+    "groups": ["header"]
   }
 }
 {% endschema %}

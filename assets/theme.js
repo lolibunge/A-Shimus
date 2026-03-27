@@ -1294,16 +1294,36 @@ class Menu {
     });
     this.mainLinks.forEach(el => {
       if (el.classList.contains('mega-menu')) {
-        // Delay the hide of the mega menu dropdown
+        const link = el.querySelector('a.site-nav__link');
+        if (link) {
+          link.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            evt.stopPropagation();
+            const isOpen = el.classList.contains(this.activeClass);
+            const siblings = Array.from(el.parentElement.children).filter(sibling => sibling !== el);
+            this.hideDropdown(siblings);
+            if (isOpen) {
+              this.hideDropdown(el);
+            } else {
+              this.showDropdown(el);
+            }
+          });
+        }
         el.addEventListener('mouseleave', () => this.scheduleHideDropdown(el));
       } else {
-        // Close the dropdown immediately
         el.addEventListener('mouseleave', () => this.hideDropdown(el));
       }
     });
     document.querySelector('.site-header').addEventListener('mouseleave', () => {
-      // Replace direct hideDropdown calls with scheduleHideDropdown
       this.scheduleHideDropdown();
+    });
+    document.addEventListener('click', (evt) => {
+      const clickedElement = evt.target;
+      const isClickInsideMegaMenu = clickedElement.closest('.mega-menu-dropdown') || clickedElement.closest('.site-nav--has-dropdown.mega-menu');
+      const isClickOnMegaMenuLink = clickedElement.closest('.site-nav--has-dropdown.mega-menu a.site-nav__link');
+      if (!isClickInsideMegaMenu && !isClickOnMegaMenuLink) {
+        this.hideDropdown();
+      }
     });
     this.subMenus.forEach(el => {
       if (el.classList.contains('mega-menu-dropdown')) {

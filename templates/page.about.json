@@ -81,20 +81,20 @@
       "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/model-in-neutral-colors-by-window_cbfea284-0566-47ee-9223-dcc40b66688a.jpg",
+        "layout": "left",
         "title": "About Us",
         "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-        "button_label": "",
+        "text_alignment": "center",
+        "text_overlapping_image": false,
         "button_link": "",
+        "button_label": "",
         "buttons_style": "filled",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff",
+        "section-width": "full",
         "section_padding_top": 70,
         "section_padding_bottom": 0,
-        "text_overlapping_image": false,
-        "section-width": "full",
-        "layout": "left",
-        "text_alignment": "center",
         "colors": "white"
       }
     },
@@ -102,20 +102,20 @@
       "type": "image-with-text",
       "settings": {
         "image": "shopify://shop_images/womens-fall-fashion-in-autumn-landscape_2b64f4c9-574c-4a93-87ad-cb9eaca2ebcf.jpg",
+        "layout": "right",
         "title": "Share brand or product details",
         "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-        "button_label": "",
+        "text_alignment": "center",
+        "text_overlapping_image": false,
         "button_link": "",
+        "button_label": "",
         "buttons_style": "filled",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff",
+        "section-width": "full",
         "section_padding_top": 70,
         "section_padding_bottom": 0,
-        "text_overlapping_image": false,
-        "section-width": "full",
-        "layout": "right",
-        "text_alignment": "center",
         "colors": "white"
       }
     },
@@ -212,10 +212,7 @@
       "settings": {
         "title": "Frequently asked questions",
         "description": "",
-        "faq_icon": "plus_minus",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "colors": "white"
+        "faq_icon": "plus_minus"
       }
     },
     "text_adverts_wtdmwR": {
@@ -264,50 +261,50 @@
           "type": "image",
           "settings": {
             "title": "Make a great \nfirst impression",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
             "text": "Add images and text to give focus to your chosen product, collection, or blog post",
-            "first_button_label": "Shop now",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
             "first_button_link": "",
-            "second_button_label": "Learn more",
+            "first_button_label": "Shop now",
             "second_button_link": "",
+            "second_button_label": "Learn more",
             "buttons_style": "filled",
             "override_button_colors": false,
             "button-background": "#e68819",
             "button-text": "#ffffff",
             "image": "shopify://shop_images/clothes-on-a-rack-in-a-clothing-store.jpg",
-            "desktop-caption-heading-size": 60,
-            "desktop-caption-body-text-size": 24,
             "text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
             "mobile_text_position": "center_left",
+            "caption-text": "#ffffff",
             "image_overlay": "#242424",
-            "image_overlay_opacity": 0,
-            "caption-text": "#ffffff"
+            "image_overlay_opacity": 0
           }
         },
         "image_NgjwMW": {
           "type": "image",
           "settings": {
             "title": "Promote your \ntop earners",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
             "text": "Showcase key products or collections to maximise your profits",
-            "first_button_label": "Shop now",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
             "first_button_link": "",
-            "second_button_label": "Learn more",
+            "first_button_label": "Shop now",
             "second_button_link": "",
+            "second_button_label": "Learn more",
             "buttons_style": "filled",
             "override_button_colors": false,
             "button-background": "#e68819",
             "button-text": "#ffffff",
             "image": "shopify://shop_images/photo-of-people-shopping-in-a-clothing-store.jpg",
-            "desktop-caption-heading-size": 60,
-            "desktop-caption-body-text-size": 24,
             "text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
             "mobile_text_position": "center_left",
+            "caption-text": "#ffffff",
             "image_overlay": "#242424",
-            "image_overlay_opacity": 0,
-            "caption-text": "#ffffff"
+            "image_overlay_opacity": 0
           }
         }
       },
@@ -316,12 +313,10 @@
         "image_NgjwMW"
       ],
       "settings": {
-        "slide_transition_delay": 5,
-        "slide_navigation_style": "dots",
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
         "desktop_height": "medium",
-        "mobile_height": "full_screen"
+        "mobile_height": "full_screen",
+        "slide_navigation_style": "dots",
+        "slide_transition_delay": 5
       }
     },
     "gallery_BEbQRt": {
@@ -335,12 +330,12 @@
             "subheading": "Subheading",
             "title": "Heading",
             "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_font_color": "#ffffff",
-            "overlay_color": "#242424",
             "override_button_colors": false,
             "button_background_color": "#e68819",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
           }
         },
         "image_r4N3Xn": {
@@ -351,12 +346,12 @@
             "subheading": "Subheading",
             "title": "Heading",
             "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_font_color": "#ffffff",
-            "overlay_color": "#242424",
             "override_button_colors": false,
             "button_background_color": "#e68819",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
           }
         },
         "image_gXa6pH": {
@@ -367,12 +362,12 @@
             "subheading": "Subheading",
             "title": "Heading",
             "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_font_color": "#ffffff",
-            "overlay_color": "#242424",
             "override_button_colors": false,
             "button_background_color": "#e68819",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#ffffff",
+            "show-gradient-overlay": false,
+            "overlay_color": "#242424",
+            "overlay_font_color": "#ffffff"
           }
         }
       },
@@ -384,14 +379,14 @@
       "settings": {
         "title": "",
         "description": "",
-        "grid_image_size": "square",
         "content-position": "overlay",
+        "full-width": false,
+        "grid_image_size": "square",
         "buttons_style": "filled",
+        "section-width": "content",
         "section_padding_top": 60,
         "section_padding_bottom": 60,
-        "section-width": "content",
         "remove-spacing": false,
-        "full-width": false,
         "colors": "white"
       }
     }

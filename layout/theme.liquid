@@ -60,6 +60,19 @@
       font-display: auto;
       src: url("{{ 'SainteColombe-Regular.otf' | file_url }}") format("opentype");
     }
+
+    @font-face {
+      font-family: "Grosa";
+      font-display: auto;
+      src: url("{{ 'Inter_18pt-Regular.ttf' | asset_url }}") format("opentype");
+    }
+
+    @font-face {
+      font-family: "IvyPresto Text";
+      font-display: auto;
+      src: url("{{ 'Cormorant-Medium.ttf' | asset_url }}") format("opentype");
+    }
+
     *,
     *::before,
     *::after {
@@ -81,7 +94,7 @@
       grid-template-rows: auto auto 1fr auto;
       grid-template-columns: 100%;
       overflow-x: hidden;
-      font-family: "acumin-pro", "SainteColombe", sans-serif;
+      font-family: {{ settings.type_base_font.family }}, sans-serif;
     }
 
     h1, h2 {
@@ -142,9 +155,7 @@
 	</script>
 
   {% if template contains 'customers' %}
-    {% # theme-check-disable ParserBlockingScriptTag %}
-    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-    {% # theme-check-enable ParserBlockingScriptTag %}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {% endif %}
 
   {% if template.name == 'article' %}
@@ -205,8 +216,8 @@
     {% render 'cart-drawer' %}
   {% endif %}
 
-  {% comment %} Size guide drawer - replaces right-drawer for size guides {% endcomment %}
-  {% render 'size-guide-drawer' %}
+  {% comment %} Size guide modal - independent modal for size guides {% endcomment %}
+  {% render 'size-guide-modal' %}
 
   <div id="DrawerOverlay" class="drawer-overlay"></div>
   <div id="ThemeModal" class="theme-modal width--modal"></div>
@@ -236,13 +247,17 @@
       {% endunless %}
     {% endif %}
 
-    {% if template == 'index' %}
-      <div id="MainContent" class="homepage-wrapper">
-    {% elsif template == 'cart' or template contains 'customers/' %}
-      <div id="MainContent" class="main-content page-main--wrapper">
-    {% else %}
-      <div id="MainContent" class="wrapper main-content page-main--wrapper">
-    {% endif %}
+    {% liquid
+      assign main_content_class = ''
+      if template == 'index'
+        assign main_content_class = 'homepage-wrapper'
+      elsif template == 'cart' or template contains 'customers/'
+        assign main_content_class = 'main-content page-main--wrapper'
+      else
+        assign main_content_class = 'wrapper main-content page-main--wrapper'
+      endif
+    %}
+    <div id="MainContent" class="{{ main_content_class }}">
 
         {{ content_for_layout }}
       </div>
@@ -252,7 +267,7 @@
     {% sections 'footer-group' %}
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
 
   <script defer type="module" src="{{ 'theme.min.js' | asset_url }}"></script>
   <script defer src="{{ 'SafeLoadScripts.js' | asset_url }}"></script>
@@ -404,17 +419,17 @@
 });
 // Wishlist 動作コード END
 
-// Inicializar cada swiper de producto individualmente
+  // Initialize each product swiper individually
 function initProductSwipers() {
   const productSwipers = document.querySelectorAll('.grid-view-item-image-swiper');
   
   productSwipers.forEach((swiperEl) => {
-    // Verificar si ya fue inicializado
+    // Check if it has already been initialized
     if (swiperEl.swiper) return;
     
     const imageCount = parseInt(swiperEl.dataset.imageCount) || 0;
     
-    // Solo inicializar swiper si hay más de 1 imagen
+    // Initialize the swiper only if there is more than 1 image
     if (imageCount > 1) {
       const pagination = swiperEl.querySelector('.grid-view-item-image-pagination');
       
@@ -441,19 +456,19 @@ function initProductSwipers() {
         },
         on: {
           touchStart: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
           },
           touchMove: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
           },
           touchEnd: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
@@ -461,46 +476,46 @@ function initProductSwipers() {
         },
       });
       
-      // Forzar actualización de paginación después de inicialización
+      // Force pagination update after initialization
       if (productSwiper.pagination) {
         productSwiper.pagination.render();
         productSwiper.pagination.update();
       }
 
-      // Forzar object-fit: contain en todas las imágenes del swiper (sobrescribe estilos inline)
+      // Force object-fit: cover on all swiper images (overrides inline styles)
       const images = swiperEl.querySelectorAll('img');
       images.forEach((img) => {
-        // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
-        img.style.setProperty('object-fit', 'contain', 'important');
-        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        // Force cover to override inline styles (especially in Safari)
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('-webkit-object-fit', 'cover', 'important');
         img.style.setProperty('object-position', 'center', 'important');
         img.style.setProperty('-webkit-object-position', 'center', 'important');
         img.style.setProperty('max-width', '100%', 'important');
         img.style.setProperty('max-height', '100%', 'important');
       });
 
-      // También forzar cuando las imágenes se carguen
+      // Also apply when images finish loading
       images.forEach((img) => {
         if (img.complete) {
-          img.style.setProperty('object-fit', 'contain', 'important');
-          img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          img.style.setProperty('object-fit', 'cover', 'important');
+          img.style.setProperty('-webkit-object-fit', 'cover', 'important');
         } else {
           img.addEventListener('load', function() {
-            this.style.setProperty('object-fit', 'contain', 'important');
-            this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+            this.style.setProperty('object-fit', 'cover', 'important');
+            this.style.setProperty('-webkit-object-fit', 'cover', 'important');
             this.style.setProperty('object-position', 'center', 'important');
             this.style.setProperty('-webkit-object-position', 'center', 'important');
           }, { once: true });
         }
       });
 
-      // Prevenir propagación de eventos touch al swiper principal (método adicional)
+      // Prevent touch event propagation to the main swiper (additional method)
       const wrapper = swiperEl.querySelector('.swiper-wrapper');
       let touchStartX = 0;
       let touchStartY = 0;
       let isHorizontalSwipe = false;
       
-      // Encontrar el swiper principal (grid-slider) más cercano
+      // Find the nearest main swiper (grid-slider)
       const findParentGridSlider = (element) => {
         let parent = element.closest('grid-slider');
         if (!parent) {
@@ -517,7 +532,7 @@ function initProductSwipers() {
           touchStartY = e.touches[0].clientY;
           isHorizontalSwipe = false;
           
-          // Desactivar temporalmente el swiper principal
+          // Temporarily disable the main swiper
           if (parentGridSlider && parentGridSlider.swiper) {
             parentGridSlider.swiper.allowTouchMove = false;
           }
@@ -533,10 +548,10 @@ function initProductSwipers() {
           const diffX = Math.abs(touchCurrentX - touchStartX);
           const diffY = Math.abs(touchCurrentY - touchStartY);
           
-          // Determinar si es un swipe horizontal (más horizontal que vertical)
+          // Determine if it is a horizontal swipe (more horizontal than vertical)
           if (diffX > diffY && diffX > 10) {
             isHorizontalSwipe = true;
-            // Mantener desactivado el swiper principal durante swipe horizontal
+            // Keep the main swiper disabled during horizontal swipes
             if (parentGridSlider && parentGridSlider.swiper) {
               parentGridSlider.swiper.allowTouchMove = false;
             }
@@ -546,7 +561,7 @@ function initProductSwipers() {
         }, { passive: true, capture: true });
         
         wrapper.addEventListener('touchend', (e) => {
-          // Reactivar el swiper principal después de un delay
+          // Re-enable the main swiper after a short delay
           setTimeout(() => {
             if (parentGridSlider && parentGridSlider.swiper) {
               parentGridSlider.swiper.allowTouchMove = true;
@@ -560,7 +575,7 @@ function initProductSwipers() {
         }, { passive: true, capture: true });
       }
       
-      // También prevenir en el contenedor principal
+      // Also prevent in the main container
       swiperEl.addEventListener('touchstart', (e) => {
         e.stopPropagation();
       }, { passive: true, capture: true });
@@ -576,29 +591,29 @@ function initProductSwipers() {
   });
 }
 
-// Función para forzar object-fit: contain en todas las imágenes de productos
+// Function to force object-fit: cover on all product images
 function forceContainOnProductImages() {
   const productImageContainers = document.querySelectorAll('.product-card-image-container, .grid-view-item-image-swiper');
   
   productImageContainers.forEach((container) => {
     const images = container.querySelectorAll('img');
     images.forEach((img) => {
-      // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
-      img.style.setProperty('object-fit', 'contain', 'important');
-      img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      // Force cover to override inline styles (especially in Safari)
+      img.style.setProperty('object-fit', 'cover', 'important');
+      img.style.setProperty('-webkit-object-fit', 'cover', 'important');
       img.style.setProperty('object-position', 'center', 'important');
       img.style.setProperty('-webkit-object-position', 'center', 'important');
       img.style.setProperty('max-width', '100%', 'important');
       img.style.setProperty('max-height', '100%', 'important');
       
-      // También forzar cuando la imagen se cargue
+      // Also apply when the image loads
       if (img.complete) {
-        img.style.setProperty('object-fit', 'contain', 'important');
-        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('-webkit-object-fit', 'cover', 'important');
       } else {
         img.addEventListener('load', function() {
-          this.style.setProperty('object-fit', 'contain', 'important');
-          this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          this.style.setProperty('object-fit', 'cover', 'important');
+          this.style.setProperty('-webkit-object-fit', 'cover', 'important');
           this.style.setProperty('object-position', 'center', 'important');
           this.style.setProperty('-webkit-object-position', 'center', 'important');
         }, { once: true });
@@ -607,7 +622,7 @@ function forceContainOnProductImages() {
   });
 }
 
-// Inicializar al cargar la página
+// Initialize when the page is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     initProductSwipers();
@@ -618,7 +633,7 @@ if (document.readyState === 'loading') {
   forceContainOnProductImages();
 }
 
-// Reinicializar después de cargas dinámicas
+// Re-initialize after dynamic loads
 setTimeout(() => {
   initProductSwipers();
   forceContainOnProductImages();
@@ -628,16 +643,16 @@ setTimeout(() => {
   forceContainOnProductImages();
 }, 1000);
 
-// Ejecutar también después de que todo se cargue
+// Run also after everything has loaded
 window.addEventListener('load', forceContainOnProductImages);
 
-// Observer para imágenes que se agreguen dinámicamente
+// Observer for images added dynamically
 if (typeof MutationObserver !== 'undefined') {
   const imageObserver = new MutationObserver(() => {
     forceContainOnProductImages();
   });
 
-  // Observar cambios en el DOM
+  // Observe DOM changes
   if (document.body) {
     imageObserver.observe(document.body, {
       childList: true,
@@ -809,20 +824,20 @@ if (typeof MutationObserver !== 'undefined') {
         const popupTriggers = document.querySelectorAll('a[href="#pop-news"]');
         
         popupTriggers.forEach(trigger => {
-            trigger.addEventListener('click', function(e) {
+                    trigger.addEventListener('click', function(e) {
                 e.preventDefault();
                 if (popup) {
-                    // Agregar las clases slide-up y visible al popup
+                    // Add the slide-up and visible classes to the popup
                     popup.classList.add('slide-up', 'visible');
                 }
                 if (slideUp) {
-                    // Cambiar visibility a visible en el div slide-up
+                    // Change visibility to visible on the slide-up div
                     slideUp.style.visibility = 'visible';
                 }
             });
         });
         
-        // Opcional: Para cerrar el popup
+        // Optional: close the popup
         const closeButton = popup?.querySelector('[data-button-aria-label="Close"]');
         if (closeButton) {
             closeButton.addEventListener('click', function() {
@@ -904,17 +919,17 @@ if (typeof MutationObserver !== 'undefined') {
 });
 // Wishlist 動作コード END
 
-// Inicializar cada swiper de producto individualmente
+// Initialize each product swiper individually
 function initProductSwipers() {
   const productSwipers = document.querySelectorAll('.grid-view-item-image-swiper');
   
   productSwipers.forEach((swiperEl) => {
-    // Verificar si ya fue inicializado
+    // Check if it has already been initialized
     if (swiperEl.swiper) return;
     
     const imageCount = parseInt(swiperEl.dataset.imageCount) || 0;
     
-    // Solo inicializar swiper si hay más de 1 imagen
+    // Initialize the swiper only if there is more than 1 image
     if (imageCount > 1) {
       const pagination = swiperEl.querySelector('.grid-view-item-image-pagination');
       
@@ -941,19 +956,19 @@ function initProductSwipers() {
         },
         on: {
           touchStart: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
           },
           touchMove: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
           },
           touchEnd: function(swiper, event) {
-            // Detener propagación al swiper principal
+            // Stop propagation to the main swiper
             if (event) {
               event.stopPropagation();
             }
@@ -961,46 +976,46 @@ function initProductSwipers() {
         },
       });
       
-      // Forzar actualización de paginación después de inicialización
+      // Force pagination update after initialization
       if (productSwiper.pagination) {
         productSwiper.pagination.render();
         productSwiper.pagination.update();
       }
 
-      // Forzar object-fit: contain en todas las imágenes del swiper (sobrescribe estilos inline)
+      // Force object-fit: cover on all swiper images (overrides inline styles)
       const images = swiperEl.querySelectorAll('img');
       images.forEach((img) => {
-        // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
-        img.style.setProperty('object-fit', 'contain', 'important');
-        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        // Force cover to override inline styles (especially in Safari)
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('-webkit-object-fit', 'cover', 'important');
         img.style.setProperty('object-position', 'center', 'important');
         img.style.setProperty('-webkit-object-position', 'center', 'important');
         img.style.setProperty('max-width', '100%', 'important');
         img.style.setProperty('max-height', '100%', 'important');
       });
 
-      // También forzar cuando las imágenes se carguen
+      // Also apply when images finish loading
       images.forEach((img) => {
         if (img.complete) {
-          img.style.setProperty('object-fit', 'contain', 'important');
-          img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          img.style.setProperty('object-fit', 'cover', 'important');
+          img.style.setProperty('-webkit-object-fit', 'cover', 'important');
         } else {
           img.addEventListener('load', function() {
-            this.style.setProperty('object-fit', 'contain', 'important');
-            this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+            this.style.setProperty('object-fit', 'cover', 'important');
+            this.style.setProperty('-webkit-object-fit', 'cover', 'important');
             this.style.setProperty('object-position', 'center', 'important');
             this.style.setProperty('-webkit-object-position', 'center', 'important');
           }, { once: true });
         }
       });
 
-      // Prevenir propagación de eventos touch al swiper principal (método adicional)
+      // Prevent touch event propagation to the main swiper (additional method)
       const wrapper = swiperEl.querySelector('.swiper-wrapper');
       let touchStartX = 0;
       let touchStartY = 0;
       let isHorizontalSwipe = false;
       
-      // Encontrar el swiper principal (grid-slider) más cercano
+      // Find the nearest main swiper (grid-slider)
       const findParentGridSlider = (element) => {
         let parent = element.closest('grid-slider');
         if (!parent) {
@@ -1017,7 +1032,7 @@ function initProductSwipers() {
           touchStartY = e.touches[0].clientY;
           isHorizontalSwipe = false;
           
-          // Desactivar temporalmente el swiper principal
+          // Temporarily disable the main swiper
           if (parentGridSlider && parentGridSlider.swiper) {
             parentGridSlider.swiper.allowTouchMove = false;
           }
@@ -1033,10 +1048,10 @@ function initProductSwipers() {
           const diffX = Math.abs(touchCurrentX - touchStartX);
           const diffY = Math.abs(touchCurrentY - touchStartY);
           
-          // Determinar si es un swipe horizontal (más horizontal que vertical)
+          // Determine if it is a horizontal swipe (more horizontal than vertical)
           if (diffX > diffY && diffX > 10) {
             isHorizontalSwipe = true;
-            // Mantener desactivado el swiper principal durante swipe horizontal
+            // Keep the main swiper disabled during horizontal swipes
             if (parentGridSlider && parentGridSlider.swiper) {
               parentGridSlider.swiper.allowTouchMove = false;
             }
@@ -1046,7 +1061,7 @@ function initProductSwipers() {
         }, { passive: true, capture: true });
         
         wrapper.addEventListener('touchend', (e) => {
-          // Reactivar el swiper principal después de un delay
+          // Re-enable the main swiper after a short delay
           setTimeout(() => {
             if (parentGridSlider && parentGridSlider.swiper) {
               parentGridSlider.swiper.allowTouchMove = true;
@@ -1060,7 +1075,7 @@ function initProductSwipers() {
         }, { passive: true, capture: true });
       }
       
-      // También prevenir en el contenedor principal
+      // Also prevent in the main container
       swiperEl.addEventListener('touchstart', (e) => {
         e.stopPropagation();
       }, { passive: true, capture: true });
@@ -1076,29 +1091,29 @@ function initProductSwipers() {
   });
 }
 
-// Función para forzar object-fit: contain en todas las imágenes de productos
+// Function to force object-fit: cover on all product images
 function forceContainOnProductImages() {
   const productImageContainers = document.querySelectorAll('.product-card-image-container, .grid-view-item-image-swiper');
   
   productImageContainers.forEach((container) => {
     const images = container.querySelectorAll('img');
     images.forEach((img) => {
-      // Forzar contain para sobrescribir estilos inline (especialmente en Safari)
-      img.style.setProperty('object-fit', 'contain', 'important');
-      img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+      // Force cover to override inline styles (especially in Safari)
+      img.style.setProperty('object-fit', 'cover', 'important');
+      img.style.setProperty('-webkit-object-fit', 'cover', 'important');
       img.style.setProperty('object-position', 'center', 'important');
       img.style.setProperty('-webkit-object-position', 'center', 'important');
       img.style.setProperty('max-width', '100%', 'important');
       img.style.setProperty('max-height', '100%', 'important');
       
-      // También forzar cuando la imagen se cargue
+      // Also apply when the image loads
       if (img.complete) {
-        img.style.setProperty('object-fit', 'contain', 'important');
-        img.style.setProperty('-webkit-object-fit', 'contain', 'important');
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('-webkit-object-fit', 'cover', 'important');
       } else {
         img.addEventListener('load', function() {
-          this.style.setProperty('object-fit', 'contain', 'important');
-          this.style.setProperty('-webkit-object-fit', 'contain', 'important');
+          this.style.setProperty('object-fit', 'cover', 'important');
+          this.style.setProperty('-webkit-object-fit', 'cover', 'important');
           this.style.setProperty('object-position', 'center', 'important');
           this.style.setProperty('-webkit-object-position', 'center', 'important');
         }, { once: true });
@@ -1107,7 +1122,7 @@ function forceContainOnProductImages() {
   });
 }
 
-// Inicializar al cargar la página
+// Initialize when the page is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     initProductSwipers();
@@ -1118,7 +1133,7 @@ if (document.readyState === 'loading') {
   forceContainOnProductImages();
 }
 
-// Reinicializar después de cargas dinámicas
+// Re-initialize after dynamic loads
 setTimeout(() => {
   initProductSwipers();
   forceContainOnProductImages();
@@ -1128,16 +1143,16 @@ setTimeout(() => {
   forceContainOnProductImages();
 }, 1000);
 
-// Ejecutar también después de que todo se cargue
+// Run also after everything has loaded
 window.addEventListener('load', forceContainOnProductImages);
 
-// Observer para imágenes que se agreguen dinámicamente
+// Observer for images added dynamically
 if (typeof MutationObserver !== 'undefined') {
   const imageObserver = new MutationObserver(() => {
     forceContainOnProductImages();
   });
 
-  // Observar cambios en el DOM
+  // Observe DOM changes
   if (document.body) {
     imageObserver.observe(document.body, {
       childList: true,
@@ -1207,7 +1222,8 @@ if (typeof MutationObserver !== 'undefined') {
     const match = gridMain.querySelector(`img[src*="${base}"], source[srcset*="${base}"]`);
     if (match) {
       const a = match.closest('a[data-main-media-link]');
-      a?.scrollIntoView({block:'nearest', inline:'nearest'});
+      // IMPORTANT: Do not move scroll position when swapping media (PDP had unwanted jumps on any click)
+      // a?.scrollIntoView({block:'nearest', inline:'nearest'});
       // 視覚的に一番上に来るように先頭へ移動（副作用少）
       const col = a.closest('.media-column--odd, .media-column--even') || gridMain;
       col.insertBefore(a, col.firstElementChild);
@@ -1288,24 +1304,53 @@ if (typeof MutationObserver !== 'undefined') {
     const se = target.closest('[data-swatch-variant-id]');
     if (se?.dataset?.swatchVariantId) return se.dataset.swatchVariantId;
 
-    // hidden input の id 候補
-    const hidden = document.querySelector('form[action*="/cart/add"] input[name="id"]');
-    if (hidden?.value) return hidden.value;
-
-    // URL ?variant
-    try { return new URL(location.href).searchParams.get('variant'); } catch(e){}
     return null;
   }
 
+  function isVariantInteraction(target, eventType) {
+    if (!target) return false;
+
+    // Direct variant selectors
+    if (target.closest('[data-variantid], [data-swatch-variant-id]')) return true;
+
+    // Native product option inputs/selects
+    if (eventType === 'change') {
+      if (target.matches('input[type="radio"][name^="option-"], select[name^="option-"], input[type="radio"][name^="options["], select[name^="options["]')) return true;
+      if (target.closest('[data-product-options], product-information')) return true;
+    }
+
+    // On click, only treat as variant-related if the click happened inside the product options UI
+    if (eventType === 'click') {
+      if (target.closest('[data-product-options], product-information')) {
+        // But ignore clicks on non-variant controls (accordion toggles, wishlist, etc.)
+        if (target.closest('collapsible-button, .read-more-link, [data-size-guide-link], .btn-wishlist, a[href], button')) {
+          // If the clicked element itself is a variant selector (data-variantid / swatch), we already returned true above.
+          return false;
+        }
+        return false;
+      }
+    }
+
+    return false;
+  }
+
+  let lastProcessedVariantId = null;
+
   function onAnyClickChange(e) {
+    // Only run this synchronization on real variant interactions.
+    if (!isVariantInteraction(e.target, e.type)) return;
+
     const vid = extractVariantIdFromGlobo(e.target);
     if (!vid) return;
+    if (String(vid) === String(lastProcessedVariantId)) return;
+    lastProcessedVariantId = vid;
     setUrlVariant(vid);
     updateFormVariant(vid);
     switchGallery(vid);
   }
 
-  document.addEventListener('click', onAnyClickChange, true);
+  // IMPORTANT: Do not listen to all clicks globally (it caused scroll jumps on PDP).
+  // We only need to react to actual variant changes.
   document.addEventListener('change', onAnyClickChange, true);
 
   // 直接 ?variant=xxx で来た時も同期
@@ -1318,5 +1363,7 @@ if (typeof MutationObserver !== 'undefined') {
   })();
 })();
 </script>
+<script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+
 </body>
 </html>

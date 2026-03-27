@@ -1,0 +1,83 @@
+{%- liquid
+  assign card = card_object
+  assign order = card.order.value | default: 999
+  
+  comment
+    Try to get columns value - metaobject integer fields might be accessed differently
+  endcomment
+  if card.columns.value != blank
+    assign columns_raw = card.columns.value
+  elsif card.columns != blank
+    assign columns_raw = card.columns
+  else
+    assign columns_raw = 1
+  endif
+  
+  assign link = card.link.value
+  assign image = card.image.value
+  
+  comment
+    Get aspect ratio setting from product-grid setting (same as product cards)
+  endcomment
+  assign image_stretch = false
+  assign crop_setting = product_grid_setting | default: 'natural'
+  
+  if crop_setting == "square"
+    assign image_crop = "aspect-ratio--square"
+    assign image_stretch = true
+  elsif crop_setting == "tall"
+    assign image_crop = "aspect-ratio--tall"
+    assign image_stretch = true
+  elsif crop_setting == "wide"
+    assign image_crop = "aspect-ratio--wide"
+    assign image_stretch = true
+  else
+    assign image_crop = false
+    assign image_stretch = false
+  endif
+  
+  comment
+    Convert columns to integer to ensure proper comparison
+  endcomment
+  assign columns = columns_raw | plus: 0
+  if columns == 0 and columns_raw != 0
+    assign columns = columns_raw
+  endif
+  
+  comment
+    Get grid columns for data attribute (used by CSS to calculate width)
+  endcomment
+  assign grid_columns = desktop_products_per_row | default: 4
+  assign grid_columns = grid_columns | plus: 0
+  
+  assign tablet_width = 'medium--one-half'
+  assign mobile_width = 'small--one-whole'
+  
+  comment
+    Use specific class for promotional cards based on columns
+    This allows CSS to calculate width correctly based on grid configuration
+  endcomment
+  assign promotional_columns_class = 'promotional-card--columns-' | append: columns
+-%}
+
+<div class="grid__item promotional-card {{ promotional_columns_class }} {{ tablet_width }} {{ mobile_width }} show-on-scroll" data-promotional-card-columns="{{ columns }}" data-promotional-card-grid-columns="{{ grid_columns }}" data-promotional-card-order="{{ order }}">
+  {% if link != blank %}
+    <a href="{{ link }}" class="promotional-card__link" aria-label="{{ image.alt | default: 'Promotional card' | escape }}">
+  {% else %}
+    <div class="promotional-card__wrapper">
+  {% endif %}
+    
+    {% if image != blank %}
+      <div class="promotional-card__image">
+        {% if image_crop %}<div class="aspect-ratio {{ image_crop }}">{% endif %}
+          {% render 'responsive-image' with image, class: 'promotional-card__img', allow_stretch: image_stretch %}
+        {% if image_crop %}</div>{% endif %}
+      </div>
+    {% endif %}
+    
+  {% if link != blank %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
+</div>

@@ -162,39 +162,6 @@
       -%}
 
       <a href="{{ product.url | within: collection }}" title="{{ product.title }}" class="grid__image grid__image__match {% if settings.product-grid == 'natural' %} image-height--natural{% endif %}" tabindex="-1" data-product-card-link>
-        {% if template.name != 'index' %}
-
-        {% if image_crop %}<div class="aspect-ratio {{ image_crop }}">{% endif %}
-          {% if product.media.size > 0 %}
-            {% assign image = product.featured_media %}
-            {% assign img_alt = image.alt %}
-            {% if img_alt == product.title %}
-              {% assign img_alt = '' %}
-            {% endif %}
-            {% render 'responsive-image' with image, alt: img_alt, allow_stretch: image_stretch, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
-
-            {% comment %} Placeholder for swatch images {% endcomment %}
-            {% if card_color_swatches_enabled %}
-              {% assign swatch_image_attributes = 'data-product-card-swatch-image style="opacity: 0;"' %}
-              {% render 'responsive-image' with image, alt: '', wrapper_class: "product-card__image product-card__image--swatch", allow_stretch: true, blur: false, props: swatch_image_attributes, class: 'block-radius' %}
-            {% endif %}
-
-            {% if settings.hover-effect and product.media.size > 1 %}
-              {% assign image = product.media[1] %}
-              {% assign img_alt = image.alt %}
-              {% if img_alt == product.title %}
-                {% assign img_alt = '' %}
-              {% endif %}
-              {% render 'responsive-image' with image, alt: img_alt, wrapper_class: "product-card__image product-card__image--secondary", allow_stretch: true, blur: false, class: 'block-radius' %}
-            {% endif %}
-          {% else %}
-            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-            {{ 'product-' | append: current | placeholder_svg_tag: 'icon icon--placeholder grid__image block-radius' }}
-          {% endif %}
-        {% if image_crop %}</div>{% endif %}
-        
-        {% else %}
-
         {% liquid
           assign image_count = 0
           for media in product.media limit: 5
@@ -204,78 +171,128 @@
           endfor
         %}
 
-        <div class="swiper grid-view-item-image-swiper" data-product-id="{{ product.id }}" data-image-count="{{ image_count }}">
-          <div class="swiper-wrapper">
-            {% for media in product.media limit: 5 %}
-              {% if media.media_type == 'image' %}
-                <div class="swiper-slide">
-                  <div class="product-card-image-container">
-                    {% assign img_alt = media.alt %}
-                    {% if img_alt == product.title %}
-                      {% assign img_alt = '' %}
-                    {% endif %}
-                    {% render 'responsive-image' with media, alt: img_alt, allow_stretch: false, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
+        {% comment %} Use swiper if product has multiple images, otherwise use single image or hover effect {% endcomment %}
+        {% if image_count > 1 %}
+          {% comment %} Swiper for multiple images {% endcomment %}
+          <div class="swiper grid-view-item-image-swiper {{ image_crop }}" data-product-id="{{ product.id }}" data-image-count="{{ image_count }}">
+            <div class="swiper-wrapper">
+              {% for media in product.media limit: 5 %}
+                {% if media.media_type == 'image' %}
+                  <div class="swiper-slide">
+                    <div class="product-card-image-container">
+                      {% assign img_alt = media.alt %}
+                      {% if img_alt == product.title %}
+                        {% assign img_alt = '' %}
+                      {% endif %}
+                      {% render 'responsive-image' with media, alt: img_alt, allow_stretch: false, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
+                    </div>
                   </div>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          {% if image_count > 1 %}
+                {% endif %}
+              {% endfor %}
+            </div>
             <div class="grid-view-item-image-pagination"></div>
+          </div>
+        {% else %}
+          {% comment %} Single image or hover effect for products with one image {% endcomment %}
+          {% if image_crop %}<div class="aspect-ratio {{ image_crop }}">{% endif %}
+            {% if product.media.size > 0 %}
+              {% assign image = product.featured_media %}
+              {% assign img_alt = image.alt %}
+              {% if img_alt == product.title %}
+                {% assign img_alt = '' %}
+              {% endif %}
+              {% render 'responsive-image' with image, alt: img_alt, allow_stretch: image_stretch, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
+
+              {% comment %} Placeholder for swatch images {% endcomment %}
+              {% if card_color_swatches_enabled %}
+                {% assign swatch_image_attributes = 'data-product-card-swatch-image style="opacity: 0;"' %}
+                {% render 'responsive-image' with image, alt: '', wrapper_class: "product-card__image product-card__image--swatch", allow_stretch: true, blur: false, props: swatch_image_attributes, class: 'block-radius' %}
+              {% endif %}
+
+              {% if settings.hover-effect and product.media.size > 1 %}
+                {% assign image = product.media[1] %}
+                {% assign img_alt = image.alt %}
+                {% if img_alt == product.title %}
+                  {% assign img_alt = '' %}
+                {% endif %}
+                {% render 'responsive-image' with image, alt: img_alt, wrapper_class: "product-card__image product-card__image--secondary", allow_stretch: true, blur: false, class: 'block-radius' %}
+              {% endif %}
+            {% else %}
+              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              {{ 'product-' | append: current | placeholder_svg_tag: 'icon icon--placeholder grid__image block-radius' }}
+            {% endif %}
+          {% if image_crop %}</div>{% endif %}
+        {% endif %}
+        
+        {% comment %} Quick view plus icon (when button type is quick_view) - Show for both swiper and single image {% endcomment %}
+        {% if quick_shop_desktop_enabled or quick_shop_mobile_enabled %}
+          {% if settings.quick_shop_button_type == 'quick_view' and settings.quick_shop_button_display == 'over_image' %}
+            <div class="quick-view-plus-icon-wrapper{% if settings.quick_shop_button_visibility == 'always_visible' %} always-visible{% endif %}">
+              {% render 'quick-view-plus-icon', product: product, section: section %}
+            </div>
           {% endif %}
-        </div>
-      {% endif %}
+        {% endif %}
+
+        {% comment %} Wishlist button - Show for both swiper and single image {% endcomment %}
+        {% if quick_shop_desktop_enabled or quick_shop_mobile_enabled %}
+          {% if settings.quick_shop_button_display == 'over_image' %}
+            <div class="wishlist-button-card-wrapper{% if settings.quick_shop_button_visibility == 'always_visible' %} always-visible{% endif %}">
+              {% render 'wishlist-button-card', product: product %}
+            </div>
+          {% endif %}
+        {% endif %}
       </a>
 
       <div class="product-card-image--bottom-wrapper">
         {% if quick_shop_desktop_enabled or quick_shop_mobile_enabled %}
           {% if settings.quick_shop_button_display == 'over_image' %}
-            <div data-product-added="{{ 'products.general.product_added_to_cart' | t: product: product.title }}" class="quick-add-wrapper{% if product.variants.size == 1 %} is-singular{% endif %}">
-              {% if product.variants.size > 1 and product.available %}
-                {% if quick_shop_desktop_enabled %}
-                  {% render 'quick-view-modal', quick_view_product: product, link_type: 'desktop' %}
-                {% endif %}
-
-                {% if quick_shop_mobile_enabled %}
-                  {% render 'quick-view-modal', quick_view_product: product, link_type: 'mobile' %}
-                {% endif %}
-              {% elsif product.available %}
-                {% form 'product', product, id: "card_form_id" %}
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-                  {% if settings.cart_type == "drawer" %}
-                    <input type="hidden" name="sections" value="cart-drawer" />
-                  {% endif %}
+            {% comment %} Only show add to cart button if button type is add_to_cart {% endcomment %}
+            {% if settings.quick_shop_button_type == 'add_to_cart' %}
+              <div data-product-added="{{ 'products.general.product_added_to_cart' | t: product: product.title }}" class="quick-add-wrapper{% if product.variants.size == 1 %} is-singular{% endif %}">
+                {% if product.variants.size > 1 and product.available %}
                   {% if quick_shop_desktop_enabled %}
-                    <button aria-label="{{ live_region_text }}" class="btn quick-add-button quick-add-button-desktop" type="submit" tabindex="0" data-add-to-cart-translation-key="{{ add_to_cart_translation_key }}">
-                      {{ add_to_cart_text }}
-                    </button>
+                    {% render 'quick-view-modal', quick_view_product: product, link_type: 'desktop' %}
                   {% endif %}
 
                   {% if quick_shop_mobile_enabled %}
-                    <button aria-label="{{ live_region_text }}" class="quick-add-button quick-add-button-mobile btn-hover-default-inner icon-btn-focus-inner" type="submit" tabindex="0"><span class="btn-colors-primary round-icon-btn-sm">{% render 'theme-icon' with icon: 'shopping-bag', iconClasses: 'quick-view-mobile-icon', iconSize: 16 %}</span></button>
+                    {% render 'quick-view-modal', quick_view_product: product, link_type: 'mobile' %}
+                  {% endif %}
+                {% elsif product.available %}
+                  {% form 'product', product, id: "card_form_id" %}
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                    {% if settings.cart_type == "drawer" %}
+                      <input type="hidden" name="sections" value="cart-drawer" />
+                    {% endif %}
+                    {% if quick_shop_desktop_enabled %}
+                      <button aria-label="{{ live_region_text }}" class="btn quick-add-button quick-add-button-desktop" type="submit" tabindex="0" data-add-to-cart-translation-key="{{ add_to_cart_translation_key }}">
+                        {{ add_to_cart_text }}
+                      </button>
+                    {% endif %}
+
+                    {% if quick_shop_mobile_enabled %}
+                      <button aria-label="{{ live_region_text }}" class="quick-add-button quick-add-button-mobile btn-hover-default-inner icon-btn-focus-inner" type="submit" tabindex="0"><span class="btn-colors-primary round-icon-btn-sm">{% render 'theme-icon' with icon: 'shopping-bag', iconClasses: 'quick-view-mobile-icon', iconSize: 16 %}</span></button>
+                    {% endif %}
+
+                    <div aria-live="polite" class="sr-only">{{ live_region_text }}</div>
+                  {% endform %}
+                {% else %}
+                  {% if quick_shop_desktop_enabled %}
+                    <a aria-label="{{ product.title }} - {{ 'products.product.sold_out' | t }}" class="btn sold-out-button sold-out-button-desktop disabled" tabindex="0" href="{{ product.url | within: collection }}">{{ 'products.product.sold_out' | t }}</a>
                   {% endif %}
 
-                  <div aria-live="polite" class="sr-only">{{ live_region_text }}</div>
-                {% endform %}
-              {% else %}
-                {% if quick_shop_desktop_enabled %}
-                  <a aria-label="{{ product.title }} - {{ 'products.product.sold_out' | t }}" class="btn sold-out-button sold-out-button-desktop disabled" tabindex="0" href="{{ product.url | within: collection }}">{{ 'products.product.sold_out' | t }}</a>
+                  {% if quick_shop_mobile_enabled %}
+                    <a aria-label="{{ product.title }} - {{ 'products.product.sold_out' | t }}" class="sold-out-button sold-out-button-mobile icon-btn-focus-inner-muted" tabindex="0" href="{{ product.url | within: collection }}"><span class="round-icon-btn-sm">{% render 'theme-icon' with icon: 'shopping-bag', iconClasses: 'quick-view-mobile-icon', iconSize: 16 %}</span></a>
+                  {% endif %}
                 {% endif %}
-
-                {% if quick_shop_mobile_enabled %}
-                  <a aria-label="{{ product.title }} - {{ 'products.product.sold_out' | t }}" class="sold-out-button sold-out-button-mobile icon-btn-focus-inner-muted" tabindex="0" href="{{ product.url | within: collection }}"><span class="round-icon-btn-sm">{% render 'theme-icon' with icon: 'shopping-bag', iconClasses: 'quick-view-mobile-icon', iconSize: 16 %}</span></a>
-                {% endif %}
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           {% endif %}
         {% endif %}
       </div>
 
     </div>
 
-    {% if vendor_enabled %}
-      <div class="product-grid--vendor {{ vendor_font }}">{{ product.vendor }}</div>
-    {% endif %}
+   
 
     {% if settings.show_product_card_title %}
       <div class="product-grid--title {{ title_font }}">
@@ -307,6 +324,10 @@
       {% for option in product.options_with_values %}
         {% render 'card-color-swatch' with swatch_product: product, swatch_option: option, hide_out_of_stock_variants: false, show_color_label: show_color_label, option_index: forloop.index %}
       {% endfor %}
+    {% endif %}
+
+    {% if vendor_enabled %}
+      <div class="product-grid--vendor {{ vendor_font }}">{{ product.vendor }}</div>
     {% endif %}
   </div>
 

@@ -18,11 +18,15 @@
   {% endif %}
 {% endcapture %}
 
+{% liquid
+  assign quick_view_product_url = quick_view_product.url
+%}
+
 <safe-load-scripts class="hidden">
   <script src="{{ 'component-theme-modal.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="theme-modal"></script>
 </safe-load-scripts>
 
-<theme-modal data-is-quick-view {% if settings.quick_shop_button_display == 'over_image' %}data-focus-on-close="false"{% else %}data-focus-on-close="true"{% endif %} data-fetch-section data-product-url="{{ quick_view_product.url }}?variant={{ quick_view_product.selected_or_first_available_variant.id }}" data-content-selector="[data-quick-view-product]" data-section-id="{{ section.id }}">
+<theme-modal data-is-quick-view {% if settings.quick_shop_button_display == 'over_image' %}data-focus-on-close="false"{% else %}data-focus-on-close="true"{% endif %} data-fetch-section data-product-url="{{ quick_view_product_url }}?variant={{ quick_view_product.selected_or_first_available_variant.id }}" data-content-selector="[data-quick-view-product]" data-section-id="{% if section and section.id %}{{ section.id }}{% else %}quick-view-product{% endif %}">
   {{ quick_view_link }}
 
   <template data-theme-modal-content>

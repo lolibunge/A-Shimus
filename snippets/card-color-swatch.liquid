@@ -71,7 +71,7 @@
 {% comment %} ==== Product Card Swatches ==== {% endcomment %}
 {% if swatch_option_index == option_index %}
   {% if is_color_swatch or is_category_swatch or show_variant_image %}
-    <div class="color-swatch--block">
+    <div class="color-swatch--block color-swatch--product-card">
       {% style %}
         .card-color-swatch--wrapper.swatch-no-slider {
           {% if settings.product_card_text_alignment == 'center' %}
@@ -118,7 +118,7 @@
               comment 
                 Define the image url 
               endcomment
-              assign bg_img_url = value | handle | append: '.' | append: file_extension | file_url
+              assign bg_img_url = ""
               unless show_variant_image
                 comment 
                 Check if the swatch has a category metafield image 
@@ -135,7 +135,7 @@
                 endif
               endunless
             %}
-
+{{ bg_img_url }}
             {% if show_swatch %}
               <div 
                 data-variant="{{ value.variant | json | escape }}" 

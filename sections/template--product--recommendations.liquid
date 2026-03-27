@@ -74,11 +74,11 @@
             <!-- navigation -->
             {% assign navigation_id = 'navigation--' | append: section.id %}
             <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ settings.hover_navigation_desktop }}">
-              <div class="swiper-button--prev btn dynamic-section-button--{{ navigation_id }}">
-                {% render 'theme-icon', icon: 'chevron_left' %}
+              <div class="swiper-button--prev dynamic-section-button--{{ navigation_id }}">
+                {% render 'theme-icon', icon: 'chevron_left_arrow' %}
               </div>
-              <div class="swiper-button--next btn dynamic-section-button--{{ navigation_id }}">
-                {% render 'theme-icon', icon: 'chevron_right' %}
+              <div class="swiper-button--next dynamic-section-button--{{ navigation_id }}">
+                {% render 'theme-icon', icon: 'chevron_right_arrow' %}
               </div>
             </div>
             {% if section.settings.override_button_colors %}

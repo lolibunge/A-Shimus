@@ -41,7 +41,6 @@
         "desktop-products-per-row": 3,
         "mobile-products-per-row": "1",
         "pagination_options": "pagination_default",
-        "desktop_position": "topbar",
         "enable_sorting": true,
         "enable_filtering": true,
         "enable_collection_title": false,

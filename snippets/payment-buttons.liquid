@@ -6,14 +6,15 @@
   - element_id: {String} element id. (required if it's not a block)
   - product_form_id: {String} product form id. (required)
   - section_id: {String} id of section to which this snippet belongs. (required)
-  - show_buy_now: {Boolean} whether to show dynamic checkout buttons. 
+  - show_buy_now: {Boolean} whether to show dynamic checkout buttons.
   - gift_card_form_enabled: {Boolean} whether to show gift card recipient form. (required)
   - is_quick_view: {Boolean} whether this is a quick view. (optional)
+  - show_wishlist_button: {Boolean} whether to show wishlist button. (optional, defaults to true if block has setting)
 
   Usage:
     - If it's rendered within a block context:
-      {% render 'payment-buttons' with product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}
-    
+      {% render 'payment-buttons' with product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form, show_wishlist_button: block.settings.show_WISHLIST_button %}
+
     - If it's rendered within a section context (eg. featured product section):
       {% render 'payment-buttons' with product: product, element_id: section.id, product_form_id: product_form_id, section_id: section.id, show_buy_now: section.settings.show_smart_checkout, gift_card_form_enabled: section.settings.enable_gift_card_recipient_form %}
 {% endcomment %}
@@ -23,7 +24,8 @@
 {% if block.settings.override_button_colors %}
   {% assign btn_id = block.id %}
 
-  {% render 'button-color-overrides' with
+  {%
+    render 'button-color-overrides' with
     id: btn_id,
     style: 'filled',
     text_color: block.settings.button_text_color,
@@ -36,21 +38,28 @@
       background-color: rgba({{ block.settings.button_background_color.rgba }});
     }
     product-form .paymentButtonsWrapper .dynamic-section-button--{{ btn_id }}--dynamic .shopify-payment-button__button.shopify-payment-button__button--unbranded:hover {
-      color: rgba({{ block.settings.button_text_color.rgba }}) !important;  
+      color: rgba({{ block.settings.button_text_color.rgba }}) !important;
       background-color: rgba({{ block.settings.button_background_color.rgba }}) !important;
     }
   </style>
 {% endif %}
 
 <safe-load-scripts class="hidden">
-  <script src="{{ 'component-product-form.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="product-form"></script>
+  <script
+    src="{{ 'component-product-form.js' | asset_url }}"
+    defer="defer"
+    type="module"
+    data-flow-load-key="product-form"
+  ></script>
 </safe-load-scripts>
 
 <div
   data-block-id="{% if block != blank %}{{ block.id }}{% else %}{{ element_id }}{% endif %}"
-  class="product-form-block" 
-  style="--custom-margin-bottom:{% if block != blank %} {{ block.settings.margin_bottom }}{% else %} 0{% endif %}px;"
-  {% if block != blank %}{{ block.shopify_attributes }}{% endif %}
+  class="product-form-block"
+  style="--custom-margin-bottom:{% if block != blank %} {{ block.settings.margin_bottom }}{% else %} 0{% endif %}px; --custom-margin-bottom-mobile:{% if block != blank %} {{ block.settings.margin_bottom_mobile }}{% else %} 0{% endif %}px;"
+  {% if block != blank %}
+    {{- block.shopify_attributes -}}
+  {% endif %}
 >
   {%- if product != blank -%}
     {%- liquid
@@ -86,13 +95,7 @@
       data-section-id="{{ section_id }}"
       data-gift-wrap-product-id="{{ settings.giftwrap_product_selector.selected_or_first_available_variant.id }}"
     >
-      {%- form 'product',
-        product,
-        id: product_form_id,
-        novalidate: 'novalidate',
-        data-type: 'add-to-cart-form'
-      -%}
-      
+      {%- form 'product', product, id: product_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
         {% comment %} ===== Main/selected variant ID ===== {% endcomment %}
         <input
           data-replace-content
@@ -120,17 +123,17 @@
         {%- endif -%}
 
         {% comment %} ===== Quantity error message ===== {% endcomment %}
-        {% liquid 
+        {% liquid
           assign variant_title = product.selected_or_first_available_variant.title
           if product.has_only_default_variant
             assign variant_title = product.title
           endif
         %}
-        <div 
+        <div
           data-updates-on-change
           data-update-id="qty-error-{% if block != blank %}{{ block.id }}{% else %}{{ element_id }}{% endif %}"
           data-qty-error-message
-          class="js-qty__error-message errors qty-error hidden" 
+          class="js-qty__error-message errors qty-error hidden"
           role="alert"
         >
           <span>{{ 'general.forms.quantity_max_error' | t: variant: variant_title }}</span>
@@ -153,7 +156,7 @@
             {% comment %} ===== Add to cart/Sold out text ===== {% endcomment %}
             <span
               data-add-to-cart-text
-              data-unavailable-text="{{ 'products.product.unavailable' | t }}" 
+              data-unavailable-text="{{ 'products.product.unavailable' | t }}"
             >
               {%- if product.selected_or_first_available_variant.available == false -%}
                 {{ 'products.product.sold_out' | t }}
@@ -167,7 +170,7 @@
             </span>
 
             {% comment %} ===== "Added" text ===== {% endcomment %}
-            <span 
+            <span
               data-cart-added-text
               style="display: none;"
             >
@@ -175,10 +178,11 @@
             </span>
 
             {% comment %} ===== Loading icon ===== {% endcomment %}
-            {% liquid 
+            {% liquid
               assign icon_fill = 'rgba(' | append: settings.color_primary_button_text.rgba | append: ')'
             %}
-            {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em', icon_fill: icon_fill %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
+            {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em', icon_fill: icon_fill -%}
+            <span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
           </button>
 
           {% comment %} ===== Dynamic buttons ===== {% endcomment %}
@@ -187,7 +191,10 @@
             data-updates-on-change
             data-update-id="dynamic-checkout-{% if block != blank %}{{ block.id }}{% else %}{{ element_id }}{% endif %}"
           >
-            {%- if show_dynamic_checkout and preorder_product == false and product.selected_or_first_available_variant.available -%}
+            {%- if show_dynamic_checkout
+              and preorder_product == false
+              and product.selected_or_first_available_variant.available
+            -%}
               {{ form | payment_button }}
             {%- endif -%}
           </div>
@@ -198,7 +205,11 @@
     {% if is_quick_view %}
       {% comment %} View more button {% endcomment %}
       <div class="quick-view-view-more-wrapper text-link-animated">
-        <a href="{{ product.url }}" class="quick-view-view-more btn--underlined" aria-label="{{ 'products.general.view_details' | t }}: {{ product.title }}">
+        <a
+          href="{{ product.url }}"
+          class="quick-view-view-more btn--underlined"
+          aria-label="{{ 'products.general.view_details' | t }}: {{ product.title }}"
+        >
           {{ 'products.general.view_details' | t }}
         </a>
       </div>
@@ -218,4 +229,34 @@
       </div>
     </div>
   {%- endif -%}
+  
+  {% comment %} Wishlist Button {% endcomment %}
+  {%- liquid
+    assign show_wishlist = true
+    if show_wishlist_button == false
+      assign show_wishlist = false
+    elsif block != blank and block.settings.show_WISHLIST_button == false
+      assign show_wishlist = false
+    endif
+  -%}
+  {% if product != blank and show_wishlist %}
+    <a 
+      href="/pages/wishlist" 
+      data-product-id="{{ product.id }}"
+      data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-product-title="{{ product.title | escape }}"
+      data-product-price="{{ product.selected_or_first_available_variant.price }}"
+      data-product-variant-price="{{ product.selected_or_first_available_variant.price }}"
+      data-product-image="{% if product.featured_media %}{{ product.featured_media | image_url: width: 400 }}{% endif %}"
+      data-product-url="{{ product.url }}"
+      class="btn btn-wishlist"
+      aria-label="Add to Wishlist"
+    >
+      <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="wishlist-icon">
+        <path class="wishlist-icon-outline" d="M14.6428 3.64904C14.582 3.06742 14.4033 2.50428 14.1177 1.99399C13.832 1.48371 13.4454 1.03697 12.9814 0.681039C11.3234 -0.526961 9.15677 -0.0762941 7.33344 1.81437C5.51477 -0.102961 3.35011 -0.534294 1.67744 0.681039C1.21719 1.03461 0.833555 1.47799 0.54981 1.98429C0.266065 2.49058 0.0881215 3.04924 0.0267719 3.62637C-0.0497439 4.43016 0.0381721 5.24111 0.285165 6.00982C0.532157 6.77853 0.933055 7.48892 1.46344 8.0977C2.05277 8.82437 2.56877 9.46437 7.07077 13.1257L7.32877 13.3337L7.58677 13.1257C12.1481 9.40037 12.6308 8.79837 13.1981 8.0977C13.7292 7.49365 14.1312 6.78748 14.3797 6.0225C14.6281 5.25752 14.7176 4.44985 14.6428 3.64904ZM7.32944 3.06971L7.63877 2.69104C9.20077 0.889039 11.1148 0.378372 12.5148 1.37371C12.8846 1.6604 13.1923 2.01937 13.419 2.42876C13.6457 2.83816 13.7867 3.28941 13.8334 3.75504C13.8925 4.43803 13.812 5.1259 13.5967 5.77677C13.3815 6.42765 13.0361 7.02792 12.5814 7.54104C12.0481 8.19237 11.5941 8.75637 7.34611 12.239C3.12744 8.82437 2.62677 8.20704 2.09611 7.57237C1.63749 7.05107 1.29023 6.44156 1.07562 5.78123C0.861015 5.1209 0.783593 4.42369 0.848105 3.73237C0.895473 3.27117 1.03587 2.82437 1.2608 2.41897C1.48573 2.01356 1.79053 1.65798 2.15677 1.37371C2.6083 1.03818 3.15622 0.857642 3.71877 0.859039C4.37085 0.914345 5.00372 1.10765 5.57541 1.42614C6.14711 1.74463 6.64456 2.18102 7.03477 2.70637L7.32944 3.06971Z" fill="currentColor" stroke="none"/>
+        <path class="wishlist-icon-filled" d="M14.6428 3.64904C14.582 3.06742 14.4033 2.50428 14.1177 1.99399C13.832 1.48371 13.4454 1.03697 12.9814 0.681039C11.3234 -0.526961 9.15677 -0.0762941 7.33344 1.81437C5.51477 -0.102961 3.35011 -0.534294 1.67744 0.681039C1.21719 1.03461 0.833555 1.47799 0.54981 1.98429C0.266065 2.49058 0.0881215 3.04924 0.0267719 3.62637C-0.0497439 4.43016 0.0381721 5.24111 0.285165 6.00982C0.532157 6.77853 0.933055 7.48892 1.46344 8.0977C2.05277 8.82437 2.56877 9.46437 7.07077 13.1257L7.32877 13.3337L7.58677 13.1257C12.1481 9.40037 12.6308 8.79837 13.1981 8.0977C13.7292 7.49365 14.1312 6.78748 14.3797 6.0225C14.6281 5.25752 14.7176 4.44985 14.6428 3.64904Z" fill="currentColor" style="display: none;"/>
+      </svg>
+      <span>Add to Wishlist</span>
+    </a>
+  {% endif %}
 </div>

@@ -1,0 +1,372 @@
+{% comment %}
+  Editorial Content Section
+  This section is designed to cover multiple editorial-style modules:
+  - Intro editorial content
+  - Two-column informational content
+  - Highlighted quote or statement
+
+  Mobile-first, clean layout, no JavaScript required.
+{% endcomment %}
+{{ 'section-editorial-content.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --section-background-color: {{ section.settings.section_background_color }};
+    --section-text-color: {{ section.settings.section_text_color }};
+    --section-padding-top: {{ section.settings.section_padding_top }}px;
+    --section-padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    --section-padding-top-mobile: {{ section.settings.section_padding_top_mobile }}px;
+    --section-padding-bottom-mobile: {{ section.settings.section_padding_bottom_mobile }}px;
+  }
+</style>
+
+<div class="editorial-container">
+  {% for block in section.blocks %}
+    <div class="editorial-block editorial-block--{{ block.type }}" {{ block.shopify_attributes }}>
+      {% case block.type %}
+      {% when 'author_quote' %}
+        <div class="editorial-author-quote"
+        >
+          {% if block.settings.image != blank %}
+          <div class="editorial-author-quote__image">
+            <img src="{{ block.settings.image | image_url: width: 444 }}" alt="{{ block.settings.image.alt }}" width="444" height="524">
+          </div>
+          {% endif %}
+          {% if block.settings.author != blank %}
+          <div class="editorial-author-quote__quote">
+            {{ block.settings.quote }}
+          </div>
+          {% endif %}
+
+          {% if block.settings.author != blank %}
+            <div class="editorial-author-quote__author">
+              - {{ block.settings.author }}
+            </div>
+          {% endif %}
+        </div>
+        {% when 'intro_editorial' %}
+          <h2 class="editorial-intro-title">
+            {{ block.settings.title }}
+          </h2>
+
+          <div class="editorial-intro-text">
+            {{ block.settings.text }}
+          </div>
+
+          {% if block.settings.meta != blank %}
+            <div class="editorial-intro-meta">
+              {{ block.settings.meta }}
+            </div>
+          {% endif %}
+
+        {% when 'two_column_content' %}
+          <div class="editorial-two-column {% unless block.settings.show_heading_desktop -%}has-no-heading-desktop{% endunless %} {% unless block.settings.show_heading_mobile -%}has-no-heading-mobile{% endunless %}">
+            {%- if block.settings.heading != blank -%}
+              <h3 class="editorial-two-column-heading
+              {% unless block.settings.show_heading_desktop -%}
+              hidden-desktop
+              {%- endunless -%}
+              {% unless block.settings.show_heading_mobile -%}
+              hidden-mobile
+              {%- endunless -%}
+              ">
+              {{ block.settings.heading }}
+              </h3>
+            {%- endif -%}
+
+            {% liquid
+              assign enable_truncate_desktop = block.settings.enable_truncate_desktop
+              assign enable_truncate_mobile = block.settings.enable_truncate_mobile
+              assign truncate_lines_desktop = block.settings.truncate_lines_desktop
+              assign truncate_lines_mobile = block.settings.truncate_lines_mobile
+              assign show_read_more = block.settings.show_read_more
+              assign read_more_text = block.settings.read_more_text | default: 'Read More'
+              assign read_less_text = block.settings.read_less_text | default: 'Read Less'
+            %}
+
+            {% if enable_truncate_desktop or enable_truncate_mobile %}
+              {% comment %} Desktop version {% endcomment %}
+              {% if enable_truncate_desktop %}
+                <div class="editorial-two-column-text-wrapper truncated-desktop">
+                  <div
+                    class="editorial-two-column-text truncated"
+                    data-truncate-lines="{{ truncate_lines_desktop }}"
+                    data-block-id="{{ block.id }}-desktop"
+                  >
+                    {{ block.settings.text }}
+                  </div>
+                  {% if show_read_more %}
+                    <a href="#" class="read-more-link" data-read-more-trigger="{{ block.id }}-desktop" data-read-more-text="{{ read_more_text }}" data-read-less-text="{{ read_less_text }}">
+                      {{- read_more_text -}}
+                    </a>
+                  {% endif %}
+                </div>
+              {% else %}
+                <div class="editorial-two-column-text truncated-desktop">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+              {% comment %} Mobile version {% endcomment %}
+              {% if enable_truncate_mobile %}
+                <div class="editorial-two-column-text-wrapper truncated-mobile">
+                  <div
+                    class="editorial-two-column-text truncated"
+                    data-truncate-lines="{{ truncate_lines_mobile }}"
+                    data-block-id="{{ block.id }}-mobile"
+                  >
+                    {{ block.settings.text }}
+                  </div>
+                  {% if show_read_more %}
+                    <a href="#" class="read-more-link" data-read-more-trigger="{{ block.id }}-mobile" data-read-more-text="{{ read_more_text }}" data-read-less-text="{{ read_less_text }}">
+                      {{- read_more_text -}}
+                    </a>
+                  {% endif %}
+                </div>
+              {% else %}
+                <div class="editorial-two-column-text truncated-mobile">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="editorial-two-column-text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+          </div>
+
+        {% when 'quote_statement' %}
+          <div class="editorial-quote">“{{ block.settings.quote }}”</div>
+      {% endcase %}
+    </div>
+  {% endfor %}
+</div>
+
+<script src="{{ 'section-editorial-content.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Editorial Content",
+  "class": "editorial-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "intro_editorial",
+      "name": "Intro editorial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Luxury Petite Workwear"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Main text",
+          "default": "<p>This is considered style. Style that combines meticulous fit, Japanese craftsmanship, and functional design to create enduring wardrobe essentials for petite women.</p>"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta / Author",
+          "default": "— Founder & CEO"
+        }
+      ]
+    },
+    {
+      "type": "author_quote",
+      "name": "Author quote",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Aya Shimura, Founder and CEO"
+        }
+      ]
+    },
+    {
+      "type": "two_column_content",
+      "name": "Two column content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Left column heading",
+          "default": "Why Made in Japan"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_heading_desktop",
+          "label": "Show heading on desktop",
+          "default": true,
+          "visible_if": "{{ block.settings.heading != blank }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_heading_mobile",
+          "label": "Show heading on mobile",
+          "default": true,
+          "visible_if": "{{ block.settings.heading != blank }}"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Right column content",
+          "default": "<p>Japan is known for craftsmanship that favors precision over scale and longevity over speed.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Text Truncate Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_truncate_desktop",
+          "label": "Enable truncate on desktop",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "truncate_lines_desktop",
+          "label": "Number of lines (desktop)",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 3,
+          "info": "Number of lines to show before truncating",
+          "visible_if": "{{ block.settings.enable_truncate_desktop }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_truncate_mobile",
+          "label": "Enable truncate on mobile",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "truncate_lines_mobile",
+          "label": "Number of lines (mobile)",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 3,
+          "info": "Number of lines to show before truncating",
+          "visible_if": "{{ block.settings.enable_truncate_mobile }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_read_more",
+          "label": "Show 'Read More' link",
+          "default": true,
+          "info": "Display a 'Read More' link when text is truncated"
+        },
+        {
+          "type": "text",
+          "id": "read_more_text",
+          "label": "Read More link text",
+          "default": "Read More",
+          "visible_if": "{{ block.settings.show_read_more }}"
+        },
+        {
+          "type": "text",
+          "id": "read_less_text",
+          "label": "Read Less link text",
+          "default": "Read Less",
+          "visible_if": "{{ block.settings.show_read_more }}"
+        }
+      ]
+    },
+    {
+      "type": "quote_statement",
+      "name": "Quote statement",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote text",
+          "default": "Inspired by Japanese craftsmanship and precision tailoring, our designs are thoughtfully sculpted for petite women."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Content",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

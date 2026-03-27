@@ -7,380 +7,332 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
-    "main": {
-      "type": "template--page",
-      "blocks": {
-        "text_6VewWF": {
-          "type": "text",
-          "settings": {
-            "title": "Title"
-          }
-        }
-      },
-      "block_order": [
-        "text_6VewWF"
-      ],
-      "disabled": true,
-      "settings": {
-        "page_title_enabled": true,
-        "page_width": "narrow"
-      }
-    },
-    "image_with_text_9pBMMU": {
-      "type": "image-with-text",
-      "custom_css": [
-        "@media (max-width: 768px) {.image-with-text .text-container {text-align: left !important; }}"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/ConvertOut-Resized-A.Shimus_04252025_11_of_23_1_7afc0e3a-fb83-419b-b9b5-fbe018ec3ade.jpg",
-        "layout": "left",
-        "title": "Our Story",
-        "text": "<p>A.SHIMUS creates modern workwear designed specifically for petite women. Fit and proportion are considered from the very beginning, so each piece feels balanced, intentional, and easy to wear… without the need for adjustments.</p><p>Our work is shaped by Japanese craftsmanship and a deep respect for how clothing is made. We collaborate closely with skilled artisans and small manufacturers in Japan, working carefully through fabric selection, tailoring, and construction. The result is clothing defined by quality, restraint, and attention to detail, rather than trend.</p><p>We design workwear to be practical and versatile. Clean silhouettes, thoughtful tailoring, and pieces that move comfortably through the day, from meetings and travel to everything that follows.</p><p>At its heart, A.SHIMUS exists to make getting dressed easier for women building their careers. By focusing on fit, craftsmanship, and purpose, we create garments designed to feel reliable, considered, and quietly confident - just like the women who wear them.</p>",
-        "text_alignment": "left",
-        "text_overlapping_image": false,
-        "button_link": "",
-        "button_label": "",
-        "buttons_style": "filled",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "section-width": "content",
-        "section_padding_top": 70,
-        "section_padding_bottom": 70,
-        "colors": "white"
-      }
-    },
-    "image_with_text_YD3Yxk": {
-      "type": "image-with-text",
-      "settings": {
-        "image": "shopify://shop_images/IMG_4922.heic",
-        "layout": "right",
-        "title": "A Note from the Founder",
-        "text": "<p>A.SHIMUS was born from personal experience. As a petite woman working in professional environments, I spent years searching for clothing that felt appropriate, confident, and truly well-fitting, without needing alterations. Too often, workwear designed for smaller frames was an afterthought, forcing women to adjust themselves to the clothing rather than the other way around.</p><p>I started A.SHIMUS to change that.</p><p>From the beginning, my goal was to design garments specifically for petite women in business; pieces that feel intentional, balanced, and empowering. Fit is never secondary here, it’s the foundation. Every pattern, proportion, and detail is designed with care, so our clothing supports how women move, work, and show up each day.</p><p>Japanese craftsmanship has long inspired me for its respect for process, precision, and longevity. By partnering with skilled artisans and manufacturers in Japan, A.SHIMUS honors this tradition, creating clothing that is thoughtfully made, responsibly produced, and designed to endure beyond seasons.</p><p>A.SHIMUS is deeply personal, but it is built for a community. It exists to support women who are building careers, leading teams, and defining success on their own terms. My hope is that when you wear A.SHIMUS, you feel confident, capable, and entirely yourself.</p>",
-        "text_alignment": "left",
-        "text_overlapping_image": false,
-        "button_link": "",
-        "button_label": "",
-        "buttons_style": "filled",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "section-width": "content",
-        "section_padding_top": 70,
-        "section_padding_bottom": 70,
-        "colors": "white"
-      }
-    },
-    "image_with_text_zxJF9e": {
-      "type": "image-with-text",
-      "settings": {
-        "image": "shopify://shop_images/pexels-bnwtake0405-19630352.jpg",
-        "layout": "left",
-        "title": "Japanese Standard Sizing",
-        "text": "<p>To perfect the silhouettes of our garments, they’re developed according to Japanese sizing, known for its precise tailoring and alignment with smaller frames.<br/><br/>More specifically, our size S corresponds to a Japanese 9AR, a carefully chosen reference that reflects the proportions of petite women.<br/><br/>While certain measurements – such as sleeve length and bust –<br/>are slightly more compact than the standard US sizing,<br/>A.SHIMUS garments are thoughtfully designed to enhance and flatter.<br/><br/>Additionally, most of our bottoms feature adjustable waistbands for added comfort.<br/>Please refer to our size chart for more details.</p>",
-        "text_alignment": "left",
-        "text_overlapping_image": false,
-        "button_link": "",
-        "button_label": "",
-        "buttons_style": "filled",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "section-width": "content",
-        "section_padding_top": 70,
-        "section_padding_bottom": 70,
-        "colors": "white"
-      }
-    },
-    "image_with_text_c9LGX7": {
-      "type": "image-with-text",
-      "settings": {
-        "image": "shopify://shop_images/A.Shimus_03222025-981_1.jpg",
-        "layout": "right",
-        "title": "Perfect Fit Credit",
-        "text": "<p></p><p>Because we’re serious about ensuring our designs fit you well,<br/>in the rare case you do make alterations to your A.SHIMUS products,<br/>we’ll send you a voucher for use against your next purchase.<br/><br/>Simply let us know.<br/><br/></p>",
-        "text_alignment": "left",
-        "text_overlapping_image": false,
-        "button_link": "shopify://pages/perfect-fit-credit",
-        "button_label": "Learn More",
-        "buttons_style": "underlined",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "section-width": "content",
-        "section_padding_top": 70,
-        "section_padding_bottom": 70,
-        "colors": "light"
-      }
-    },
-    "accordion_TKxgek": {
-      "type": "accordion",
-      "blocks": {
-        "tab_content_MNYm8A": {
-          "type": "tab_content",
-          "settings": {
-            "question": "Place your question or heading here",
-            "open_by_default": false,
-            "text": "<p>Here you can place an explanation or answer to the question.</p>",
-            "page": ""
-          }
-        },
-        "tab_content_9yHhea": {
-          "type": "tab_content",
-          "settings": {
-            "question": "Place your question or heading here",
-            "open_by_default": false,
-            "text": "<p>Here you can place an explanation or answer to the question.</p>",
-            "page": ""
-          }
-        },
-        "tab_content_VJaYm4": {
-          "type": "tab_content",
-          "settings": {
-            "question": "Place your question or heading here",
-            "open_by_default": false,
-            "text": "<p>Here you can place an explanation or answer to the question.</p>",
-            "page": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_content_MNYm8A",
-        "tab_content_9yHhea",
-        "tab_content_VJaYm4"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "Frequently asked questions",
-        "description": "",
-        "section_header_alignment": "center",
-        "faq_icon": "plus_minus",
-        "section_width": "narrow",
-        "section_padding_top": 30,
-        "section_padding_bottom": 30,
-        "colors": "white"
-      }
-    },
-    "text_adverts_wtdmwR": {
-      "type": "text-adverts",
-      "blocks": {
-        "text_M3fdh7": {
-          "type": "text",
-          "settings": {
-            "heading": "What makes you different",
-            "subheading": "Shout about your unique selling points",
-            "link": ""
-          }
-        },
-        "text_Mh7GYn": {
-          "type": "text",
-          "settings": {
-            "heading": "What makes you different",
-            "subheading": "Shout about your unique selling points",
-            "link": ""
-          }
-        },
-        "text_QeghYP": {
-          "type": "text",
-          "settings": {
-            "heading": "What makes you different",
-            "subheading": "Shout about your unique selling points",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_M3fdh7",
-        "text_Mh7GYn",
-        "text_QeghYP"
-      ],
-      "disabled": true,
-      "settings": {
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
-        "colors": "light"
-      }
-    },
-    "slideshow_DTTcqe": {
+    "slideshow_3jibRi": {
       "type": "slideshow",
       "blocks": {
-        "image_MhYw7G": {
+        "image_YiMary": {
           "type": "image",
           "settings": {
-            "title": "Make a great \nfirst impression",
-            "text": "Add images and text to give focus to your chosen product, collection, or blog post",
+            "title": "",
+            "desktop-caption-heading-size": 32,
+            "mobile-caption-heading-size": 28,
+            "text": "",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
             "first_button_link": "",
-            "first_button_label": "Shop now",
+            "first_button_label": "",
             "second_button_link": "",
-            "second_button_label": "Learn more",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button-background": "#e68819",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
             "button-text": "#ffffff",
-            "image": "shopify://shop_images/clothes-on-a-rack-in-a-clothing-store.jpg",
-            "text_position": "center_left",
-            "desktop-caption-heading-size": 60,
-            "desktop-caption-body-text-size": 24,
-            "mobile_text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
+            "max_width": "451px",
+            "image": "shopify://shop_images/4e9e3d7e036f1a5d0456d8aee6f7196cd424d3c2_1.png",
+            "justify_content": "center",
+            "text_position": "end_center",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "end_center",
             "caption-text": "#ffffff",
-            "image_overlay": "#242424",
-            "image_overlay_opacity": 0
-          }
-        },
-        "image_NgjwMW": {
-          "type": "image",
-          "settings": {
-            "title": "Promote your \ntop earners",
-            "text": "Showcase key products or collections to maximise your profits",
-            "first_button_link": "",
-            "first_button_label": "Shop now",
-            "second_button_link": "",
-            "second_button_label": "Learn more",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button-background": "#e68819",
-            "button-text": "#ffffff",
-            "image": "shopify://shop_images/photo-of-people-shopping-in-a-clothing-store.jpg",
-            "text_position": "center_left",
-            "desktop-caption-heading-size": 60,
-            "desktop-caption-body-text-size": 24,
-            "mobile_text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
-            "caption-text": "#ffffff",
-            "image_overlay": "#242424",
-            "image_overlay_opacity": 0
-          }
-        },
-        "image_BNL3Fj": {
-          "type": "image",
-          "settings": {
-            "title": "Make a great \nfirst impression",
-            "text": "Add images and text to give focus to your chosen product, collection, or blog post.",
-            "first_button_link": "",
-            "first_button_label": "Shop now",
-            "second_button_link": "",
-            "second_button_label": "Learn more",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button-background": "#e68819",
-            "button-text": "#ffffff",
-            "text_position": "center_left",
-            "desktop-caption-heading-size": 60,
-            "desktop-caption-body-text-size": 24,
-            "mobile_text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
-            "caption-text": "#ffffff",
-            "image_overlay": "#242424",
-            "image_overlay_opacity": 0
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
           }
         }
       },
       "block_order": [
-        "image_MhYw7G",
-        "image_NgjwMW",
-        "image_BNL3Fj"
+        "image_YiMary"
       ],
-      "disabled": true,
+      "name": "t:sections.image--slideshow.presets.name",
       "settings": {
-        "desktop_height": "medium",
-        "mobile_height": "full_screen",
-        "slide_navigation_style": "dots",
+        "desktop_height": "full_screen",
+        "mobile_height": "large",
+        "slide_navigation_style": "bars",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "center",
+        "mobile_slide_position": "center",
         "slide_transition_delay": 5,
         "section_width": "full",
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
         "background_color": "#000000"
       }
     },
-    "gallery_BEbQRt": {
-      "type": "gallery",
+    "editorial_content_WRzmHw": {
+      "type": "editorial-content",
       "blocks": {
-        "image_k8KUAg": {
-          "type": "image",
+        "two_column_content_aUHVBW": {
+          "type": "two_column_content",
           "settings": {
-            "image": "shopify://shop_images/shirts-on-hangers-on-display.jpg",
-            "link": "",
-            "subheading": "Subheading",
-            "title": "Heading",
-            "overlay-btn-text": "",
-            "override_button_colors": false,
-            "button_background_color": "#e68819",
-            "button_text_color": "#ffffff",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "image_r4N3Xn": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/hand-on-hip-and-posing-in-retail-store.jpg",
-            "link": "",
-            "subheading": "Subheading",
-            "title": "Heading",
-            "overlay-btn-text": "",
-            "override_button_colors": false,
-            "button_background_color": "#e68819",
-            "button_text_color": "#ffffff",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "image_gXa6pH": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/smiling-woman-poses.jpg",
-            "link": "",
-            "subheading": "Subheading",
-            "title": "Heading",
-            "overlay-btn-text": "",
-            "override_button_colors": false,
-            "button_background_color": "#e68819",
-            "button_text_color": "#ffffff",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
+            "heading": "Our Story",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>A Shimus began with a familiar frustration. While working in New York, the founder struggled to find professional clothing that truly fit her petite frame. Jackets felt oversized, waistlines sat too low, proportions were always slightly off. Tailoring became routine. Compromise became expected. And over time, it became clear this wasn’t a personal problem - it was a design one.<br/><br/>Workwear simply wasn’t being created with scale in mind. A Shimus was founded to change that. From the very first pattern, every garment is designed specifically for petite proportions, with careful attention to balance, movement, and ease. Fit is never an adjustment or an afterthought, it’s the starting point. The result is workwear that feels natural the moment you put it on, allowing you to focus on your day rather than your clothes.<br/><br/>Craft is central to everything we do. A Shimus partners closely with skilled manufacturers in Japan, working across fabric development, tailoring, and construction. This small-batch, detail-driven approach reflects a deep respect for Japanese craftsmanship - where quality is built slowly, and longevity is the ultimate measure of value.<br/>Our collections are designed to live within real wardrobes. Tailored pieces that hold their shape. Silk dresses that move with ease. Separates that work together and wear well over time. Clothing that feels polished without being rigid, and refined without feeling precious.<br/><br/>At its core, A Shimus exists to support women navigating modern professional life. Not by telling them who to be, but by creating clothing that fits properly, lasts longer, and feels quietly confident in every setting.<br/><br/>A Shimus is not driven by trends. It is guided by intention, craftsmanship, and fit.<br/><br/>Workwear designed to fit.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
           }
         }
       },
       "block_order": [
-        "image_k8KUAg",
-        "image_r4N3Xn",
-        "image_gXa6pH"
+        "two_column_content_aUHVBW"
       ],
-      "disabled": true,
+      "name": "Editorial Content",
       "settings": {
-        "title": "",
-        "description": "",
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 30
+      }
+    },
+    "editorial_content_AfFPR8": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_tXxzHG": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "A Note From The Founder",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>A Shimus was born from personal experience. As a petite woman working in professional environments, I spent years searching for clothing that felt appropriate, confident, and truly well-fitting, without needing alterations. Too often, workwear designed for smaller frames was an afterthought, forcing women to adjust themselves to the clothing rather than the other way around.<br/><br/>I started A.Shimus to change that.<br/><br/>From the beginning, my goal was to design garments specifically for petite women in business; pieces that feel intentional, balanced, and empowering. Fit is never secondary here, it’s the foundation. Every pattern, proportion, and detail is designed with care, so our clothing supports how women move, work, and show up each day.<br/><br/>Japanese craftsmanship has long inspired me for its respect for process, precision, and longevity. By partnering with skilled artisans and manufacturers in Japan, A Shimus honors this tradition, creating clothing that is thoughtfully made, responsibly produced, and designed to endure beyond seasons.<br/><br/>A Shimus is deeply personal, but it is built for a community. It exists to support women who are building careers, leading teams, and defining success on their own terms. My hope is that when you wear A Shimus, you feel confident, capable, and entirely yourself.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_tXxzHG"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#f8f6f5",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "editorial_content_hbang8": {
+      "type": "editorial-content",
+      "blocks": {
+        "author_quote_LDay87": {
+          "type": "author_quote",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3665_ede00866-d5b1-47f0-a3ac-e7cd3a42d0f7.jpg",
+            "quote": "<p>“At its heart, A Shimus exists to make getting dressed easier for women building their careers. By focusing on fit, craftsmanship, and purpose, we create garments designed to feel reliable, considered, and quietly confident - just like the women who wear them.”</p>",
+            "author": "Aya Shimura, Founder and CEO"
+          }
+        }
+      },
+      "block_order": [
+        "author_quote_LDay87"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#f8f6f5",
+        "section_text_color": "#000000",
+        "section_padding_top": 0,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "image_text_blocks_gWxH4J": {
+      "type": "image-text-blocks",
+      "blocks": {
+        "image_text_block_4ww8NY": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/67f648dd4c6544c6cb9d147344f0f1cbc0f31d06_4.png",
+            "title": "With Magokoro Spirit / 真心をこめて",
+            "description": "",
+            "button_url": "shopify://pages/discover",
+            "button_label": "DISCOVER THE STORY"
+          }
+        },
+        "image_text_block_pRcbFd": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/cb5c860695033f5cbce84a024f59b49cd6a4e9b2_1.png",
+            "title": "Meet our Manufacture",
+            "description": "",
+            "button_url": "#",
+            "button_label": "OUR INTERVIEW WITH CEO"
+          }
+        },
+        "image_text_block_t6a8P7": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/flying_solo_store_front_1.png",
+            "title": "Our Stores",
+            "description": "",
+            "button_url": "shopify://pages/our-history",
+            "button_label": "FIND US IN STORE"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_4ww8NY",
+        "image_text_block_pRcbFd",
+        "image_text_block_t6a8P7"
+      ],
+      "name": "Image Text Blocks",
+      "settings": {
+        "section_title": "",
+        "section_description": "",
         "section_header_alignment": "center",
-        "content-position": "overlay",
-        "full-width": false,
-        "grid_image_size": "square",
-        "buttons_style": "filled",
-        "section-width": "content",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "remove-spacing": false,
-        "colors": "white"
+        "blocks_per_row": "3",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "buttons_style": "outlined"
+      }
+    },
+    "editorial_content_Cp49TY": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_Jpnhqk": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Why Made in Japan",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>Japan is known for craftsmanship that favors precision over scale, and longevity over speed. It is a place where garment making remains a respected discipline, defined by technical mastery, rigorous standards, and an uncompromising approach to quality. Producing in Japan allows A Shimus to work with highly skilled artisans and small manufacturers who specialize in pattern accuracy, fabric handling, and refined construction. This expertise ensures garments hold their shape, wear beautifully over time, and deliver a level of consistency that mass production cannot replicate.<br/><br/>Japanese manufacturing is inherently slower and more considered. Small-batch production, advanced textile engineering, and meticulous finishing contribute to a higher cost—but also to garments that last longer, perform better, and require fewer replacements.<br/><br/>Choosing Made in Japan is an investment.It reflects a commitment to quality, responsible production, and workwear designed to endure well beyond the season.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_Jpnhqk"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "featured_in_logos_dXahcx": {
+      "type": "featured-in-logos",
+      "blocks": {
+        "logo_C87aaf": {
+          "type": "logo",
+          "name": "Moveux",
+          "settings": {
+            "logo": "shopify://shop_images/374f509adaabd1ff635b483d82a37826080f836f.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_JPBkA6": {
+          "type": "logo",
+          "name": "Glamour",
+          "settings": {
+            "logo": "shopify://shop_images/g5_1.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_qeyikJ": {
+          "type": "logo",
+          "name": "Grazia",
+          "settings": {
+            "logo": "shopify://shop_images/image_2808.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_6RwqHq": {
+          "type": "logo",
+          "name": "Gmaro",
+          "settings": {
+            "logo": "shopify://shop_images/image_2810.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_V8BLdp": {
+          "type": "logo",
+          "name": "Scorfia vin",
+          "settings": {
+            "logo": "shopify://shop_images/image_2809.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_7RJqiC": {
+          "type": "logo",
+          "name": "Flanelle",
+          "settings": {
+            "logo": "shopify://shop_images/Screenshot_2026-01-17_at_9.30.42_AM_1.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_cBqaaJ": {
+          "type": "logo",
+          "name": "Afrostyle",
+          "settings": {
+            "logo": "shopify://shop_images/547f15d1f1fbd2022c1fd44c5d98a302514c6414.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_C87aaf",
+        "logo_JPBkA6",
+        "logo_qeyikJ",
+        "logo_6RwqHq",
+        "logo_V8BLdp",
+        "logo_7RJqiC",
+        "logo_cBqaaJ"
+      ],
+      "name": "As Featured In",
+      "settings": {
+        "title": "As Featured In"
       }
     }
   },
   "order": [
-    "main",
-    "image_with_text_9pBMMU",
-    "image_with_text_YD3Yxk",
-    "image_with_text_zxJF9e",
-    "image_with_text_c9LGX7",
-    "accordion_TKxgek",
-    "text_adverts_wtdmwR",
-    "slideshow_DTTcqe",
-    "gallery_BEbQRt"
+    "slideshow_3jibRi",
+    "editorial_content_WRzmHw",
+    "editorial_content_AfFPR8",
+    "editorial_content_hbang8",
+    "image_text_blocks_gWxH4J",
+    "editorial_content_Cp49TY",
+    "featured_in_logos_dXahcx"
   ]
 }

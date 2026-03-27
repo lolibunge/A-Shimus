@@ -9,456 +9,249 @@
  */
 {
   "sections": {
-    "35b28867-77fd-4573-8212-101b3b8e2245": {
-      "type": "image-with-text-overlay",
+    "slideshow_8Re6hG": {
+      "type": "slideshow",
       "blocks": {
-        "button_R48wtk": {
-          "type": "button",
+        "image_pK4dHU": {
+          "type": "image",
           "settings": {
-            "first_button_link": "/",
-            "first_button_label": "",
-            "second_button_link": "shopify://pages/craftsmanship",
-            "second_button_label": "Japanese Craftsmanship",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "buttons_background": "#242424",
-            "buttons_text": "#ffffff",
-            "buttons_bottom_spacing": 0
+            "title": "Designed with You in Mind.",
+            "desktop-caption-heading-size": 48,
+            "mobile-caption-heading-size": 28,
+            "text": "Petite-first workwear, crafted in Japan with precision and restraint.",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
+            "first_button_link": "",
+            "first_button_label": "EXPLORE THE COLLECTION",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
+            "button-text": "#ffffff",
+            "max_width": "674px",
+            "image": "shopify://shop_images/Hero_Image_1_61838a34-35b5-4663-887c-5728f89c296b.jpg",
+            "justify_content": "center",
+            "text_position": "center_end",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "center_center",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
           }
         }
       },
       "block_order": [
-        "button_R48wtk"
+        "image_pK4dHU"
       ],
-      "custom_css": [
-        ".dynamic-section-button--button_t94NfT.btn {padding-left: 10px; padding-right: 10px;}"
-      ],
+      "custom_css": [],
+      "name": "t:sections.image--slideshow.presets.name",
       "settings": {
-        "image_desktop": "shopify://shop_images/final_web.jpg",
-        "height_desktop": "original",
-        "text_position_desktop": "left",
-        "text_alignment_desktop": "center",
-        "caption_width_desktop": 60,
-        "image_mobile": "shopify://shop_images/final_web.jpg",
-        "height_mobile": "original",
-        "text_position_mobile": "bottom_center",
-        "text_alignment_mobile": "left",
-        "section_link": "",
-        "animation_style": "none",
+        "desktop_height": "extra_large",
+        "mobile_height": "extra_large",
+        "slide_navigation_style": "arrows",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "right",
+        "mobile_slide_position": "left",
+        "slide_transition_delay": 10,
         "section_width": "full",
-        "section_margin_top": 0,
-        "section_margin_bottom": 0,
-        "text_color": "#242424",
-        "caption_bg_color": "rgba(0,0,0,0)",
-        "image_overlay_color": "#242424",
-        "image_overlay_opacity": 0
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
       }
     },
-    "3643d38b-24f2-4040-ab67-4b4b44a63aab": {
-      "type": "featured-collection",
-      "custom_css": [
-        ".product-card__image .theme-img.block-radius {object-fit: contain !important;}"
-      ],
-      "settings": {
-        "title": "New Collection",
-        "description": "<p><a href=\"/collections/new-arrivals\" title=\"New Arrivals\">Shop Now</a></p>",
-        "section_header_alignment": "center",
-        "collection": "25-fall-winter",
-        "show_highlight": false,
-        "highlight_icon": "heart",
-        "highlight_heading": "Why we love it",
-        "highlight_reference": "",
-        "highlight_text_color": "rgba(0,0,0,0)",
-        "highlight_background_color": "rgba(0,0,0,0)",
-        "highlight_alignment": "left",
-        "highlight_font_size": "medium",
-        "highlight_collapsible_tab": true,
-        "highlight_open_close_icon": "plus_minus",
-        "highlight_button_borders": false,
-        "override_button_colors": true,
-        "button_background_color": "#371313",
-        "button_text_color": "#ffffff",
-        "show_view_all": false,
-        "button_position": "below_products",
-        "button_alignment": "center",
-        "buttons_style": "filled",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "layout_style": "slider",
-        "products_to_show": 8,
-        "grid-desktop": 4,
-        "grid-mobile": "2",
-        "colors": "white"
-      }
-    },
-    "collection_list_WKYj39": {
-      "type": "collection-list",
+    "editorial_content_MUcPmg": {
+      "type": "editorial-content",
       "blocks": {
-        "featured_collection_F6TCFb": {
-          "type": "featured_collection",
+        "intro_editorial_adpnmM": {
+          "type": "intro_editorial",
           "settings": {
-            "collection": "dresses",
-            "collection_img": "shopify://shop_images/WhatsApp_Image_2026-02-15_at_14.30.56.jpg",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "featured_collection_HUGVVm": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "jackets-and-coats",
-            "collection_img": "shopify://shop_images/image_2.jpg",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "featured_collection_8qaPFp": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "knitewear-and-cardigans",
-            "collection_img": "shopify://shop_images/A.SHIMUS_Image_B.png",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "featured_collection_LjMCtt": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "pants",
-            "collection_img": "shopify://shop_images/PANTS_NEW.jpg",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "featured_collection_eHHUQT": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "skirts",
-            "collection_img": "shopify://shop_images/SKIRT_NEW.jpg",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
-          }
-        },
-        "featured_collection_8EQgNy": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "tops",
-            "collection_img": "shopify://shop_images/image_4.jpg",
-            "subheading": "",
-            "overlay-btn-text": "",
-            "show-gradient-overlay": false,
-            "overlay_color": "#242424",
-            "overlay_font_color": "#ffffff"
+            "title": "Luxury Petite Workwear",
+            "text": "<p>This is considered style. Style that combines meticulous fit, Japanese craftsmanship, and functional design to create enduring wardrobe essentials for petite women. It is style that supports how you work, lead, and live.</p>",
+            "meta": "- Aya Shimura, Founder and CEO"
           }
         }
       },
       "block_order": [
-        "featured_collection_F6TCFb",
-        "featured_collection_HUGVVm",
-        "featured_collection_8qaPFp",
-        "featured_collection_LjMCtt",
-        "featured_collection_eHHUQT",
-        "featured_collection_8EQgNy"
+        "intro_editorial_adpnmM"
       ],
-      "name": "t:sections.collection--collection-list.presets.name",
+      "custom_css": [],
+      "name": "Editorial Content",
       "settings": {
-        "title": "",
-        "description": "",
-        "section_header_alignment": "center",
-        "items-per-row": 3,
-        "content-position": "below-image",
-        "image_shape": "tall",
-        "buttons_style": "filled",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "section-width": "full",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "remove-spacing": false,
-        "colors": "white"
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
       }
     },
-    "featured_collection_Kqn9qw": {
-      "type": "featured-collection",
-      "custom_css": [
-        ".product-card__image .theme-img.block-radius {object-fit: contain !important;}"
-      ],
-      "settings": {
-        "title": "Our Tweed Collection",
-        "description": "<p><a href=\"/collections/our-tweed-collection\" title=\"Our Tweed Collection\">Shop Japanese Signature Tweeds</a></p>",
-        "section_header_alignment": "center",
-        "collection": "our-tweed-collection",
-        "show_highlight": false,
-        "highlight_icon": "heart",
-        "highlight_heading": "Why we love it",
-        "highlight_reference": "",
-        "highlight_text_color": "rgba(0,0,0,0)",
-        "highlight_background_color": "rgba(0,0,0,0)",
-        "highlight_alignment": "left",
-        "highlight_font_size": "medium",
-        "highlight_collapsible_tab": true,
-        "highlight_open_close_icon": "plus_minus",
-        "highlight_button_borders": false,
-        "override_button_colors": true,
-        "button_background_color": "#371313",
-        "button_text_color": "#ffffff",
-        "show_view_all": false,
-        "button_position": "below_products",
-        "button_alignment": "center",
-        "buttons_style": "filled",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "layout_style": "slider",
-        "products_to_show": 8,
-        "grid-desktop": 4,
-        "grid-mobile": "2",
-        "colors": "white"
-      }
-    },
-    "testimonials_r8BxQi": {
-      "type": "testimonials",
-      "blocks": {
-        "text_UzJXMi": {
-          "type": "text",
-          "settings": {
-            "stars": 5,
-            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
-            "customer_name": "John Smith",
-            "link": ""
-          }
-        },
-        "text_gP6zEC": {
-          "type": "text",
-          "settings": {
-            "stars": 5,
-            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
-            "customer_name": "John Smith",
-            "link": ""
-          }
-        },
-        "text_3iq4mT": {
-          "type": "text",
-          "settings": {
-            "stars": 5,
-            "testimonial_text": "<p>\"Show off incredible feedback from your customers\"</p>",
-            "customer_name": "John Smith",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_UzJXMi",
-        "text_gP6zEC",
-        "text_3iq4mT"
-      ],
-      "disabled": true,
-      "name": "t:sections.text--testimonials.presets.name",
-      "settings": {
-        "title": "Testimonials",
-        "description": "",
-        "section_header_alignment": "center",
-        "circle_images": true,
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "colors": "white"
-      }
-    },
-    "rich_text_VcennU": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_hrBGy9": {
-          "type": "heading",
-          "settings": {
-            "heading": "Elevated Workwear for Petite women",
-            "heading--text-size": 20,
-            "heading_bottom_spacing": 20
-          }
-        },
-        "richtext_LRNbnx": {
-          "type": "richtext",
-          "settings": {
-            "text": "",
-            "text_size": 14,
-            "text_bottom_spacing": 20
-          }
-        },
-        "button_g7HKBe": {
-          "type": "button",
-          "settings": {
-            "button_link": "",
-            "button_text": "Learn More",
-            "buttons_style": "underlined",
-            "override_button_colors": false,
-            "button_background_color": "#e68819",
-            "button_text_color": "#ffffff",
-            "button_bottom_spacing": 20
-          }
-        }
-      },
-      "block_order": [
-        "heading_hrBGy9",
-        "richtext_LRNbnx",
-        "button_g7HKBe"
-      ],
-      "settings": {
-        "section_width": "narrow",
-        "text_alignment_desktop": "center",
-        "text_alignment_mobile": "center",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "colors": "white"
-      }
-    },
-    "50b03afc-6c7a-4252-94c2-7579c9d3b3ee": {
+    "collage_KN9gP4": {
       "type": "collage",
       "blocks": {
-        "83447c73-f480-4c7d-8508-249f594f3aa3": {
+        "image_nepLqP": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/250422_A.SHIMUS12208.jpg",
-            "desktop_position": "md-min-align-top md-min-justify-left",
-            "heading_size": 28,
-            "mobile_position": "md-max-align-center md-max-justify-left",
-            "heading_size_mobile": 28,
-            "heading": "2025 Fall / Winter Collection",
-            "url": "shopify://collections/25-fall-winter",
-            "button_label": "",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button_background_color": "#262428",
-            "button_color": "#e6e5e7",
-            "text_color": "#ffffff",
-            "overlay_color": "rgba(0,0,0,0)"
-          }
-        },
-        "0d4c44b0-cb7c-43dc-829a-743dfa47a878": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/250422_A.SHIMUS11633re_70569023-afca-4b0a-9161-25172f3a3463.jpg",
-            "desktop_position": "md-min-align-top md-min-justify-left",
-            "heading_size": 28,
-            "mobile_position": "md-max-align-top md-max-justify-left",
-            "heading_size_mobile": 28,
-            "heading": "Lookbook",
-            "url": "shopify://pages/lookbook",
-            "button_label": "",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button_background_color": "#262428",
-            "button_color": "#e6e5e7",
-            "text_color": "#ffffff",
-            "overlay_color": "rgba(0,0,0,0)"
-          }
-        },
-        "image_Tf6HGB": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Cocktails_boutique_store_front.jpg",
-            "desktop_position": "md-min-align-top md-min-justify-left",
-            "heading_size": 28,
-            "mobile_position": "md-max-align-bottom md-max-justify-right",
+            "desktop_image": "shopify://shop_images/HERO_2.jpg",
+            "desktop_position": "md-min-align-bottom md-min-justify-center",
+            "heading_size": 60,
+            "mobile_position": "md-max-align-bottom md-max-justify-center",
             "heading_size_mobile": 22,
-            "heading": "Find Us In-Store",
-            "url": "shopify://pages/find-us",
-            "button_label": "",
-            "buttons_style": "filled",
-            "override_button_colors": false,
-            "button_background_color": "#e68819",
+            "heading": "",
+            "url": "shopify://collections",
+            "button_label": "SHOP DRESSES",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button_background_color": "#ffffff",
             "button_color": "#ffffff",
             "text_color": "#ffffff",
-            "overlay_color": "#000000"
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_XzfdU8": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/HERO_3.jpg",
+            "desktop_position": "md-min-align-bottom md-min-justify-center",
+            "heading_size": 30,
+            "mobile_position": "md-max-align-bottom md-max-justify-center",
+            "heading_size_mobile": 22,
+            "heading": "",
+            "url": "shopify://collections",
+            "button_label": "SHOP JACKETS AND COATS",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button_background_color": "#ffffff",
+            "button_color": "#ffffff",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
           }
         }
       },
       "block_order": [
-        "83447c73-f480-4c7d-8508-249f594f3aa3",
-        "0d4c44b0-cb7c-43dc-829a-743dfa47a878",
-        "image_Tf6HGB"
+        "image_nepLqP",
+        "image_XzfdU8"
       ],
+      "name": "t:sections.collage-builder.presets.name",
       "settings": {
         "title": "",
         "description": "",
         "section_header_alignment": "center",
         "section_width": "full",
-        "remove_spacing": false,
+        "remove_spacing": true,
         "block_alignment": "center",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
-        "width_1": "3",
-        "height_1": "2",
-        "width_2": "3",
-        "height_2": "2",
+        "width_1": "2",
+        "height_1": "1.666667",
+        "width_2": "2",
+        "height_2": "1.666667",
         "width_3": "3",
-        "height_3": "2",
+        "height_3": "3",
         "width_4": "2",
         "height_4": "2",
         "width_5": "2",
         "height_5": "2",
         "width_6": "1",
-        "height_6": "6",
+        "height_6": "4",
         "color_scheme": "white"
       }
     },
-    "3f1d5abc-4a41-4b0f-98ca-29a6a3d95949": {
-      "type": "blog-posts",
-      "blocks": {
-        "blog_dt6BAx": {
-          "type": "blog",
-          "settings": {
-            "blog": "blog"
-          }
-        }
-      },
-      "block_order": [
-        "blog_dt6BAx"
-      ],
+    "collection_showcase_Y9UqP4": {
+      "type": "collection-showcase",
+      "name": "Collection Showcase",
       "settings": {
-        "title": "blog",
+        "title": "",
+        "title_alignment": "center",
+        "collection": "new-arrivals",
+        "products_to_show": 8,
+        "pagination_style": "dots",
+        "slides_per_view_mobile": 1,
+        "slides_per_view_tablet": 1,
+        "slides_per_view_desktop": 1,
+        "space_between_mobile": 0,
+        "space_between_tablet": 0,
+        "space_between_desktop": 0
+      }
+    },
+    "3643d38b-24f2-4040-ab67-4b4b44a63aab": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "New Items",
         "description": "",
-        "section_header_alignment": "left",
-        "show_image": true,
-        "image_shape": "wide",
-        "post_limit": 3,
-        "show_tags": false,
-        "blog_show_date": false,
-        "show_author": false,
-        "show_reading_time": false,
-        "show_comment_count": false,
-        "show_excerpt": false,
-        "show_read_more": false,
-        "heading_font": "heading",
-        "heading_font_size": 20,
-        "alignment": "center",
-        "buttons_style": "underlined",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff",
-        "layout_style_desktop": "slider",
-        "hover_navigation_desktop": "left-and-right",
-        "peek_desktop": true,
-        "images_per_row_desktop": 3,
-        "layout_style_mobile": "slider",
-        "navigation_mobile": "dots",
-        "section_width": "full",
+        "section_header_alignment": "center",
+        "content_type": "collection",
+        "collection": "new-arrivals",
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "override_button_colors": true,
+        "button_background_color": "#7b6859",
+        "button_text_color": "#242424",
+        "show_view_all": false,
+        "show_scrollbar": false,
+        "button_position": "below_products",
+        "button_alignment": "center",
+        "buttons_style": "filled",
+        "section_padding_top": 70,
+        "section_padding_bottom": 100,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30,
+        "layout_style": "slider",
+        "products_to_show": 8,
+        "grid-desktop": 4,
+        "grid-mobile": 2,
+        "colors": "dark"
+      }
+    },
+    "featured_collection_7nUDzE": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Recently Viewed",
+        "description": "",
+        "section_header_alignment": "center",
+        "content_type": "collection",
+        "collection": "new-arrivals",
+        "show_highlight": false,
+        "highlight_icon": "heart",
+        "highlight_heading": "Why we love it",
+        "highlight_reference": "",
+        "highlight_text_color": "rgba(0,0,0,0)",
+        "highlight_background_color": "rgba(0,0,0,0)",
+        "highlight_alignment": "left",
+        "highlight_font_size": "medium",
+        "highlight_collapsible_tab": true,
+        "highlight_open_close_icon": "plus_minus",
+        "highlight_button_borders": false,
+        "override_button_colors": true,
+        "button_background_color": "#7b6859",
+        "button_text_color": "#242424",
+        "show_view_all": false,
+        "show_scrollbar": false,
+        "button_position": "below_products",
+        "button_alignment": "center",
+        "buttons_style": "filled",
         "section_padding_top": 60,
         "section_padding_bottom": 60,
-        "colors": "white"
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30,
+        "layout_style": "slider",
+        "products_to_show": 8,
+        "grid-desktop": 4,
+        "grid-mobile": 2,
+        "colors": "dark"
       }
     },
     "contact_form_rhN6m6": {
@@ -505,25 +298,277 @@
         "title": "Contact us",
         "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
         "section_header_alignment": "center",
+        "column_layout": "",
         "form_width": "narrow",
         "section_padding_top": 60,
         "section_padding_bottom": 60,
-        "section_color_scheme": "white",
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff"
       }
+    },
+    "slideshow_k49RAQ": {
+      "type": "slideshow",
+      "blocks": {
+        "image_nxNTBh": {
+          "type": "image",
+          "settings": {
+            "title": "From Mill to Masterpiece",
+            "desktop-caption-heading-size": 32,
+            "mobile-caption-heading-size": 28,
+            "text": "Designed with You in Mind.Petite-first workwear, crafted in Japan with precision and restraint.",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
+            "first_button_link": "",
+            "first_button_label": "DISCOVER THE STORY",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
+            "button-text": "#ffffff",
+            "max_width": "451px",
+            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
+            "justify_content": "center",
+            "text_position": "end_center",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "end_center",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_nxNTBh"
+      ],
+      "custom_css": [],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "extra_large",
+        "mobile_height": "extra_large",
+        "slide_navigation_style": "arrows",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "right",
+        "mobile_slide_position": "left",
+        "slide_transition_delay": 10,
+        "section_width": "full",
+        "section_padding_desktop": "100px",
+        "section_padding_mobile": "38px 28px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
+      }
+    },
+    "editorial_content_YBeUJ7": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_Mir9g8": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Why Made in Japan",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>Japan is known for craftsmanship that favors precision over scale, and longevity over speed. It is a place where garment making remains a respected discipline, defined by technical mastery, rigorous standards, and an uncompromising approach to quality. Producing in Japan allows A Shimus to work with highly skilled artisans and small manufacturers who specialize in pattern accuracy, fabric handling, and refined construction. This expertise ensures garments hold their shape, wear beautifully over time, and deliver a level of consistency that mass production cannot replicate.<br/><br/>Japanese manufacturing is inherently slower and more considered. Small-batch production, advanced textile engineering, and meticulous finishing contribute to a higher cost—but also to garments that last longer, perform better, and require fewer replacements.<br/><br/>Choosing Made in Japan is an investment.It reflects a commitment to quality, responsible production, and workwear designed to endure well beyond the season.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_Mir9g8"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "featured_in_logos_dXahcx": {
+      "type": "featured-in-logos",
+      "blocks": {
+        "logo_C87aaf": {
+          "type": "logo",
+          "name": "Moveux",
+          "settings": {
+            "logo": "shopify://shop_images/image_2811.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_JPBkA6": {
+          "type": "logo",
+          "name": "Glamour",
+          "settings": {
+            "logo": "shopify://shop_images/g5.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_qeyikJ": {
+          "type": "logo",
+          "name": "Grazia",
+          "settings": {
+            "logo": "shopify://shop_images/image_2808.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_6RwqHq": {
+          "type": "logo",
+          "name": "Gmaro",
+          "settings": {
+            "logo": "shopify://shop_images/image_2810.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_V8BLdp": {
+          "type": "logo",
+          "name": "Scorfia vin",
+          "settings": {
+            "logo": "shopify://shop_images/image_2809.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_7RJqiC": {
+          "type": "logo",
+          "name": "Flanelle",
+          "settings": {
+            "logo": "shopify://shop_images/Screenshot_2026-01-17_at_9.30.42_AM_1.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        },
+        "logo_cBqaaJ": {
+          "type": "logo",
+          "name": "Afrostyle",
+          "settings": {
+            "logo": "shopify://shop_images/image_2807.png",
+            "alt": "Featured logo",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_C87aaf",
+        "logo_JPBkA6",
+        "logo_qeyikJ",
+        "logo_6RwqHq",
+        "logo_V8BLdp",
+        "logo_7RJqiC",
+        "logo_cBqaaJ"
+      ],
+      "name": "As Featured In",
+      "settings": {
+        "title": "As Featured In"
+      }
+    },
+    "slideshow_DbmMnX": {
+      "type": "slideshow",
+      "blocks": {
+        "image_8cjiNH": {
+          "type": "image",
+          "settings": {
+            "title": "Our Stores",
+            "desktop-caption-heading-size": 48,
+            "mobile-caption-heading-size": 28,
+            "text": "",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
+            "first_button_link": "",
+            "first_button_label": "Find Us In Store",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
+            "button-text": "#ffffff",
+            "max_width": "451px",
+            "image": "shopify://shop_images/flying_solo_store_front_1.jpg",
+            "justify_content": "center",
+            "text_position": "end_center",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "end_center",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_8cjiNH"
+      ],
+      "custom_css": [],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "medium",
+        "mobile_height": "large",
+        "slide_navigation_style": "arrows",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "right",
+        "mobile_slide_position": "left",
+        "slide_transition_delay": 10,
+        "section_width": "full",
+        "section_padding_desktop": "100px",
+        "section_padding_mobile": "46px 28px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
+      }
+    },
+    "editorial_content_BBktw8": {
+      "type": "editorial-content",
+      "blocks": {
+        "quote_statement_6Wg7AL": {
+          "type": "quote_statement",
+          "settings": {
+            "quote": "Inspired by Japanese craftsmanship and precision tailoring, A Shimus designs workwear thoughtfully sculpted for petite women"
+          }
+        }
+      },
+      "block_order": [
+        "quote_statement_6Wg7AL"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
     }
   },
   "order": [
-    "35b28867-77fd-4573-8212-101b3b8e2245",
+    "slideshow_8Re6hG",
+    "editorial_content_MUcPmg",
+    "collage_KN9gP4",
+    "collection_showcase_Y9UqP4",
     "3643d38b-24f2-4040-ab67-4b4b44a63aab",
-    "collection_list_WKYj39",
-    "featured_collection_Kqn9qw",
-    "testimonials_r8BxQi",
-    "rich_text_VcennU",
-    "50b03afc-6c7a-4252-94c2-7579c9d3b3ee",
-    "3f1d5abc-4a41-4b0f-98ca-29a6a3d95949",
-    "contact_form_rhN6m6"
+    "featured_collection_7nUDzE",
+    "contact_form_rhN6m6",
+    "slideshow_k49RAQ",
+    "editorial_content_YBeUJ7",
+    "featured_in_logos_dXahcx",
+    "slideshow_DbmMnX",
+    "editorial_content_BBktw8"
   ]
 }

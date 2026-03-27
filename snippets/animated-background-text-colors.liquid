@@ -17,6 +17,38 @@
               assign announcement_text_color_transparent50 = 'color-mix(in srgb, ' | append: announcement_text_color | append: ', transparent 50%)'
             %}
             {% style %}
+              .block-id-{{ block.id }} .announcement_wrapper.text-a-left {
+                text-align: left;
+                justify-content: flex-start;
+              }
+              
+              .block-id-{{ block.id }} .announcement_wrapper.text-a-center {
+                text-align: center;
+                justify-content: center;
+              }
+              
+              .block-id-{{ block.id }} .announcement_wrapper.text-a-right {
+                text-align: right;
+                justify-content: flex-end;
+              }
+
+              @media (max-width: 749px) {
+                .block-id-{{ block.id }} .announcement_wrapper.text-a-m-left {
+                  text-align: left;
+                  justify-content: flex-start;
+                }
+                
+                .block-id-{{ block.id }} .announcement_wrapper.text-a-m-center {
+                  text-align: center;
+                  justify-content: center;
+                }
+                
+                .block-id-{{ block.id }} .announcement_wrapper.text-a-m-right {
+                  text-align: right;
+                  justify-content: flex-end;
+                }
+              }
+
               .block-id-{{ block.id }} .announcement_wrapper.text-link-animated a {
                 background: linear-gradient(to top, {{ announcement_text_color_transparent50 }} 0, {{ announcement_text_color_transparent50 }} 0), linear-gradient(to top, currentColor 0, currentColor 0);
                 background-size: 100% 1px, 0 1px;
@@ -29,7 +61,7 @@
               }
             {% endstyle %}
 
-            <div class="announcement_wrapper text-link-animated" data-announcement>
+            <div class="announcement_wrapper text-link-animated text-a-{{ block.settings.announcement_alignment }} text-a-m-{{ block.settings.announcement_alignment_mobile }}" data-announcement>
               <span class="announcement_text">{{ block.settings.announcement_text }}</span>
             </div>
 

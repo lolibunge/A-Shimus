@@ -76,11 +76,18 @@
 </safe-load-scripts>
 
 <div 
-  class="wrapper-spacing--h wrapper-spacing--v--template product-section{% if request.visual_preview_mode %} animated fadeIn{% else %} show-on-scroll{% endif %}"
+  class="product-section{% if request.visual_preview_mode %} animated fadeIn{% else %} show-on-scroll{% endif %}"
   data-wetheme-section-type="template--product"
   data-wetheme-section-id="{{ section.id }}"
+  id="product-section"
+  style="--background-color: {{ section.settings.background_color }};--text-color: {{ section.settings.text_color }}"
 >
   <div class="product-single-wrapper width--content">
+    {% if settings.enable_breadcrumbs %}
+      <div id="breadcrumbs-desktop" class="wrapper-spacing--h">
+        {% render 'breadcrumb' %}
+      </div>
+    {% endif %}  
     <div
       class="product-single{% if section.settings.media_position == "right" %} product-media--right{% endif %}{% if section.settings.enable_sticky %} product-sticky-wrapper{% endif %}{% if options_block.settings.variant_style == 'dropdowns' %} variant-dropdown-enabled{% else %} variant-swatches-enabled{% endif %}"
       data-product-content-wrapper
@@ -124,8 +131,9 @@
       %}
 
       {% comment %} ============ PRODUCT MEDIA ============ {% endcomment %}
-      <div data-product-media-wrapper data-media-sources="{{ media_sources }}" class="{{ product_image_width }} context mobile--no-top-margin{% if section.settings.enable_sticky %} product-sticky{% endif %}">
-        {% comment %} ==== DESKTOP MEDIA ==== {% endcomment %}
+      <div id="product-media" data-product-media-wrapper data-media-sources="{{ media_sources }}" class="{{ product_image_width }} context mobile--no-top-margin{% if section.settings.enable_sticky %} product-sticky{% endif %}">
+      
+      {% comment %} ==== DESKTOP MEDIA ==== {% endcomment %}
         {% liquid 
           assign media_type = desktop_media_style
           assign has_pagination = false
@@ -179,7 +187,7 @@
               {% assign spacing_classes = 'product-form-block' %}
 
               {% if settings.enable_breadcrumbs %}
-                <div id="breadcrumbs">
+                <div id="breadcrumbs-mobile">
                   {% render 'breadcrumb' %}
                 </div>
               {% endif %}
@@ -202,7 +210,7 @@
                         data-update-id="item-{{ block.id }}"
                         data-block-id="{{ block.id }}"
                         class="{{ spacing_classes }} {% if current_variant.sku == "" %}js{% endif %}"
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px"
                         {{ block.shopify_attributes }}
                       >
                         <span class="current-variant--sku">{{ current_variant.sku }}</span>
@@ -216,7 +224,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="{{ spacing_classes }}" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custon-color: {{ block.settings.color }};--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         <span class="product__meta--vendor nav-link-animated">
@@ -231,7 +239,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}" 
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       <h1 class="{{ block.settings.title_font }} product-details-product-title">{{ product.title | escape }}</h1>
@@ -239,7 +247,7 @@
 
                   {% when 'separator' %}
                     {% comment %} ===== SEPARATOR BLOCK ===== {% endcomment %}
-                    <div class="product-form-separator {{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
+                    <div class="product-form-separator {{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" {{ block.shopify_attributes }}>
                     </div>
 
                   {% when 'price' %}
@@ -248,7 +256,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
-                      class="{{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      class="{{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       <div class="product-price-size--{{ block.settings.price_font }} product-price-group">
@@ -299,7 +307,7 @@
                           data-updates-on-change
                           data-update-id="item-{{ block.id }}"
                           class="product-description {{ spacing_classes }}{% if block.settings.collapsible_tab %} product-description--collapsible collapsible{% if block.settings.margin_bottom == 0 %} no_margin_bottom{% endif %}{% endif %}" 
-                          style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                          style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                           {{ block.shopify_attributes }}>
                           {% unless block.settings.collapsible_tab %}
                             <div class="text-link-animated">{{ product.description }}</div>
@@ -334,7 +342,7 @@
                             data-updates-on-change
                             data-update-id="item-{{ block.id }}" 
                             class="{{ spacing_classes }} linked-products" 
-                            style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                            style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                             {{ block.shopify_attributes }}
                           >
                             <div class="swatch linked-products-swatch" data-option-index="{{ option_index }}">
@@ -396,7 +404,7 @@
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
                       {% if block_has_content %}
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px"
                       {% endif %}
                     >
                       {% render 'product-options' with product: product, 
@@ -416,7 +424,7 @@
                             <script src="{{ 'component-size-guide-link.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="size-guide-link"></script>
                           </safe-load-scripts>
                         
-                          <size-guide-link id="size-guide" class="text-link-animated">
+                          <size-guide-link id="size-guide">
                             <a data-size-guide-link id="size-guide-link" tabindex="0" href="{{ block.settings.size_guide_page.url }}">{{ block.settings.size_guide_label | default: block.settings.size_guide_page.title }}</a>
                           </size-guide-link>
                         </div>
@@ -444,7 +452,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}" 
                       class="complementary-products hidden {{ spacing_classes }}{% if block.settings.collapsible_tab %} collapsible{% if block.settings.margin_bottom == 0 %} no_margin_bottom{% endif %}{% endif %} show-on-scroll show-on-scroll--nested" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       {%- render 'complementary-products-block' with title: block.settings.title, products_limit: block.settings.products_limit, collapsible: block.settings.collapsible_tab, open_close_icon: block.settings.open_close_icon, tab_open_by_default: block.settings.open_by_default, custom_icon: block.settings.custom_icon, icon: block.settings.icon, id: block.id -%}
@@ -457,7 +465,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="cross-sell {{ spacing_classes }}{% if block.settings.collapsible_tab %} collapsible{% if block.settings.margin_bottom == 0 %} no_margin_bottom{% endif %}{% endif %} show-on-scroll show-on-scroll--nested" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {%- assign cross_sells_products = block.settings.cross_sell_product_1 | append: ',' | append: block.settings.cross_sell_product_2 | append: ',' | append: block.settings.cross_sell_product_3 | split: ',' | compact -%}
@@ -528,7 +536,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="collapsible-tab-container collapsible {{ spacing_classes }}{% if block.settings.margin_bottom == 0 %} no_margin_bottom{% endif %}" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {% render 'collapsible-tab', icon: icon, custom_icon: custom_icon, heading: block.settings.heading, content: content, open_close_icon: block.settings.open_close_icon, open_by_default: block.settings.open_by_default, heading_classes: 'label-font', block_id: block.id %}
@@ -548,7 +556,7 @@
                           assign field_name = 'properties[' | append: giftwrap_name | append: ']'
                         %}
 
-                        <div class="{{ spacing_classes }} product__meta--giftwrap" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
+                        <div class="{{ spacing_classes }} product__meta--giftwrap" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" {{ block.shopify_attributes }}>
                           {% render 'form-input--checkbox' with id: field_id, form_id: product_form_id, name: field_name, label_text: giftwrap_label %}
                         </div>
                       {% endif %}
@@ -561,7 +569,7 @@
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }} {% if section.settings.image_size == 'large' %}col-md-12{% else %}col-md-6{% endif %} col-sm-12 col-xs-12" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}>
                       {% render 'quantity-input' product: product, section_id: section.id %}
                     </div>
@@ -581,7 +589,7 @@
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}{% if block.settings.button_style == 'underlined' %} text-link-animated{% endif %}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {%- liquid
@@ -620,7 +628,7 @@
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}{% if block.settings.button_style == 'underlined' %} text-link-animated{% endif %}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {%- liquid
@@ -701,7 +709,7 @@
                   
                   {% when 'buy_buttons' %}
                     {% comment %} ===== PAYMENT BUTTONS BLOCK ===== {% endcomment %}
-                    {% render 'payment-buttons' with product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}
+                    {% render 'payment-buttons' with product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form, show_wishlist_button: block.settings.show_WISHLIST_button %}
 
                   {% when 'local_pickup' %}
                     {% comment %} ===== LOCAL PICKUP BLOCK ===== {% endcomment %}
@@ -710,7 +718,7 @@
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       {% render 'store-availability' with product_variant: current_variant, pickup_product: product, override_heading_font_size: block.settings.local_pickup_override_heading_font_size, heading_font_size: block.settings.local_pickup_heading_font_size %}
@@ -723,7 +731,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="{{ spacing_classes }} trust-badge-container" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {% capture styles %}width: {{ trust_block.settings.trust-badge_max_width | escape }}px;{% endcapture %}
@@ -738,7 +746,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="{{ spacing_classes }} product__meta" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {% if product.tags.size > 0 %}
@@ -776,7 +784,7 @@
                         data-update-id="item-{{ block.id }}"
                         data-block-id="{{ block.id }}"
                         class="{{ spacing_classes }}" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {% render 'social-share' %}
@@ -786,7 +794,7 @@
                   {% when 'custom_liquid' %}
                     {% comment %} ===== CUSTOM LIQUID BLOCK ===== {% endcomment %}
                     {%- if block.settings.custom_liquid != blank -%}
-                      <div class="{{ spacing_classes }} custom-liquid rte text-link-animated" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+                      <div class="{{ spacing_classes }} custom-liquid rte text-link-animated" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
                     {%- endif -%}
 
                   {% when 'product-rating' %}
@@ -796,7 +804,7 @@
                         data-updates-on-change
                         data-update-id="item-{{ block.id }}" 
                         class="{{ spacing_classes }} product-rating" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                         {{ block.shopify_attributes }}
                       >
                         {% if block.settings.rating-label != blank %}
@@ -864,7 +872,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}"
                       class="{{ spacing_classes }} image-offer-container" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       {% if block.settings.link != blank and block.settings.image != blank %}
@@ -899,7 +907,7 @@
                     %}
 
                     {% capture styles %}
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;{% if block.settings.text_color != 'rgba(0,0,0,0)' %} color: rgba({{ block.settings.text_color.rgba }}); --text-color: rgba({{ block.settings.text_color.rgba }});{% endif %}"
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;{% if block.settings.text_color != 'rgba(0,0,0,0)' %} color: rgba({{ block.settings.text_color.rgba }}); --text-color: rgba({{ block.settings.text_color.rgba }});{% endif %}"
                     {% endcapture %}
 
                     {%- if icon != 'none' or  block.settings.text != blank -%}
@@ -922,7 +930,7 @@
                       data-update-id="item-{{ block.id }}"
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px"
                     >
                       {% render 'stock-level-indicator' with 
                         block_attributes: block.shopify_attributes,
@@ -963,7 +971,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}" 
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px" 
                       {{ block.shopify_attributes }}
                     >
                       {%- unless no_reviews and block.settings.show_product_rating_if_no_reviews == false -%}
@@ -985,7 +993,7 @@
                       data-updates-on-change
                       data-update-id="item-{{ block.id }}" 
                       data-block-id="{{ block.id }}"
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px"
                       class="{{ spacing_classes }}"  
                       {{ block.shopify_attributes }}
                     >
@@ -1007,7 +1015,7 @@
                         data-update-id="item-{{ block.id }}"
                         data-block-id="{{ block.id }}"
                         class="{{ spacing_classes }} product-block-richtext text-link-animated richtext-block" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;{% if block.settings.text_color != 'rgba(0,0,0,0)' %} color: {{ text_color }}; --link-color: {{ link_color }}; --link-border-color: {{ link_border_color }};{% endif %}" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;{% if block.settings.text_color != 'rgba(0,0,0,0)' %} color: {{ text_color }}; --link-color: {{ link_color }}; --link-border-color: {{ link_border_color }};{% endif %}" 
                         {{ block.shopify_attributes }}
                       >
                         {{ block.settings.title }}
@@ -1031,7 +1039,7 @@
                     <div
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {% render 'form-file-upload' with id: field_id, form_id: product_form_id, name: field_name, has_label: true, label: file_upload_label, required: block.settings.file_upload_required, secondary_label: secondary_label, hint_text: block.settings.file_upload_hint %}
@@ -1055,7 +1063,7 @@
                     <div
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {% render 'form-input--checkbox' with id: field_id, form_id: product_form_id, name: field_name, label_text: checkbox_label, required: block.settings.checkbox_required, hint_text: block.settings.checkbox_hint, error_message: error_text %}
@@ -1079,7 +1087,7 @@
                     <div
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {% render 'form-input--dropdown' with id: field_id, form_id: product_form_id, name: field_name, label_text: dropdown_label, required: block.settings.dropdown_required, hint_text: block.settings.dropdown_hint, error_message: error_text, options: block.settings.dropdown_options %}
@@ -1094,7 +1102,7 @@
                     <div
                       data-block-id="{{ block.id }}"
                       class="{{ spacing_classes }}" 
-                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                      style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                       {{ block.shopify_attributes }}
                     >
                       {% render 'form-input--radio-buttons' with id: field_id, form_id: product_form_id, name: field_name, label_text: label_formatted, hint_text: block.settings.radio_hint, options: block.settings.radio_options %}
@@ -1126,7 +1134,7 @@
                       <div
                         data-block-id="{{ block.id }}"
                         class="{{ spacing_classes }} product-block-text-field" 
-                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
+                        style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px; --custom-margin-bottom-mobile: {{ block.settings.margin_bottom_mobile }}px;" 
                         {{ block.shopify_attributes }}
                       >
                         {% if block.settings.text_field_size == 'single' %}
@@ -1198,6 +1206,22 @@
 {
   "name": "t:sections.template--product.name",
   "settings": [
+    {
+      "type": "header",
+      "content": "t:all.Background_color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:all.Background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:all.Text_color",
+      "default": "#242424"
+    },
     {
       "type": "checkbox",
       "id": "enable_sticky",
@@ -1486,6 +1510,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -1509,6 +1543,12 @@
           "info": "t:sections.template--product.blocks.buy_buttons.settings.enable_gift_card_recipient_form.info"
         },
         {
+          "type": "checkbox",
+          "id": "show_WISHLIST_button",
+          "label": "Show Wishlist button",
+          "default": true
+        },
+        {
           "type": "header",
           "content": "t:sections.template--product.settings.preorder.preorder"
         },
@@ -1524,6 +1564,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -1835,6 +1885,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -2117,6 +2177,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -2411,7 +2481,18 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
+
       ]
     },
     {
@@ -2450,7 +2531,18 @@
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
           "min": 0,
+          "step": 1,
           "max": 40,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
           "unit": "t:all.px",
           "default": 30
         }
@@ -2499,7 +2591,18 @@
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
           "min": 0,
+          "step": 1,
           "max": 40,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
           "unit": "t:all.px",
           "default": 30
         }
@@ -2541,7 +2644,18 @@
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
           "min": 0,
+          "step": 1,
           "max": 40,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
           "unit": "t:all.px",
           "default": 30
         }
@@ -2583,7 +2697,18 @@
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
           "min": 0,
+          "step": 1,
           "max": 40,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
           "unit": "t:all.px",
           "default": 30
         }
@@ -2647,7 +2772,18 @@
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
           "min": 0,
+          "step": 1,
           "max": 40,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
           "unit": "t:all.px",
           "default": 30
         }
@@ -2670,6 +2806,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -2706,6 +2852,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -2806,6 +2962,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -2827,6 +2993,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -2873,6 +3049,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -2980,6 +3166,16 @@
           "max": 40,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -2996,6 +3192,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3049,6 +3255,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3326,6 +3542,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -3346,6 +3572,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3409,6 +3645,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -3430,6 +3676,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -3445,6 +3701,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3471,6 +3737,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -3491,6 +3767,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3562,6 +3848,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3692,6 +3988,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -3713,6 +4019,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -3972,6 +4288,16 @@
           "default": 30
         },
         {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
           "type": "header",
           "content": "t:all.Color"
         },
@@ -4025,6 +4351,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -4057,6 +4393,16 @@
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,
@@ -4152,6 +4498,16 @@
           "step": 1,
           "unit": "t:all.px",
           "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
         }
       ]
     },
@@ -4165,9 +4521,25 @@
           "content": "t:all.Layout"
         },
         {
+          "type": "color",
+          "id": "color",
+          "label": "t:all.Color",
+          "default": "#242424"
+        },
+        {
           "type": "range",
           "id": "margin_bottom",
           "label": "t:all.bottom_spacing",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "t:all.px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile bottom spacing",
           "min": 0,
           "max": 40,
           "step": 1,

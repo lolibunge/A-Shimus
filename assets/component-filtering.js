@@ -659,8 +659,9 @@ class CollectionFiltersForm extends HTMLElement {
     this.sections = this.getSections();
     this.buttonAriaLabel = this.getAttribute('data-button-aria-label');
     this.filterForm = this.querySelector(`#${this.filterFormsId}`);
-    this.sortByDesktop = this.querySelector('#SortBydesktop');
-    this.sortByMobile = this.querySelector('#SortBymobile');
+    // Look for desktop and mobile sort selects in collection-filtering-form first, then in document (in case they were moved to bar-control-collection)
+    this.sortByDesktop = this.querySelector('#SortBydesktop') || document.querySelector('#SortBydesktop');
+    this.sortByMobile = this.querySelector('#SortBymobile') || document.querySelector('#SortBymobile');
     this.sortByInput = this.querySelector('#sort_by_input');
     
     // Store initial window width to detect significant resize
@@ -860,6 +861,12 @@ class CollectionFiltersForm extends HTMLElement {
       // First collect all form values into our map
       for (const [key, value] of formData.entries()) {
         if (value === '') continue;
+        
+        // Exclude sort_by_desktop and sort_by_mobile from URL parameters
+        // Only sort_by (from the hidden input) should be in the URL
+        if (key === 'sort_by_desktop' || key === 'sort_by_mobile') {
+          continue;
+        }
 
         // For checkboxes, we need to maintain an array of values
         if (!paramMap.has(key)) {
@@ -1059,11 +1066,30 @@ class CollectionFiltersForm extends HTMLElement {
   }
 
   renderProductGrid(html) {
-    const innerHTML = new DOMParser()
-      .parseFromString(html, 'text/html')
-      .getElementById(this.productGridId).innerHTML;
+    const parsedDocument = new DOMParser().parseFromString(html, 'text/html');
+    const productGridElement = parsedDocument.getElementById(this.productGridId);
 
-    document.getElementById(this.productGridId).innerHTML = innerHTML;
+    if (!productGridElement) return;
+
+    const innerHTML = productGridElement.innerHTML;
+    const currentProductGrid = document.getElementById(this.productGridId);
+
+    if (currentProductGrid) {
+      currentProductGrid.innerHTML = innerHTML;
+    }
+
+    // Update results count (desktop and mobile) from the newly rendered section
+    const newResultsCountElements = parsedDocument.querySelectorAll('.collection-results-count__number');
+    const currentResultsCountElements = document.querySelectorAll('.collection-results-count__number');
+
+    if (newResultsCountElements.length && currentResultsCountElements.length) {
+      currentResultsCountElements.forEach((element, index) => {
+        const source = newResultsCountElements[index] || newResultsCountElements[0];
+        if (source) {
+          element.textContent = source.textContent;
+        }
+      });
+    }
 
     // Force a scroll to trigger show-on-scroll load in animations
     window.scrollBy(0, 1);
@@ -1086,16 +1112,90 @@ class CollectionFiltersForm extends HTMLElement {
       }
     });
   
+    // Move desktop sorting to bar-control-collection if it exists
+    const sortingBarDesktop = this.querySelector('.sorting--desktop-bar');
+    const sortingContainerDesktop = document.getElementById('sorting-container-desktop-bar');
+    if (sortingBarDesktop && sortingContainerDesktop && !sortingContainerDesktop.contains(sortingBarDesktop)) {
+      sortingBarDesktop.style.display = '';
+      sortingContainerDesktop.appendChild(sortingBarDesktop);
+      
+      // Update the select ID to match the original for JavaScript compatibility
+      const selectDesktop = sortingBarDesktop.querySelector('select');
+      if (selectDesktop && selectDesktop.id === 'SortBydesktop-bar') {
+        selectDesktop.id = 'SortBydesktop';
+        // Remove name attribute to prevent it from being included in form submission
+        // The hidden input sort_by_input will handle the actual form submission
+        selectDesktop.removeAttribute('name');
+        selectDesktop.setAttribute('form', 'CollectionFiltersForm');
+      }
+      
+      // Hide the original desktop sort select inside the form and change its ID to avoid conflicts
+      const originalSortingDesktop = this.querySelector('.facets__form-inner.desktop .collection-filters__item.sorting');
+      if (originalSortingDesktop) {
+        originalSortingDesktop.style.display = 'none';
+        // Change the ID of the original select to avoid ID conflicts
+        const originalSelectDesktop = originalSortingDesktop.querySelector('#SortBydesktop');
+        if (originalSelectDesktop && originalSelectDesktop.id === 'SortBydesktop') {
+          originalSelectDesktop.id = 'SortBydesktop-original';
+        }
+      }
+    }
+    
+    // Move mobile sorting to bar-control-collection if it exists
+    const sortingBarMobile = this.querySelector('.sorting--mobile-bar');
+    const sortingContainerMobile = document.getElementById('sorting-container-mobile-bar');
+    if (sortingBarMobile && sortingContainerMobile && !sortingContainerMobile.contains(sortingBarMobile)) {
+      sortingBarMobile.style.display = '';
+      sortingContainerMobile.appendChild(sortingBarMobile);
+      
+      // Update the select ID to match the original for JavaScript compatibility
+      const selectMobile = sortingBarMobile.querySelector('select');
+      if (selectMobile && selectMobile.id === 'SortBymobile-bar') {
+        selectMobile.id = 'SortBymobile';
+        // Remove name attribute to prevent it from being included in form submission
+        // The hidden input sort_by_input will handle the actual form submission
+        selectMobile.removeAttribute('name');
+        selectMobile.setAttribute('form', 'CollectionFiltersForm');
+      }
+      
+      // Hide the original mobile sort select inside the form and change its ID to avoid conflicts
+      const originalSortingMobile = this.querySelector('.facets__form-inner.mobile .collection-filters__item.sorting');
+      if (originalSortingMobile) {
+        originalSortingMobile.style.display = 'none';
+        // Change the ID of the original select to avoid ID conflicts
+        const originalSelectMobile = originalSortingMobile.querySelector('#SortBymobile');
+        if (originalSelectMobile && originalSelectMobile.id === 'SortBymobile') {
+          originalSelectMobile.id = 'SortBymobile-original';
+        }
+      }
+    }
+  
     this.bindSortByEventListeners();
     this.bindActiveFacetButtonEvents();
   }
 
   bindSortByEventListeners() {
-    this.sortByDesktop = this.querySelector('#SortBydesktop');
-    this.sortByMobile = this.querySelector('#SortBymobile');
+    // Look for desktop and mobile sort selects in collection-filtering-form first, then in document (in case they were moved to bar-control-collection)
+    const newSortByDesktop = this.querySelector('#SortBydesktop') || document.querySelector('#SortBydesktop');
+    const newSortByMobile = this.querySelector('#SortBymobile') || document.querySelector('#SortBymobile');
+
+    // Remove existing listeners from old elements if they exist and are different
+    if (this.sortByDesktop && this.sortByDesktop !== newSortByDesktop) {
+      this.sortByDesktop.removeEventListener('change', this.handleSortByChangeBound);
+      this.sortByDesktop.removeEventListener('input', this.stopInputPropagationBound);
+    }
+    
+    if (this.sortByMobile && this.sortByMobile !== newSortByMobile) {
+      this.sortByMobile.removeEventListener('change', this.handleSortByChangeBound);
+      this.sortByMobile.removeEventListener('input', this.stopInputPropagationBound);
+    }
+
+    // Update references
+    this.sortByDesktop = newSortByDesktop;
+    this.sortByMobile = newSortByMobile;
 
     if (this.sortByDesktop && this.sortByMobile) {
-      // Remove existing listeners using bound functions
+      // Remove existing listeners using bound functions (in case they were already attached)
       this.sortByDesktop.removeEventListener('change', this.handleSortByChangeBound);
       this.sortByMobile.removeEventListener('change', this.handleSortByChangeBound);
 

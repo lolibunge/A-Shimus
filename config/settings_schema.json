@@ -159,7 +159,7 @@
         "type": "color",
         "id": "colorSchemeLightBackground",
         "label": "t:all.Background",
-        "default": "#f1f2f3"
+        "default": "#ffffff"
       },
       {
         "type": "header",
@@ -242,7 +242,7 @@
         "type": "color",
         "id": "mobile-menu-text",
         "label": "t:all.Text",
-        "default": "#242424"
+        "default": "#000000"
       },
       {
         "type": "color",
@@ -981,6 +981,24 @@
       },
       {
         "type": "radio",
+        "id": "quick_shop_button_type",
+        "label": "Button type",
+        "options": [
+          {
+            "value": "add_to_cart",
+            "label": "Add to cart"
+          },
+          {
+            "value": "quick_view",
+            "label": "Quick view"
+          }
+        ],
+        "info": "Choose whether to show Add to cart button or Quick view button on product cards",
+        "default": "add_to_cart",
+        "visible_if": "{{ settings.enable_quick_shop_desktop or settings.enable_quick_shop_mobile }}"
+      },
+      {
+        "type": "radio",
         "id": "quick_shop_button_display",
         "label": "t:all.Position",
         "options": [
@@ -996,6 +1014,24 @@
         "info": "t:settings_schema.Product_card.settings.quick_shop_button.display_style.info",
         "default": "below_image",
         "visible_if": "{{ settings.enable_quick_shop_desktop or settings.enable_quick_shop_mobile }}"
+      },
+      {
+        "type": "radio",
+        "id": "quick_shop_button_visibility",
+        "label": "Button visibility",
+        "options": [
+          {
+            "value": "on_hover",
+            "label": "Show on hover"
+          },
+          {
+            "value": "always_visible",
+            "label": "Always visible"
+          }
+        ],
+        "info": "Choose when to show buttons when position is set to 'Over image'",
+        "default": "on_hover",
+        "visible_if": "{{ settings.quick_shop_button_display == 'over_image' and settings.enable_quick_shop_desktop or settings.enable_quick_shop_mobile }}"
       },
       {
         "type": "radio",

@@ -1,0 +1,32 @@
+<size-guide-modal
+  id="SizeGuideModal"
+  aria-modal="true"
+  role="dialog"
+  aria-hidden="true"
+  data-modal-position="center"
+>
+  <span data-size-guide-close class="size-guide-modal__overlay"></span>
+  <div class="size-guide-modal__content">
+    <header class="size-guide-modal__header">
+      <button
+        data-size-guide-close
+        type="button"
+        aria-label="{{ 'general.accessibility.dismiss.close' | t }}"
+        class="size-guide-modal__close"
+      >
+        <span class="fallback-text">{{ 'general.accessibility.dismiss.close' | t }}</span>
+        {% render 'theme-icon' with icon: 'close-v2', iconSize: 20 %}
+      </button>
+    </header>
+
+    <div class="size-guide-modal__body" tabindex="0">
+      <div class="size-guide-modal__body--content" data-size-guide-content>
+        <!-- Content will be loaded dynamically -->
+      </div>
+    </div>
+  </div>
+</size-guide-modal>
+
+<safe-load-scripts class="hidden">
+  <script src="{{ 'component-size-guide-modal.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-size-guide-modal"></script>
+</safe-load-scripts>

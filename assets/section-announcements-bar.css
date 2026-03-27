@@ -1,0 +1,32 @@
+.announcement_bar {
+  position: relative;
+  overflow: hidden;
+  max-height: 200px;
+  opacity: 1;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.announcement_bar.closed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.announcement_bar .announcement_bar_close_x {
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 749px) {
+  .announcement_bar .announcement_bar_close_x {
+    display: block;
+  }
+}

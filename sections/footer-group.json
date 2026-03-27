@@ -14,38 +14,53 @@
     "footer-main": {
       "type": "footer-main",
       "blocks": {
-        "menu": {
-          "type": "menu",
+        "newsletter_yAMihq": {
+          "type": "newsletter",
           "settings": {
-            "menu_title": "About Us",
-            "footer_linklist": "footer1"
+            "newsletter_title": "",
+            "newsletter_logo": "shopify://shop_images/image_2778.png",
+            "footer_newsletter_description": "<p>We design workwear to be practical and versatile. Clean silhouettes, thoughtful tailoring, and pieces that move comfortably through the day, from meetings and travel to everything that follows.</p>",
+            "newsletter_address": "Find Us In Store",
+            "newsletter_address_url": "#",
+            "buttons_style": "filled",
+            "override_button_colors": true,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff"
           }
         },
         "5c637888-418b-4cc8-baea-a83083df2e8c": {
           "type": "menu",
           "settings": {
             "menu_title": "Customer Care",
-            "footer_linklist": "footer2"
+            "footer_linklist": "customer-care"
           }
         },
-        "text_YLeCyF": {
-          "type": "text",
+        "menu": {
+          "type": "menu",
           "settings": {
-            "title": "Contact Us",
-            "richtext": "<p>Email us at<br/><a href=\"mailto:customersupport@a-shimus.com\" title=\"mailto:customersupport@a-shimus.com\">customersupport@a-shimus.com</a></p>"
+            "menu_title": "About Us",
+            "footer_linklist": "about-us"
+          }
+        },
+        "menu_WANPaY": {
+          "type": "menu",
+          "settings": {
+            "menu_title": "General Information",
+            "footer_linklist": "general-information"
           }
         },
         "social": {
           "type": "social",
           "settings": {
-            "social_title": "Connect"
+            "social_title": "Follow us on"
           }
         }
       },
       "block_order": [
-        "menu",
+        "newsletter_yAMihq",
         "5c637888-418b-4cc8-baea-a83083df2e8c",
-        "text_YLeCyF",
+        "menu",
+        "menu_WANPaY",
         "social"
       ],
       "settings": {
@@ -56,21 +71,16 @@
     },
     "footer-bottom": {
       "type": "footer-bottom",
-      "custom_css": [
-        ".nav-link-animated--custom {display: none;}"
-      ],
+      "custom_css": [".nav-link-animated--custom {display: none;}"],
       "settings": {
-        "show_methods_of_payment": true,
-        "center_content_on_desktop": true,
-        "footer_text": "",
+        "show_methods_of_payment": false,
+        "center_content_on_desktop": false,
+        "footer_text": "<p>2026 © A.SHIMUS LLC.</p>",
         "show_currency_selector": false,
         "show_locale_selector": false,
         "color_scheme": "accent"
       }
     }
   },
-  "order": [
-    "footer-main",
-    "footer-bottom"
-  ]
+  "order": ["footer-main", "footer-bottom"]
 }
