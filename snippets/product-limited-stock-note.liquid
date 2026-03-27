@@ -1,0 +1,29 @@
+{% liquid
+  assign limited_stock_label = ''
+
+  if stock_product != blank and stock_product.available
+    if stock_product.description != blank
+      assign product_description_plain_text = stock_product.description | strip_html | downcase
+      if product_description_plain_text contains 'limited stock' or product_description_plain_text contains 'only a few left'
+        assign limited_stock_label = 'Limited Stock'
+      endif
+    endif
+
+    if limited_stock_label == ''
+      assign total_inventory = 0
+      for variant in stock_product.variants
+        if variant.inventory_management
+          assign total_inventory = total_inventory | plus: variant.inventory_quantity
+        endif
+      endfor
+
+      if total_inventory > 0 and total_inventory <= 5
+        assign limited_stock_label = 'Limited Stock'
+      endif
+    endif
+  endif
+%}
+
+{% if limited_stock_label != blank %}
+  <div class="product-limited-stock-note subdued-text">{{ limited_stock_label }}</div>
+{% endif %}

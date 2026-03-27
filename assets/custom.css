@@ -783,3 +783,10 @@ body.size-guide-modal-open {
     margin-bottom: 4px;
   }
 }
+
+.product-limited-stock-note {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}

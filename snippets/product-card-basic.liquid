@@ -29,6 +29,7 @@
       {% # Price %}
       <div class="product-card-basic__price">
         {% render 'product-grid-item-price', price_product: card_product %}
+        {% render 'product-limited-stock-note', stock_product: card_product %}
       </div>
     </div>
 

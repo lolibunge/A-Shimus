@@ -123,24 +123,71 @@
       {%- liquid
         assign preorder_string = 'products.product.preorder' | t | downcase
         assign preorder_product = false
+        assign priority_badge = nil
         assign custom_badge = nil
+        assign signature_tweed_badge = false
+        assign best_seller_badge = false
+        assign best_seller_top_count = 12
 
         if product.available
           for tag in product.tags
             assign lowecase_tag = tag | downcase
+            assign tag_handle = tag | handleize
+
             if lowecase_tag contains preorder_string
               assign preorder_product = true
             endif
+
+            if tag_handle == 'signature-tweed' or tag_handle contains 'signature-tweed' or lowecase_tag contains 'signature tweed'
+              assign signature_tweed_badge = true
+            endif
+
             if preorder_product == false and tag contains '_badge:'
               assign custom_badge = tag | remove: '_badge:'
             endif
           endfor
+
+          if product.metafields.custom.signature_tweed == true
+            assign signature_tweed_badge = true
+          endif
+
+          if signature_tweed_badge
+            assign priority_badge = 'Signature Tweed'
+          else
+            if collection != blank and collection.products.size > 0
+              if collection.sort_by == 'best-selling' or collection.default_sort_by == 'best-selling'
+                for collection_product in collection.products limit: best_seller_top_count
+                  if collection_product.id == product.id
+                    assign best_seller_badge = true
+                    break
+                  endif
+                endfor
+              endif
+            endif
+
+            if best_seller_badge == false
+              for product_collection in product.collections
+                assign handle_lower = product_collection.handle | downcase
+                assign title_lower = product_collection.title | downcase
+                if handle_lower contains 'best-seller' or handle_lower contains 'bestseller' or title_lower contains 'best seller'
+                  assign best_seller_badge = true
+                  break
+                endif
+              endfor
+            endif
+
+            if best_seller_badge
+              assign priority_badge = 'Best Seller'
+            endif
+          endif
         endif
 
         if enable_badges
           if product.available
             if preorder_product
               render 'badge' with badge: 'preorder', preorder_badge: preorder_string, attributes: badge_attributes
+            elsif priority_badge
+              render 'badge' with badge: 'custom', custom_badge: priority_badge, attributes: badge_attributes
             elsif custom_badge
               render 'badge' with badge: 'custom', custom_badge: custom_badge, attributes: badge_attributes
             else
@@ -303,6 +350,7 @@
     {% if price_enabled %}
       <div class="product-grid--price {{ price_font }}">
         {%- render 'product-grid-item-price', price_product: product, collection: collection -%}
+        {%- render 'product-limited-stock-note', stock_product: product -%}
       </div>
     {% endif %}
 
@@ -464,11 +512,7 @@
           </div>
         {% endif %}
       {% endif %}
-      {% render 'product-badges', 
-        product: product, 
-        collection: collection,
-        est_seller_method: 'automatic',
-        min_score_for_automatic: 2 %}
     </div>
   {% endif %}
+
 </product-card>
