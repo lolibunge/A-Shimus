@@ -134,8 +134,103 @@ if (!customElements.get('theme-modal')) {
       window.eventBus.off('theme:modal:hide', this.hideModal);
     }
 
+    buildModalFetchUrl(rawUrl, variantId) {
+      if (!rawUrl) return null;
+
+      try {
+        const normalizedUrl = new URL(rawUrl, window.location.origin);
+
+        if (variantId && !normalizedUrl.searchParams.get('variant')) {
+          normalizedUrl.searchParams.set('variant', variantId);
+        }
+
+        // Preserve theme preview context when fetching from the storefront.
+        const currentUrl = new URL(window.location.href);
+        ['preview_theme_id', '_fd', 'pb'].forEach((param) => {
+          const paramValue = currentUrl.searchParams.get(param);
+          if (paramValue && !normalizedUrl.searchParams.get(param)) {
+            normalizedUrl.searchParams.set(param, paramValue);
+          }
+        });
+
+        return normalizedUrl.toString();
+      } catch (error) {
+        console.error('Theme Modal: Invalid modal fetch URL', rawUrl, error);
+        return null;
+      }
+    }
+
+    getModalFetchUrls() {
+      const urls = [];
+      const seen = new Set();
+      const primaryUrl = this.productUrl || '';
+      let variantId = null;
+
+      if (primaryUrl) {
+        try {
+          variantId = new URL(primaryUrl, window.location.origin).searchParams.get('variant');
+        } catch (error) {
+          variantId = null;
+        }
+      }
+
+      const addUrl = (candidate) => {
+        const normalized = this.buildModalFetchUrl(candidate, variantId);
+        if (!normalized || seen.has(normalized)) return;
+        seen.add(normalized);
+        urls.push(normalized);
+      };
+
+      const addCanonicalProductUrlFromCollectionPath = (candidate) => {
+        if (!candidate) return;
+
+        try {
+          const parsed = new URL(candidate, window.location.origin);
+          const collectionToken = '/collections/';
+          const productsToken = '/products/';
+          const collectionIndex = parsed.pathname.indexOf(collectionToken);
+          const productIndex = parsed.pathname.indexOf(productsToken);
+
+          if (collectionIndex === -1 || productIndex === -1 || collectionIndex > productIndex) return;
+
+          const localePrefix = parsed.pathname.slice(0, collectionIndex);
+          const productPath = parsed.pathname.slice(productIndex);
+          const canonicalPath = `${localePrefix}${productPath}`.replace(/\/{2,}/g, '/');
+          const canonicalUrl = new URL(canonicalPath, parsed.origin);
+
+          parsed.searchParams.forEach((value, key) => {
+            canonicalUrl.searchParams.set(key, value);
+          });
+
+          addUrl(canonicalUrl.toString());
+        } catch (error) {
+          // Ignore malformed candidate URLs and continue with others.
+        }
+      };
+
+      const candidates = [
+        this.productUrl,
+        this.modalButton?.getAttribute('href')
+      ];
+
+      const productCard = this.closest('product-card');
+      if (productCard) {
+        candidates.push(productCard.getAttribute('data-product-url'));
+        candidates.push(productCard.querySelector('a.grid__image')?.getAttribute('href'));
+        candidates.push(productCard.querySelector('a[data-product-card-link]')?.getAttribute('href'));
+      }
+
+      candidates.forEach((candidate) => {
+        addUrl(candidate);
+        addCanonicalProductUrlFromCollectionPath(candidate);
+      });
+
+      return urls;
+    }
+
     prefetch() {
-      const url = this.productUrl || `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
+      const fetchUrls = this.getModalFetchUrls();
+      const url = fetchUrls[0] || `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
       if (!url) return;
     
       if (window._myModalCache[url]) {
@@ -157,21 +252,42 @@ if (!customElements.get('theme-modal')) {
     
     async fetchModalContentInBackground() {
       try {
-        const url = this.productUrl || `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch modal content: ${response.status}`);
+        const fallbackUrl = `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
+        const fetchUrls = this.getModalFetchUrls();
+        if (fetchUrls.length === 0 && this.sectionFetchId) {
+          fetchUrls.push(fallbackUrl);
         }
-    
-        const textContent = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(textContent, 'text/html');
-        const relevantContent = this.contentSelector 
-          ? doc.querySelector(this.contentSelector)?.innerHTML 
-          : textContent;
-    
-        // Store it so we can inject it later
-        this._prefetchedModalHTML = relevantContent || '';
+
+        let lastError = null;
+
+        for (const url of fetchUrls) {
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error(`Failed to fetch modal content: ${response.status} (${url})`);
+            }
+
+            const textContent = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(textContent, 'text/html');
+            const contentNode = this.contentSelector ? doc.querySelector(this.contentSelector) : null;
+            const relevantContent = this.contentSelector ? contentNode?.innerHTML : textContent;
+
+            if (this.contentSelector && !contentNode) {
+              throw new Error(`Modal selector not found in response: ${this.contentSelector} (${url})`);
+            }
+
+            // Store it so we can inject it later
+            this._prefetchedModalHTML = relevantContent || '';
+            return;
+          } catch (error) {
+            lastError = error;
+          }
+        }
+
+        if (lastError) {
+          throw lastError;
+        }
       } catch (error) {
         console.error('Theme Modal: Error prefetching content', error);
         throw error; // rethrow so the .catch in prefetch() sees it
@@ -362,27 +478,48 @@ if (!customElements.get('theme-modal')) {
 
     async fetchModalContent() {
       try {
-        const url = this.productUrl || `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch modal content: ${response.status}`);
-        }
-
-        const textContent = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(textContent, 'text/html');
-        
-        const modalContent = this.contentSelector 
-          ? doc.querySelector(this.contentSelector)?.innerHTML 
-          : textContent;
-
         const targetElement = document.querySelector(`#${this.modalId} ${this.modalContentSelector}`);
         if (!targetElement) {
           throw new Error('Modal content target element not found');
         }
 
-        targetElement.innerHTML = modalContent || '';
+        const fallbackUrl = `${window.Shopify.routes.root}?section_id=${this.sectionFetchId}`;
+        const fetchUrls = this.getModalFetchUrls();
+        if (fetchUrls.length === 0 && this.sectionFetchId) {
+          fetchUrls.push(fallbackUrl);
+        }
+
+        let modalContent = '';
+        let lastError = null;
+
+        for (const url of fetchUrls) {
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error(`Failed to fetch modal content: ${response.status} (${url})`);
+            }
+
+            const textContent = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(textContent, 'text/html');
+            const contentNode = this.contentSelector ? doc.querySelector(this.contentSelector) : null;
+
+            if (this.contentSelector && !contentNode) {
+              throw new Error(`Modal selector not found in response: ${this.contentSelector} (${url})`);
+            }
+
+            modalContent = this.contentSelector ? contentNode?.innerHTML || '' : textContent;
+            break;
+          } catch (error) {
+            lastError = error;
+          }
+        }
+
+        if (!modalContent && lastError) {
+          throw lastError;
+        }
+
+        targetElement.innerHTML = modalContent;
         
         // Emit event after content is loaded
         this.isQuickView ?

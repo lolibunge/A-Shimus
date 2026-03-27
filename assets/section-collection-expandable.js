@@ -1,6 +1,6 @@
 (function() {
   'use strict';
- 
+
   // Generate short ID from section ID (simple hash)
   function generateShortId(sectionId) {
     let hash = 0;
@@ -489,41 +489,65 @@
       productsGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No images found in this lookbook.</div>';
       return;
     }
+
+    const normalizedImages = imagesArray
+      .map(normalizeLookbookImage)
+      .filter(function(image) {
+        return image.previewSrc || image.fullSrc;
+      });
+
+    if (normalizedImages.length === 0) {
+      productsGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No images found in this lookbook.</div>';
+      return;
+    }
     
-    // Create product items from images array
-    imagesArray.forEach(function(imageData) {
-      const imageUrl = typeof imageData === 'string'
-        ? imageData
-        : (imageData && (imageData.thumbnail_src || imageData.full_src || imageData.src));
-
-      const fullImageUrl = typeof imageData === 'string'
-        ? imageData
-        : (imageData && (imageData.full_src || imageData.thumbnail_src || imageData.src));
-
-      if (!imageUrl || !fullImageUrl) return;
-
-      const imageWidth = parseInt(imageData && imageData.width, 10) || 800;
-      const imageHeight = parseInt(imageData && imageData.height, 10) || 1000;
-      const imageAlt = (imageData && imageData.alt) || '';
-
+    // Create product items as anchors so product-media-grid PhotoSwipe can open them.
+    normalizedImages.forEach(function(image) {
       const productItem = document.createElement('a');
       productItem.className = 'collection-expandable-product-item';
-      productItem.href = fullImageUrl;
+      productItem.href = image.fullSrc || image.previewSrc;
       productItem.setAttribute('data-main-media-link', '');
-      productItem.setAttribute('data-pswp-width', String(imageWidth));
-      productItem.setAttribute('data-pswp-height', String(imageHeight));
+      productItem.setAttribute('data-pswp-width', String(image.width));
+      productItem.setAttribute('data-pswp-height', String(image.height));
       productItem.setAttribute('target', '_blank');
-
+      
       const productImg = document.createElement('img');
-      productImg.src = imageUrl;
-      productImg.alt = imageAlt;
+      productImg.src = image.previewSrc || image.fullSrc;
+      productImg.alt = image.alt || '';
       productImg.loading = 'lazy';
-      productImg.width = imageWidth;
-      productImg.height = imageHeight;
-
+      productImg.width = image.width;
+      productImg.height = image.height;
+      
       productItem.appendChild(productImg);
       productsGrid.appendChild(productItem);
     });
+  }
+
+  function normalizeLookbookImage(imageItem) {
+    if (!imageItem) {
+      return { previewSrc: '', fullSrc: '', alt: '', width: 800, height: 1000 };
+    }
+
+    if (typeof imageItem === 'string') {
+      return {
+        previewSrc: imageItem,
+        fullSrc: imageItem,
+        alt: '',
+        width: 800,
+        height: 1000
+      };
+    }
+
+    const width = parseInt(imageItem.width, 10);
+    const height = parseInt(imageItem.height, 10);
+
+    return {
+      previewSrc: imageItem.thumbnailSrc || imageItem.thumbnail_src || imageItem.src || imageItem.fullSrc || imageItem.full_src || '',
+      fullSrc: imageItem.fullSrc || imageItem.full_src || imageItem.thumbnailSrc || imageItem.thumbnail_src || imageItem.src || '',
+      alt: imageItem.alt || '',
+      width: Number.isFinite(width) && width > 0 ? width : 800,
+      height: Number.isFinite(height) && height > 0 ? height : 1000
+    };
   }
 
   // Initialize on DOM ready
