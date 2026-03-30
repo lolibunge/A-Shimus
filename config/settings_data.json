@@ -77,7 +77,7 @@
     "hover-effect": true,
     "show_badges": true,
     "discount_badge_type": "hide",
-    "show_product_card_vendor": true,
+    "show_product_card_vendor": false,
     "type_card_vendor_font": "body",
     "show_product_card_title": true,
     "type_card_title_font": "body",
