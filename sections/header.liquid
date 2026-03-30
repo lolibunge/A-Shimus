@@ -1075,7 +1075,7 @@ Testing Cypress integration
     {% render 'search-dropdown' %}
   {% endif %}
 
-  <nav class="nav-bar mobile-nav-bar-wrapper{% if collection-overlay or homepage-overlay or list-collection-overlay or contact-overlay or article-overlay %} overlay-header{% endif %}{% if section.settings.overlay_logo %} overlay-logo{% endif %}">
+  <nav class="nav-bar mobile-nav-bar-wrapper">
     <div class="mobile-nav-bar--inner">
       <div class="mobile-grid--table">
         <div class="logo-wrapper">
@@ -1175,29 +1175,29 @@ Testing Cypress integration
   }
 
   @media screen and (max-width: 989px) {
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header {
+    .header-section--wrapper .mobile-nav-bar-wrapper {
       background-color: #fff !important;
       border-bottom: 1px solid var(--header-border-color);
     }
 
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .mobile-grid--table a,
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .mobile-grid--table a:visited,
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .mobile-grid--table button {
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table a,
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table a:visited,
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table button {
       color: var(--nav-text-color) !important;
     }
 
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .mobile-grid--table a svg,
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .mobile-grid--table button svg {
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table a svg,
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table button svg {
       color: var(--nav-text-color) !important;
     }
 
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .site-header__logo-image,
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .site-header__logo-link {
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-header__logo-image,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-header__logo-link {
       display: block !important;
     }
 
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .site-header__logo-overlay-image,
-    .header-section--wrapper .mobile-nav-bar-wrapper.overlay-header .site-header__logo-overlay-link {
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-header__logo-overlay-image,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-header__logo-overlay-link {
       display: none !important;
     }
   }
