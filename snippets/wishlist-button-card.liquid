@@ -6,19 +6,27 @@
 {% endcomment %}
 
 <a 
-  href="/pages/wishlist" 
+  href="/pages/swym-wishlist?" 
   data-product-id="{{ product.id }}"
   data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
   data-product-title="{{ product.title | escape }}"
   data-product-price="{{ product.selected_or_first_available_variant.price }}"
   data-product-variant-price="{{ product.selected_or_first_available_variant.price }}"
   data-product-image="{% if product.featured_media %}{{ product.featured_media | image_url: width: 400 }}{% endif %}"
-  data-product-url="{{ product.url }}"
-  class="btn btn-wishlist wishlist-button-card"
+  data-product-url="{{ shop.url }}{{ product.url }}"
+  data-with-epi="true"
+  data-swaction="addToWishlist"
+  data-epi="{{ product.selected_or_first_available_variant.id }}"
+  data-empi="{{ product.id }}"
+  data-du="{{ shop.url }}{{ product.url }}"
+  data-dt="{{ product.title | escape }}"
+  data-iu="{% if product.featured_media %}{{ product.featured_media | image_url: width: 400 }}{% endif %}"
+  data-pr="{{ product.selected_or_first_available_variant.price | divided_by: 100.0 }}"
+  class="btn btn-wishlist wishlist-button-card swym-button swym-add-to-wishlist-view-product product_{{ product.id }}"
   aria-label="Add to Wishlist"
 >
   <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="wishlist-icon-card">
-    <circle class="wishlist-icon-background" cx="18" cy="18" r="18" fill="white" fill-opacity="0.5"/>
     <g clip-path="url(#clip_wishlist_{{ product.id }})">
       <path class="wishlist-icon-outline" d="M28.0896 15.0511C28.0057 14.2659 27.759 13.5057 27.3647 12.8168C26.9704 12.1279 26.4367 11.5249 25.7961 11.0444C23.5072 9.41362 20.5161 10.022 17.999 12.5743C15.4882 9.98601 12.4999 9.40372 10.1907 11.0444C9.55535 11.5217 9.02574 12.1202 8.63402 12.8037C8.24231 13.4872 7.99665 14.2414 7.91196 15.0205C7.80633 16.1055 7.9277 17.2003 8.26868 18.238C8.60965 19.2758 9.1631 20.2348 9.8953 21.0566C10.7089 22.0376 11.4212 22.9015 17.6363 27.8442L17.9925 28.125L18.3487 27.8442C24.6457 22.8151 25.312 22.0025 26.0952 21.0566C26.8284 20.2411 27.3834 19.2878 27.7264 18.2551C28.0693 17.2225 28.193 16.1321 28.0896 15.0511ZM17.9934 14.269L18.4205 13.7578C20.5768 11.3252 23.2192 10.6358 25.1519 11.9795C25.6625 12.3665 26.0872 12.8511 26.4002 13.4037C26.7131 13.9564 26.9078 14.5656 26.9723 15.1942C27.0539 16.1162 26.9427 17.0448 26.6455 17.9234C26.3484 18.8021 25.8715 19.6124 25.2439 20.3051C24.5076 21.1844 23.8809 21.9458 18.0164 26.6472C12.1925 22.0376 11.5013 21.2042 10.7687 20.3474C10.1356 19.6437 9.65618 18.8209 9.35992 17.9294C9.06365 17.038 8.95677 16.0968 9.04583 15.1636C9.11122 14.541 9.30503 13.9378 9.61555 13.3905C9.92608 12.8432 10.3469 12.3632 10.8525 11.9795C11.4758 11.5265 12.2322 11.2828 13.0088 11.2847C13.909 11.3593 14.7827 11.6203 15.572 12.0502C16.3612 12.4802 17.0479 13.0693 17.5866 13.7785L17.9934 14.269Z" fill="none" stroke="black" stroke-width="1"/>
       <path class="wishlist-icon-filled" d="M28.0896 15.0511C28.0057 14.2659 27.759 13.5057 27.3647 12.8168C26.9704 12.1279 26.4367 11.5249 25.7961 11.0444C23.5072 9.41362 20.5161 10.022 17.999 12.5743C15.4882 9.98601 12.4999 9.40372 10.1907 11.0444C9.55535 11.5217 9.02574 12.1202 8.63402 12.8037C8.24231 13.4872 7.99665 14.2414 7.91196 15.0205C7.80633 16.1055 7.9277 17.2003 8.26868 18.238C8.60965 19.2758 9.1631 20.2348 9.8953 21.0566C10.7089 22.0376 11.4212 22.9015 17.6363 27.8442L17.9925 28.125L18.3487 27.8442C24.6457 22.8151 25.312 22.0025 26.0952 21.0566C26.8284 20.2411 27.3834 19.2878 27.7264 18.2551C28.0693 17.2225 28.193 16.1321 28.0896 15.0511Z" fill="#000000" style="display: none;"/>

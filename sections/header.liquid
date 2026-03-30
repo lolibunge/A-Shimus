@@ -135,6 +135,17 @@ Testing Cypress integration
       {% endif %}
     {% endif %}
 
+    {% if section.settings.show_icons %}
+      <li>
+        <swym-header-icon class="swym-header-icon">
+          <button type="button" class="swym-header-icon__button standalone-icon--wrapper" aria-label="Wishlist">
+            {% render 'theme-icon' with icon: 'heart', iconSize: 20, iconClasses: 'swym-svg' %}
+            <span class="swym-wishlist-header-counter cart-item-count-bubble cart-item-count-header cart-item-count-header--quantity hide">0</span>
+          </button>
+        </swym-header-icon>
+      </li>
+    {% endif %}
+
     {% if section.settings.show_offers_drawer and section.settings.show_icons %}
       {{ offers_icon_link }}
     {% endif %}
@@ -1136,6 +1147,29 @@ Testing Cypress integration
 
   .site-title{
   	padding: {{ section.settings.logo_padding }}px 0;
+  }
+
+  .swym-header-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .swym-header-icon .swym-header-icon__button {
+    position: relative;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .swym-header-icon .swym-wishlist-header-counter {
+    position: absolute;
+    top: -7px;
+    right: -8px;
+    font-size: 11px;
+    line-height: 1;
   }
 
   @media screen and (max-width: 989px) {

@@ -241,15 +241,24 @@
   -%}
   {% if product != blank and show_wishlist %}
     <a 
-      href="/pages/wishlist" 
+      href="/pages/swym-wishlist?" 
       data-product-id="{{ product.id }}"
       data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
       data-product-title="{{ product.title | escape }}"
       data-product-price="{{ product.selected_or_first_available_variant.price }}"
       data-product-variant-price="{{ product.selected_or_first_available_variant.price }}"
       data-product-image="{% if product.featured_media %}{{ product.featured_media | image_url: width: 400 }}{% endif %}"
-      data-product-url="{{ product.url }}"
-      class="btn btn-wishlist"
+      data-product-url="{{ shop.url }}{{ product.url }}"
+      data-with-epi="true"
+      data-swaction="addToWishlist"
+      data-epi="{{ product.selected_or_first_available_variant.id }}"
+      data-empi="{{ product.id }}"
+      data-du="{{ shop.url }}{{ product.url }}"
+      data-dt="{{ product.title | escape }}"
+      data-iu="{% if product.featured_media %}{{ product.featured_media | image_url: width: 400 }}{% endif %}"
+      data-pr="{{ product.selected_or_first_available_variant.price | divided_by: 100.0 }}"
+      class="btn btn-wishlist swym-button swym-add-to-wishlist-view-product product_{{ product.id }}"
       aria-label="Add to Wishlist"
     >
       <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="wishlist-icon">

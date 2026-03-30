@@ -280,14 +280,10 @@
           {% endif %}
         {% endif %}
 
-        {% comment %} Wishlist button - Show for both swiper and single image {% endcomment %}
-        {% if quick_shop_desktop_enabled or quick_shop_mobile_enabled %}
-          {% if settings.quick_shop_button_display == 'over_image' %}
-            <div class="wishlist-button-card-wrapper{% if settings.quick_shop_button_visibility == 'always_visible' %} always-visible{% endif %}">
-              {% render 'wishlist-button-card', product: product %}
-            </div>
-          {% endif %}
-        {% endif %}
+        {% comment %} Wishlist button - always render on product cards {% endcomment %}
+        <div class="wishlist-button-card-wrapper always-visible">
+          {% render 'wishlist-button-card', product: product %}
+        </div>
       </a>
 
       <div class="product-card-image--bottom-wrapper">

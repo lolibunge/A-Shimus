@@ -1319,8 +1319,17 @@ class Menu {
     });
     document.addEventListener('click', (evt) => {
       const clickedElement = evt.target;
+      const clickedMegaMenuDropdown = clickedElement.closest('.site-nav__dropdown.mega-menu-dropdown');
       const isClickInsideMegaMenu = clickedElement.closest('.mega-menu-dropdown') || clickedElement.closest('.site-nav--has-dropdown.mega-menu');
       const isClickOnMegaMenuLink = clickedElement.closest('.site-nav--has-dropdown.mega-menu a.site-nav__link');
+      const isClickInsideMegaMenuContent = clickedElement.closest('.mega-menu-wrapper .container');
+
+      // Close when users tap/click the dark mega-menu overlay area outside of the white content panel.
+      if (clickedMegaMenuDropdown && !isClickInsideMegaMenuContent) {
+        this.hideDropdown();
+        return;
+      }
+
       if (!isClickInsideMegaMenu && !isClickOnMegaMenuLink) {
         this.hideDropdown();
       }
