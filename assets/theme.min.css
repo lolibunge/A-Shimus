@@ -14883,3 +14883,81 @@ theme-parallax .parallax-child {
         gap: 10px 54px
     }
 }
+
+/* Keep cart drawer thumbnails from inheriting tall product-grid fixed heights */
+.cart-drawer__product_card--image .aspect-ratio--tall:not(.quick-view-media) {
+    padding-bottom: 0;
+    max-height: none;
+}
+
+.cart-drawer__product_card--image .aspect-ratio--tall:not(.quick-view-media) img.theme-img {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+}
+
+/* Keep recommendation thumbnails in cart drawer from inheriting tall fixed heights */
+.cart-drawer__recommendations .product-card-basic__image .aspect-ratio--tall:not(.quick-view-media) {
+    padding-bottom: 0;
+    max-height: none;
+}
+
+.cart-drawer__recommendations .product-card-basic__image .aspect-ratio--tall:not(.quick-view-media) img.theme-img {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+}
+
+/* Darken cart drawer footer action buttons */
+.cart-drawer__footer--buttons .dynamic-section-button--drawer-filled {
+    background-color: #2a2a2a !important;
+    border-color: #2a2a2a !important;
+    color: #fff !important;
+}
+
+.cart-drawer__footer--buttons .dynamic-section-button--drawer-outlined {
+    color: #2a2a2a !important;
+    border-color: #2a2a2a !important;
+}
+
+/* Keep cart drawer footer button labels perfectly centered */
+.cart-drawer__footer--buttons .cart-drawer__footer--button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 52px;
+    line-height: 1.1;
+}
+
+/* Match cart drawer background closer to design reference */
+cart-drawer.drawer--cart {
+    --cart-drawer-color: #ffffff;
+}
+
+/* Darker scrollbar for the left "Don't forget these..." column */
+cart-drawer.drawer--cart .global-drawer--secondary__content {
+    scrollbar-color: #3a3a3a #d9d9d9;
+    scrollbar-width: thin;
+}
+
+cart-drawer.drawer--cart .global-drawer--secondary__content::-webkit-scrollbar {
+    width: 6px;
+}
+
+cart-drawer.drawer--cart .global-drawer--secondary__content::-webkit-scrollbar-track {
+    background-color: #d9d9d9;
+}
+
+cart-drawer.drawer--cart .global-drawer--secondary__content::-webkit-scrollbar-thumb {
+    background-color: #3a3a3a;
+    border-radius: 30px;
+}
