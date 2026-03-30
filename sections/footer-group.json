@@ -18,7 +18,6 @@
           "type": "newsletter",
           "settings": {
             "newsletter_title": "",
-            "newsletter_logo": "shopify://shop_images/image_2778.png",
             "footer_newsletter_description": "<p>We design workwear to be practical and versatile. Clean silhouettes, thoughtful tailoring, and pieces that move comfortably through the day, from meetings and travel to everything that follows.</p>",
             "newsletter_address": "Find Us In Store",
             "newsletter_address_url": "#",
@@ -71,7 +70,9 @@
     },
     "footer-bottom": {
       "type": "footer-bottom",
-      "custom_css": [".nav-link-animated--custom {display: none;}"],
+      "custom_css": [
+        ".nav-link-animated--custom {display: none;}"
+      ],
       "settings": {
         "show_methods_of_payment": false,
         "center_content_on_desktop": false,
@@ -82,5 +83,8 @@
       }
     }
   },
-  "order": ["footer-main", "footer-bottom"]
+  "order": [
+    "footer-main",
+    "footer-bottom"
+  ]
 }
