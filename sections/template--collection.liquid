@@ -816,6 +816,10 @@
 
   // Custom Load More button styling for Figma design
   (function() {
+    function getNextPaginationLink() {
+      return document.querySelector('.pagination .pagination-next a');
+    }
+
     function updateLoadMoreButton() {
       const pagination = document.querySelector('.pagination--load-more');
       if (!pagination) return;
@@ -832,6 +836,7 @@
       const currentEnd = currentOffset + pageSize;
       const remainingItems = totalItems - currentEnd;
       const nextPageSize = Math.min(pageSize, remainingItems);
+      const nextLink = getNextPaginationLink();
 
       // Update progress text to show "1-20 of 100 products"
       const progressText = pagination.querySelector('.pagination__progress-text');
@@ -849,18 +854,59 @@
 
       // Update button text to "VIEW X MORE"
       const buttonText = pagination.querySelector('.btn--load-more--text');
-      if (buttonText && nextPageSize > 0) {
+      if (buttonText && nextLink && nextPageSize > 0) {
         buttonText.textContent = `VIEW ${nextPageSize} MORE`;
+      } else if (buttonText && !nextLink) {
+        buttonText.textContent = 'NO MORE PRODUCTS';
       }
+
+      const button = pagination.querySelector('.btn--load-more');
+      if (button) {
+        button.disabled = !nextLink;
+      }
+    }
+
+    // Fallback: if AJAX load-more does not update the grid, navigate to next page URL.
+    function bindLoadMoreFallback() {
+      const button = document.querySelector('.pagination--load-more .btn--load-more');
+      if (!button || button.dataset.loadMoreFallbackBound === 'true') return;
+
+      button.dataset.loadMoreFallbackBound = 'true';
+      button.addEventListener('click', function() {
+        const nextLink = getNextPaginationLink();
+        if (!nextLink) return;
+
+        const nextHref = nextLink.getAttribute('href');
+        if (!nextHref) return;
+
+        const initialCount = document.querySelectorAll('.collection-main-body-inner > .grid__item').length;
+
+        window.setTimeout(function() {
+          const currentCount = document.querySelectorAll('.collection-main-body-inner > .grid__item').length;
+          const currentNextHref = getNextPaginationLink()?.getAttribute('href') || '';
+          const gridDidNotUpdate = currentCount === initialCount;
+          const paginationDidNotUpdate = currentNextHref === nextHref;
+
+          if (gridDidNotUpdate && paginationDidNotUpdate) {
+            window.location.href = nextHref;
+          }
+        }, 2500);
+      });
     }
 
     // Run on page load
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(updateLoadMoreButton, 500);
+        setTimeout(function() {
+          updateLoadMoreButton();
+          bindLoadMoreFallback();
+        }, 500);
       });
     } else {
-      setTimeout(updateLoadMoreButton, 500);
+      setTimeout(function() {
+        updateLoadMoreButton();
+        bindLoadMoreFallback();
+      }, 500);
     }
 
     // Watch for dynamically added load more buttons
@@ -870,17 +916,26 @@
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === 1) {
               if (node.classList && (node.classList.contains('pagination__load-more') || node.classList.contains('pagination'))) {
-                setTimeout(updateLoadMoreButton, 200);
+                setTimeout(function() {
+                  updateLoadMoreButton();
+                  bindLoadMoreFallback();
+                }, 200);
               }
               if (node.querySelector && node.querySelector('.pagination__load-more')) {
-                setTimeout(updateLoadMoreButton, 200);
+                setTimeout(function() {
+                  updateLoadMoreButton();
+                  bindLoadMoreFallback();
+                }, 200);
               }
             }
           });
         }
         // Also check if pagination was replaced
         if (mutation.type === 'childList' && mutation.target.classList && mutation.target.classList.contains('pagination')) {
-          setTimeout(updateLoadMoreButton, 200);
+          setTimeout(function() {
+            updateLoadMoreButton();
+            bindLoadMoreFallback();
+          }, 200);
         }
       });
     });
@@ -902,6 +957,7 @@
         const buttonText = document.querySelector('.pagination--load-more .btn--load-more--text');
         if (buttonText && !buttonText.textContent.includes('VIEW') && !buttonText.textContent.includes('MORE')) {
           updateLoadMoreButton();
+          bindLoadMoreFallback();
         }
       }
     }, 1000);

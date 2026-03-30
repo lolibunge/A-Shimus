@@ -18,9 +18,10 @@
           "type": "newsletter",
           "settings": {
             "newsletter_title": "",
+            "newsletter_logo": "shopify://shop_images/SHIMUS_Logo_BLK.png",
             "footer_newsletter_description": "<p>We design workwear to be practical and versatile. Clean silhouettes, thoughtful tailoring, and pieces that move comfortably through the day, from meetings and travel to everything that follows.</p>",
             "newsletter_address": "Find Us In Store",
-            "newsletter_address_url": "#",
+            "newsletter_address_url": "shopify://pages/find-us",
             "buttons_style": "filled",
             "override_button_colors": true,
             "button_background_color": "#000000",
