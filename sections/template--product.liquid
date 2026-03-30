@@ -389,7 +389,8 @@
                     {% comment %} ===== PRODUCT OPTIONS BLOCK ===== {% endcomment %}
                     {%- liquid
                       assign show_size_guide_below_options = false
-                      if block.settings.size_option_name | strip == '' and block.settings.size_guide_page != blank
+                      assign size_option_name_stripped = block.settings.size_option_name | strip
+                      if size_option_name_stripped == '' and block.settings.size_guide_page != blank
                         assign show_size_guide_below_options = true
                       endif
 

@@ -20,7 +20,8 @@
             "star_size": 16,
             "show_product_rating_if_no_reviews": true,
             "no_reviews_label": "No reviews",
-            "margin_bottom": 5
+            "margin_bottom": 5,
+            "margin_bottom_mobile": 30
           }
         },
         "judge_me_reviews_preview_badge_4FfkW9": {
@@ -31,7 +32,8 @@
           "type": "title",
           "settings": {
             "title_font": "h1",
-            "margin_bottom": 0
+            "margin_bottom": 0,
+            "margin_bottom_mobile": 30
           }
         },
         "price": {
@@ -40,12 +42,15 @@
             "price_font": "h3",
             "shipping_policy": false,
             "tax_included": false,
-            "margin_bottom": 0
+            "margin_bottom": 0,
+            "margin_bottom_mobile": 30
           }
         },
         "kiwi_size_chart_recommender_kiwi_sizing_VqmPD4": {
           "type": "shopify://apps/kiwi-size-chart-recommender/blocks/kiwiSizing/b7369922-bf15-44ce-a121-a22a8fcbc4b0",
+          "disabled": true,
           "settings": {
+            "fallbackToBlockPosition": false,
             "waitForElementSelector": "",
             "waitForElementDelay": 5
           }
@@ -53,7 +58,8 @@
         "f0f0e917-92a5-4957-a68e-2d0bb38d7819": {
           "type": "separator",
           "settings": {
-            "margin_bottom": 15
+            "margin_bottom": 15,
+            "margin_bottom_mobile": 30
           }
         },
         "2f3ddc8d-6514-403d-a884-88c9a0294300": {
@@ -70,7 +76,8 @@
             "stock-level-indicator-style": "classic",
             "bar-indicator-color": "standard",
             "stock_indicator_animation": true,
-            "margin_bottom": 8
+            "margin_bottom": 8,
+            "margin_bottom_mobile": 30
           }
         },
         "a7717974-ed85-4cde-80ef-4751178acf57": {
@@ -80,13 +87,15 @@
             "text": "Free US shipping available",
             "link": "",
             "margin_bottom": 8,
+            "margin_bottom_mobile": 30,
             "text_color": "#242424"
           }
         },
         "separator_j9tcaD": {
           "type": "separator",
           "settings": {
-            "margin_bottom": 10
+            "margin_bottom": 10,
+            "margin_bottom_mobile": 30
           }
         },
         "options": {
@@ -100,13 +109,15 @@
             "size_option_name": "Size",
             "size_guide_override_heading_font_size": false,
             "size_guide_heading_font_size": 24,
-            "margin_bottom": 30
+            "margin_bottom": 30,
+            "margin_bottom_mobile": 30
           }
         },
         "quantity": {
           "type": "quantity",
           "settings": {
-            "margin_bottom": 10
+            "margin_bottom": 10,
+            "margin_bottom_mobile": 30
           }
         },
         "text_with_icon_W4Dqdt": {
@@ -116,6 +127,7 @@
             "text": "14 days free returns",
             "link": "shopify://pages/faq",
             "margin_bottom": 10,
+            "margin_bottom_mobile": 30,
             "text_color": "#242424"
           }
         },
@@ -124,7 +136,9 @@
           "settings": {
             "show_smart_checkout": true,
             "enable_gift_card_recipient_form": true,
+            "show_WISHLIST_button": true,
             "margin_bottom": 30,
+            "margin_bottom_mobile": 30,
             "override_button_colors": false,
             "button_background_color": "#e68819",
             "button_text_color": "#ffffff"
@@ -135,6 +149,7 @@
           "settings": {
             "title": "<p>Key Benefits</p>",
             "margin_bottom": 10,
+            "margin_bottom_mobile": 30,
             "text_color": "#242424"
           }
         },
@@ -143,6 +158,7 @@
           "settings": {
             "title": "<p>{{ product.metafields.custom.key_benefit | metafield_tag }}</p>",
             "margin_bottom": 30,
+            "margin_bottom_mobile": 30,
             "text_color": "#242424"
           }
         },
@@ -155,7 +171,8 @@
             "icon": "none",
             "text": "{{ product.description }}",
             "page": "",
-            "margin_bottom": 0
+            "margin_bottom": 0,
+            "margin_bottom_mobile": 30
           }
         },
         "b0c19132-8e54-4664-b8ce-0a8c7f1f7737": {
@@ -167,7 +184,8 @@
             "icon": "none",
             "text": "<p>{{ product.metafields.products.composition | metafield_tag }}</p>",
             "page": "",
-            "margin_bottom": 0
+            "margin_bottom": 0,
+            "margin_bottom_mobile": 30
           }
         },
         "9c341458-2d2c-4317-a2cc-346e220f53e0": {
@@ -179,7 +197,8 @@
             "icon": "none",
             "text": "<p>{{ product.metafields.products.fit_model_wears | metafield_tag }}</p>",
             "page": "",
-            "margin_bottom": 0
+            "margin_bottom": 0,
+            "margin_bottom_mobile": 30
           }
         },
         "b3864090-4f25-4db2-bddb-c549e9472be6": {
@@ -191,7 +210,8 @@
             "icon": "none",
             "text": "<p>{{ product.metafields.products.care_instruction | metafield_tag }}</p>",
             "page": "",
-            "margin_bottom": 40
+            "margin_bottom": 40,
+            "margin_bottom_mobile": 30
           }
         },
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf": {
@@ -205,13 +225,15 @@
             "collapsible_tab": true,
             "open_close_icon": "plus_minus",
             "open_by_default": false,
-            "margin_bottom": 30
+            "margin_bottom": 30,
+            "margin_bottom_mobile": 30
           }
         },
         "4fdb087c-4728-4785-b270-a71a092b7898": {
           "type": "social_sharing",
           "settings": {
-            "margin_bottom": 30
+            "margin_bottom": 30,
+            "margin_bottom_mobile": 30
           }
         }
       },
@@ -239,6 +261,8 @@
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
       "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#242424",
         "enable_sticky": true,
         "media_position": "left",
         "image_size": "medium",
@@ -396,7 +420,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
-            "max_width": 1200
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
