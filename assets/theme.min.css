@@ -5,7 +5,7 @@
 }
 
 #customer_login_link {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 14px;
     line-height: normal;
@@ -707,7 +707,7 @@ html input[disabled] {
     color: var(--primary-btn-bg-color);
     border: 1px solid var(--primary-btn-bg-color);
     font-weight: 500;
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-size: 12px;
     line-height: normal;
     letter-spacing: 1px;
@@ -1778,7 +1778,7 @@ button.pswp__button svg.pswp__icn {
 }
 
 .inline-icon--wrapper.dropdown-icon span {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 14px;
     line-height: normal;
@@ -2597,7 +2597,7 @@ th {
     border-radius: 0 !important;
     padding: 12px 16px !important;
     border: none !important;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 16px;
     line-height: normal;
@@ -2612,7 +2612,7 @@ th {
 }
 
 .footer-article p {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -2709,7 +2709,7 @@ th {
 
 .bottom--footer---links li a,
 .bottom--footer---links li span {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -2722,7 +2722,7 @@ th {
 
 @media only screen and (min-width:768px) {
     .bottom--footer---links li span p {
-        font-family: Grosa, sans-serif;
+        font-family: var(--body-font-stack);
         font-weight: 400;
         font-size: 14px;
         line-height: normal;
@@ -9128,7 +9128,7 @@ li.mega-menu-promo-card .mega-menu-aspect-ratio.aspect-ratio--square {
 }
 
 .mega-menu-promo-text--wrapper .mega-menu-promo-text .h4.mega-menu-promo-title {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 16px;
     line-height: normal;
@@ -9136,7 +9136,7 @@ li.mega-menu-promo-card .mega-menu-aspect-ratio.aspect-ratio--square {
 }
 
 .mega-menu-promo-text--wrapper .mega-menu-promo-text .h5.mega-menu-promo-subtitle {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: normal;
@@ -9423,7 +9423,7 @@ a.mega-menu-promo-wrapper:hover+.mega-menu-promo-text--wrapper .mega-menu-promo-
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 16px;
     line-height: normal;
@@ -9861,7 +9861,7 @@ h6 a {
 }
 
 .section-title--wrapper .section-title {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 32px;
     line-height: normal;
@@ -9873,7 +9873,7 @@ h6 a {
 .text-with-icon .text-with-icon--content .text-with-icon--text {
     display: inline;
     word-break: break-word;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 14px;
     line-height: normal;
@@ -9881,7 +9881,7 @@ h6 a {
 }
 
 .collapsible-content .richtext-block p {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -9961,7 +9961,7 @@ h6 a {
 
 .template-title--wrapper .template-title {
     margin: 0;
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 24px;
     line-height: normal;
@@ -9974,7 +9974,7 @@ h6 a {
 
 .template-title--wrapper .template-description p {
     text-align: center;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -13080,7 +13080,7 @@ product-card .grid__image.image-height--natural .product-card__image--secondary 
 }
 
 .product-grid--title {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 14px;
     margin: 0;
@@ -13095,7 +13095,7 @@ product-card .grid__image.image-height--natural .product-card__image--secondary 
 
 .product-grid--vendor {
     color: #7B6859;
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     text-transform: uppercase;
     font-size: 12px;
@@ -13117,12 +13117,12 @@ product-card .grid__image.image-height--natural .product-card__image--secondary 
 .product-grid--price-font-body,
 .product-grid--title-font-body,
 .product-grid--vendor-font-body {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
 }
 
 .product-grid--price {
     overflow-wrap: break-word;
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -13794,7 +13794,7 @@ product-card .grid__image.image-height--natural .product-card__image--secondary 
     position: absolute;
     top: 0px;
     left: 0px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: normal;
@@ -14752,7 +14752,7 @@ theme-parallax .parallax-child {
 .announcement_bar animated-background-text-colors.announcements_only .announcement_text {
     padding-left: 16px;
     padding-right: 16px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: normal;

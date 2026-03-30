@@ -3,7 +3,7 @@
 }
 
 .h1.product-details-product-title {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 24px;
     line-height: normal;
@@ -41,7 +41,7 @@
     width: 100%;
     max-width: none;
     border-radius: 5px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
@@ -50,7 +50,7 @@
 
 .shopify-payment-button__button.shopify-payment-button__button--unbranded {
     border-radius: 5px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
@@ -63,7 +63,7 @@
     color: var(--text-color);
     border: 1px solid #767676;
     border-radius: 5px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
@@ -81,7 +81,7 @@
     color: var(--text-color);
     border: 1px solid #767676;
     border-radius: 5px;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
@@ -172,7 +172,7 @@
 }
 
 .product-price-size--h3 {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
@@ -365,7 +365,7 @@
 .swatch .option-label-wrapper .header {
     color: var(--text-color);
     display: inline-block;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -723,7 +723,7 @@ linked-products.linked-products {
 .product__meta--vendor a,
 .product__meta--vendor {
     color: var(--custon-color);
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: normal;
@@ -937,7 +937,7 @@ linked-products.linked-products {
 }
 
 .product-description p {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -1007,7 +1007,7 @@ linked-products.linked-products {
 }
 
 .product-form-block #ProductPrice .money {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
@@ -1018,7 +1018,7 @@ linked-products.linked-products {
     font-size: 14px;
     display: block !important;
     color: var(--text-color);
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0px;
@@ -1057,7 +1057,7 @@ linked-products.linked-products {
 }
 
 .collapsible-content .richtext-block p {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;

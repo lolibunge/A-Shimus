@@ -36,7 +36,7 @@
 }
 
 .pagination--load-more .pagination__progress-text {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0;
@@ -52,7 +52,7 @@
     border: 1px solid #000;
     background-color: transparent;
     color: var(--text-color);
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0;
@@ -203,7 +203,7 @@
     margin: 0;
     width: fit-content;
     text-wrap: nowrap;
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: normal;
@@ -255,14 +255,14 @@
 
 .select .select__select,
 .toggle-filtering-btn {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 12px;
     line-height: normal;
     letter-spacing: 0px;
 }
 .collection-results-count {
-    font-family: Grosa, sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 12px;
     line-height: normal;

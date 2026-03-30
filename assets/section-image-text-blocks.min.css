@@ -76,7 +76,7 @@
 }
 
 .image-text-block__title {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 32px;
     line-height: normal;

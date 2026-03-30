@@ -64,7 +64,7 @@
     justify-content: center;
     background: #f5f5f5;
     color: #999;
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-size: 14px;
 }
 
@@ -154,7 +154,7 @@
     text-align: center;
     width: 100%;
     max-width: 100%;
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -163,7 +163,7 @@
 }
 
 .collection-showcase-product-title {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
@@ -177,7 +177,7 @@
 }
 
 .collection-showcase-product-price {
-    font-family: "Grosa", sans-serif;
+    font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 16px;
     line-height: normal;

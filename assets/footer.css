@@ -16,7 +16,7 @@
 .newsletter-footer .newsletter-footer--wrapper .input-group .footer-email-submit {
   padding: 12px 20px;
   width: 185px;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
@@ -27,7 +27,7 @@
 }
 
 .newsletter-footer .footer-address a {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 16px;
   line-height: normal;
@@ -48,7 +48,7 @@ input:not(.alt-input):not([type="checkbox"]):not([type="radio"]):not([type="file
 
 .bottom--footer-row {
   padding: 16px 0;
-  font-family: Grosa;
+  font-family: var(--body-font-stack);
   font-weight: 400;
   font-size: 16px;
   line-height: normal;

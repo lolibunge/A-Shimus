@@ -1,5 +1,50 @@
 /* Place any CSS overrides in this file. */
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: var(--body-color);
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--body-color);
+  min-height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  overflow-x: hidden;
+  font-family: var(--body-font-stack);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+
 
 
 .mega-menu-wrapper .site-nav--has-dropdown.mega-menu:not(.nav-hover) .site-nav__dropdown {
@@ -106,7 +151,7 @@ section.section-two_column>div:nth-child(2) {
 }
 
 .rte.footer-article.text-link-animated.richtext-block p {
-  font-family: "IvyPresto Text", sans-serif;
+  font-family: var(--header-font-stack);
 }
 
 .blog-post-card__title {
@@ -128,7 +173,7 @@ body .slider-nav--left-and-right .width--content {
 }
 
 .site-nav--link-text.animated-underline {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 16px;
   line-height: normal;
@@ -142,7 +187,7 @@ body .slider-nav--left-and-right .width--content {
 }
 
 .h3.footer-header {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
 font-weight: 500;
 font-size: 16px;
 line-height: normal;
@@ -151,7 +196,7 @@ letter-spacing: 0;
 
 .footer-content.nav-link-animated li a,
 .content-footer p {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
     font-weight: 400;
     font-size: 14px;
     line-height: normal;
@@ -163,7 +208,7 @@ letter-spacing: 0;
 }
 
 .breadcrumb.nav-link-animated--custom span {
-  font-family: "Grosa", sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 400;
   font-size: 12px;
   line-height: normal;
@@ -373,7 +418,7 @@ size-guide-modal .size-guide-modal__header {
 }
 
 .size-chart-content h2 {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
@@ -382,7 +427,7 @@ size-guide-modal .size-guide-modal__header {
 }
 
 .size-chart-content .size-chart-subtitle {
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -435,7 +480,7 @@ size-guide-modal .size-guide-modal__body {
 .size-chart-table th {
   padding: 16px 8px;
   background-color: #F5F5F5;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -445,7 +490,7 @@ size-guide-modal .size-guide-modal__body {
 
 .size-chart-table td {
   padding: 10.5px 8px;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -651,7 +696,7 @@ size-guide-modal .size-guide-modal__body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 10px;
   line-height: 19.34px;
@@ -663,7 +708,7 @@ size-guide-modal .size-guide-modal__body {
   display: block;
   padding-left: 22px;
   margin-bottom: 8px;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 500;
   font-size: 14px;
   line-height: 19.34px;
@@ -672,7 +717,7 @@ size-guide-modal .size-guide-modal__body {
 
 .measurement-steps li p {
   margin: 0;
-  font-family: Grosa, sans-serif;
+  font-family: var(--body-font-stack);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;

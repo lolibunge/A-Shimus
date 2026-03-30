@@ -18,7 +18,7 @@
 }
 
 .editorial-intro-title {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 36px;
     line-height: normal;
@@ -27,7 +27,7 @@
 }
 
 .editorial-intro-text p {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 24px;
     line-height: normal;
@@ -36,7 +36,7 @@
 }
 
 .editorial-intro-meta {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 16px;
     line-height: normal;
@@ -95,7 +95,7 @@
 
 
 .editorial-two-column-heading {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     margin: 0;
     font-weight: 300;
     font-size: 36px;
@@ -167,7 +167,7 @@
     display: none;
     color: inherit;
     text-decoration: underline;
-    font-family: IvyPresto Text, sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 16px;
     line-height: normal;
@@ -185,7 +185,7 @@
 
 .editorial-two-column-text p {
     margin: 0;
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     font-weight: 300;
     font-size: 16px;
     line-height: 26px;
@@ -199,7 +199,7 @@
 
 /* Quote block */
 .editorial-quote {
-    font-family: "IvyPresto Text", sans-serif;
+    font-family: var(--header-font-stack);
     max-width: 1132px;
     font-size: 24px;
     font-weight: 300;
