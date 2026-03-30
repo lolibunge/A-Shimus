@@ -24,7 +24,7 @@ if (!customElements.get('size-guide-link')) {
 
     handleClick(event) {
       event.preventDefault();
-      // Open the size guide drawer with the URL
+      // Open the size guide modal with the URL
       window.eventBus.emit('open:size:guide', { url: event.currentTarget.href });
     }
   });

@@ -12,21 +12,21 @@ if (!customElements.get('size-guide-modal')) {
       this.openModal = this.openModal.bind(this);
       this.closeModal = this.closeModal.bind(this);
       this.handleKeydown = this.handleKeydown.bind(this);
+      this.handleTrapFocus = this.handleTrapFocus.bind(this);
       this.previousActiveElement = null;
+      this.editorEventsBound = false;
     }
 
     connectedCallback() {
       window.wetheme.webcomponentRegistry.register({key: 'component-size-guide-modal'});
-      
-      // Event listeners
+
       window.eventBus.on('open:size:guide', this.openModal);
       window.eventBus.on('close:size:guide', this.closeModal);
-      
+
       this.closeElements.forEach((element) => {
         element.addEventListener('click', this.closeModal);
       });
 
-      // Close on Escape key
       document.addEventListener('keydown', this.handleKeydown);
     }
 
@@ -34,6 +34,10 @@ if (!customElements.get('size-guide-modal')) {
       window.eventBus.off('open:size:guide', this.openModal);
       window.eventBus.off('close:size:guide', this.closeModal);
       document.removeEventListener('keydown', this.handleKeydown);
+      this.removeEventListener('keydown', this.handleTrapFocus);
+      this.closeElements.forEach((element) => {
+        element.removeEventListener('click', this.closeModal);
+      });
     }
 
     handleKeydown(event) {
@@ -46,112 +50,110 @@ if (!customElements.get('size-guide-modal')) {
       if (event && event.url) {
         await this.loadPageContent(event.url);
       }
-      
-      // Store the element that was focused before opening the modal
+
       this.previousActiveElement = document.activeElement;
-      
       this.setAttribute('aria-hidden', 'false');
       document.body.classList.add('size-guide-modal-open');
-      
-      // Trap focus
       this.trapFocus();
-      
-      // Handle editor events
       this.handleEditorEvents();
     }
 
     closeModal() {
       this.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('size-guide-modal-open');
-      
-      // Return focus to previous element
+      this.removeEventListener('keydown', this.handleTrapFocus);
+
       if (this.previousActiveElement) {
         this.previousActiveElement.focus();
       }
     }
 
     trapFocus() {
-      const focusableElements = this.querySelectorAll('button, [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])');
-      const firstFocusableElement = focusableElements[0];
-      const lastFocusableElement = focusableElements[focusableElements.length - 1];
-      
-      if (firstFocusableElement) {
-        firstFocusableElement.focus();
+      this.focusableElements = this.querySelectorAll('button, [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])');
+      this.firstFocusableElement = this.focusableElements[0];
+      this.lastFocusableElement = this.focusableElements[this.focusableElements.length - 1];
+
+      if (this.firstFocusableElement) {
+        this.firstFocusableElement.focus();
       }
-      
-      this.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-          if (e.shiftKey) {
-            if (document.activeElement === firstFocusableElement) {
-              lastFocusableElement.focus();
-              e.preventDefault();
-            }
-          } else {
-            if (document.activeElement === lastFocusableElement) {
-              firstFocusableElement.focus();
-              e.preventDefault();
-            }
-          }
+
+      this.removeEventListener('keydown', this.handleTrapFocus);
+      this.addEventListener('keydown', this.handleTrapFocus);
+    }
+
+    handleTrapFocus(event) {
+      if (event.key !== 'Tab') return;
+      if (!this.firstFocusableElement || !this.lastFocusableElement) return;
+
+      if (event.shiftKey) {
+        if (document.activeElement === this.firstFocusableElement) {
+          this.lastFocusableElement.focus();
+          event.preventDefault();
         }
-      });
+      } else if (document.activeElement === this.lastFocusableElement) {
+        this.firstFocusableElement.focus();
+        event.preventDefault();
+      }
     }
 
     // Fetch and load page content from the given URL
     async loadPageContent(url) {
       try {
-        // Clear existing content
         if (this.pageContentContainer) {
           this.pageContentContainer.innerHTML = '';
         }
-        
+
         if (this.pageTitleContainer) {
           this.pageTitleContainer.innerHTML = '';
         }
-        
-        // Fetch the page content
-        const response = await fetch(url);
+
+        const response = await fetch(url, { credentials: 'same-origin' });
         if (!response.ok) {
           throw new Error(`Failed to fetch content: ${response.status}`);
         }
-        
+
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-        const pageTitle = doc.querySelector('.main-page-content [data-page-title]');
-        
+
+        const pageTitle = doc.querySelector('.main-page-content [data-page-title], .template-title--wrapper [data-page-title], [data-page-title]');
         if (pageTitle && this.pageTitleContainer) {
-          this.pageTitleContainer.textContent = pageTitle.textContent;
+          this.pageTitleContainer.textContent = pageTitle.textContent.trim();
         }
-        
-        // Extract the main content from the page
-        const pageContent = doc.querySelector('.main-page-content');
-        
-        if (pageContent && this.pageContentContainer) {
-          // Find the actual content element (rte with page.content)
-          const rteContent = pageContent.querySelector('.rte.text-link-animated, .grid__item--page, .rte');
-          
-          if (rteContent) {
-            // Clone and append only the content, not the wrapper
-            const contentClone = rteContent.cloneNode(true);
-            this.pageContentContainer.appendChild(contentClone);
-          } else {
-            // Fallback: try to get inner content without wrappers
-            const gridItem = pageContent.querySelector('.grid__item--page');
-            if (gridItem) {
-              const contentClone = gridItem.cloneNode(true);
-              this.pageContentContainer.appendChild(contentClone);
-            } else {
-              // Last resort: append the whole main-page-content but clean it up
-              const contentClone = pageContent.cloneNode(true);
-              // Remove sidebar if present
-              const sidebar = contentClone.querySelector('[data-sidebar-content]');
-              if (sidebar) sidebar.remove();
-              // Remove title wrapper if present
-              const titleWrapper = contentClone.querySelector('.template-title--wrapper');
-              if (titleWrapper) titleWrapper.remove();
-              this.pageContentContainer.appendChild(contentClone);
-            }
+
+        if (!this.pageContentContainer) return;
+
+        let hasLoadedContent = false;
+
+        const dedicatedSizeChart = doc.querySelector('.size-chart-content');
+        if (dedicatedSizeChart) {
+          this.pageContentContainer.appendChild(dedicatedSizeChart.cloneNode(true));
+          hasLoadedContent = true;
+        }
+
+        if (!hasLoadedContent) {
+          const customHtmlBlocks = doc.querySelectorAll('.custom-html .text-link-animated');
+          if (customHtmlBlocks.length > 0) {
+            customHtmlBlocks.forEach((block) => {
+              this.pageContentContainer.appendChild(block.cloneNode(true));
+            });
+            hasLoadedContent = true;
           }
+        }
+
+        if (!hasLoadedContent) {
+          const mainPageContent = doc.querySelector('.main-page-content .grid__item--page, .main-page-content .rte.text-link-animated, .main-page-content');
+          if (mainPageContent) {
+            const contentClone = mainPageContent.cloneNode(true);
+            const sidebar = contentClone.querySelector('[data-sidebar-content]');
+            if (sidebar) sidebar.remove();
+            this.pageContentContainer.appendChild(contentClone);
+            hasLoadedContent = true;
+          }
+        }
+
+        if (!hasLoadedContent) {
+          this.pageContentContainer.innerHTML = '<p>Unable to load size chart content.</p>';
         }
       } catch (error) {
         console.error('Error loading size guide content:', error);
@@ -162,17 +164,16 @@ if (!customElements.get('size-guide-modal')) {
     }
 
     handleEditorEvents() {
-      if (window.Shopify.designMode) {
-        document.addEventListener('shopify:section:load', () => {
-          const sizeGuideLink = document.querySelector('product-information a[data-size-guide-link]');
-          if (sizeGuideLink) {
-            const href = sizeGuideLink.href;
-            if (href) {
-              this.loadPageContent(href);
-            }
-          }
-        });
-      }
+      if (!window.Shopify.designMode || this.editorEventsBound) return;
+
+      document.addEventListener('shopify:section:load', () => {
+        const sizeGuideLink = document.querySelector('product-information a[data-size-guide-link]');
+        if (sizeGuideLink && sizeGuideLink.href) {
+          this.loadPageContent(sizeGuideLink.href);
+        }
+      });
+
+      this.editorEventsBound = true;
     }
   }
 

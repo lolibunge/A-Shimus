@@ -85,8 +85,8 @@
           </div>
         {% endif %}
       </div>
-      {% assign formatted_swatch_option_name = swatch_option.name | downcase %}
-      {% assign formatted_size_option_name = size_option_name | downcase %}
+      {% assign formatted_swatch_option_name = swatch_option.name | downcase | strip %}
+      {% assign formatted_size_option_name = size_option_name | downcase | strip %}
       {%- if formatted_swatch_option_name == formatted_size_option_name and size_guide_page != blank -%}
         <safe-load-scripts class="hidden">
           <script src="{{ 'component-size-guide-link.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="size-guide-link"></script>

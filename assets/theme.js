@@ -1213,7 +1213,7 @@ class Menu {
     this.activeClass = 'nav-hover';
     this.sectionId = this.element.getAttribute('data-wetheme-section-id');
     this.megaMenuDropdowns = document.querySelectorAll('.site-nav__dropdown.mega-menu-dropdown');
-    this.megaMenu = document.querySelector('.mega-menu-block');
+    this.megaMenus = document.querySelectorAll('.mega-menu-block');
     this.megaMenuChildren = document.querySelectorAll('.mega-menu-block .dropdown-submenu');
     this.resizeTimeout = null;
     this.hideTimeout = null;
@@ -1345,10 +1345,9 @@ class Menu {
         el.addEventListener('focusout', () => this.hideDropdown(el));
       }
     });
-    if (this.megaMenu) {
-      // Replace direct hideDropdown calls with scheduleHideDropdown
-      this.megaMenu.addEventListener('mouseleave', () => this.scheduleHideDropdown());
-    }
+    this.megaMenus.forEach(megaMenu => {
+      megaMenu.addEventListener('mouseleave', () => this.hideDropdown());
+    });
     this.subMenuLinks.forEach(link => {
       link.addEventListener('touchstart', evt => {
         evt.stopImmediatePropagation();

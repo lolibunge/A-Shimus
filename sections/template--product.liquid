@@ -389,7 +389,7 @@
                     {% comment %} ===== PRODUCT OPTIONS BLOCK ===== {% endcomment %}
                     {%- liquid
                       assign show_size_guide_below_options = false
-                      if block.settings.size_option_name == '' and block.settings.size_guide_page != blank
+                      if block.settings.size_option_name | strip == '' and block.settings.size_guide_page != blank
                         assign show_size_guide_below_options = true
                       endif
 
@@ -435,7 +435,7 @@
                         {% assign min_heading_size = 16 %}
                         {% assign base_size = block.settings.size_guide_heading_font_size %}
                         <style>
-                          size-guide-drawer {
+                          size-guide-modal {
                             --h1-size: {{ base_size | times: 1.25 | round | at_least: min_heading_size | append: 'px' }};
                             --h2-size: {{ base_size | at_least: min_heading_size | append: 'px' }};
                             --h3-size: {{ base_size | times: 0.875 | round | at_least: min_heading_size | append: 'px' }};

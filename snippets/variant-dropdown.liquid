@@ -24,8 +24,8 @@
     {% comment %} ============ OPTION LABEL ============ {% endcomment %}
     <div class="option-label-wrapper">
       <label for="SingleOptionSelector-{{ option_index }}-{{ dropdown_section_id }}" class="label-font">{{ dropdown_option.name }}</label>
-      {% assign formatted_dropdown_option_name = dropdown_option.name | downcase %}
-      {% assign formatted_size_option_name = size_option_name | downcase %}
+      {% assign formatted_dropdown_option_name = dropdown_option.name | downcase | strip %}
+      {% assign formatted_size_option_name = size_option_name | downcase | strip %}
       {%- if formatted_dropdown_option_name == formatted_size_option_name and size_guide_page != blank -%}
         <safe-load-scripts class="hidden">
           <script src="{{ 'component-size-guide-link.js' | asset_url }}" defer="defer" type="module" data-flow-load-key="size-guide-link"></script>

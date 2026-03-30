@@ -28,25 +28,34 @@
   {% endcapture %}
 {% endif %}
 
-<div id="sharing" class="social-sharing" data-permalink="{{ permalinkURL }}">
-
+<div id="sharing" class="social-sharing social-media-footer" data-permalink="{{ permalinkURL }}">
   <div class="label-font">{{ settings.social_sharing_title }}</div>
 
-  {% if settings.share_facebook %}
-  <a class="standalone-icon--wrapper" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
-    {% render 'theme-icon' with icon: 'facebook' %}
-  </a>
-  {% endif %}
+  <ul id="sm-icons" class="clearfix">
+    {% if settings.share_facebook %}
+      <li id="sm-facebook">
+        <a class="standalone-icon--wrapper" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22.675 0H1.326C0.597 0 0 0.597 0 1.326V22.674C0 23.403 0.597 24 1.326 24H12.821V14.706H9.692V11.08H12.821V8.413C12.821 5.313 14.715 3.625 17.48 3.625C18.806 3.625 19.943 3.724 20.275 3.768V7.01L18.357 7.011C16.853 7.011 16.561 7.726 16.561 8.774V11.08H20.148L19.681 14.706H16.561V24H22.675C23.403 24 24 23.403 24 22.674V1.326C24 0.597 23.403 0 22.675 0Z"></path>
+          </svg>
+        </a>
+      </li>
+    {% endif %}
 
-  {% if settings.share_x %}
-  <a class="standalone-icon--wrapper" href="//x.com/share?url={{ permalinkURL }}&amp;text={{ shareTitle | escape }}" target="_blank" rel="noopener" aria-label="Share on X">
-    {% render 'theme-icon' with icon: 'x' %}
-  </a>
-  {% endif %}
+    {% if settings.share_x %}
+      <li id="sm-x">
+        <a class="standalone-icon--wrapper" href="//x.com/share?url={{ permalinkURL }}&amp;text={{ shareTitle | escape }}" target="_blank" rel="noopener" aria-label="Share on X">
+          {% render 'theme-icon' with icon: 'x' %}
+        </a>
+      </li>
+    {% endif %}
 
-  {% if settings.share_pinterest and shareImage %}
-  <a class="standalone-icon--wrapper" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ shareImage | escape }}&amp;description={{ product.title | escape }}" target="_blank" rel="noopener" aria-label="Share on Pinterest">
-    {% render 'theme-icon' with icon: 'pinterest' %}
-  </a>
-  {% endif %}
+    {% if settings.share_pinterest and shareImage %}
+      <li id="sm-pinterest">
+        <a class="standalone-icon--wrapper" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ shareImage | escape }}&amp;description={{ product.title | escape }}" target="_blank" rel="noopener" aria-label="Share on Pinterest">
+          {% render 'theme-icon' with icon: 'pinterest' %}
+        </a>
+      </li>
+    {% endif %}
+  </ul>
 </div>
