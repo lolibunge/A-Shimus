@@ -73,6 +73,31 @@
     justify-content: center;
     gap: 4.67px;
     min-height: 44px;
+    max-width: unset;
+}
+
+[data-wetheme-section-type=template--product] .product-form-block .btn.btn-wishlist {
+    width: 100%;
+    max-width: none;
+}
+
+[data-wetheme-section-type=template--product] [data-swaction="addToWishlist"]:not(.btn-wishlist) {
+    display: none !important;
+}
+
+[data-wetheme-section-type=template--product] .swym-button.swym-add-to-wishlist-view-product:not(.btn-wishlist) {
+    display: none !important;
+}
+
+[data-wetheme-section-type=template--product] .swym-button:not(.btn-wishlist) {
+    display: none !important;
+}
+
+[data-wetheme-section-type=template--product] #swym-atw-button-container,
+[data-wetheme-section-type=template--product] #swym-atw-pdp-button,
+[data-wetheme-section-type=template--product] .swym-atw-button-container,
+[data-wetheme-section-type=template--product] .atw-button {
+    display: none !important;
 }
 
 .grid-view-item-image .btn.btn-wishlist {
