@@ -30,11 +30,10 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "450px",
-            "image": "shopify://shop_images/1762920542852_1.png",
+            "image": "shopify://shop_images/Screenshot_2026-03-30_225029.jpg",
             "justify_content": "center",
             "text_position": "center_end",
             "mobile_max_width": "100%",
-            "mobile_image": "shopify://shop_images/1c07b2e24aa08bd63c5e888787e992911e248096_1_196aecd0-d32d-434f-9d02-3fc5a1e3296c.jpg",
             "mobile_justify_content": "center",
             "mobile_text_position": "center_center",
             "caption-text": "#ffffff",
@@ -58,6 +57,10 @@
         "mobile_slide_position": "left",
         "slide_transition_delay": 10,
         "section_width": "full",
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
         "background_color": "#000000"
       }
     },
@@ -67,24 +70,24 @@
         "collection_block_TXRAgK": {
           "type": "collection_block",
           "settings": {
+            "lookbook_handle": "",
             "use_custom_image": true,
-            "custom_image": "shopify://shop_images/6f8813be7ac0b071169b1611f5efd0254f92cdad.jpg",
             "button_label": "Discover the Collection"
           }
         },
         "collection_block_zbkcin": {
           "type": "collection_block",
           "settings": {
+            "lookbook_handle": "",
             "use_custom_image": true,
-            "custom_image": "shopify://shop_images/997c4b05b4de5b9042b2f6785f9fb1440146e77c.jpg",
             "button_label": "Discover the Collection"
           }
         },
         "collection_block_XhJ3bH": {
           "type": "collection_block",
           "settings": {
+            "lookbook_handle": "",
             "use_custom_image": true,
-            "custom_image": "shopify://shop_images/flying_solo_store_front_1.png",
             "button_label": "Discover the Collection"
           }
         }
@@ -109,6 +112,7 @@
         "button_text_color": "#ffffff",
         "button_hover_background_color": "#333333",
         "button_hover_text_color": "#ffffff",
+        "default_button_label": "Discover the Lookbook",
         "products_per_row_desktop": 4,
         "products_per_row_tablet": 3,
         "products_per_row_mobile": 2

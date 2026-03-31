@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "slideshow_3jibRi": {
       "type": "slideshow",
@@ -30,7 +30,7 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "451px",
-            "image": "shopify://shop_images/4e9e3d7e036f1a5d0456d8aee6f7196cd424d3c2_1.png",
+            "image": "shopify://shop_images/Screenshot_2026-03-30_225029.jpg",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -135,7 +135,6 @@
         "author_quote_LDay87": {
           "type": "author_quote",
           "settings": {
-            "image": "shopify://shop_images/IMG_3665_ede00866-d5b1-47f0-a3ac-e7cd3a42d0f7.jpg",
             "quote": "<p>“At its heart, A Shimus exists to make getting dressed easier for women building their careers. By focusing on fit, craftsmanship, and purpose, we create garments designed to feel reliable, considered, and quietly confident - just like the women who wear them.”</p>",
             "author": "Aya Shimura, Founder and CEO"
           }
@@ -160,7 +159,7 @@
         "image_text_block_4ww8NY": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/67f648dd4c6544c6cb9d147344f0f1cbc0f31d06_4.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_9..jpg",
             "title": "With Magokoro Spirit / 真心をこめて",
             "description": "",
             "button_url": "shopify://pages/discover",
@@ -170,7 +169,7 @@
         "image_text_block_pRcbFd": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/cb5c860695033f5cbce84a024f59b49cd6a4e9b2_1.png",
+            "image": "shopify://shop_images/Hero_Image_1_61838a34-35b5-4663-887c-5728f89c296b.jpg",
             "title": "Meet our Manufacture",
             "description": "",
             "button_url": "#",
@@ -180,7 +179,7 @@
         "image_text_block_t6a8P7": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/flying_solo_store_front_1.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_11..jpg",
             "title": "Our Stores",
             "description": "",
             "button_url": "shopify://pages/our-history",
@@ -251,7 +250,6 @@
           "type": "logo",
           "name": "Moveux",
           "settings": {
-            "logo": "shopify://shop_images/374f509adaabd1ff635b483d82a37826080f836f.png",
             "alt": "Featured logo",
             "link": ""
           }
@@ -260,7 +258,6 @@
           "type": "logo",
           "name": "Glamour",
           "settings": {
-            "logo": "shopify://shop_images/g5_1.png",
             "alt": "Featured logo",
             "link": ""
           }
@@ -305,7 +302,6 @@
           "type": "logo",
           "name": "Afrostyle",
           "settings": {
-            "logo": "shopify://shop_images/547f15d1f1fbd2022c1fd44c5d98a302514c6414.png",
             "alt": "Featured logo",
             "link": ""
           }

@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "slideshow_3jibRi": {
       "type": "slideshow",
@@ -30,7 +30,7 @@
             "button-background": "#e68819",
             "button-text": "#ffffff",
             "max_width": "100%",
-            "image": "shopify://shop_images/e29f3fdf79bf5a5259aaee41d1bbc06a29d2b0d4.jpg",
+            "image": "shopify://shop_images/cherry-blossom.png",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -497,7 +497,7 @@
         "image_text_block_4ww8NY": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/67f648dd4c6544c6cb9d147344f0f1cbc0f31d06_4.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_9..jpg",
             "title": "With Magokoro Spirit / 真心をこめて",
             "description": "",
             "button_url": "shopify://pages/discover",
@@ -507,7 +507,7 @@
         "image_text_block_pRcbFd": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/cb5c860695033f5cbce84a024f59b49cd6a4e9b2_1.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_10..jpg",
             "title": "Meet our Manufacture",
             "description": "",
             "button_url": "#",
@@ -517,7 +517,7 @@
         "image_text_block_t6a8P7": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/flying_solo_store_front_1.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_2_8d17ca0e-e888-4c76-aeb6-35f276f622a6.jpg",
             "title": "Our Stores",
             "description": "",
             "button_url": "shopify://pages/our-history",

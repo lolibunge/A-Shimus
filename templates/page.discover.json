@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "slideshow_3jibRi": {
       "type": "slideshow",
@@ -30,7 +30,7 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "451px",
-            "image": "shopify://shop_images/67f648dd4c6544c6cb9d147344f0f1cbc0f31d06_4.png",
+            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -70,6 +70,8 @@
           "type": "two_column_content",
           "settings": {
             "heading": "JAPANESE craftsmanship",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
             "text": "<p>At A.SHIMUS, Japanese craftsmanship is at the heart of everything we make. Our workwear is produced in Japan by skilled artisans who bring generations of expertise to fabric sourcing, pattern-making, and garment construction. We work closely with trusted Japanese manufacturers known for their precision, attention to detail, and commitment to quality, ensuring every piece is thoughtfully made, responsibly produced, and built to last. By combining traditional Japanese tailoring techniques with modern design for petite women, A.SHIMUS creates refined workwear that delivers exceptional fit, comfort, and longevity for professional life.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
@@ -101,6 +103,8 @@
           "type": "two_column_content",
           "settings": {
             "heading": "With Magokoro Spirit /真心をこめて",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
             "text": "<p>Magokoro (真心) is a Japanese word meaning sincerity and devotion.</p><p>Each garment is made in Japan by highly skilled artisans whose expertise has been refined over decades, sometimes generations, of specialized training.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
@@ -132,6 +136,8 @@
           "type": "two_column_content",
           "settings": {
             "heading": "Exquisite Materials",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
             "text": "<p>We work closely with our partner mills and ateliers across Japan, regularly visiting suppliers to thoughtfully select each fabric and component. Every detail is chosen with care, ensuring exceptional quality, comfort, and integrity at every stage of production. The result is workwear you don’t just see, but experience—through the way each piece moves with you, supports you, and elevates the everyday.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
@@ -163,6 +169,8 @@
           "type": "two_column_content",
           "settings": {
             "heading": "Made with Precision,Built to Last",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
             "text": "<p>From small-batch production and meticulous pattern making to advanced textile engineering and precise construction, Japanese manufacturing prioritizes accuracy, durability, and consistency over speed or scale. This level of craftsmanship results in workwear that holds its shape, wears beautifully over time, and requires fewer replacements, offering long-term value. By investing in ethically produced, expertly made garments, our customers are choosing quality, longevity, and integrity, qualities that define both Japanese craftsmanship and the A.SHIMUS approach to modern petite workwear.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
@@ -194,6 +202,8 @@
           "type": "two_column_content",
           "settings": {
             "heading": "Our Japanese Manufacturers",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
             "text": "<p>A.SHIMUS collaborates with a carefully selected network of Japanese fabric mills and sewing ateliers recognized for their technical excellence and integrity. Our partners include J∞QUALITY–certified manufacturers and long-established textile leaders such as:</p><p><br/></p><ul><li>Stylem Takisada Osaka Co., Ltd. (founded in 1864, Osaka City, Osaka Prefecture)</li><li>Suzuken Wool Textile Co., Ltd. (founded in 1953, Ichinomiya City, Aichi Prefecture)</li></ul><p><a href=\"https://youtu.be/K_5C0h_mDrA?si=YYW3Xdx5a55fnBl0\" target=\"_blank\">Our Interview with CEO</a></p><ul><li>Takisada Nagoya Co., Ltd. (founded in 1864, Nagoya City, Aichi Prefecture)</li></ul><p></p><ul><li>U.S.P Association Co., Ltd. (founded in 2004, Toshima-ku, Tokyo)…and others.</li></ul>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
@@ -224,7 +234,7 @@
         "image_text_block_4ww8NY": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/67f648dd4c6544c6cb9d147344f0f1cbc0f31d06_4.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_12.jpg",
             "title": "With Magokoro Spirit / 真心をこめて",
             "description": "",
             "button_url": "shopify://pages/discover",
@@ -234,7 +244,7 @@
         "image_text_block_pRcbFd": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/cb5c860695033f5cbce84a024f59b49cd6a4e9b2_1.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_3..jpg",
             "title": "Meet our Manufacture",
             "description": "",
             "button_url": "#",
@@ -244,7 +254,7 @@
         "image_text_block_t6a8P7": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/flying_solo_store_front_1.png",
+            "image": "shopify://shop_images/26SS_web_lookbook_5..jpg",
             "title": "Our Stores",
             "description": "",
             "button_url": "shopify://pages/our-history",

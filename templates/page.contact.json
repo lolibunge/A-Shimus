@@ -26,6 +26,7 @@
         "heading_ciw3R9"
       ],
       "settings": {
+        "image_desktop": "shopify://shop_images/Screenshot_2026-03-30_225029.jpg",
         "height_desktop": "original",
         "text_position_desktop": "center",
         "text_alignment_desktop": "center",
@@ -35,6 +36,7 @@
         "text_alignment_mobile": "center",
         "section_link": "",
         "animation_style": "none",
+        "section_width": "full",
         "section_margin_top": 0,
         "section_margin_bottom": 0,
         "text_color": "#ffffff",
@@ -50,35 +52,45 @@
           "type": "tab_content",
           "settings": {
             "question": "Do you ship overseas?",
-            "text": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>"
+            "open_by_default": false,
+            "text": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.</p>",
+            "page": ""
           }
         },
         "16456333831a200dc8-1": {
           "type": "tab_content",
           "settings": {
             "question": "How long will it take to get my order?",
-            "text": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>"
+            "open_by_default": false,
+            "text": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.</p>",
+            "page": ""
           }
         },
         "16456333831a200dc8-2": {
           "type": "tab_content",
           "settings": {
             "question": "Can I return my order?",
-            "text": "<p>We always aim for make sure our customers love our products, but if you do need to return an order, we’re happy to help. Just email us directly and we’ll take you through the process.</p>"
+            "open_by_default": false,
+            "text": "<p>We always aim for make sure our customers love our products, but if you do need to return an order, we’re happy to help. Just email us directly and we’ll take you through the process.</p>",
+            "page": ""
           }
         },
         "b8952142-22e1-4b16-b9bd-9e42747928c9": {
           "type": "tab_content",
           "settings": {
             "question": "Can I get my product personalized?",
-            "text": "<p>It depends on the creator and the product. All options are outlined on the product page, so look out for customization options there.</p>"
+            "open_by_default": false,
+            "text": "<p>It depends on the creator and the product. All options are outlined on the product page, so look out for customization options there.</p>",
+            "page": ""
           }
         },
         "a379cb7a-ba34-48da-b0af-2b0379b8db62": {
           "type": "tab_content",
           "settings": {
             "question": "Are these Q&As real?",
-            "text": "<p>No. This is demonstration content, designed to showcase how these page could look with your own content.</p>"
+            "open_by_default": false,
+            "text": "<p>No. This is demonstration content, designed to showcase how these page could look with your own content.</p>",
+            "page": ""
           }
         }
       },
@@ -92,7 +104,12 @@
       "settings": {
         "title": "Frequently asked questions",
         "description": "",
-        "faq_icon": "caret"
+        "section_header_alignment": "center",
+        "column_layout": "",
+        "faq_icon": "caret",
+        "section_width": "narrow",
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000"
       }
     },
     "164563343647211871": {
@@ -191,9 +208,13 @@
       "settings": {
         "title": "Contact us",
         "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
+        "section_header_alignment": "center",
+        "column_layout": "",
         "form_width": "narrow",
         "section_padding_top": 60,
         "section_padding_bottom": 60,
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff"
@@ -203,6 +224,7 @@
       "type": "map",
       "settings": {
         "map_address": "Ottawa, 151 O'Connor Street, Ground Floor, Canada",
+        "api_key": "",
         "layout": "left",
         "text_alignment": "center",
         "heading": "Our store",
@@ -212,6 +234,7 @@
         "override_button_colors": false,
         "button_background_color": "#e68819",
         "button_text_color": "#ffffff",
+        "section_width": "full",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
         "colors": "light"
