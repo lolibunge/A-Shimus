@@ -72,7 +72,7 @@
                     {% endif %}
                   </div>
                   <div class="collection-showcase-product-info">
-                    <div class="collection-showcase-product-title">{{ product.title }}</div>
+                    <div class="collection-showcase-product-title"><a href="{{ product.url }}">{{ product.title }}</a></div>
                     <div class="collection-showcase-product-price">
                       {{ product.price | money }}
                     </div>
