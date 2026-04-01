@@ -46,14 +46,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: fit-content;
-    max-width: fit-content;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .featured-in__slide a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .featured-in__slide img {
+    display: block;
     height: 50px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
+    opacity: 1;
+    visibility: visible;
   }
 
   .featured-in__divider {
