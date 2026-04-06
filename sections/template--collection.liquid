@@ -15,12 +15,268 @@
   if section.settings.enable_collection_title or show_description
     assign header_enabled = true
   endif
+
+  assign active_collection_context_label = ''
+  assign active_category_value_label = ''
+  assign is_new_arrivals_collection_context = false
+
+  if collection.handle == 'new-arrivals' or request.url contains 'na_menu='
+    assign is_new_arrivals_collection_context = true
+  endif
+
+  assign has_group_dresses = false
+  assign has_group_tops = false
+  assign has_group_pants = false
+  assign has_group_knit = false
+  assign has_group_coats = false
+  assign has_group_skirts = false
+
+  if is_new_arrivals_collection_context
+    assign request_url_parts = request.url | split: '?'
+    if request_url_parts.size > 1
+      assign request_query_string = request_url_parts[1]
+      assign request_query_params = request_query_string | split: '&'
+      for request_query_param in request_query_params
+        assign request_query_key_value = request_query_param | split: '='
+        if request_query_key_value[0] == 'na_menu' and request_query_key_value[1] != blank
+          assign active_collection_context_label = request_query_key_value[1] | url_decode | replace: '+', ' ' | strip
+          break
+        endif
+      endfor
+    endif
+
+    if active_collection_context_label == blank
+      for filter in collection.filters
+        assign filter_label_key = filter.label | strip | downcase
+        assign filter_is_category = false
+
+        if filter.param_name contains 'product_type' or filter.param_name contains '.t.category' or filter_label_key == 'category' or filter_label_key contains 'type'
+          assign filter_is_category = true
+        endif
+
+        if filter_is_category
+          for active_value in filter.active_values
+            assign active_value_label = active_value.label | strip
+            assign active_value_key = active_value_label | downcase
+
+            if active_category_value_label == blank and active_value_label != blank
+              assign active_category_value_label = active_value_label
+            endif
+
+            if active_value_key contains 'dress'
+              assign has_group_dresses = true
+            endif
+
+            if active_value_key contains 'blouse' or active_value_key contains 'shirt' or active_value_key contains 'top' or active_value_key contains 'short'
+              assign has_group_tops = true
+            endif
+
+            if active_value_key contains 'trouser' or active_value_key contains 'pant'
+              assign has_group_pants = true
+            endif
+
+            if active_value_key contains 'knit' or active_value_key contains 'cardigan'
+              assign has_group_knit = true
+            endif
+
+            if active_value_key contains 'jacket' or active_value_key contains 'coat'
+              assign has_group_coats = true
+            endif
+
+            if active_value_key contains 'skirt'
+              assign has_group_skirts = true
+            endif
+          endfor
+        endif
+      endfor
+
+      assign active_group_count = 0
+      if has_group_dresses
+        assign active_group_count = active_group_count | plus: 1
+      endif
+      if has_group_tops
+        assign active_group_count = active_group_count | plus: 1
+      endif
+      if has_group_pants
+        assign active_group_count = active_group_count | plus: 1
+      endif
+      if has_group_knit
+        assign active_group_count = active_group_count | plus: 1
+      endif
+      if has_group_coats
+        assign active_group_count = active_group_count | plus: 1
+      endif
+      if has_group_skirts
+        assign active_group_count = active_group_count | plus: 1
+      endif
+
+      if active_group_count == 1
+        if has_group_dresses
+          assign active_collection_context_label = 'Dresses'
+        elsif has_group_tops
+          assign active_collection_context_label = 'Tops'
+        elsif has_group_pants
+          assign active_collection_context_label = 'Pants'
+        elsif has_group_knit
+          assign active_collection_context_label = 'Knitwear and Cardigans'
+        elsif has_group_coats
+          assign active_collection_context_label = 'Jackets and Coats'
+        elsif has_group_skirts
+          assign active_collection_context_label = 'Skirts'
+        endif
+      elsif active_category_value_label != blank
+        assign active_collection_context_label = active_category_value_label
+      endif
+    endif
+  endif
+
+  assign collection_display_title = collection.title
+  if active_collection_context_label != blank
+    assign collection_display_title = collection.title | append: ' / ' | append: active_collection_context_label
+  endif
 -%}
+
+{% if collection.handle == 'new-arrivals' %}
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var menuContext = params.get('na_menu');
+
+      if (!menuContext) {
+        return;
+      }
+
+      function normalize(value) {
+        return (value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+      }
+
+      function matchesMenu(menuKey, valueKey) {
+        if (!menuKey || !valueKey) return false;
+        if (menuKey === valueKey) return true;
+        if (menuKey.indexOf('dress') !== -1) return valueKey.indexOf('dress') !== -1;
+        if (menuKey.indexOf('top') !== -1) return /(blouse|shirt|top|short)/.test(valueKey);
+        if (menuKey.indexOf('pant') !== -1 || menuKey.indexOf('trouser') !== -1) return /(pant|trouser)/.test(valueKey);
+        if (menuKey.indexOf('knitwear') !== -1 || menuKey.indexOf('cardigan') !== -1) return /(knit|cardigan)/.test(valueKey);
+        if (menuKey.indexOf('jacket') !== -1 || menuKey.indexOf('coat') !== -1) return /(jacket|coat)/.test(valueKey);
+        if (menuKey.indexOf('skirt') !== -1) return valueKey.indexOf('skirt') !== -1;
+        return valueKey.indexOf(menuKey) !== -1 || menuKey.indexOf(valueKey) !== -1;
+      }
+
+      function findMatch(filters, menuKey, preferCategory) {
+        for (var i = 0; i < filters.length; i += 1) {
+          var filter = filters[i];
+          var isCategory = filter.param.indexOf('.t.category') !== -1 || filter.label === 'category';
+          var isProductType = filter.param.indexOf('product_type') !== -1 || filter.label.indexOf('type') !== -1;
+
+          if (preferCategory !== isCategory) {
+            continue;
+          }
+
+          if (!preferCategory && !isProductType) {
+            continue;
+          }
+
+          var matchedValues = [];
+          for (var j = 0; j < filter.values.length; j += 1) {
+            var filterValue = filter.values[j];
+            var filterValueCount = Number(filterValue.count || 0);
+            if (filterValueCount > 0 && matchesMenu(menuKey, filterValue.label)) {
+              matchedValues.push(filterValue.value);
+            }
+          }
+
+          if (matchedValues.length > 0) {
+            return {
+              param: filter.param,
+              values: matchedValues
+            };
+          }
+        }
+
+        return null;
+      }
+
+      var filters = [
+        {% for filter in collection.filters %}
+          {
+            param: {{ filter.param_name | json }},
+            label: {{ filter.label | strip | downcase | json }},
+            values: [
+              {% for value in filter.values %}
+                {
+                  label: {{ value.label | strip | downcase | json }},
+                  value: {{ value.value | json }},
+                  count: {{ value.count | default: 0 | json }}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ];
+
+      var menuKey = normalize(menuContext);
+      var match = findMatch(filters, menuKey, true) || findMatch(filters, menuKey, false);
+
+      if (!match) {
+        for (var z = 0; z < filters.length; z += 1) {
+          if (filters[z].param.indexOf('product_type') !== -1) {
+            match = {
+              param: filters[z].param,
+              values: [menuContext]
+            };
+            break;
+          }
+        }
+      }
+
+      if (!match) {
+        return;
+      }
+
+      var currentValues = params.getAll(match.param);
+      var alreadyMatched = currentValues.length === match.values.length;
+
+      if (alreadyMatched) {
+        for (var x = 0; x < match.values.length; x += 1) {
+          if (currentValues.indexOf(match.values[x]) === -1) {
+            alreadyMatched = false;
+            break;
+          }
+        }
+      }
+
+      if (alreadyMatched) {
+        return;
+      }
+
+      var filterKeys = [];
+      params.forEach(function (_, key) {
+        if (key.indexOf('filter.p.') === 0) {
+          filterKeys.push(key);
+        }
+      });
+      for (var k = 0; k < filterKeys.length; k += 1) {
+        params.delete(filterKeys[k]);
+      }
+
+      for (var y = 0; y < match.values.length; y += 1) {
+        params.append(match.param, match.values[y]);
+      }
+
+      var nextUrl = window.location.pathname + '?' + params.toString();
+      var currentUrl = window.location.pathname + window.location.search;
+
+      if (nextUrl !== currentUrl) {
+        window.location.replace(nextUrl);
+      }
+    })();
+  </script>
+{% endif %}
 
 <section class="shopify-section section-collection-grid color-scheme--{{ section.settings.colors }}">
   {% if settings.enable_breadcrumbs %}
     <div id="breadcrumbs" class="width--content">
-      {% render 'breadcrumb' %}
+      {% render 'breadcrumb', collection_context_label: active_collection_context_label %}
     </div>
   {% endif %}
 
@@ -37,7 +293,7 @@
   {% if collection_title or collection_description %}
     <div class="collection-info template-title--wrapper">
       {% if collection_title %}
-        <h1 class="page--title template-title">{{ collection.title }}</h1>
+        <h1 class="page--title template-title">{{ collection_display_title }}</h1>
       {% endif %}
 
       {% if collection_description %}

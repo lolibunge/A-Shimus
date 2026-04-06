@@ -59,10 +59,32 @@
       <span class="label-font">{{ product.title }}</span>
     </span>
   {% elsif template contains 'collection' and collection.handle %}
+    {% assign breadcrumb_context_label = collection_context_label | default: '' | strip %}
+    {% if breadcrumb_context_label == blank %}
+      {% assign breadcrumb_url_parts = request.url | split: '?' %}
+      {% if breadcrumb_url_parts.size > 1 %}
+        {% assign breadcrumb_query_string = breadcrumb_url_parts[1] %}
+        {% assign breadcrumb_query_params = breadcrumb_query_string | split: '&' %}
+        {% for breadcrumb_query_param in breadcrumb_query_params %}
+          {% assign breadcrumb_query_key_value = breadcrumb_query_param | split: '=' %}
+          {% if breadcrumb_query_key_value[0] == 'na_menu' and breadcrumb_query_key_value[1] != blank %}
+            {% assign breadcrumb_context_label = breadcrumb_query_key_value[1] | url_decode | replace: '+', ' ' | strip %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
     <span class="breadcrumb-divider" aria-hidden="true">/</span>
     <span class="breadcrumb-item">
       <span class="label-font">{{ collection.title }}</span>
     </span>
+    {% if breadcrumb_context_label != blank %}
+      <span class="breadcrumb-divider" aria-hidden="true">/</span>
+      <span class="breadcrumb-item">
+        <span class="label-font">{{ breadcrumb_context_label }}</span>
+      </span>
+    {% endif %}
   {% elsif template.name == 'blog' %}
 
     <span class="breadcrumb-divider" aria-hidden="true">/</span>

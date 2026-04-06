@@ -675,8 +675,34 @@ Testing Cypress integration
       <div class="mobile-nav-split-container">
         <ul class="mobile-nav mobile-nav--main mobile-nav--parents">
         {% assign menu = linklists[section.settings.main_linklist] %}
+        {% assign new_arrivals_enabled = section.settings.enable_new_arrivals_menu_filtering %}
+        {% assign new_arrivals_menu_title_key = section.settings.new_arrivals_menu_title | strip | downcase %}
+        {% assign new_arrivals_collection_handle = section.settings.new_arrivals_collection.handle | default: 'new-arrivals' %}
+        {% assign new_arrivals_base_path = '/collections/' | append: new_arrivals_collection_handle %}
+        {% assign new_arrivals_type_filter_param = 'filter.p.product_type' %}
+        {% assign new_arrivals_category_filter_param = '' %}
+        {% assign new_arrivals_product_type_filter_param = '' %}
+        {% if collections[new_arrivals_collection_handle] != blank %}
+          {% for nav_filter in collections[new_arrivals_collection_handle].filters %}
+            {% assign nav_filter_label_key = nav_filter.label | strip | downcase %}
+            {% if new_arrivals_category_filter_param == blank %}
+              {% if nav_filter.param_name contains '.t.category' or nav_filter_label_key == 'category' %}
+                {% assign new_arrivals_category_filter_param = nav_filter.param_name %}
+              {% endif %}
+            {% endif %}
+            {% if new_arrivals_product_type_filter_param == blank and nav_filter.param_name contains 'product_type' %}
+              {% assign new_arrivals_product_type_filter_param = nav_filter.param_name %}
+            {% endif %}
+          {% endfor %}
+          {% if new_arrivals_category_filter_param != blank %}
+            {% assign new_arrivals_type_filter_param = new_arrivals_category_filter_param %}
+          {% elsif new_arrivals_product_type_filter_param != blank %}
+            {% assign new_arrivals_type_filter_param = new_arrivals_product_type_filter_param %}
+          {% endif %}
+        {% endif %}
         {% assign first_parent_with_children = true %}
         {% for link in menu.links %}
+          {% assign top_link_url = link.url %}
           {% liquid 
             assign link-title = link.title | strip | downcase
             assign is-mega-menu = false
@@ -715,7 +741,7 @@ Testing Cypress integration
             </li>
           {% else %}
             <li class="mobile-nav__item mobile-nav__parent-item top-level{% if forloop.first and menu.links.size == 1 %} active{% endif %}{% if link.active %} mobile-nav__item--active{% endif %}">
-              <a href="{{ link.url }}" class="mobile-nav__link mobile-nav__parent-link">
+              <a href="{{ top_link_url | strip }}" class="mobile-nav__link mobile-nav__parent-link">
                 {{ link.title }}
               </a>
             </li>
@@ -759,10 +785,223 @@ Testing Cypress integration
             {% assign first_with_children = false %}
               <ul class="mobile-nav__sublist">
                 {% for sub_link in link.links %}
+                  {% liquid
+                    assign sub_link_url = sub_link.url
+                    assign parent_title_key = link.title | strip | downcase
+                    assign should_apply_new_arrivals = false
+                    assign is_view_all = false
+                    assign sub_link_title_key = sub_link.title | strip | downcase
+                    assign linked_collection_handle = ''
+                    assign linked_collection_title = ''
+                    assign linked_collection_all_types = blank
+                    assign source_collection_candidate_labels_csv = ''
+                    assign product_type_source = ''
+
+                    if sub_link.type == 'collection_link' and sub_link.object != blank
+                      assign linked_collection_handle = sub_link.object.handle
+                      assign linked_collection_title = sub_link.object.title
+                    endif
+
+                    if linked_collection_handle == blank and sub_link_url contains '/collections/'
+                      assign linked_collection_handle = sub_link_url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+                    endif
+
+                    if linked_collection_title == blank and linked_collection_handle != blank and collections[linked_collection_handle] != blank
+                      assign linked_collection_title = collections[linked_collection_handle].title
+                    endif
+
+                    if linked_collection_handle != blank and collections[linked_collection_handle] != blank
+                      assign linked_collection_all_types = collections[linked_collection_handle].all_types
+
+                      for source_filter in collections[linked_collection_handle].filters
+                        assign source_filter_label_key = source_filter.label | strip | downcase
+                        assign source_filter_usable = false
+
+                        if source_filter.param_name == new_arrivals_type_filter_param or source_filter.param_name contains 'product_type' or source_filter.param_name contains '.t.category' or source_filter_label_key == 'category' or source_filter_label_key contains 'type'
+                          assign source_filter_usable = true
+                        endif
+
+                        if source_filter_usable
+                          for source_value in source_filter.values
+                            assign source_value_label = source_value.label | strip
+                            if source_value_label != blank
+                              if source_collection_candidate_labels_csv == blank
+                                assign source_collection_candidate_labels_csv = source_value_label
+                              else
+                                assign source_collection_candidate_labels_csv = source_collection_candidate_labels_csv | append: '||' | append: source_value_label
+                              endif
+                            endif
+                          endfor
+                        endif
+
+                        if source_collection_candidate_labels_csv != blank
+                          break
+                        endif
+                      endfor
+                    endif
+
+                    if new_arrivals_enabled and sub_link_url contains '/collections/'
+                      assign parent_is_new_arrivals = false
+                      if link.url contains new_arrivals_base_path
+                        assign parent_is_new_arrivals = true
+                      endif
+
+                      if new_arrivals_menu_title_key != blank and parent_title_key == new_arrivals_menu_title_key
+                        assign parent_is_new_arrivals = true
+                      endif
+
+                      if parent_is_new_arrivals
+                        assign should_apply_new_arrivals = true
+                      endif
+                    endif
+
+                    if should_apply_new_arrivals
+                      if sub_link_title_key contains 'view all' or linked_collection_handle == new_arrivals_collection_handle or sub_link_url contains new_arrivals_base_path
+                        assign is_view_all = true
+                      endif
+
+                      assign sub_link_url = '/collections/' | append: new_arrivals_collection_handle
+                      unless is_view_all
+                        assign product_type_query = ''
+                        assign filter_joiner = '?'
+                        assign candidate_labels_csv = ''
+
+                        if source_collection_candidate_labels_csv != blank
+                          assign candidate_labels_csv = source_collection_candidate_labels_csv
+                        else
+                          for collection_type in linked_collection_all_types
+                            assign collection_type_value = collection_type | strip
+                            if collection_type_value != blank
+                              if candidate_labels_csv == blank
+                                assign candidate_labels_csv = collection_type_value
+                              else
+                                assign candidate_labels_csv = candidate_labels_csv | append: '||' | append: collection_type_value
+                              endif
+                            endif
+                          endfor
+                        endif
+
+                        if candidate_labels_csv == blank
+                          assign product_type_source = linked_collection_title | default: sub_link.title | strip
+                          if product_type_source != blank
+                            assign candidate_labels_csv = product_type_source
+                          endif
+                        endif
+
+                        assign candidate_labels = candidate_labels_csv | split: '||'
+
+                        if collections[new_arrivals_collection_handle] != blank
+                          for candidate_label in candidate_labels
+                            assign candidate_label_key = candidate_label | strip | downcase
+                            assign matched_candidate = false
+
+                            if candidate_label_key != blank
+                              for nav_filter in collections[new_arrivals_collection_handle].filters
+                                assign nav_filter_label_key = nav_filter.label | strip | downcase
+                                assign nav_filter_usable = false
+
+                                if nav_filter.param_name == new_arrivals_type_filter_param
+                                  assign nav_filter_usable = true
+                                endif
+
+                                if nav_filter_usable
+                                  for nav_value in nav_filter.values
+                                    assign nav_value_label_key = nav_value.label | strip | downcase
+                                    assign nav_value_match = false
+
+                                    if nav_value_label_key == candidate_label_key
+                                      assign nav_value_match = true
+                                    endif
+
+                                    if nav_value_match == false and candidate_label_key contains 'tops'
+                                      if nav_value_label_key contains 'blouse' or nav_value_label_key contains 'shirt' or nav_value_label_key contains 'top' or nav_value_label_key contains 'short'
+                                        assign nav_value_match = true
+                                      endif
+                                    endif
+
+                                    if nav_value_match == false and candidate_label_key contains 'pants'
+                                      if nav_value_label_key contains 'trouser' or nav_value_label_key contains 'pant'
+                                        assign nav_value_match = true
+                                      endif
+                                    endif
+
+                                    if nav_value_match == false
+                                      if candidate_label_key contains 'knitwear' or candidate_label_key contains 'cardigan'
+                                        if nav_value_label_key contains 'knit' or nav_value_label_key contains 'cardigan'
+                                          assign nav_value_match = true
+                                        endif
+                                      endif
+                                    endif
+
+                                    if nav_value_match == false
+                                      if candidate_label_key contains 'jacket' or candidate_label_key contains 'coat'
+                                        if nav_value_label_key contains 'jacket' or nav_value_label_key contains 'coat'
+                                          assign nav_value_match = true
+                                        endif
+                                      endif
+                                    endif
+
+                                    if nav_value_match == false and candidate_label_key contains 'skirt'
+                                      if nav_value_label_key contains 'skirt'
+                                        assign nav_value_match = true
+                                      endif
+                                    endif
+
+                                    if nav_value_match and nav_value.count == 0
+                                      assign nav_value_match = false
+                                    endif
+
+                                    if nav_value_match
+                                      assign nav_value_encoded = nav_value.value | url_encode
+                                      assign product_type_query = product_type_query | append: filter_joiner | append: nav_value.param_name | append: '=' | append: nav_value_encoded
+                                      assign filter_joiner = '&'
+                                      assign matched_candidate = true
+                                      break
+                                    endif
+                                  endfor
+                                endif
+
+                                if matched_candidate
+                                  break
+                                endif
+                              endfor
+                            endif
+                          endfor
+                        endif
+
+                        if product_type_query == blank
+                          assign filter_joiner = '?'
+                          assign fallback_filter_param = new_arrivals_type_filter_param
+                          if new_arrivals_product_type_filter_param != blank
+                            assign fallback_filter_param = new_arrivals_product_type_filter_param
+                          endif
+                          for candidate_label in candidate_labels
+                            assign fallback_value = candidate_label | strip
+                            if fallback_value != blank
+                              assign fallback_value_encoded = fallback_value | url_encode
+                              assign product_type_query = product_type_query | append: filter_joiner | append: fallback_filter_param | append: '=' | append: fallback_value_encoded
+                              assign filter_joiner = '&'
+                            endif
+                          endfor
+                        endif
+
+                        assign sub_link_url = sub_link_url | append: product_type_query
+                        assign sub_link_context_label = sub_link.title | strip
+                        if sub_link_context_label != blank
+                          assign sub_link_context_label_encoded = sub_link_context_label | url_encode
+                          if sub_link_url contains '?'
+                            assign sub_link_url = sub_link_url | append: '&na_menu=' | append: sub_link_context_label_encoded
+                          else
+                            assign sub_link_url = sub_link_url | append: '?na_menu=' | append: sub_link_context_label_encoded
+                          endif
+                        endif
+                      endunless
+                    endif
+                  %}
                   {% if sub_link.levels > 0 %}
                     <li class="mobile-nav__item {% if sub_link.active %} mobile-nav__item--active{% endif %}">
                       <div class="mobile-nav__has-sublist">
-                        <a href="{{ sub_link.url }}" class="mobile-nav__link">{{ sub_link.title | escape }}</a>
+                        <a href="{{ sub_link_url | strip }}" class="mobile-nav__link">{{ sub_link.title | escape }}</a>
                         <div class="mobile-nav__toggle">
                           <button type="button" class="icon-fallback-text mobile-nav__toggle-open standalone-icon--wrapper touch-target icon-no-padding" name="{{ 'cart.general.see_more' | t }}">
                             {% render 'theme-icon', icon: 'chevron_down', iconSize: 16, iconAttributes: 'aria-hidden="true"' %}
@@ -776,15 +1015,228 @@ Testing Cypress integration
                       </div>
                       <ul class="mobile-nav__sublist">
                         {% for sub_sub_link in sub_link.links %}
+                          {% liquid
+                            assign sub_sub_link_url = sub_sub_link.url
+                            assign parent_title_key = link.title | strip | downcase
+                            assign should_apply_new_arrivals = false
+                            assign is_view_all = false
+                            assign sub_sub_link_title_key = sub_sub_link.title | strip | downcase
+                            assign linked_collection_handle = ''
+                            assign linked_collection_title = ''
+                            assign linked_collection_all_types = blank
+                            assign source_collection_candidate_labels_csv = ''
+                            assign product_type_source = ''
+
+                            if sub_sub_link.type == 'collection_link' and sub_sub_link.object != blank
+                              assign linked_collection_handle = sub_sub_link.object.handle
+                              assign linked_collection_title = sub_sub_link.object.title
+                            endif
+
+                            if linked_collection_handle == blank and sub_sub_link_url contains '/collections/'
+                              assign linked_collection_handle = sub_sub_link_url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+                            endif
+
+                            if linked_collection_title == blank and linked_collection_handle != blank and collections[linked_collection_handle] != blank
+                              assign linked_collection_title = collections[linked_collection_handle].title
+                            endif
+
+                            if linked_collection_handle != blank and collections[linked_collection_handle] != blank
+                              assign linked_collection_all_types = collections[linked_collection_handle].all_types
+
+                              for source_filter in collections[linked_collection_handle].filters
+                                assign source_filter_label_key = source_filter.label | strip | downcase
+                                assign source_filter_usable = false
+
+                                if source_filter.param_name == new_arrivals_type_filter_param or source_filter.param_name contains 'product_type' or source_filter.param_name contains '.t.category' or source_filter_label_key == 'category' or source_filter_label_key contains 'type'
+                                  assign source_filter_usable = true
+                                endif
+
+                                if source_filter_usable
+                                  for source_value in source_filter.values
+                                    assign source_value_label = source_value.label | strip
+                                    if source_value_label != blank
+                                      if source_collection_candidate_labels_csv == blank
+                                        assign source_collection_candidate_labels_csv = source_value_label
+                                      else
+                                        assign source_collection_candidate_labels_csv = source_collection_candidate_labels_csv | append: '||' | append: source_value_label
+                                      endif
+                                    endif
+                                  endfor
+                                endif
+
+                                if source_collection_candidate_labels_csv != blank
+                                  break
+                                endif
+                              endfor
+                            endif
+
+                            if new_arrivals_enabled and sub_sub_link_url contains '/collections/'
+                              assign parent_is_new_arrivals = false
+                              if link.url contains new_arrivals_base_path
+                                assign parent_is_new_arrivals = true
+                              endif
+
+                              if new_arrivals_menu_title_key != blank and parent_title_key == new_arrivals_menu_title_key
+                                assign parent_is_new_arrivals = true
+                              endif
+
+                              if parent_is_new_arrivals
+                                assign should_apply_new_arrivals = true
+                              endif
+                            endif
+
+                            if should_apply_new_arrivals
+                              if sub_sub_link_title_key contains 'view all' or linked_collection_handle == new_arrivals_collection_handle or sub_sub_link_url contains new_arrivals_base_path
+                                assign is_view_all = true
+                              endif
+
+                              assign sub_sub_link_url = '/collections/' | append: new_arrivals_collection_handle
+                              unless is_view_all
+                                assign product_type_query = ''
+                                assign filter_joiner = '?'
+                                assign candidate_labels_csv = ''
+
+                                if source_collection_candidate_labels_csv != blank
+                                  assign candidate_labels_csv = source_collection_candidate_labels_csv
+                                else
+                                  for collection_type in linked_collection_all_types
+                                    assign collection_type_value = collection_type | strip
+                                    if collection_type_value != blank
+                                      if candidate_labels_csv == blank
+                                        assign candidate_labels_csv = collection_type_value
+                                      else
+                                        assign candidate_labels_csv = candidate_labels_csv | append: '||' | append: collection_type_value
+                                      endif
+                                    endif
+                                  endfor
+                                endif
+
+                                if candidate_labels_csv == blank
+                                  assign product_type_source = linked_collection_title | default: sub_sub_link.title | strip
+                                  if product_type_source != blank
+                                    assign candidate_labels_csv = product_type_source
+                                  endif
+                                endif
+
+                                assign candidate_labels = candidate_labels_csv | split: '||'
+
+                                if collections[new_arrivals_collection_handle] != blank
+                                  for candidate_label in candidate_labels
+                                    assign candidate_label_key = candidate_label | strip | downcase
+                                    assign matched_candidate = false
+
+                                    if candidate_label_key != blank
+                                      for nav_filter in collections[new_arrivals_collection_handle].filters
+                                        assign nav_filter_label_key = nav_filter.label | strip | downcase
+                                        assign nav_filter_usable = false
+
+                                        if nav_filter.param_name == new_arrivals_type_filter_param
+                                          assign nav_filter_usable = true
+                                        endif
+
+                                        if nav_filter_usable
+                                          for nav_value in nav_filter.values
+                                            assign nav_value_label_key = nav_value.label | strip | downcase
+                                            assign nav_value_match = false
+
+                                            if nav_value_label_key == candidate_label_key
+                                              assign nav_value_match = true
+                                            endif
+
+                                            if nav_value_match == false and candidate_label_key contains 'tops'
+                                              if nav_value_label_key contains 'blouse' or nav_value_label_key contains 'shirt' or nav_value_label_key contains 'top' or nav_value_label_key contains 'short'
+                                                assign nav_value_match = true
+                                              endif
+                                            endif
+
+                                            if nav_value_match == false and candidate_label_key contains 'pants'
+                                              if nav_value_label_key contains 'trouser' or nav_value_label_key contains 'pant'
+                                                assign nav_value_match = true
+                                              endif
+                                            endif
+
+                                            if nav_value_match == false
+                                              if candidate_label_key contains 'knitwear' or candidate_label_key contains 'cardigan'
+                                                if nav_value_label_key contains 'knit' or nav_value_label_key contains 'cardigan'
+                                                  assign nav_value_match = true
+                                                endif
+                                              endif
+                                            endif
+
+                                            if nav_value_match == false
+                                              if candidate_label_key contains 'jacket' or candidate_label_key contains 'coat'
+                                                if nav_value_label_key contains 'jacket' or nav_value_label_key contains 'coat'
+                                                  assign nav_value_match = true
+                                                endif
+                                              endif
+                                            endif
+
+                                            if nav_value_match == false and candidate_label_key contains 'skirt'
+                                              if nav_value_label_key contains 'skirt'
+                                                assign nav_value_match = true
+                                              endif
+                                            endif
+
+                                            if nav_value_match and nav_value.count == 0
+                                              assign nav_value_match = false
+                                            endif
+
+                                            if nav_value_match
+                                              assign nav_value_encoded = nav_value.value | url_encode
+                                              assign product_type_query = product_type_query | append: filter_joiner | append: nav_value.param_name | append: '=' | append: nav_value_encoded
+                                              assign filter_joiner = '&'
+                                              assign matched_candidate = true
+                                              break
+                                            endif
+                                          endfor
+                                        endif
+
+                                        if matched_candidate
+                                          break
+                                        endif
+                                      endfor
+                                    endif
+                                  endfor
+                                endif
+
+                                if product_type_query == blank
+                                  assign filter_joiner = '?'
+                                  assign fallback_filter_param = new_arrivals_type_filter_param
+                                  if new_arrivals_product_type_filter_param != blank
+                                    assign fallback_filter_param = new_arrivals_product_type_filter_param
+                                  endif
+                                  for candidate_label in candidate_labels
+                                    assign fallback_value = candidate_label | strip
+                                    if fallback_value != blank
+                                      assign fallback_value_encoded = fallback_value | url_encode
+                                      assign product_type_query = product_type_query | append: filter_joiner | append: fallback_filter_param | append: '=' | append: fallback_value_encoded
+                                      assign filter_joiner = '&'
+                                    endif
+                                  endfor
+                                endif
+
+                                assign sub_sub_link_url = sub_sub_link_url | append: product_type_query
+                                assign sub_sub_link_context_label = sub_sub_link.title | strip
+                                if sub_sub_link_context_label != blank
+                                  assign sub_sub_link_context_label_encoded = sub_sub_link_context_label | url_encode
+                                  if sub_sub_link_url contains '?'
+                                    assign sub_sub_link_url = sub_sub_link_url | append: '&na_menu=' | append: sub_sub_link_context_label_encoded
+                                  else
+                                    assign sub_sub_link_url = sub_sub_link_url | append: '?na_menu=' | append: sub_sub_link_context_label_encoded
+                                  endif
+                                endif
+                              endunless
+                            endif
+                          %}
                           <li class="mobile-nav__item">
-                            <a href="{{ sub_sub_link.url }}" class="mobile-nav__link">{{ sub_sub_link.title | escape }}</a>
+                            <a href="{{ sub_sub_link_url | strip }}" class="mobile-nav__link">{{ sub_sub_link.title | escape }}</a>
                           </li>
                         {% endfor %}
                       </ul>
                     </li>
                   {% else %}
                     <li class="mobile-nav__item{% if sub_link.active %} mobile-nav__item--active{% endif %}">
-                      <a href="{{ sub_link.url }}" class="mobile-nav__link">{{ sub_link.title | escape }}</a>
+                      <a href="{{ sub_link_url | strip }}" class="mobile-nav__link">{{ sub_link.title | escape }}</a>
                     </li>
                   {% endif %}
                 {% endfor %}
@@ -1488,6 +1940,29 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "main_linklist",
       "label": "t:sections.header.settings.main_linklist.label",
       "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "New Arrivals Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_new_arrivals_menu_filtering",
+      "label": "Enable New Arrivals collection + product type routing",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "new_arrivals_menu_title",
+      "label": "Top-level New Arrivals menu title",
+      "default": "new arrivals",
+      "info": "Only links under this top-level menu item will be routed through the New Arrivals collection and filtered by product type."
+    },
+    {
+      "type": "collection",
+      "id": "new_arrivals_collection",
+      "label": "New Arrivals base collection",
+      "info": "Menu category links route to this collection and apply product type filtering."
     },
     {
       "type": "header",
