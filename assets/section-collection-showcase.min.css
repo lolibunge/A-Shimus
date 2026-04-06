@@ -148,6 +148,10 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    cursor: grab;
+}
+.collection-showcase-product-image img:active {
+    cursor: grabbing;
 }
 
 .collection-showcase-product-info {
