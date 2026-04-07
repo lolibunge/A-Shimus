@@ -14,20 +14,10 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_LP6NNe": {
-          "type": "announcement",
-          "settings": {
-            "announcement_text": "PPH Banner",
-            "announcement_bg_color": "#000000",
-            "announcement_text_color": "#ffffff",
-            "announcement_alignment": "center",
-            "announcement_alignment_mobile": "left"
-          }
-        },
         "announcement": {
           "type": "announcement",
           "settings": {
-            "announcement_text": "lorem ipsun sale: enjoy as extra 25% off",
+            "announcement_text": "<a href=\"#newsletter-footer\" title=\"#newsletter-footer\">Join Our Community — Enjoy 10% off Your First Order</a>",
             "announcement_bg_color": "#000000",
             "announcement_text_color": "#ffffff",
             "announcement_alignment": "center",
@@ -36,7 +26,6 @@
         }
       },
       "block_order": [
-        "announcement_LP6NNe",
         "announcement"
       ],
       "settings": {
@@ -182,6 +171,9 @@
         "logo_max_width_mobile": 120,
         "logo_padding": 30,
         "main_linklist": "re-theme-menu-mega",
+        "enable_new_arrivals_menu_filtering": true,
+        "new_arrivals_menu_title": "new arrivals",
+        "new_arrivals_collection": "",
         "show_featured_mobile": true,
         "featured_type": "collection",
         "featured_product_mobile": "",

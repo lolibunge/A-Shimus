@@ -99,7 +99,7 @@
     "show_card_color_swatch_label": false,
     "hover_navigation_desktop": "above",
     "show_variant_image_for_options": "",
-    "popup--enable": false,
+    "popup--enable": true,
     "popup--test-mode": false,
     "pop-up-text-header-text": "10% OFF YOUR 1ST ORDER",
     "pop-up-text-description-text": "<p>Sign up here for exclusive first looks, special offers and members-only contents from A.SHIMUS.</p>",
