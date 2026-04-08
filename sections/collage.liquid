@@ -484,8 +484,13 @@
             {% unless block.settings.overlay_color == 'rgba(0,0,0,0)' %}
               {% liquid 
                 assign overlay_color = 'rgba(' | append: block.settings.overlay_color.rgba | append: ')'
-                assign overlay_color_03 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent 70%)'
-                assign overlay_color_08 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent 20%)'
+                assign overlay_opacity = block.settings.overlay_opacity | default: 100
+                assign overlay_opacity_top = overlay_opacity | times: 30 | divided_by: 100
+                assign overlay_opacity_bottom = overlay_opacity | times: 80 | divided_by: 100
+                assign overlay_transparency_top = 100 | minus: overlay_opacity_top
+                assign overlay_transparency_bottom = 100 | minus: overlay_opacity_bottom
+                assign overlay_color_03 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent ' | append: overlay_transparency_top | append: '%)'
+                assign overlay_color_08 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent ' | append: overlay_transparency_bottom | append: '%)'
               %}
 
               .collage-builder__grid-item--{{ block.id }} .collage-builder__overlay {
@@ -1206,6 +1211,16 @@
           "id": "overlay_color",
           "label": "t:all.Overlay",
           "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:all.percentage",
+          "label": "t:all.Overlay_opacity",
+          "default": 100
         }
       ]
     },
@@ -1483,6 +1498,16 @@
           "id": "overlay_color",
           "label": "t:all.Overlay",
           "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:all.percentage",
+          "label": "t:all.Overlay_opacity",
+          "default": 100
         }
       ]
     },
