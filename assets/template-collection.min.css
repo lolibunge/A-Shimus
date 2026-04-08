@@ -153,6 +153,9 @@
     z-index: 15;
     pointer-events: auto;
 }
+.grid__image .grid-view-item-image-swiper~.quick-view-plus-icon-wrapper {
+    bottom: 60px;
+}
 
 .grid__image .quick-view-plus-icon-wrapper {
     bottom: 12px;
@@ -512,5 +515,23 @@
 
     .product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="6"].promotional-card--columns-6 {
         width: calc(100% - 0 * var(--grid-spacing));
+    }
+}
+
+/* Keep PLP tall cards proportional on ultra-wide screens so full-body shots do not crop at the legs */
+@media screen and (min-width: 1441px) {
+    .template-collection .collection-main-body-inner product-card .grid-view-item-image-swiper.aspect-ratio--tall {
+        aspect-ratio: 2 / 3;
+        padding-bottom: 0 !important;
+        max-height: none !important;
+    }
+
+    .template-collection .collection-main-body-inner product-card .aspect-ratio--tall:not(.quick-view-media) {
+        padding-bottom: 150% !important;
+        max-height: none !important;
+    }
+
+    .template-collection .collection-main-body-inner product-card .aspect-ratio--tall:not(.quick-view-media) img.theme-img {
+        min-height: 0 !important;
     }
 }
