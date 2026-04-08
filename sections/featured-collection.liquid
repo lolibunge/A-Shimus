@@ -212,8 +212,8 @@
     height: auto !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    object-fit: cover !important; /* Show entire image without cropping - overrides inline styles */
-    -webkit-object-fit: cover !important; /* Fix for Safari/iOS */
+    object-fit: contain !important; /* Keep full product image visible */
+    -webkit-object-fit: contain !important; /* Fix for Safari/iOS */
     object-position: center !important; /* Overrides inline styles */
     -webkit-object-position: center !important; /* Fix for Safari/iOS */
     display: block !important;
@@ -251,8 +251,8 @@
     height: auto !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    object-fit: cover !important; /* Overrides inline styles */
-    -webkit-object-fit: cover !important; /* Fix for Safari/iOS */
+    object-fit: contain !important; /* Keep full product image visible */
+    -webkit-object-fit: contain !important; /* Fix for Safari/iOS */
     object-position: center !important; /* Overrides inline styles */
     -webkit-object-position: center !important; /* Fix for Safari/iOS */
     display: block !important;
@@ -317,8 +317,8 @@
     .grid-view-item-image-swiper .swiper-slide img,
     .grid-view-item-image-swiper .swiper-slide picture img,
     .grid-view-item-image-swiper .swiper-slide .responsive-image__wrapper img {
-      object-fit: cover !important;
-      -webkit-object-fit: cover !important; /* Fix para Safari/iOS */
+      object-fit: contain !important;
+      -webkit-object-fit: contain !important; /* Fix para Safari/iOS */
       object-position: center;
       -webkit-object-position: center; /* Fix para Safari/iOS */
       max-width: 100%;
@@ -370,8 +370,8 @@
     .grid-view-item-image-swiper .swiper-slide .responsive-image__wrapper img {
       max-width: 100% !important;
       max-height: 100% !important;
-      object-fit: cover !important;
-      -webkit-object-fit: cover !important;
+      object-fit: contain !important;
+      -webkit-object-fit: contain !important;
       width: auto !important;
       height: auto !important;
     }
