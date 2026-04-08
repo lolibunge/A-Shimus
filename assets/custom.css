@@ -142,6 +142,53 @@ section.section-two_column>div:nth-child(2) {
   padding: 0 20px;
 }
 
+/* Swym wishlist text color override */
+.swym-ui-component .swym-wishlist-collections-v2-container,
+.swym-ui-component .swym-add-to-list-modal {
+  color: #000 !important;
+}
+
+.swym-ui-component .swym-wishlist-collections-v2-container [class*="swym-color-"]:not(.swym-color-4),
+.swym-ui-component .swym-add-to-list-modal [class*="swym-color-"]:not(.swym-color-4) {
+  color: #000 !important;
+}
+
+.swym-ui-component .swym-button.swym-bg-2,
+.swym-ui-component .swym-button.swym-bg-2 * {
+  color: #fff !important;
+}
+
+#wishlist .swym-wishlist-product-detail-content .swym-wishlist-add-to-cart-btn, 
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-add-to-list-btn, 
+.swym-wishlist-grid .swym-wishlist-item .swym-add-to-cart-btn,
+.swym-ui-component .swym-htc-tabs .swym-htc-tab-item.swym-selected {
+  margin: 0!important;
+  background-color: #000000 !important;
+  color: #fff!important;
+}
+
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-product-title:after {
+  background: #000000!important;
+}
+
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item,
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item .swym-icon::before,
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-items-title,
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-new-wishlist-btn,
+.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-product-name,
+.swym-ui-component .swym-wishlist-selector-dropdown .swym-wishlist-item,
+.swym-ui-component .swym-wishlist-selector-dropdown .swym-selected-wishlist-container .swym-selected-wishlist-name,
+.swym-ui-component .swym-wishlist-main-title.swym-heading.swym-heading-1,
+.swym-ui-component.swym-wishlist-page .swym-wishlist-detail .swym-action-bar .swym-back-btn, .swym-ui-component .swym-action-bar .swym-back-btn,
+.swym-ui-component .swym-wishlist-list-card .swym-wishlist-name,
+.swym-ui-component .swym-wishlist-list-card .swym-empty-wishlist-list,
+.swym-ui-component .swym-wishlist-list-card .swym-wishlist-product-count,
+.swym-ui-component .swym-htc-tabs .swym-htc-tab-item,
+.swym-ui-component .swym-wishlist-list-card .swym-wishlist-link, 
+.swym-ui-component .swym-htc-tabs .swym-htc-tab-item {
+  color: #000000 !important;
+}
+
 /*
 .swym-wishlist-collections-v2-container {
   top: 17px !important;
