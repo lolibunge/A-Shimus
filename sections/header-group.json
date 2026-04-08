@@ -121,33 +121,61 @@
             "overlay_text_color_promo_3": "#ffffff"
           }
         },
-        "content_RJNnkR": {
+        "content_CGzEtY": {
           "type": "content",
           "settings": {
-            "mega-menu": "discover",
+            "mega-menu": "editorial",
             "mega_image_1": "shopify://shop_images/5_0d9b4d4a-a211-4877-a907-f8ee1f68f637.jpg",
             "image_1_aspect_ratio": "tall",
-            "mega_image_link_1": "shopify://pages/our-story",
-            "mega_image_header_1": "Our Story",
-            "mega_image_subheader_1": "Discover the Story",
+            "mega_image_link_1": "shopify://collections/26-spring-summer-collection",
+            "mega_image_header_1": "2026 Spring & Summer",
+            "mega_image_subheader_1": "Explore the Collection",
             "show_promo_1_in_mobile_drawer": true,
             "overlay_text_on_image_promo_1": false,
             "overlay_text_color_promo_1": "#ffffff",
-            "mega_image_2": "shopify://shop_images/5_0d9b4d4a-a211-4877-a907-f8ee1f68f637.jpg",
+            "mega_image_2": "shopify://shop_images/26SS_web_lookbook_7..jpg",
             "image_2_aspect_ratio": "tall",
-            "mega_image_link_2": "/Japapanese Craftmanshipt",
-            "mega_image_header_2": "Japanese Craftmanship",
-            "mega_image_subheader_2": "Discover the Story",
+            "mega_image_link_2": "shopify://collections/25-fall-winter",
+            "mega_image_header_2": "2025 Fall & Winter",
+            "mega_image_subheader_2": "Explore the Collection",
             "show_promo_2_in_mobile_drawer": true,
             "overlay_text_on_image_promo_2": false,
             "overlay_text_color_promo_2": "#ffffff",
-            "mega_image_3": "shopify://shop_images/5_0d9b4d4a-a211-4877-a907-f8ee1f68f637.jpg",
+            "mega_image_3": "shopify://shop_images/26SS_web_lookbook_7..jpg",
             "image_3_aspect_ratio": "tall",
-            "mega_image_link_3": "https://a-shimus.com/pages/craftsmanship#shopify-section-template--17178888274022__rich_text_ED3hxN",
-            "mega_image_header_3": "Meet Our Manufacture",
-            "mega_image_subheader_3": "Discover the Story",
+            "mega_image_link_3": "shopify://collections/capsule-collection",
+            "mega_image_header_3": "2025 Capsule",
+            "mega_image_subheader_3": "Explore the Collection",
             "show_promo_3_in_mobile_drawer": true,
             "overlay_text_on_image_promo_3": false,
+            "overlay_text_color_promo_3": "#ffffff"
+          }
+        },
+        "content_e7gK3M": {
+          "type": "content",
+          "settings": {
+            "mega-menu": "OUR STORY",
+            "mega_image_1": "shopify://shop_images/NEW_YORK_OUR_STORY.jpg",
+            "image_1_aspect_ratio": "square",
+            "mega_image_link_1": "",
+            "mega_image_header_1": "",
+            "mega_image_subheader_1": "",
+            "show_promo_1_in_mobile_drawer": true,
+            "overlay_text_on_image_promo_1": true,
+            "overlay_text_color_promo_1": "#ffffff",
+            "image_2_aspect_ratio": "square",
+            "mega_image_link_2": "",
+            "mega_image_header_2": "",
+            "mega_image_subheader_2": "",
+            "show_promo_2_in_mobile_drawer": true,
+            "overlay_text_on_image_promo_2": true,
+            "overlay_text_color_promo_2": "#ffffff",
+            "image_3_aspect_ratio": "square",
+            "mega_image_link_3": "",
+            "mega_image_header_3": "",
+            "mega_image_subheader_3": "",
+            "show_promo_3_in_mobile_drawer": true,
+            "overlay_text_on_image_promo_3": true,
             "overlay_text_color_promo_3": "#ffffff"
           }
         }
@@ -156,7 +184,8 @@
         "content",
         "b9761f95-e4d2-4de1-82e6-ae6f7d56a8f7",
         "content_K7WApa",
-        "content_RJNnkR"
+        "content_CGzEtY",
+        "content_e7gK3M"
       ],
       "settings": {
         "sticky_header": true,

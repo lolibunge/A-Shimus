@@ -265,7 +265,7 @@
         "text_color": "#242424",
         "enable_sticky": true,
         "media_position": "left",
-        "image_size": "medium",
+        "image_size": "large",
         "image_shape": "original",
         "show_only_variant_media": false,
         "image-display": "grid",

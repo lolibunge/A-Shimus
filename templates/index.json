@@ -21,7 +21,7 @@
             "text": "Petite-first workwear, crafted in Japan with precision and restraint.",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
-            "first_button_link": "",
+            "first_button_link": "shopify://collections/view-all",
             "first_button_label": "EXPLORE THE COLLECTION",
             "second_button_link": "",
             "second_button_label": "",
@@ -102,7 +102,7 @@
             "mobile_position": "md-max-align-bottom md-max-justify-center",
             "heading_size_mobile": 22,
             "heading": "",
-            "url": "shopify://collections",
+            "url": "shopify://collections/dresses",
             "button_label": "SHOP DRESSES",
             "buttons_style": "outlined",
             "override_button_colors": true,
@@ -121,7 +121,7 @@
             "mobile_position": "md-max-align-bottom md-max-justify-center",
             "heading_size_mobile": 22,
             "heading": "",
-            "url": "shopify://collections",
+            "url": "shopify://collections/jackets-and-coats",
             "button_label": "SHOP JACKETS AND COATS",
             "buttons_style": "outlined",
             "override_button_colors": true,
@@ -321,7 +321,7 @@
             "text": "Designed with You in Mind.Petite-first workwear, crafted in Japan with precision and restraint.",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
-            "first_button_link": "",
+            "first_button_link": "shopify://pages/craftsmanship",
             "first_button_label": "DISCOVER THE STORY",
             "second_button_link": "",
             "second_button_label": "",
@@ -400,58 +400,20 @@
     "featured_in_logos_dXahcx": {
       "type": "featured-in-logos",
       "blocks": {
-        "logo_C87aaf": {
+        "logo_WmdEEK": {
           "type": "logo",
-          "name": "Moveux",
           "settings": {
-            "logo": "shopify://shop_images/image_2811.png",
-            "alt": "Featured logo",
-            "link": ""
+            "logo": "shopify://shop_images/Optium_red.png",
+            "alt": "OPIUM RED",
+            "link": "https://www.magcloud.com/browse/issue/3259498"
           }
         },
-        "logo_JPBkA6": {
+        "logo_LmY7t7": {
           "type": "logo",
-          "name": "Glamour",
           "settings": {
-            "logo": "shopify://shop_images/g5.png",
-            "alt": "Featured logo",
-            "link": ""
-          }
-        },
-        "logo_qeyikJ": {
-          "type": "logo",
-          "name": "Grazia",
-          "settings": {
-            "logo": "shopify://shop_images/image_2808.png",
-            "alt": "Featured logo",
-            "link": ""
-          }
-        },
-        "logo_6RwqHq": {
-          "type": "logo",
-          "name": "Gmaro",
-          "settings": {
-            "logo": "shopify://shop_images/image_2810.png",
-            "alt": "Featured logo",
-            "link": ""
-          }
-        },
-        "logo_V8BLdp": {
-          "type": "logo",
-          "name": "Scorfia vin",
-          "settings": {
-            "logo": "shopify://shop_images/image_2809.png",
-            "alt": "Featured logo",
-            "link": ""
-          }
-        },
-        "logo_7RJqiC": {
-          "type": "logo",
-          "name": "Flanelle",
-          "settings": {
-            "logo": "shopify://shop_images/Screenshot_2026-01-17_at_9.30.42_AM_1.png",
-            "alt": "Featured logo",
-            "link": ""
+            "logo": "shopify://shop_images/LOFFICIEL.svg",
+            "alt": "L'OFFICIEL",
+            "link": "https://officiel-online.com/uk/lmoda/sjemka/flying-solo-fashion-story-january-2026/"
           }
         },
         "logo_cBqaaJ": {
@@ -459,19 +421,75 @@
           "name": "Afrostyle",
           "settings": {
             "logo": "shopify://shop_images/image_2807.png",
-            "alt": "Featured logo",
-            "link": ""
+            "alt": "Afrostyle",
+            "link": "https://afrostylemag.com/#gallery17-9"
+          }
+        },
+        "logo_qeyikJ": {
+          "type": "logo",
+          "name": "Grazia",
+          "settings": {
+            "logo": "shopify://shop_images/image_2808.png",
+            "alt": "Grazia",
+            "link": "https://www.grazia.si/111402-2/"
+          }
+        },
+        "logo_7RJqiC": {
+          "type": "logo",
+          "name": "Flanelle",
+          "settings": {
+            "logo": "shopify://shop_images/Screenshot_2026-01-17_at_9.30.42_AM_1.png",
+            "alt": "Flanelle",
+            "link": "https://online.fliphtml5.com/atjpc/roxx/index.html"
+          }
+        },
+        "logo_V8BLdp": {
+          "type": "logo",
+          "name": "Scorfia vin",
+          "settings": {
+            "logo": "shopify://shop_images/image_2809.png",
+            "alt": "SCORPIO JIN",
+            "link": "https://www.magcloud.com/browse/issue/3209756"
+          }
+        },
+        "logo_6RwqHq": {
+          "type": "logo",
+          "name": "Gmaro",
+          "settings": {
+            "logo": "shopify://shop_images/image_2810.png",
+            "alt": "Gmaro",
+            "link": "https://www.magcloud.com/browse/issue/3191062"
+          }
+        },
+        "logo_C87aaf": {
+          "type": "logo",
+          "name": "Moveux",
+          "settings": {
+            "logo": "shopify://shop_images/image_2811.png",
+            "alt": "Moveux",
+            "link": "https://www.magcloud.com/browse/issue/3202538"
+          }
+        },
+        "logo_JPBkA6": {
+          "type": "logo",
+          "name": "Glamour",
+          "settings": {
+            "logo": "shopify://shop_images/g5.png",
+            "alt": "Glamour",
+            "link": "https://glamour.bg/moda/the-copper-room"
           }
         }
       },
       "block_order": [
-        "logo_C87aaf",
-        "logo_JPBkA6",
+        "logo_WmdEEK",
+        "logo_LmY7t7",
+        "logo_cBqaaJ",
         "logo_qeyikJ",
-        "logo_6RwqHq",
-        "logo_V8BLdp",
         "logo_7RJqiC",
-        "logo_cBqaaJ"
+        "logo_V8BLdp",
+        "logo_6RwqHq",
+        "logo_C87aaf",
+        "logo_JPBkA6"
       ],
       "name": "As Featured In",
       "settings": {
@@ -490,7 +508,7 @@
             "text": "",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
-            "first_button_link": "",
+            "first_button_link": "shopify://pages/find-us",
             "first_button_label": "Find Us In Store",
             "second_button_link": "",
             "second_button_label": "",

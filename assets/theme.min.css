@@ -1167,10 +1167,8 @@ body:not(.using-keyboard):not(.using-mouse) :focus {
     .small-hide {
         display: none !important
     }
-}
 
-swym-header-icon svg[Attributes Style] {
-    fill: #000!important;
+    ...
 }
 
 @media only screen and (min-width:768px) {
@@ -1808,7 +1806,6 @@ button.pswp__button svg.pswp__icn {
 .only-mobile-flex {
     display: flex !important;
 }
-
 
 @media screen and (min-width:768px) {
     .standalone-icon--wrapper:not(.icon-no-padding) {

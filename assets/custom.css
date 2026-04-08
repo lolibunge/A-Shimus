@@ -146,57 +146,6 @@ section.section-two_column>div:nth-child(2) {
 .swym-wishlist-collections-v2-container {
   top: 17px !important;
 }*/
-
-.swym-selected-wishlist-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #f8f6f5;
-}
-
-.swym-selected-wishlist-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.swym-selected-wishlist-image .swym-image-fallback {
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--body-font-stack);
-  font-size: 10px;
-  line-height: 1;
-  color: #7B6859;
-}
-
-/* Wishlist Plus: force brand accent from maroon (#371313) to black (#000000) */
-.swym-ui-component .swym-htc-tabs .swym-htc-tab-item.swym-selected,
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-add-to-list-btn,
-#wishlist .swym-wishlist-grid .swym-add-to-cart-btn {
-  background-color: #000000 !important;
-  border-color: #000000 !important;
-  margin: 0;
-}
-
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-items-title,
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item,
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item .swym-icon::before,
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-new-wishlist-btn,
-.swym-ui-component .swym-modal-content .swym-product-name,
-.swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item
-.swym-ui-component .swym-wishlist-list-card .swym-wishlist-name,
-.swym-ui-component .swym-wishlist-list-card .swym-wishlist-product-count,
-.swym-ui-component .swym-wishlist-list-card .swym-wishlist-link, 
-.swym-ui-component .swym-wishlist-main-title.swym-heading.swym-heading-1,
-.swym-ui-component .swym-wishlist-selector-dropdown .swym-selected-wishlist-container .swym-selected-wishlist-name {
-  color: #000000 !important;
-  font-family: var(--body-font-stack);
-}
-
 .section-header-wrapper.header-align--center {
   padding-right: 30px;
 }
