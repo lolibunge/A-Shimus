@@ -1,0 +1,298 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_3jibRi": {
+      "type": "slideshow",
+      "blocks": {
+        "image_YiMary": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 32,
+            "mobile-caption-heading-size": 28,
+            "text": "",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
+            "button-text": "#ffffff",
+            "max_width": "451px",
+            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
+            "justify_content": "center",
+            "text_position": "end_center",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "end_center",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_YiMary"
+      ],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "full_screen",
+        "mobile_height": "large",
+        "slide_navigation_style": "bars",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "center",
+        "mobile_slide_position": "center",
+        "slide_transition_delay": 5,
+        "section_width": "full",
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
+      }
+    },
+    "editorial_content_WRzmHw": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_aUHVBW": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "JAPANESE craftsmanship",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>At A.SHIMUS, Japanese craftsmanship is at the heart of everything we make. Our workwear is produced in Japan by skilled artisans who bring generations of expertise to fabric sourcing, pattern-making, and garment construction. We work closely with trusted Japanese manufacturers known for their precision, attention to detail, and commitment to quality, ensuring every piece is thoughtfully made, responsibly produced, and built to last. By combining traditional Japanese tailoring techniques with modern design for petite women, A.SHIMUS creates refined workwear that delivers exceptional fit, comfort, and longevity for professional life.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_aUHVBW"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 30
+      }
+    },
+    "editorial_content_AfFPR8": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_tXxzHG": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "With Magokoro Spirit /真心をこめて",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>Magokoro (真心) is a Japanese word meaning sincerity and devotion.  Each garment is made in Japan by highly skilled artisans whose expertise has been refined over decades, sometimes generations, of specialized training.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": true,
+            "truncate_lines_mobile": 6,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_tXxzHG"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#f8f6f5",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "editorial_content_4xFiff": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_U44awQ": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Exquisite Materials",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>We work closely with our partner mills and ateliers across Japan, regularly visiting suppliers to thoughtfully select each fabric and component. Every detail is chosen with care, ensuring exceptional quality, comfort, and integrity at every stage of production. The result is workwear you don’t just see, but experience—through the way each piece moves with you, supports you, and elevates the everyday.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": false,
+            "truncate_lines_mobile": 3,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_U44awQ"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "editorial_content_bheXRP": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_frQgNE": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Made with Precision,Built to Last",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>From small-batch production and meticulous pattern making to advanced textile engineering and precise construction, Japanese manufacturing prioritizes accuracy, durability, and consistency over speed or scale. This level of craftsmanship results in workwear that holds its shape, wears beautifully over time, and requires fewer replacements, offering long-term value. By investing in ethically produced, expertly made garments, our customers are choosing quality, longevity, and integrity, qualities that define both Japanese craftsmanship and the A.SHIMUS approach to modern petite workwear.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": false,
+            "truncate_lines_mobile": 3,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_frQgNE"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#f8f6f5",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "editorial_content_PDFJrQ": {
+      "type": "editorial-content",
+      "blocks": {
+        "two_column_content_UQAthR": {
+          "type": "two_column_content",
+          "settings": {
+            "heading": "Our Japanese Manufacturers",
+            "show_heading_desktop": true,
+            "show_heading_mobile": true,
+            "text": "<p>A.SHIMUS collaborates with a carefully selected network of Japanese fabric mills and sewing ateliers recognized for their technical excellence and integrity. Our partners include J∞QUALITY–certified manufacturers and long-established textile leaders such as: Stylem Takisada Osaka Co., Ltd. (founded in 1864, Osaka City, Osaka Prefecture)Suzuken Wool Textile Co., Ltd. (founded in 1953, Ichinomiya City, Aichi Prefecture)Our Interview with CEOTakisada Nagoya Co., Ltd. (founded in 1864, Nagoya City, Aichi Prefecture) U.S.P Association Co., Ltd. (founded in 2004, Toshima-ku, Tokyo) …and others.</p>",
+            "enable_truncate_desktop": false,
+            "truncate_lines_desktop": 3,
+            "enable_truncate_mobile": false,
+            "truncate_lines_mobile": 3,
+            "show_read_more": true,
+            "read_more_text": "Read More",
+            "read_less_text": "Read Less"
+          }
+        }
+      },
+      "block_order": [
+        "two_column_content_UQAthR"
+      ],
+      "name": "Editorial Content",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "section_padding_top": 72,
+        "section_padding_bottom": 72,
+        "section_padding_top_mobile": 60,
+        "section_padding_bottom_mobile": 60
+      }
+    },
+    "image_text_blocks_gWxH4J": {
+      "type": "image-text-blocks",
+      "blocks": {
+        "image_text_block_4ww8NY": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/Hero_Image_1_61838a34-35b5-4663-887c-5728f89c296b.jpg",
+            "title": "With Magokoro Spirit / 真心をこめて",
+            "description": "",
+            "button_url": "shopify://pages/discover",
+            "button_label": "DISCOVER THE STORY"
+          }
+        },
+        "image_text_block_pRcbFd": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/26SS_web_lookbook_10..jpg",
+            "title": "Meet our Manufacture",
+            "description": "",
+            "button_url": "#",
+            "button_label": "OUR INTERVIEW WITH CEO"
+          }
+        },
+        "image_text_block_t6a8P7": {
+          "type": "image_text_block",
+          "settings": {
+            "image": "shopify://shop_images/26SS_web_lookbook_1_6ad95a15-38ea-48fd-a51e-3a3d22a76724.jpg",
+            "title": "Our Stores",
+            "description": "",
+            "button_url": "shopify://pages/our-history",
+            "button_label": "FIND US IN STORE"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_4ww8NY",
+        "image_text_block_pRcbFd",
+        "image_text_block_t6a8P7"
+      ],
+      "name": "Image Text Blocks",
+      "settings": {
+        "section_title": "",
+        "section_description": "",
+        "section_header_alignment": "center",
+        "blocks_per_row": "3",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "section_background_color": "#ffffff",
+        "section_text_color": "#000000",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "buttons_style": "outlined"
+      }
+    }
+  },
+  "order": [
+    "slideshow_3jibRi",
+    "editorial_content_WRzmHw",
+    "editorial_content_AfFPR8",
+    "editorial_content_4xFiff",
+    "editorial_content_bheXRP",
+    "editorial_content_PDFJrQ",
+    "image_text_blocks_gWxH4J"
+  ]
+}
