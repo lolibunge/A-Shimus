@@ -33,6 +33,32 @@
   endcase
 
   assign grid_item_width = desktop_item_width | append: ' ' | append: tablet_item_width | append: ' ' | append: mobile_item_width
+
+  assign recommendation_card_desktop_size = '34vw'
+  case section.settings.grid-desktop
+    when 2
+      assign recommendation_card_desktop_size = '50vw'
+    when 3
+      assign recommendation_card_desktop_size = '34vw'
+    when 4
+      assign recommendation_card_desktop_size = '26vw'
+    when 5
+      assign recommendation_card_desktop_size = '21vw'
+    when 6
+      assign recommendation_card_desktop_size = '18vw'
+  endcase
+
+  assign recommendation_card_tablet_size = '34vw'
+  if tablet_item_width == 'medium--one-half'
+    assign recommendation_card_tablet_size = '50vw'
+  endif
+
+  assign recommendation_card_mobile_size = '50vw'
+  if section.settings.grid-mobile == '1'
+    assign recommendation_card_mobile_size = '100vw'
+  endif
+
+  assign recommendation_card_image_sizes = '(min-width: 1200px) ' | append: recommendation_card_desktop_size | append: ', (min-width: 750px) ' | append: recommendation_card_tablet_size | append: ', ' | append: recommendation_card_mobile_size
 %}
 
 {% if section.settings.override_button_colors %}
@@ -124,6 +150,7 @@
                     {% render 'grid-view-item',
                       product: product,
                       collection: null,
+                      card_image_sizes: recommendation_card_image_sizes,
                       enable_badges: settings.show_badges,
                       grid_count_desktop: section.settings.grid-desktop,
                       grid_count_mobile: section.settings.grid-mobile,

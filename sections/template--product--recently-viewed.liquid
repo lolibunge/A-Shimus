@@ -34,6 +34,32 @@
 
   assign grid_item_width = desktop_item_width | append: ' ' | append: tablet_item_width | append: ' ' | append: mobile_item_width
 
+  assign recently_viewed_card_desktop_size = '34vw'
+  case section.settings.grid-desktop
+    when 2
+      assign recently_viewed_card_desktop_size = '50vw'
+    when 3
+      assign recently_viewed_card_desktop_size = '34vw'
+    when 4
+      assign recently_viewed_card_desktop_size = '26vw'
+    when 5
+      assign recently_viewed_card_desktop_size = '21vw'
+    when 6
+      assign recently_viewed_card_desktop_size = '18vw'
+  endcase
+
+  assign recently_viewed_card_tablet_size = '34vw'
+  if tablet_item_width == 'medium--one-half'
+    assign recently_viewed_card_tablet_size = '50vw'
+  endif
+
+  assign recently_viewed_card_mobile_size = '50vw'
+  if section.settings.grid-mobile == '1'
+    assign recently_viewed_card_mobile_size = '100vw'
+  endif
+
+  assign recently_viewed_card_image_sizes = '(min-width: 1200px) ' | append: recently_viewed_card_desktop_size | append: ', (min-width: 750px) ' | append: recently_viewed_card_tablet_size | append: ', ' | append: recently_viewed_card_mobile_size
+
   comment 
     Construct product card layout 
   endcomment
@@ -220,6 +246,7 @@
                   {% render 'grid-view-item',
                     product: product,
                     collection: collection,
+                    card_image_sizes: recently_viewed_card_image_sizes,
                     enable_badges: settings.show_badges,
                     grid_count_desktop: section.settings.grid-desktop,
                     grid_count_mobile: section.settings.grid-mobile,

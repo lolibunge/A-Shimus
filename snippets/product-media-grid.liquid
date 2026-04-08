@@ -165,7 +165,7 @@
                   {% if media.media_type == 'image' %}
                     <a
                       data-main-media-link
-                      href="{{ media.preview_image | image_url: width: 1445 }}"
+                      href="{{ media.preview_image | image_url: width: media.width }}"
                       data-pswp-width="{{ media.width }}"
                       data-pswp-height="{{ media.height }}"
                       target="_blank"
@@ -175,7 +175,7 @@
 
                       <img
                         class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                        src="{{ media.preview_image | image_url: width: 1445 }}"
+                        src="{{ media.preview_image | image_url: width: media.width }}"
                         alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                         width="{{ media.width }}"
                         height="{{ media.height }}"
@@ -207,7 +207,7 @@
                 {% if media.media_type == 'image' %}
                   <a
                     data-main-media-link
-                    href="{{ media.preview_image | image_url: width: 1445 }}"
+                    href="{{ media.preview_image | image_url: width: media.width }}"
                     data-pswp-width="{{ media.width }}"
                     data-pswp-height="{{ media.height }}"
                     target="_blank"
@@ -217,7 +217,7 @@
 
                     <img
                       class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                      src="{{ media.preview_image | image_url: width: 1445 }}"
+                      src="{{ media.preview_image | image_url: width: media.width }}"
                       alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                       width="{{ media.width }}"
                       height="{{ media.height }}"
@@ -242,7 +242,7 @@
                 {% if media.media_type == 'image' %}
                   <a
                     data-main-media-link
-                    href="{{ media.preview_image | image_url: width: 1445 }}"
+                    href="{{ media.preview_image | image_url: width: media.width }}"
                     data-pswp-width="{{ media.width }}"
                     data-pswp-height="{{ media.height }}"
                     target="_blank"
@@ -252,7 +252,7 @@
     
                     <img
                       class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                      src="{{ media.preview_image | image_url: width: 1445 }}"
+                      src="{{ media.preview_image | image_url: width: media.width }}"
                       alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                       width="{{ media.width }}"
                       height="{{ media.height }}"
@@ -293,7 +293,7 @@
                     {% if media.media_type == 'image' %}
                       <a
                         data-main-media-link
-                        href="{{ media.preview_image | image_url: width: 1445 }}"
+                        href="{{ media.preview_image | image_url: width: media.width }}"
                         data-pswp-width="{{ media.width }}"
                         data-pswp-height="{{ media.height }}"
                         target="_blank"
@@ -303,7 +303,7 @@
 
                         <img
                           class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                          src="{{ media.preview_image | image_url: width: 1445 }}"
+                          src="{{ media.preview_image | image_url: width: media.width }}"
                           alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                           width="{{ media.width }}"
                           height="{{ media.height }}"
@@ -341,7 +341,7 @@
                   {% if media.media_type == 'image' %}
                     <a
                       data-main-media-link
-                      href="{{ media.preview_image | image_url: width: 1445 }}"
+                      href="{{ media.preview_image | image_url: width: media.width }}"
                       data-pswp-width="{{ media.width }}"
                       data-pswp-height="{{ media.height }}"
                       target="_blank"
@@ -351,7 +351,7 @@
 
                       <img
                         class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                        src="{{ media.preview_image | image_url: width: 1445 }}"
+                        src="{{ media.preview_image | image_url: width: media.width }}"
                         alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                         width="{{ media.width }}"
                         height="{{ media.height }}"
@@ -378,7 +378,7 @@
                   {% if media.media_type == 'image' %}
                     <a
                       data-main-media-link
-                      href="{{ media.preview_image | image_url: width: 1445 }}"
+                      href="{{ media.preview_image | image_url: width: media.width }}"
                       data-pswp-width="{{ media.width }}"
                       data-pswp-height="{{ media.height }}"
                       target="_blank"
@@ -388,7 +388,7 @@
       
                       <img
                         class="theme-img media-ratio--{{ section.settings.image_shape }}"
-                        src="{{ media.preview_image | image_url: width: 1445 }}"
+                        src="{{ media.preview_image | image_url: width: media.width }}"
                         alt="{% if media.alt != product.title %}{{ media.alt }}{% endif %}"
                         width="{{ media.width }}"
                         height="{{ media.height }}"

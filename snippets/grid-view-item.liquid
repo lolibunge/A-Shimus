@@ -231,7 +231,7 @@
                       {% if img_alt == product.title %}
                         {% assign img_alt = '' %}
                       {% endif %}
-                      {% render 'responsive-image' with media, alt: img_alt, allow_stretch: false, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
+                      {% render 'responsive-image' with media, alt: img_alt, allow_stretch: false, blur: false, props: 'data-product-card-image', loading: loading, sizes: card_image_sizes, class: 'block-radius' %}
                     </div>
                   </div>
                 {% endif %}
@@ -248,12 +248,12 @@
               {% if img_alt == product.title %}
                 {% assign img_alt = '' %}
               {% endif %}
-              {% render 'responsive-image' with image, alt: img_alt, allow_stretch: image_stretch, blur: false, props: 'data-product-card-image', loading: loading, class: 'block-radius' %}
+              {% render 'responsive-image' with image, alt: img_alt, allow_stretch: image_stretch, blur: false, props: 'data-product-card-image', loading: loading, sizes: card_image_sizes, class: 'block-radius' %}
 
               {% comment %} Placeholder for swatch images {% endcomment %}
               {% if card_color_swatches_enabled %}
                 {% assign swatch_image_attributes = 'data-product-card-swatch-image style="opacity: 0;"' %}
-                {% render 'responsive-image' with image, alt: '', wrapper_class: "product-card__image product-card__image--swatch", allow_stretch: true, blur: false, props: swatch_image_attributes, class: 'block-radius' %}
+                {% render 'responsive-image' with image, alt: '', wrapper_class: "product-card__image product-card__image--swatch", allow_stretch: true, blur: false, props: swatch_image_attributes, sizes: card_image_sizes, class: 'block-radius' %}
               {% endif %}
 
               {% if settings.hover-effect and product.media.size > 1 %}
@@ -262,7 +262,7 @@
                 {% if img_alt == product.title %}
                   {% assign img_alt = '' %}
                 {% endif %}
-                {% render 'responsive-image' with image, alt: img_alt, wrapper_class: "product-card__image product-card__image--secondary", allow_stretch: true, blur: false, class: 'block-radius' %}
+                {% render 'responsive-image' with image, alt: img_alt, wrapper_class: "product-card__image product-card__image--secondary", allow_stretch: true, blur: false, sizes: card_image_sizes, class: 'block-radius' %}
               {% endif %}
             {% else %}
               {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}

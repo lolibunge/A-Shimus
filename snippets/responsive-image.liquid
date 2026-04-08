@@ -33,6 +33,11 @@
   {% assign loading = 'lazy' %}
 {% endif %}
 
+{% assign fallback_width = 2200 %}
+{% if responsive-image.width < fallback_width %}
+  {% assign fallback_width = responsive-image.width %}
+{% endif %}
+
 {%- capture divStyle -%}
   {%- if force_height %}height: {{ force_height }}px; {% endif -%}
   {%- if adaptive_ratio -%}padding-bottom: {{ adaptive_ratio }}%;{% endif -%}
@@ -90,7 +95,7 @@
           {%- if responsive-image.width >= 2890 -%}{{ responsive-image | image_url: width: 2890 }} 2890w,{%- endif -%}
           {{ responsive-image | image_url: width: responsive-image.width }} {{ responsive-image.width }}w"
   sizes="{{ sizes }}"
-  src="{{ responsive-image | image_url: width: 1445 }}"
+  src="{{ responsive-image | image_url: width: fallback_width }}"
 />
 
 </div>
