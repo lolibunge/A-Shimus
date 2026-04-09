@@ -81,6 +81,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 16px;
 }
 
 .swiper-horizontal>.swiper-pagination-bullets,
@@ -166,6 +167,14 @@
     margin-top: 16px;
 }
 
+.collection-showcase-product-info a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
 .collection-showcase-product-title {
     font-family: var(--body-font-stack);
     font-weight: 500;
@@ -176,8 +185,11 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    overflow-wrap: normal;
 }
 
 .collection-showcase-product-price {
@@ -387,5 +399,9 @@
     .collection-showcase-product-title,
     .collection-showcase-product-price {
         font-size: 16px;
+    }
+
+    .collection-showcase-product-title {
+        line-height: 24px;
     }
 }

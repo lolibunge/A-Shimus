@@ -178,6 +178,10 @@ section.section-two_column>div:nth-child(2) {
   background: #000000!important;
 }
 
+swym-header-icon .swym-header-icon__button svg {
+  fill: #000000 !important;
+}
+
 .swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item,
 .swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-item .swym-icon::before,
 .swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-wishlist-items-title,
