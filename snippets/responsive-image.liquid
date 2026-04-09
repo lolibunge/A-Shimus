@@ -45,7 +45,7 @@
 
 {% assign focal_point = responsive-image.presentation.focal_point %}
 
-{% if focal_point %}
+{% if focal_point and disable_focal_point != true %}
   {% capture focal_point_styles %}object-fit:cover;object-position:{{ focal_point }}!important;{% endcapture %}
 {% endif %}
 
