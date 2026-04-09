@@ -109,7 +109,8 @@
             "button_background_color": "#ffffff",
             "button_color": "#ffffff",
             "text_color": "#ffffff",
-            "overlay_color": "rgba(0,0,0,0)"
+            "overlay_color": "#000000",
+            "overlay_opacity": 50
           }
         },
         "image_XzfdU8": {
@@ -128,7 +129,8 @@
             "button_background_color": "#ffffff",
             "button_color": "#ffffff",
             "text_color": "#ffffff",
-            "overlay_color": "rgba(0,0,0,0)"
+            "overlay_color": "#000000",
+            "overlay_opacity": 50
           }
         }
       },
