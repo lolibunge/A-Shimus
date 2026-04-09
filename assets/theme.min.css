@@ -9487,7 +9487,7 @@ a.mega-menu-promo-wrapper:hover+.mega-menu-promo-text--wrapper .mega-menu-promo-
 
     .site-nav__dropdown.mega-menu-dropdown {
         position: absolute;
-        left: -50px !important
+        left: -50px
     }
 }
 

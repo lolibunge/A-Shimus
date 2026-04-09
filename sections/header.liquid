@@ -1792,6 +1792,17 @@ Testing Cypress integration
 document.addEventListener('DOMContentLoaded', function() {
   const parentItems = document.querySelectorAll('.mobile-nav__parent-item');
   const allSlides = document.querySelectorAll('.promotion-slide');
+
+  function alignDesktopMegaMenusToNavLeft() {
+    if (window.innerWidth < 990) return;
+    const nav = document.getElementById('AccessibleNav');
+    if (!nav) return;
+    const navLeft = nav.getBoundingClientRect().left;
+    const megaDropdowns = nav.querySelectorAll('.site-nav__dropdown.mega-menu-dropdown');
+    megaDropdowns.forEach(function(dropdown) {
+      dropdown.style.left = '-' + navLeft + 'px';
+    });
+  }
   
   // Initialize: Show first slide of first active menu item
   function initializeSlider() {
@@ -1815,6 +1826,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize on load
   initializeSlider();
+  alignDesktopMegaMenusToNavLeft();
+  setTimeout(alignDesktopMegaMenusToNavLeft, 50);
   
   parentItems.forEach(function(parentItem) {
     const parentElement = parentItem.querySelector('.mobile-nav__parent-link, .mobile-nav__parent-button');
@@ -1867,6 +1880,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+
+  window.addEventListener('resize', alignDesktopMegaMenusToNavLeft);
+  document.addEventListener('shopify:section:load', alignDesktopMegaMenusToNavLeft);
+  document.addEventListener('shopify:section:select', alignDesktopMegaMenusToNavLeft);
 });
 </script>
 
