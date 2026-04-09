@@ -481,21 +481,33 @@
               color: rgba({{ block.settings.text_color.rgba }});
             }
 
+            .collage-builder__text-container--{{ block.id }} .collage-builder__text-content,
+            .collage-builder__text-container--{{ block.id }} .collage-builder__text-content * {
+              color: rgba({{ block.settings.text_color.rgba }}) !important;
+            }
+
+            {% unless block.settings.override_button_colors %}
+              .collage-builder__text-container--{{ block.id }} .collage-builder__button {
+                color: rgba({{ block.settings.text_color.rgba }}) !important;
+              }
+
+              .collage-builder__text-container--{{ block.id }} .dynamic-section-button--{{ block.id }}.btn--secondary {
+                border-color: rgba({{ block.settings.text_color.rgba }}) !important;
+              }
+
+              .collage-builder__text-container--{{ block.id }} .dynamic-section-button--{{ block.id }}.btn--underlined {
+                --link-border-color: color-mix(in srgb, rgba({{ block.settings.text_color.rgba }}), transparent 50%);
+              }
+            {% endunless %}
+
             {% unless block.settings.overlay_color == 'rgba(0,0,0,0)' %}
               {% liquid 
-                assign overlay_color = 'rgba(' | append: block.settings.overlay_color.rgba | append: ')'
-                assign overlay_opacity = block.settings.overlay_opacity | default: 100
-                assign overlay_opacity_top = overlay_opacity | times: 30 | divided_by: 100
-                assign overlay_opacity_bottom = overlay_opacity | times: 80 | divided_by: 100
-                assign overlay_transparency_top = 100 | minus: overlay_opacity_top
-                assign overlay_transparency_bottom = 100 | minus: overlay_opacity_bottom
-                assign overlay_color_03 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent ' | append: overlay_transparency_top | append: '%)'
-                assign overlay_color_08 = 'color-mix(in srgb, ' | append: overlay_color | append: ', transparent ' | append: overlay_transparency_bottom | append: '%)'
+                assign overlay_opacity = block.settings.overlay_opacity | default: 100 | divided_by: 100.0
               %}
 
               .collage-builder__grid-item--{{ block.id }} .collage-builder__overlay {
-                background: -webkit-linear-gradient(top, {{ overlay_color_03 }} 0%, {{ overlay_color_08 }} 75%);
-                background: linear-gradient(to bottom, {{ overlay_color_03 }} 0%, {{ overlay_color_08 }} 75%);
+                background: -webkit-linear-gradient(top, {{ block.settings.overlay_color | color_modify: 'alpha', 0 }} 0%, {{ block.settings.overlay_color | color_modify: 'alpha', overlay_opacity }} 100%);
+                background: linear-gradient(to bottom, {{ block.settings.overlay_color | color_modify: 'alpha', 0 }} 0%, {{ block.settings.overlay_color | color_modify: 'alpha', overlay_opacity }} 100%);
               }
             {% endunless %}
           </style>
