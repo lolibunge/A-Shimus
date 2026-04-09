@@ -1546,7 +1546,7 @@ Testing Cypress integration
         </div>
 
 
-        <div class="right-side{% unless section.settings.enable_search or section.settings.show_offers_drawer %} text-right{% else %} has-second-icon{% endunless %}">
+        <div class="right-side{% if section.settings.enable_search or section.settings.show_offers_drawer or section.settings.show_icons %} has-second-icon{% else %} text-right{% endif %}">
           
         <div class="site-nav--mobile">
 
@@ -1559,6 +1559,15 @@ Testing Cypress integration
               </a>
             {% elsif section.settings.show_offers_drawer %}
               {{ offers_icon_link }}
+            {% endif %}
+
+            {% if section.settings.show_icons %}
+              <swym-header-icon class="swym-header-icon">
+                <button type="button" class="swym-header-icon__button standalone-icon--wrapper" aria-label="Wishlist">
+                  {% render 'theme-icon' with icon: 'heart', iconSize: 20, iconClasses: 'swym-svg' %}
+                  <span class="swym-wishlist-header-counter cart-item-count-bubble cart-item-count-header cart-item-count-header--quantity hide">0</span>
+                </button>
+              </swym-header-icon>
             {% endif %}
 
             <a href="{{ routes.cart_url }}" aria-label="{{ 'layout.cart.title' | t }}" class="{% if settings.cart_type == 'drawer' %}js-drawer-open-right-link {% endif %}site-nav__link{% if section.settings.cart_count %} cart-count-enabled {{ section.settings.cart-style }}{% endif %}{% if cart.item_count > 0 %} cart-count-visible{% endif %} standalone-icon--wrapper{% if section.settings.show_icons %} header-icons-enabled{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
@@ -1664,6 +1673,54 @@ Testing Cypress integration
     .header-section--wrapper .mobile-nav-bar-wrapper {
       background-color: #fff !important;
       border-bottom: 1px solid var(--header-border-color);
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table {
+      height: 48px;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .right-side {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile > a,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile > button,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile > swym-header-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile .standalone-icon--wrapper,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile .icon-fallback-text,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile .swym-header-icon,
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile .swym-header-icon__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile .standalone-icon--wrapper {
+      min-width: 20px;
+      min-height: 20px;
+      padding: 0;
+    }
+
+    .header-section--wrapper .mobile-nav-bar-wrapper .site-nav--mobile svg {
+      width: 20px;
+      height: 20px;
+      display: block;
     }
 
     .header-section--wrapper .mobile-nav-bar-wrapper .mobile-grid--table a,
