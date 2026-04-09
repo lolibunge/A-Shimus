@@ -135,6 +135,7 @@
         "author_quote_LDay87": {
           "type": "author_quote",
           "settings": {
+            "image": "shopify://shop_images/aya-shimura-2.png",
             "quote": "<p>“At its heart, A Shimus exists to make getting dressed easier for women building their careers. By focusing on fit, craftsmanship, and purpose, we create garments designed to feel reliable, considered, and quietly confident - just like the women who wear them.”</p>",
             "author": "Aya Shimura, Founder and CEO"
           }
