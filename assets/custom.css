@@ -629,6 +629,72 @@ size-guide-modal .size-guide-modal__body {
   pointer-events: all;
 }
 
+/* Collection PLP grid layout:
+   - Mobile: 2 columns
+   - Desktop (filters hidden): 4 columns
+   - Desktop (filters visible): 3 columns
+*/
+.template-collection #template--collection.product-grid--wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4px;
+  row-gap: 36px;
+  align-items: start;
+}
+
+.template-collection #template--collection.product-grid--wrapper > .grid__item {
+  width: auto !important;
+  min-width: 0;
+  padding-left: 0;
+}
+
+/* Keep promo cards full-width on mobile */
+.template-collection #template--collection.product-grid--wrapper > .promotional-card {
+  grid-column: 1 / -1;
+}
+
+@media only screen and (min-width: 768px) {
+  .template-collection #template--collection.product-grid--wrapper {
+    column-gap: var(--grid-spacing);
+    row-gap: 52px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .template-collection .collection_grid.filtering_enabled--sidebar:not(.filters-hidden) #template--collection.product-grid--wrapper {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Promo card spans for 3-column mode */
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="3"].promotional-card--columns-1 {
+    grid-column: span 1;
+  }
+
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="3"].promotional-card--columns-2 {
+    grid-column: span 2;
+  }
+
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="3"].promotional-card--columns-3 {
+    grid-column: span 3;
+  }
+
+  /* Promo card spans for 4-column mode */
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="4"].promotional-card--columns-1 {
+    grid-column: span 1;
+  }
+
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="4"].promotional-card--columns-2 {
+    grid-column: span 2;
+  }
+
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="4"].promotional-card--columns-3 {
+    grid-column: span 3;
+  }
+
+  .template-collection #template--collection.product-grid--wrapper .promotional-card[data-promotional-card-grid-columns="4"].promotional-card--columns-4 {
+    grid-column: span 4;
+  }
+}
+
 /* Show on hover (default) */
 .grid-view-item-image:hover .quick-view-plus-icon-wrapper:not(.always-visible),
 .grid-view-item-image:focus-within .quick-view-plus-icon-wrapper:not(.always-visible) {
