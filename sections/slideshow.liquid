@@ -29,18 +29,13 @@
         {% for block in section.blocks %}
           {% comment %} We need a separate forloop for the block styles, since we can't include style tags within the swiper-wrapper element (Swiper breaks) {% endcomment %}
 
-          {% assign slider-text-color = 'rgba(' | append: block.settings['caption-text'].rgba | append: ')' %}
-          {% assign image_overlay_color = 'rgba(' | append: block.settings.image_overlay.rgba | append: ')' %}
-          {% assign image_overlay_opacity = 100 | minus: block.settings.image_overlay_opacity %}
-
           <style>
             {% comment %} Image overlay {% endcomment %}
             .slider-section--{{ section.id }} .block-section--{{ block.id }} .slideshow-image-overlay {
               {% assign overlay_opacity = block.settings.image_overlay_opacity | divided_by: 100.0 %}
-              {% assign bottom_opacity = overlay_opacity | times: 3 | at_most: 1 %}
               background: linear-gradient(180deg,
-                {{ block.settings.image_overlay | color_modify: 'alpha', overlay_opacity }} 50%,
-                rgba(0, 0, 0, {{ bottom_opacity }}));
+                {{ block.settings.image_overlay | color_modify: 'alpha', 0 }} 0%,
+                {{ block.settings.image_overlay | color_modify: 'alpha', overlay_opacity }} 100%);
               z-index: 1;
             }
 

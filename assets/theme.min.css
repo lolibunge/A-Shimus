@@ -9877,10 +9877,13 @@ h6 a {
     letter-spacing: 0;
 }
 
+.accordion-content .collapsible-tab .text-with-icon .text-with-icon--content .text-with-icon--text {
+    font-size: 16px;
+}
 .collapsible-content .richtext-block p {
     font-family: var(--body-font-stack);
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     letter-spacing: 0;
 }
