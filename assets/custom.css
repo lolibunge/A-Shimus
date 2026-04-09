@@ -196,6 +196,23 @@ section.section-two_column>div:nth-child(2) {
   color: #000000 !important;
 }
 
+@media only screen and (max-width: 900px) {
+    .swym-ui-component .swym-add-wishlist-modal .swym-modal-content .swym-action-btns {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    div#swym-wishlist-render-container {
+      padding-left:0!important;
+      padding-right:0!important;
+    }
+
+    .swym-ui-component.swym-wishlist-page .swym-wishlist-list {
+        padding: 18px 0!important;
+        overflow: visible;
+    }
+}
+
 /*
 .swym-wishlist-collections-v2-container {
   top: 17px !important;
@@ -242,6 +259,42 @@ body .slider-nav--left-and-right .width--content {
 #AccessibleNav .site-nav__dropdown .site-nav--link-text,
 #AccessibleNav .site-nav__subdropdown .site-nav--link-text {
   text-transform: capitalize !important;
+}
+
+/* Header icon alignment (desktop top-right icon row) */
+.site-header .top-links--icon-links {
+  align-items: center;
+}
+
+.site-header .top-links--icon-links li,
+.site-header .top-links--icon-links li {
+  display: flex!important;
+  align-items: center;
+}
+
+.site-header .top-links--icon-links li a.standalone-icon--wrapper,
+.site-header .top-links--icon-links li button.standalone-icon--wrapper,
+.site-header .top-links--icon-links li .swym-header-icon__button.standalone-icon--wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.site-header .top-links--icon-links li .standalone-icon--wrapper svg {
+  display: block;
+  margin: 0;
+}
+
+/* Keep counters from pushing icons off alignment */
+.site-header .top-links--icon-links .cart-count-enabled .cart-item-count-header--quantity,
+.site-header .top-links--icon-links .swym-header-icon .swym-wishlist-header-counter {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  line-height: 1;
 }
 
 .homepage-collection-grid-inner .grid-item__title {
