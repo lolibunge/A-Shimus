@@ -227,6 +227,16 @@ body .slider-nav--left-and-right .width--content {
   letter-spacing: 0.5px;
 }
 
+/* Header nav case control: top level uppercase, dropdown lowercase */
+#AccessibleNav > li.first-level-dropdown > a .site-nav--link-text {
+  text-transform: uppercase !important;
+}
+
+#AccessibleNav .site-nav__dropdown .site-nav--link-text,
+#AccessibleNav .site-nav__subdropdown .site-nav--link-text {
+  text-transform: capitalize !important;
+}
+
 .homepage-collection-grid-inner .grid-item__title {
   font-size: 16px;
   font-weight: 600;

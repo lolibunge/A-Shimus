@@ -9528,9 +9528,6 @@ a.mega-menu-promo-wrapper:hover+.mega-menu-promo-text--wrapper .mega-menu-promo-
     position: relative
 }
 
-.first-level-dropdown:hover>a {
-    text-decoration: underline !important;
-}
 
 .site-nav__dropdown.standard-dropdown li:hover {
     color: var(--nav-text-hover)
