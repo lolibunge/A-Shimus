@@ -101,6 +101,7 @@
         "b8952142-22e1-4b16-b9bd-9e42747928c9",
         "a379cb7a-ba34-48da-b0af-2b0379b8db62"
       ],
+      "disabled": true,
       "settings": {
         "title": "Frequently asked questions",
         "description": "",
@@ -134,7 +135,7 @@
         "c1f278da-fb1a-46ad-9d1f-1e169afa696c": {
           "type": "button",
           "settings": {
-            "button_link": "/",
+            "button_link": "shopify://pages/faq",
             "button_text": "SEE FAQS",
             "buttons_style": "filled",
             "override_button_colors": false,
@@ -222,6 +223,7 @@
     },
     "f9008be2-cc52-4777-becc-c975f680a054": {
       "type": "map",
+      "disabled": true,
       "settings": {
         "map_address": "Ottawa, 151 O'Connor Street, Ground Floor, Canada",
         "api_key": "",
