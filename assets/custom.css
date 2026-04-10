@@ -847,6 +847,22 @@ size-guide-modal .size-guide-modal__body {
 }
 
 @media only screen and (min-width: 768px) {
+  /* PLP desktop: single-image products should align to top, not center */
+  .template-collection #template--collection .grid__image.grid__image--single-image [data-product-card-image],
+  .template-collection #template--collection .grid__image.grid__image--single-image [data-product-card-swatch-image] {
+    object-position: center top !important;
+    -webkit-object-position: center top !important;
+  }
+
+  .template-collection #template--collection .grid__image.grid__image--single-image .responsive-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
+
   .template-collection #template--collection.product-grid--wrapper {
     column-gap: var(--grid-spacing);
     row-gap: 52px;
@@ -1228,6 +1244,34 @@ body.size-guide-modal-open {
 
 .product-section .collapsible-tab-container.collapsible .collapsible-content .content {
   padding-bottom: 16px;
+}
+
+/* Contact Page FAQ Accordion Spacing */
+.contact-page .accordion--faq .accordion-content {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.contact-page .accordion--faq .collapsible-tab .summary {
+  padding: 18px 0;
+}
+
+.contact-page .accordion--faq .collapsible-tab.open .summary {
+  padding-bottom: 12px;
+}
+
+.contact-page .accordion--faq .collapsible-tab .collapsible-content .content {
+  padding-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+  .contact-page .accordion--faq .collapsible-tab .summary {
+    padding: 16px 0;
+  }
+
+  .contact-page .accordion--faq .collapsible-tab .collapsible-content .content {
+    padding-bottom: 16px;
+  }
 }
 
 /* PDP Share Icons - Match Footer Social Icons */
