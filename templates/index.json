@@ -256,114 +256,66 @@
         "colors": "dark"
       }
     },
-    "contact_form_rhN6m6": {
-      "type": "contact-form",
+    "image_with_text_overlay_CRakyd": {
+      "type": "image-with-text-overlay",
       "blocks": {
-        "name_input_dxGKWB": {
-          "type": "name_input",
-          "settings": {
-            "required": true,
-            "input_width": "partial"
-          }
-        },
-        "email_input_dUQizk": {
-          "type": "email_input",
-          "settings": {
-            "required": true,
-            "input_width": "partial"
-          }
-        },
-        "tel_input_XtBVNm": {
-          "type": "tel_input",
-          "settings": {
-            "required": true,
-            "input_width": "full"
-          }
-        },
-        "message_input_CVtcDQ": {
-          "type": "message_input",
-          "settings": {
-            "required": true,
-            "input_width": "full"
-          }
-        }
-      },
-      "block_order": [
-        "name_input_dxGKWB",
-        "email_input_dUQizk",
-        "tel_input_XtBVNm",
-        "message_input_CVtcDQ"
-      ],
-      "disabled": true,
-      "name": "t:sections.section--contact-form.presets.name",
-      "settings": {
-        "title": "Contact us",
-        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
-        "section_header_alignment": "center",
-        "column_layout": "",
-        "form_width": "narrow",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "section_background_color": "#ffffff",
-        "section_text_color": "#000000",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff"
-      }
-    },
-    "slideshow_k49RAQ": {
-      "type": "slideshow",
-      "blocks": {
-        "image_nxNTBh": {
-          "type": "image",
+        "heading_gE3cx7": {
+          "type": "heading",
           "settings": {
             "title": "From Mill to Masterpiece",
-            "desktop-caption-heading-size": 32,
-            "mobile-caption-heading-size": 28,
-            "text": "Every piece handcrafted in Japan with precision, care, and intention.",
-            "desktop-caption-body-text-size": 14,
-            "mobile-caption-body-text-size": 14,
+            "font_size_desktop": 46,
+            "font_size_mobile": 28,
+            "heading_bottom_spacing": 25
+          }
+        },
+        "text_rbz3Kk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece handcrafted in Japan with precision, care, and intention.</p>",
+            "font_size_desktop": 16,
+            "font_size_mobile": 16,
+            "text_bottom_spacing": 20
+          }
+        },
+        "button_eEitX8": {
+          "type": "button",
+          "settings": {
             "first_button_link": "shopify://pages/craftsmanship",
             "first_button_label": "DISCOVER THE STORY",
             "second_button_link": "",
             "second_button_label": "",
             "buttons_style": "outlined",
             "override_button_colors": true,
-            "button-background": "#ffffff",
-            "button-text": "#ffffff",
-            "max_width": "451px",
-            "image": "shopify://shop_images/from_mill_to_masterpoiece_2.jpg",
-            "justify_content": "center",
-            "text_position": "end_center",
-            "mobile_max_width": "100%",
-            "mobile_justify_content": "center",
-            "mobile_text_position": "end_center",
-            "caption-text": "#ffffff",
-            "image_overlay": "#000000",
-            "image_overlay_opacity": 50
+            "buttons_background": "#ffffff",
+            "buttons_text": "#FFFFFF",
+            "buttons_bottom_spacing": 0
           }
         }
       },
       "block_order": [
-        "image_nxNTBh"
+        "heading_gE3cx7",
+        "text_rbz3Kk",
+        "button_eEitX8"
       ],
-      "custom_css": [],
-      "name": "t:sections.image--slideshow.presets.name",
+      "name": "t:sections.image--image-with-text-overlay.presets.name",
       "settings": {
-        "desktop_height": "extra_large",
-        "mobile_height": "original",
-        "slide_navigation_style": "arrows",
-        "hidden_slide_fraction": true,
-        "navigation_background_color": "#000000B2",
-        "slide_position": "right",
-        "mobile_slide_position": "left",
-        "slide_transition_delay": 10,
+        "image_desktop": "shopify://shop_images/from_mill_to_masterpoiece_2.jpg",
+        "height_desktop": "550px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
         "section_width": "full",
-        "section_padding_desktop": "100px",
-        "section_padding_mobile": "38px 28px",
-        "section_margin_desktop": "0px",
-        "section_margin_mobile": "0px",
-        "background_color": "#000000"
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#FFFFFF",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 50
       }
     },
     "editorial_content_YBeUJ7": {
@@ -498,59 +450,56 @@
         "title": "As Featured In"
       }
     },
-    "slideshow_DbmMnX": {
-      "type": "slideshow",
+    "image_with_text_overlay_hbhiB7": {
+      "type": "image-with-text-overlay",
       "blocks": {
-        "image_8cjiNH": {
-          "type": "image",
+        "heading_yFXHja": {
+          "type": "heading",
           "settings": {
             "title": "Our Stores",
-            "desktop-caption-heading-size": 48,
-            "mobile-caption-heading-size": 28,
-            "text": "",
-            "desktop-caption-body-text-size": 14,
-            "mobile-caption-body-text-size": 14,
+            "font_size_desktop": 46,
+            "font_size_mobile": 28,
+            "heading_bottom_spacing": 25
+          }
+        },
+        "button_QtgQQi": {
+          "type": "button",
+          "settings": {
             "first_button_link": "shopify://pages/find-us",
             "first_button_label": "Find Us In Store",
             "second_button_link": "",
             "second_button_label": "",
             "buttons_style": "outlined",
             "override_button_colors": true,
-            "button-background": "#ffffff",
-            "button-text": "#ffffff",
-            "max_width": "451px",
-            "image": "shopify://shop_images/store_image_1.jpg",
-            "justify_content": "center",
-            "text_position": "end_center",
-            "mobile_max_width": "100%",
-            "mobile_justify_content": "center",
-            "mobile_text_position": "end_center",
-            "caption-text": "#ffffff",
-            "image_overlay": "#000000",
-            "image_overlay_opacity": 50
+            "buttons_background": "#ffffff",
+            "buttons_text": "#FFFFFF",
+            "buttons_bottom_spacing": 0
           }
         }
       },
       "block_order": [
-        "image_8cjiNH"
+        "heading_yFXHja",
+        "button_QtgQQi"
       ],
-      "custom_css": [],
-      "name": "t:sections.image--slideshow.presets.name",
+      "name": "t:sections.image--image-with-text-overlay.presets.name",
       "settings": {
-        "desktop_height": "small",
-        "mobile_height": "small",
-        "slide_navigation_style": "arrows",
-        "hidden_slide_fraction": true,
-        "navigation_background_color": "#000000B2",
-        "slide_position": "right",
-        "mobile_slide_position": "left",
-        "slide_transition_delay": 10,
+        "image_desktop": "shopify://shop_images/store_image_1.jpg",
+        "height_desktop": "450px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
         "section_width": "full",
-        "section_padding_desktop": "100px",
-        "section_padding_mobile": "46px 28px",
-        "section_margin_desktop": "0px",
-        "section_margin_mobile": "0px",
-        "background_color": "#000000"
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#FFFFFF",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 50
       }
     },
     "editorial_content_BBktw8": {
@@ -584,11 +533,10 @@
     "collection_showcase_Y9UqP4",
     "3643d38b-24f2-4040-ab67-4b4b44a63aab",
     "featured_collection_7nUDzE",
-    "contact_form_rhN6m6",
-    "slideshow_k49RAQ",
+    "image_with_text_overlay_CRakyd",
     "editorial_content_YBeUJ7",
     "featured_in_logos_dXahcx",
-    "slideshow_DbmMnX",
+    "image_with_text_overlay_hbhiB7",
     "editorial_content_BBktw8"
   ]
 }
