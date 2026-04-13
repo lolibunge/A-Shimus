@@ -18,9 +18,21 @@
 
 .collection-expandable-blocks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--collection-expandable-blocks-per-row-desktop, 3), 1fr);
   gap: 16px;
   width: 100%;
+}
+
+.collection-expandable-blocks--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.collection-expandable-blocks--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.collection-expandable-blocks--4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .collection-expandable-empty-state {
