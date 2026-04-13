@@ -11,6 +11,17 @@
   "sections": {
     "main": {
       "type": "template--page",
+      "blocks": {
+        "richtext_FDatDq": {
+          "type": "richtext",
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "richtext_FDatDq"
+      ],
       "custom_css": [
         "@media screen and (max-width: 768px) {.wrapper-spacing--v--template {padding-top: 50px; }}"
       ],
@@ -22,24 +33,150 @@
     "rich_text_b4HF3L": {
       "type": "rich-text",
       "blocks": {
-        "richtext_JMnExK": {
+        "richtext_TDG7Vj": {
           "type": "richtext",
           "settings": {
-            "text": "<p>お客様にご満足いただけるよう、ご購入後に万が一お直しが必要になった場合に備えて、ストアクレジットをご用意しております。<br/>下記のお直しフォームにご記入いただくだけで、次回のご注文が1回限り10%割引となります。<br/><br/>お客様からのフィードバックに基づき、サイズ選びの改善に継続的に取り組んでおります。<br/><br/>お直しされた商品は交換・返品できませんのでご了承ください。</p>",
-            "text_size": 14,
+            "text": "<p>Past Trunk Shows</p>",
+            "text_size": 24,
             "text_bottom_spacing": 20
           }
         }
       },
       "block_order": [
-        "richtext_JMnExK"
+        "richtext_TDG7Vj"
       ],
       "name": "t:sections.text--rich-text.presets.name",
       "settings": {
         "section_width": "narrow",
         "text_alignment_desktop": "center",
         "text_alignment_mobile": "center",
-        "section_padding_top": 0,
+        "section_padding_top": 80,
+        "section_padding_bottom": 25,
+        "colors": "white"
+      }
+    },
+    "events_calendar_ReYx46": {
+      "type": "events-calendar",
+      "blocks": {
+        "event_n3njmA": {
+          "type": "event",
+          "settings": {
+            "grid_image": "shopify://shop_images/SG_singapore.jpg",
+            "grid_image_size": "square",
+            "day": 5,
+            "month": "Mar",
+            "tbc": false,
+            "day_time": "Thursday - Saturday",
+            "price": "",
+            "event_heading": "Singapore",
+            "event_location": "The St. Regis Singapore",
+            "url": "",
+            "btn_text": ""
+          }
+        },
+        "event_7KkfVx": {
+          "type": "event",
+          "settings": {
+            "grid_image": "shopify://shop_images/HK_image.jpg",
+            "grid_image_size": "square",
+            "day": 12,
+            "month": "Mar",
+            "tbc": false,
+            "day_time": "Thursday - Saturday",
+            "price": "",
+            "event_heading": "Hong Kong",
+            "event_location": "Mandarin Oriental, Hong Kong",
+            "url": "",
+            "btn_text": ""
+          }
+        },
+        "event_KBAWgY": {
+          "type": "event",
+          "settings": {
+            "grid_image": "shopify://shop_images/Hanoi.jpg",
+            "grid_image_size": "square",
+            "day": 13,
+            "month": "Mar",
+            "tbc": false,
+            "day_time": "Friday - Saturday",
+            "price": "",
+            "event_heading": "Osaka",
+            "event_location": "The St. Regis Osaka",
+            "url": "",
+            "btn_text": ""
+          }
+        },
+        "event_4yyyQM": {
+          "type": "event",
+          "settings": {
+            "grid_image": "shopify://shop_images/SG_singapore.jpg",
+            "grid_image_size": "square",
+            "day": 19,
+            "month": "Mar",
+            "tbc": false,
+            "day_time": "Thursday - Saturday",
+            "price": "",
+            "event_heading": "Hanoi",
+            "event_location": "Sofitel Legend Metropole Hanoi",
+            "url": "",
+            "btn_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "event_n3njmA",
+        "event_7KkfVx",
+        "event_KBAWgY",
+        "event_4yyyQM"
+      ],
+      "name": "t:sections.events-calendar.presets.name",
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_header_alignment": "center",
+        "layout": "grid",
+        "cards_per_row": 4,
+        "expand_card": false,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "colors": "white"
+      }
+    },
+    "rich_text_8KVPRB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_wewRdM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Heading",
+            "heading--text-size": 30,
+            "heading_bottom_spacing": 20
+          }
+        },
+        "richtext_rLma4R": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>Use this text block to show store announcements, advertise products and collections, or simply welcome visitors to your store.</p>",
+            "text_size": 14,
+            "text_bottom_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "heading_wewRdM",
+        "richtext_rLma4R"
+      ],
+      "disabled": true,
+      "name": "t:sections.text--rich-text.presets.name",
+      "settings": {
+        "section_width": "narrow",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "center",
+        "section_padding_top": 60,
         "section_padding_bottom": 60,
         "colors": "white"
       }
@@ -47,6 +184,8 @@
   },
   "order": [
     "main",
-    "rich_text_b4HF3L"
+    "rich_text_b4HF3L",
+    "events_calendar_ReYx46",
+    "rich_text_8KVPRB"
   ]
 }

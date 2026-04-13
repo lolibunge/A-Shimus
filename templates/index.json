@@ -15,10 +15,10 @@
         "image_pK4dHU": {
           "type": "image",
           "settings": {
-            "title": "Designed with You in Mind.",
+            "title": "Luxury Petite Workwear",
             "desktop-caption-heading-size": 48,
             "mobile-caption-heading-size": 28,
-            "text": "Petite-first workwear, crafted in Japan with precision and restraint.",
+            "text": "Japanese craftsmanship, perfected for you",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
             "first_button_link": "shopify://collections/view-all",
@@ -38,7 +38,7 @@
             "mobile_text_position": "center_center",
             "caption-text": "#ffffff",
             "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "image_overlay_opacity": 50
           }
         }
       },
@@ -48,7 +48,7 @@
       "custom_css": [],
       "name": "t:sections.image--slideshow.presets.name",
       "settings": {
-        "desktop_height": "extra_large",
+        "desktop_height": "large",
         "mobile_height": "extra_large",
         "slide_navigation_style": "arrows",
         "hidden_slide_fraction": true,
@@ -70,8 +70,8 @@
         "intro_editorial_adpnmM": {
           "type": "intro_editorial",
           "settings": {
-            "title": "Luxury Petite Workwear",
-            "text": "<p>This is considered style. Style that combines meticulous fit, Japanese craftsmanship, and functional design to create enduring wardrobe essentials for petite women. It is style that supports how you work, lead, and live.</p>",
+            "title": "The Art of the Perfect Fit",
+            "text": "<p>For years, I searched for workwear that actually fit without compromise. </p><p>Crafted by Japanese artisans, each piece is thoughtfully made to be as comfortable and functional as it is refined. Because the right fit doesn't just change how you look — it changes how you carry yourself, and how you lead.</p>",
             "meta": "- Aya Shimura, Founder and CEO"
           }
         }
@@ -84,8 +84,8 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
         "section_padding_top_mobile": 60,
         "section_padding_bottom_mobile": 60
       }
@@ -320,7 +320,7 @@
             "title": "From Mill to Masterpiece",
             "desktop-caption-heading-size": 32,
             "mobile-caption-heading-size": 28,
-            "text": "Designed with You in Mind.Petite-first workwear, crafted in Japan with precision and restraint.",
+            "text": "Every piece handcrafted in Japan with precision, care, and intention.",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
             "first_button_link": "shopify://pages/craftsmanship",
@@ -332,7 +332,7 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "451px",
-            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
+            "image": "shopify://shop_images/from_mill_to_masterpoiece_2.jpg",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -340,7 +340,7 @@
             "mobile_text_position": "end_center",
             "caption-text": "#ffffff",
             "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "image_overlay_opacity": 50
           }
         }
       },
@@ -351,7 +351,7 @@
       "name": "t:sections.image--slideshow.presets.name",
       "settings": {
         "desktop_height": "extra_large",
-        "mobile_height": "extra_large",
+        "mobile_height": "original",
         "slide_navigation_style": "arrows",
         "hidden_slide_fraction": true,
         "navigation_background_color": "#000000B2",
@@ -375,7 +375,7 @@
             "heading": "Why Made in Japan",
             "show_heading_desktop": true,
             "show_heading_mobile": true,
-            "text": "<p>Japan is known for craftsmanship that favors precision over scale, and longevity over speed. It is a place where garment making remains a respected discipline, defined by technical mastery, rigorous standards, and an uncompromising approach to quality. Producing in Japan allows A Shimus to work with highly skilled artisans and small manufacturers who specialize in pattern accuracy, fabric handling, and refined construction. This expertise ensures garments hold their shape, wear beautifully over time, and deliver a level of consistency that mass production cannot replicate.<br/><br/>Japanese manufacturing is inherently slower and more considered. Small-batch production, advanced textile engineering, and meticulous finishing contribute to a higher cost—but also to garments that last longer, perform better, and require fewer replacements.<br/><br/>Choosing Made in Japan is an investment.It reflects a commitment to quality, responsible production, and workwear designed to endure well beyond the season.</p>",
+            "text": "<p>Japan favors precision over scale, and longevity over speed — a place where garment making remains a respected discipline defined by technical mastery and uncompromising quality. Working with skilled artisans and small manufacturers, every A.SHIMUS piece holds its shape, wears beautifully over time, and delivers a consistency mass production cannot replicate.</p><p>Choosing Made in Japan is a commitment to quality, responsible production, and workwear built to endure.<br/></p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
             "enable_truncate_mobile": true,
@@ -393,8 +393,8 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
         "section_padding_top_mobile": 60,
         "section_padding_bottom_mobile": 60
       }
@@ -458,7 +458,7 @@
           "type": "logo",
           "name": "Gmaro",
           "settings": {
-            "logo": "shopify://shop_images/image_2810.png",
+            "logo": "shopify://shop_images/gmaro.png",
             "alt": "Gmaro",
             "link": "https://www.magcloud.com/browse/issue/3191062"
           }
@@ -519,7 +519,7 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "451px",
-            "image": "shopify://shop_images/flying_solo_store_front_1.jpg",
+            "image": "shopify://shop_images/store_image_1.jpg",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -527,7 +527,7 @@
             "mobile_text_position": "end_center",
             "caption-text": "#ffffff",
             "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "image_overlay_opacity": 50
           }
         }
       },
@@ -537,8 +537,8 @@
       "custom_css": [],
       "name": "t:sections.image--slideshow.presets.name",
       "settings": {
-        "desktop_height": "medium",
-        "mobile_height": "large",
+        "desktop_height": "small",
+        "mobile_height": "small",
         "slide_navigation_style": "arrows",
         "hidden_slide_fraction": true,
         "navigation_background_color": "#000000B2",

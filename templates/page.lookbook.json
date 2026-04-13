@@ -38,7 +38,7 @@
             "mobile_text_position": "center_center",
             "caption-text": "#ffffff",
             "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "image_overlay_opacity": 50
           }
         }
       },
