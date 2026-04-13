@@ -316,6 +316,55 @@
     flex-wrap: wrap;
 }
 
+@media screen and (max-width:767px) {
+    .bar-control-collection.only-mobile-flex .controls-wrapper {
+        margin-left: auto;
+    }
+
+    .sorting-container-mobile-bar {
+        margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .sorting-container-mobile-bar .sorting--mobile-bar,
+    .sorting-container-mobile-bar .sorting--mobile-bar .collection-filters__field,
+    .sorting-container-mobile-bar .sorting--mobile-bar .select,
+    .sorting-container-mobile-bar .sorting--mobile-bar .select__select {
+        width: auto;
+        min-width: 0;
+    }
+
+    .sorting-container-mobile-bar .sorting--mobile-bar .collection-filters__field {
+        flex-grow: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    #sorting-container-desktop-bar {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #sorting-container-desktop-bar .sorting--desktop-bar,
+    #sorting-container-desktop-bar .sorting--desktop-bar .collection-filters__field,
+    #sorting-container-desktop-bar .sorting--desktop-bar .select,
+    #sorting-container-desktop-bar .sorting--desktop-bar .select__select {
+        width: auto;
+        min-width: 0;
+    }
+
+    #sorting-container-desktop-bar .sorting--desktop-bar .collection-filters__field {
+        flex-grow: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
 /* #toggle-filter {
     grid-area: toggle-filter;
 }
