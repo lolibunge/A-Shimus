@@ -5,12 +5,10 @@
 }
 
 .editorial-container {
-    max-width: 1920px;
     margin: 0 auto;
 }
 
 .editorial-block--intro_editorial {
-    max-width: 1132px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -200,7 +198,7 @@
 /* Quote block */
 .editorial-quote {
     font-family: var(--header-font-stack);
-    max-width: 1132px;
+    /* max-width: 1132px; */
     font-size: 24px;
     font-weight: 300;
     line-height: normal;
@@ -211,7 +209,6 @@
     .editorial-two-column.has-no-heading-desktop {
         display: flex;
         grid-template-columns: 1fr;
-        max-width: 904px;
         margin: 0 auto;
     }
 }

@@ -20,12 +20,25 @@
   }
 </style>
 
+{% comment %} Generate max-width styles for blocks that have it enabled {% endcomment %}
+{% for block in section.blocks %}
+  {% if block.settings.enable_max_width and block.settings.max_width_text_desktop %}
+    <style>
+      #shopify-section-{{ section.id }} #block-{{ block.id }}.editorial-block .max-width {
+        max-width: {{ block.settings.max_width_text_desktop }}px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    </style>
+  {% endif %}
+{% endfor %}
+
 <div class="editorial-container">
   {% for block in section.blocks %}
-    <div class="editorial-block editorial-block--{{ block.type }}" {{ block.shopify_attributes }}>
+    <div class="editorial-block editorial-block--{{ block.type }}" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
       {% case block.type %}
       {% when 'author_quote' %}
-        <div class="editorial-author-quote"
+        <div class="editorial-author-quote{% if block.settings.enable_max_width %} max-width{% endif %}"
         >
           {% if block.settings.image != blank %}
           <div class="editorial-author-quote__image">
@@ -45,6 +58,7 @@
           {% endif %}
         </div>
         {% when 'intro_editorial' %}
+        <div class="editorial-intro{% if block.settings.enable_max_width %} max-width{% endif %}">
           <h2 class="editorial-intro-title">
             {{ block.settings.title }}
           </h2>
@@ -58,9 +72,10 @@
               {{ block.settings.meta }}
             </div>
           {% endif %}
+        </div>
 
         {% when 'two_column_content' %}
-          <div class="editorial-two-column {% unless block.settings.show_heading_desktop -%}has-no-heading-desktop{% endunless %} {% unless block.settings.show_heading_mobile -%}has-no-heading-mobile{% endunless %}">
+          <div class="editorial-two-column{% if block.settings.enable_max_width %} max-width{% endif %}{% unless block.settings.show_heading_desktop %} has-no-heading-desktop{% endunless %}{% unless block.settings.show_heading_mobile %} has-no-heading-mobile{% endunless %}">
             {%- if block.settings.heading != blank -%}
               <h3 class="editorial-two-column-heading
               {% unless block.settings.show_heading_desktop -%}
@@ -136,7 +151,7 @@
           </div>
 
         {% when 'quote_statement' %}
-          <div class="editorial-quote">“{{ block.settings.quote }}”</div>
+          <div class="editorial-quote{% if block.settings.enable_max_width %} max-width{% endif %}">“{{ block.settings.quote }}”</div>
       {% endcase %}
     </div>
   {% endfor %}
@@ -233,6 +248,19 @@
           "id": "meta",
           "label": "Meta / Author",
           "default": "— Founder & CEO"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_max_width",
+          "label": "Enable max width for text",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "max_width_text_desktop",
+          "label": "Max width for text (desktop)",
+          "default": 904,
+          "info": "set the max width for the text column on desktop (pixels)",
         }
       ]
     },
@@ -255,6 +283,19 @@
           "id": "author",
           "label": "Author",
           "default": "Aya Shimura, Founder and CEO"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_max_width",
+          "label": "Enable max width for text",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "max_width_text_desktop",
+          "label": "Max width for text (desktop)",
+          "default": 904,
+          "info": "set the max width for the text column on desktop (pixels)",
         }
       ]
     },
@@ -274,6 +315,19 @@
           "label": "Show heading on desktop",
           "default": true,
           "visible_if": "{{ block.settings.heading != blank }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_max_width",
+          "label": "Enable max width for text",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "max_width_text_desktop",
+          "label": "Max width for text (desktop)",
+          "default": 904,
+          "info": "set the max width for the text column on desktop (pixels)",
         },
         {
           "type": "checkbox",
@@ -358,6 +412,19 @@
           "id": "quote",
           "label": "Quote text",
           "default": "Inspired by Japanese craftsmanship and precision tailoring, our designs are thoughtfully sculpted for petite women."
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_max_width",
+          "label": "Enable max width for text",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "max_width_text_desktop",
+          "label": "Max width for text (desktop)",
+          "default": 904,
+          "info": "set the max width for the text column on desktop (pixels)",
         }
       ]
     }
