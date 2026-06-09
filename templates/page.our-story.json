@@ -173,7 +173,7 @@
             "image": "shopify://shop_images/Hero_Image_1_61838a34-35b5-4663-887c-5728f89c296b.jpg",
             "title": "Meet our Manufacture",
             "description": "",
-            "button_url": "https://www.youtube.com/watch?v=K_5C0h_mDrA",
+            "button_url": "#",
             "button_label": "OUR INTERVIEW WITH CEO"
           }
         },
@@ -276,7 +276,7 @@
           "type": "logo",
           "name": "Gmaro",
           "settings": {
-            "logo": "shopify://shop_images/image_2810.png",
+            "logo": "shopify://shop_images/gmaro.png",
             "alt": "Featured logo",
             "link": ""
           }

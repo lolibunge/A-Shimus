@@ -3,7 +3,7 @@
 <footer
   class="footer-main  wrapper-spacing--h {{ section.settings.color_scheme }} flex-full color-scheme--{{ section.settings.color_scheme }} site-footer{% if template contains 'product' %}{% if settings.related_products_enable %}{% else %} product-sticker-stop{% endif %}{% endif %} footer-alignment--{{ section.settings.alignment }}"
   data-wetheme-section-type="footer-main" data-wetheme-section-id="{{ section.id }}"
-  style="--footer-heading-font-size: {{ section.settings.heading_font_size }}px;"
+  style="--footer-heading-font-size: {{ section.settings.heading_font_size }}px; padding-left: {{ section.settings.horizontal_padding }}px; padding-right: {{ section.settings.horizontal_padding }}px;"
 >
 	<div 
     class="footer-main--inner"
@@ -262,6 +262,15 @@
           "label": "t:all.Third"
         }
       ]
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding (px)",
+      "min": 0,
+      "max": 100,
+      "unit": "px",
+      "default": 48
     }
   ],
   "blocks": [

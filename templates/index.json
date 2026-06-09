@@ -15,10 +15,10 @@
         "image_pK4dHU": {
           "type": "image",
           "settings": {
-            "title": "Designed with You in Mind.",
+            "title": "Luxury Petite Workwear",
             "desktop-caption-heading-size": 48,
             "mobile-caption-heading-size": 28,
-            "text": "Petite-first workwear, crafted in Japan with precision and restraint.",
+            "text": "Japanese craftsmanship, perfected for you",
             "desktop-caption-body-text-size": 14,
             "mobile-caption-body-text-size": 14,
             "first_button_link": "shopify://collections/view-all",
@@ -38,7 +38,7 @@
             "mobile_text_position": "center_center",
             "caption-text": "#ffffff",
             "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "image_overlay_opacity": 50
           }
         }
       },
@@ -48,7 +48,7 @@
       "custom_css": [],
       "name": "t:sections.image--slideshow.presets.name",
       "settings": {
-        "desktop_height": "extra_large",
+        "desktop_height": "large",
         "mobile_height": "extra_large",
         "slide_navigation_style": "arrows",
         "hidden_slide_fraction": true,
@@ -70,8 +70,8 @@
         "intro_editorial_adpnmM": {
           "type": "intro_editorial",
           "settings": {
-            "title": "Luxury Petite Workwear",
-            "text": "<p>This is considered style. Style that combines meticulous fit, Japanese craftsmanship, and functional design to create enduring wardrobe essentials for petite women. It is style that supports how you work, lead, and live.</p>",
+            "title": "The Art of the Perfect Fit",
+            "text": "<p>For years, I searched for workwear that actually fit without compromise. </p><p>Crafted by Japanese artisans, each piece is thoughtfully made to be as comfortable and functional as it is refined. Because the right fit doesn't just change how you look — it changes how you carry yourself, and how you lead.</p>",
             "meta": "- Aya Shimura, Founder and CEO"
           }
         }
@@ -84,8 +84,8 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
         "section_padding_top_mobile": 60,
         "section_padding_bottom_mobile": 60
       }
@@ -256,114 +256,66 @@
         "colors": "dark"
       }
     },
-    "contact_form_rhN6m6": {
-      "type": "contact-form",
+    "image_with_text_overlay_CRakyd": {
+      "type": "image-with-text-overlay",
       "blocks": {
-        "name_input_dxGKWB": {
-          "type": "name_input",
-          "settings": {
-            "required": true,
-            "input_width": "partial"
-          }
-        },
-        "email_input_dUQizk": {
-          "type": "email_input",
-          "settings": {
-            "required": true,
-            "input_width": "partial"
-          }
-        },
-        "tel_input_XtBVNm": {
-          "type": "tel_input",
-          "settings": {
-            "required": true,
-            "input_width": "full"
-          }
-        },
-        "message_input_CVtcDQ": {
-          "type": "message_input",
-          "settings": {
-            "required": true,
-            "input_width": "full"
-          }
-        }
-      },
-      "block_order": [
-        "name_input_dxGKWB",
-        "email_input_dUQizk",
-        "tel_input_XtBVNm",
-        "message_input_CVtcDQ"
-      ],
-      "disabled": true,
-      "name": "t:sections.section--contact-form.presets.name",
-      "settings": {
-        "title": "Contact us",
-        "description": "<p>Have a question, or want a product recommendation? Get in touch.</p>",
-        "section_header_alignment": "center",
-        "column_layout": "",
-        "form_width": "narrow",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "section_background_color": "#ffffff",
-        "section_text_color": "#000000",
-        "override_button_colors": false,
-        "button_background_color": "#e68819",
-        "button_text_color": "#ffffff"
-      }
-    },
-    "slideshow_k49RAQ": {
-      "type": "slideshow",
-      "blocks": {
-        "image_nxNTBh": {
-          "type": "image",
+        "heading_gE3cx7": {
+          "type": "heading",
           "settings": {
             "title": "From Mill to Masterpiece",
-            "desktop-caption-heading-size": 32,
-            "mobile-caption-heading-size": 28,
-            "text": "Designed with You in Mind.Petite-first workwear, crafted in Japan with precision and restraint.",
-            "desktop-caption-body-text-size": 14,
-            "mobile-caption-body-text-size": 14,
+            "font_size_desktop": 46,
+            "font_size_mobile": 28,
+            "heading_bottom_spacing": 25
+          }
+        },
+        "text_rbz3Kk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece handcrafted in Japan with precision, care, and intention.</p>",
+            "font_size_desktop": 16,
+            "font_size_mobile": 16,
+            "text_bottom_spacing": 20
+          }
+        },
+        "button_eEitX8": {
+          "type": "button",
+          "settings": {
             "first_button_link": "shopify://pages/craftsmanship",
             "first_button_label": "DISCOVER THE STORY",
             "second_button_link": "",
             "second_button_label": "",
             "buttons_style": "outlined",
             "override_button_colors": true,
-            "button-background": "#ffffff",
-            "button-text": "#ffffff",
-            "max_width": "451px",
-            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
-            "justify_content": "center",
-            "text_position": "end_center",
-            "mobile_max_width": "100%",
-            "mobile_justify_content": "center",
-            "mobile_text_position": "end_center",
-            "caption-text": "#ffffff",
-            "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "buttons_background": "#ffffff",
+            "buttons_text": "#FFFFFF",
+            "buttons_bottom_spacing": 0
           }
         }
       },
       "block_order": [
-        "image_nxNTBh"
+        "heading_gE3cx7",
+        "text_rbz3Kk",
+        "button_eEitX8"
       ],
-      "custom_css": [],
-      "name": "t:sections.image--slideshow.presets.name",
+      "name": "t:sections.image--image-with-text-overlay.presets.name",
       "settings": {
-        "desktop_height": "extra_large",
-        "mobile_height": "extra_large",
-        "slide_navigation_style": "arrows",
-        "hidden_slide_fraction": true,
-        "navigation_background_color": "#000000B2",
-        "slide_position": "right",
-        "mobile_slide_position": "left",
-        "slide_transition_delay": 10,
+        "image_desktop": "shopify://shop_images/from_mill_to_masterpoiece_2.jpg",
+        "height_desktop": "550px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
         "section_width": "full",
-        "section_padding_desktop": "100px",
-        "section_padding_mobile": "38px 28px",
-        "section_margin_desktop": "0px",
-        "section_margin_mobile": "0px",
-        "background_color": "#000000"
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#FFFFFF",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 50
       }
     },
     "editorial_content_YBeUJ7": {
@@ -375,7 +327,7 @@
             "heading": "Why Made in Japan",
             "show_heading_desktop": true,
             "show_heading_mobile": true,
-            "text": "<p>Japan is known for craftsmanship that favors precision over scale, and longevity over speed. It is a place where garment making remains a respected discipline, defined by technical mastery, rigorous standards, and an uncompromising approach to quality. Producing in Japan allows A Shimus to work with highly skilled artisans and small manufacturers who specialize in pattern accuracy, fabric handling, and refined construction. This expertise ensures garments hold their shape, wear beautifully over time, and deliver a level of consistency that mass production cannot replicate.<br/><br/>Japanese manufacturing is inherently slower and more considered. Small-batch production, advanced textile engineering, and meticulous finishing contribute to a higher cost—but also to garments that last longer, perform better, and require fewer replacements.<br/><br/>Choosing Made in Japan is an investment.It reflects a commitment to quality, responsible production, and workwear designed to endure well beyond the season.</p>",
+            "text": "<p>Japan favors precision over scale, and longevity over speed — a place where garment making remains a respected discipline defined by technical mastery and uncompromising quality. Working with skilled artisans and small manufacturers, every A.SHIMUS piece holds its shape, wears beautifully over time, and delivers a consistency mass production cannot replicate.</p><p>Choosing Made in Japan is a commitment to quality, responsible production, and workwear built to endure.<br/></p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
             "enable_truncate_mobile": true,
@@ -393,8 +345,8 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
         "section_padding_top_mobile": 60,
         "section_padding_bottom_mobile": 60
       }
@@ -458,7 +410,7 @@
           "type": "logo",
           "name": "Gmaro",
           "settings": {
-            "logo": "shopify://shop_images/image_2810.png",
+            "logo": "shopify://shop_images/gmaro.png",
             "alt": "Gmaro",
             "link": "https://www.magcloud.com/browse/issue/3191062"
           }
@@ -498,59 +450,56 @@
         "title": "As Featured In"
       }
     },
-    "slideshow_DbmMnX": {
-      "type": "slideshow",
+    "image_with_text_overlay_hbhiB7": {
+      "type": "image-with-text-overlay",
       "blocks": {
-        "image_8cjiNH": {
-          "type": "image",
+        "heading_yFXHja": {
+          "type": "heading",
           "settings": {
             "title": "Our Stores",
-            "desktop-caption-heading-size": 48,
-            "mobile-caption-heading-size": 28,
-            "text": "",
-            "desktop-caption-body-text-size": 14,
-            "mobile-caption-body-text-size": 14,
+            "font_size_desktop": 46,
+            "font_size_mobile": 28,
+            "heading_bottom_spacing": 25
+          }
+        },
+        "button_QtgQQi": {
+          "type": "button",
+          "settings": {
             "first_button_link": "shopify://pages/find-us",
             "first_button_label": "Find Us In Store",
             "second_button_link": "",
             "second_button_label": "",
             "buttons_style": "outlined",
             "override_button_colors": true,
-            "button-background": "#ffffff",
-            "button-text": "#ffffff",
-            "max_width": "451px",
-            "image": "shopify://shop_images/flying_solo_store_front_1.jpg",
-            "justify_content": "center",
-            "text_position": "end_center",
-            "mobile_max_width": "100%",
-            "mobile_justify_content": "center",
-            "mobile_text_position": "end_center",
-            "caption-text": "#ffffff",
-            "image_overlay": "#000000",
-            "image_overlay_opacity": 20
+            "buttons_background": "#ffffff",
+            "buttons_text": "#FFFFFF",
+            "buttons_bottom_spacing": 0
           }
         }
       },
       "block_order": [
-        "image_8cjiNH"
+        "heading_yFXHja",
+        "button_QtgQQi"
       ],
-      "custom_css": [],
-      "name": "t:sections.image--slideshow.presets.name",
+      "name": "t:sections.image--image-with-text-overlay.presets.name",
       "settings": {
-        "desktop_height": "medium",
-        "mobile_height": "large",
-        "slide_navigation_style": "arrows",
-        "hidden_slide_fraction": true,
-        "navigation_background_color": "#000000B2",
-        "slide_position": "right",
-        "mobile_slide_position": "left",
-        "slide_transition_delay": 10,
+        "image_desktop": "shopify://shop_images/store_image_1.jpg",
+        "height_desktop": "450px",
+        "text_position_desktop": "center",
+        "text_alignment_desktop": "center",
+        "caption_width_desktop": 50,
+        "height_mobile": "original",
+        "text_position_mobile": "center",
+        "text_alignment_mobile": "center",
+        "section_link": "",
+        "animation_style": "none",
         "section_width": "full",
-        "section_padding_desktop": "100px",
-        "section_padding_mobile": "46px 28px",
-        "section_margin_desktop": "0px",
-        "section_margin_mobile": "0px",
-        "background_color": "#000000"
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "text_color": "#FFFFFF",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 50
       }
     },
     "editorial_content_BBktw8": {
@@ -584,11 +533,10 @@
     "collection_showcase_Y9UqP4",
     "3643d38b-24f2-4040-ab67-4b4b44a63aab",
     "featured_collection_7nUDzE",
-    "contact_form_rhN6m6",
-    "slideshow_k49RAQ",
+    "image_with_text_overlay_CRakyd",
     "editorial_content_YBeUJ7",
     "featured_in_logos_dXahcx",
-    "slideshow_DbmMnX",
+    "image_with_text_overlay_hbhiB7",
     "editorial_content_BBktw8"
   ]
 }

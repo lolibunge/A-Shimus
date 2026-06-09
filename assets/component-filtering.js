@@ -663,6 +663,7 @@ class CollectionFiltersForm extends HTMLElement {
     this.sortByDesktop = this.querySelector('#SortBydesktop') || document.querySelector('#SortBydesktop');
     this.sortByMobile = this.querySelector('#SortBymobile') || document.querySelector('#SortBymobile');
     this.sortByInput = this.querySelector('#sort_by_input');
+    this.sortWidthProbe = null;
     
     // Store initial window width to detect significant resize
     this.prevWindowWidth = window.innerWidth;
@@ -702,6 +703,7 @@ class CollectionFiltersForm extends HTMLElement {
     window.addEventListener('popstate', this.onHistoryChange.bind(this));
 
     this.bindActiveFacetButtonEvents();
+    this.updateSortSelectWidths();
     this.onDropDownBlur();
   }
 
@@ -717,6 +719,46 @@ class CollectionFiltersForm extends HTMLElement {
   // Define stopInputPropagation as a class method
   stopInputPropagation(event) {
     event.stopPropagation();
+  }
+
+  updateSortSelectWidth(selectElement) {
+    if (!selectElement) return;
+
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    if (!selectedOption) return;
+
+    const styles = window.getComputedStyle(selectElement);
+    if (!this.sortWidthProbe) {
+      this.sortWidthProbe = document.createElement('span');
+      this.sortWidthProbe.style.position = 'absolute';
+      this.sortWidthProbe.style.visibility = 'hidden';
+      this.sortWidthProbe.style.whiteSpace = 'nowrap';
+      this.sortWidthProbe.style.pointerEvents = 'none';
+      this.sortWidthProbe.style.left = '-9999px';
+      this.sortWidthProbe.style.top = '-9999px';
+      document.body.appendChild(this.sortWidthProbe);
+    }
+
+    this.sortWidthProbe.style.fontFamily = styles.fontFamily;
+    this.sortWidthProbe.style.fontSize = styles.fontSize;
+    this.sortWidthProbe.style.fontWeight = styles.fontWeight;
+    this.sortWidthProbe.style.fontStyle = styles.fontStyle;
+    this.sortWidthProbe.style.letterSpacing = styles.letterSpacing;
+    this.sortWidthProbe.style.textTransform = styles.textTransform;
+    this.sortWidthProbe.textContent = selectedOption.textContent.trim();
+
+    const textWidth = Math.ceil(this.sortWidthProbe.getBoundingClientRect().width);
+    const paddingWidth = (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
+    const borderWidth = (parseFloat(styles.borderLeftWidth) || 0) + (parseFloat(styles.borderRightWidth) || 0);
+    selectElement.style.width = `${Math.ceil(textWidth + paddingWidth + borderWidth + 2)}px`;
+  }
+
+  updateSortSelectWidths() {
+    const desktopSort = document.querySelector('#sorting-container-desktop-bar #SortBydesktop') || this.sortByDesktop;
+    const mobileSort = document.querySelector('#sorting-container-mobile-bar #SortBymobile') || this.sortByMobile;
+
+    this.updateSortSelectWidth(desktopSort);
+    this.updateSortSelectWidth(mobileSort);
   }
 
   onDropDownBlur() {
@@ -776,6 +818,8 @@ class CollectionFiltersForm extends HTMLElement {
         // On desktop - never use inert
         this.filterForm.removeAttribute('inert');
       }
+
+      this.updateSortSelectWidths();
     }
   }
 
@@ -835,6 +879,8 @@ class CollectionFiltersForm extends HTMLElement {
         this.sortByDesktop.value = newValue;
       }
     }
+
+    this.updateSortSelectWidths();
 
     // Dispatch the input event to trigger form's input listener
     this.sortByInput.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1172,6 +1218,7 @@ class CollectionFiltersForm extends HTMLElement {
   
     this.bindSortByEventListeners();
     this.bindActiveFacetButtonEvents();
+    this.updateSortSelectWidths();
   }
 
   bindSortByEventListeners() {
@@ -1209,6 +1256,8 @@ class CollectionFiltersForm extends HTMLElement {
       this.sortByDesktop.addEventListener('input', this.stopInputPropagationBound);
       this.sortByMobile.addEventListener('input', this.stopInputPropagationBound);
     }
+
+    this.updateSortSelectWidths();
   }
 
   bindActiveFacetButtonEvents() {
@@ -1240,6 +1289,11 @@ class CollectionFiltersForm extends HTMLElement {
   disconnectedCallback() {
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('popstate', this.onHistoryChange.bind(this));
+
+    if (this.sortWidthProbe && this.sortWidthProbe.parentNode) {
+      this.sortWidthProbe.parentNode.removeChild(this.sortWidthProbe);
+      this.sortWidthProbe = null;
+    }
   }
 }
 

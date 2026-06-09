@@ -30,7 +30,37 @@
             "button-background": "#ffffff",
             "button-text": "#ffffff",
             "max_width": "451px",
-            "image": "shopify://shop_images/from-mill-to-masterpiece.png",
+            "image": "shopify://shop_images/Margaret-Howell-Koto-Bolofo-SS13_Campaign-Irish_Linen.jpg",
+            "justify_content": "center",
+            "text_position": "end_center",
+            "mobile_max_width": "100%",
+            "mobile_image": "shopify://shop_images/made_to_last.jpg",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "end_center",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        },
+        "image_q9tFDd": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 32,
+            "mobile-caption-heading-size": 28,
+            "text": "",
+            "desktop-caption-body-text-size": 14,
+            "mobile-caption-body-text-size": 14,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "outlined",
+            "override_button_colors": true,
+            "button-background": "#ffffff",
+            "button-text": "#ffffff",
+            "max_width": "451px",
+            "image": "shopify://shop_images/Margaret-Howell-Koto-Bolofo-SS13_Campaign-Irish_Linen.jpg",
             "justify_content": "center",
             "text_position": "end_center",
             "mobile_max_width": "100%",
@@ -43,13 +73,17 @@
         }
       },
       "block_order": [
-        "image_YiMary"
+        "image_YiMary",
+        "image_q9tFDd"
+      ],
+      "custom_css": [
+        ".slideshow {animation: none !important; transition: none !important;}"
       ],
       "name": "t:sections.image--slideshow.presets.name",
       "settings": {
         "desktop_height": "full_screen",
-        "mobile_height": "large",
-        "slide_navigation_style": "bars",
+        "mobile_height": "medium",
+        "slide_navigation_style": "none",
         "hidden_slide_fraction": true,
         "navigation_background_color": "#000000B2",
         "slide_position": "center",
@@ -69,10 +103,10 @@
         "two_column_content_aUHVBW": {
           "type": "two_column_content",
           "settings": {
-            "heading": "JAPANESE craftsmanship",
+            "heading": "Japanese craftsmanship",
             "show_heading_desktop": true,
             "show_heading_mobile": true,
-            "text": "<p>At A.SHIMUS, Japanese craftsmanship is at the heart of everything we make. Our workwear is produced in Japan by skilled artisans who bring generations of expertise to fabric sourcing, pattern-making, and garment construction. We work closely with trusted Japanese manufacturers known for their precision, attention to detail, and commitment to quality, ensuring every piece is thoughtfully made, responsibly produced, and built to last. By combining traditional Japanese tailoring techniques with modern design for petite women, A.SHIMUS creates refined workwear that delivers exceptional fit, comfort, and longevity for professional life.</p>",
+            "text": "<p>At A.SHIMUS, Japanese craftsmanship is at the heart of everything we make. Working closely with trusted artisans and specialist manufacturers, each piece is thoughtfully produced in Japan — refined in construction, considered in design, and built to last. Traditional Japanese tailoring techniques meet modern design for the petite professional, resulting in workwear that delivers exceptional fit, comfort, and longevity.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
             "enable_truncate_mobile": true,
@@ -90,10 +124,65 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
-        "section_padding_top_mobile": 60,
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "section_padding_top_mobile": 30,
         "section_padding_bottom_mobile": 30
+      }
+    },
+    "slideshow_8zgijL": {
+      "type": "slideshow",
+      "blocks": {
+        "image_hAMzzk": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
+            "text": "",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "max_width": "100%",
+            "image": "shopify://shop_images/magokoro.jpg",
+            "justify_content": "center",
+            "text_position": "start_left",
+            "mobile_max_width": "100%",
+            "mobile_image": "shopify://shop_images/magokoro.jpg",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "start_left",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_hAMzzk"
+      ],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "original",
+        "mobile_height": "medium",
+        "slide_navigation_style": "none",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "center",
+        "mobile_slide_position": "center",
+        "slide_transition_delay": 5,
+        "section_width": "full",
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
       }
     },
     "editorial_content_AfFPR8": {
@@ -102,10 +191,10 @@
         "two_column_content_tXxzHG": {
           "type": "two_column_content",
           "settings": {
-            "heading": "With Magokoro Spirit /真心をこめて",
+            "heading": "With Magokoro Spirit / 真心をこめて",
             "show_heading_desktop": true,
             "show_heading_mobile": true,
-            "text": "<p>Magokoro (真心) is a Japanese word meaning sincerity and devotion.  Each garment is made in Japan by highly skilled artisans whose expertise has been refined over decades, sometimes generations, of specialized training.</p>",
+            "text": "<p>Magokoro (真心) — sincerity and devotion. It is the spirit that guides every A.SHIMUS garment, made by artisans whose expertise has been refined over decades, sometimes generations, of specialized training. It is not just how our clothes are made. It is why they feel the way they do.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
             "enable_truncate_mobile": true,
@@ -123,10 +212,94 @@
       "settings": {
         "section_background_color": "#f8f6f5",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
-        "section_padding_top_mobile": 60,
-        "section_padding_bottom_mobile": 60
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30
+      }
+    },
+    "slideshow_dgWnAJ": {
+      "type": "slideshow",
+      "blocks": {
+        "image_HaYc3m": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
+            "text": "",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "max_width": "100%",
+            "image": "shopify://shop_images/Lidewij_Edelkoort_-_ADAM_-_The_Magazine_Perspective.jpg",
+            "justify_content": "center",
+            "text_position": "start_left",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "start_left",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        },
+        "image_7c3QfP": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
+            "text": "",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "max_width": "100%",
+            "image": "shopify://shop_images/Lidewij_Edelkoort_-_ADAM_-_The_Magazine_Perspective.jpg",
+            "justify_content": "center",
+            "text_position": "start_left",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "start_left",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_HaYc3m",
+        "image_7c3QfP"
+      ],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "original",
+        "mobile_height": "medium",
+        "slide_navigation_style": "none",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "center",
+        "mobile_slide_position": "center",
+        "slide_transition_delay": 5,
+        "section_width": "full",
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
       }
     },
     "editorial_content_4xFiff": {
@@ -156,10 +329,95 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
-        "section_padding_top_mobile": 60,
-        "section_padding_bottom_mobile": 60
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30
+      }
+    },
+    "slideshow_WaHVe9": {
+      "type": "slideshow",
+      "blocks": {
+        "image_pjgpNW": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
+            "text": "",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "max_width": "100%",
+            "image": "shopify://shop_images/made_to_last.jpg",
+            "justify_content": "center",
+            "text_position": "start_left",
+            "mobile_max_width": "100%",
+            "mobile_image": "shopify://shop_images/made_to_last.jpg",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "start_left",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        },
+        "image_q9LwCU": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "desktop-caption-heading-size": 60,
+            "mobile-caption-heading-size": 36,
+            "text": "",
+            "desktop-caption-body-text-size": 24,
+            "mobile-caption-body-text-size": 16,
+            "first_button_link": "",
+            "first_button_label": "",
+            "second_button_link": "",
+            "second_button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button-background": "#e68819",
+            "button-text": "#ffffff",
+            "max_width": "100%",
+            "image": "shopify://shop_images/made_to_last.jpg",
+            "justify_content": "center",
+            "text_position": "start_left",
+            "mobile_max_width": "100%",
+            "mobile_justify_content": "center",
+            "mobile_text_position": "start_left",
+            "caption-text": "#ffffff",
+            "image_overlay": "#000000",
+            "image_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_pjgpNW",
+        "image_q9LwCU"
+      ],
+      "name": "t:sections.image--slideshow.presets.name",
+      "settings": {
+        "desktop_height": "original",
+        "mobile_height": "medium",
+        "slide_navigation_style": "none",
+        "hidden_slide_fraction": true,
+        "navigation_background_color": "#000000B2",
+        "slide_position": "center",
+        "mobile_slide_position": "center",
+        "slide_transition_delay": 5,
+        "section_width": "full",
+        "section_padding_desktop": "48px",
+        "section_padding_mobile": "16px",
+        "section_margin_desktop": "0px",
+        "section_margin_mobile": "0px",
+        "background_color": "#000000"
       }
     },
     "editorial_content_bheXRP": {
@@ -168,10 +426,10 @@
         "two_column_content_frQgNE": {
           "type": "two_column_content",
           "settings": {
-            "heading": "Made with Precision,Built to Last",
+            "heading": "Made with Precision, Built to Last",
             "show_heading_desktop": true,
             "show_heading_mobile": true,
-            "text": "<p>From small-batch production and meticulous pattern making to advanced textile engineering and precise construction, Japanese manufacturing prioritizes accuracy, durability, and consistency over speed or scale. This level of craftsmanship results in workwear that holds its shape, wears beautifully over time, and requires fewer replacements, offering long-term value. By investing in ethically produced, expertly made garments, our customers are choosing quality, longevity, and integrity, qualities that define both Japanese craftsmanship and the A.SHIMUS approach to modern petite workwear.</p>",
+            "text": "<p>From small-batch production and meticulous pattern-making to advanced textile engineering and precise construction, every A.SHIMUS piece is made to hold its shape, wear beautifully over time, and outlast the season. This is craftsmanship as investment — in quality, in longevity, and in a more considered approach to how we dress.</p>",
             "enable_truncate_desktop": false,
             "truncate_lines_desktop": 3,
             "enable_truncate_mobile": false,
@@ -189,10 +447,10 @@
       "settings": {
         "section_background_color": "#f8f6f5",
         "section_text_color": "#000000",
-        "section_padding_top": 72,
-        "section_padding_bottom": 72,
-        "section_padding_top_mobile": 60,
-        "section_padding_bottom_mobile": 60
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30
       }
     },
     "editorial_content_PDFJrQ": {
@@ -218,6 +476,7 @@
       "block_order": [
         "two_column_content_UQAthR"
       ],
+      "disabled": true,
       "name": "Editorial Content",
       "settings": {
         "section_background_color": "#ffffff",
@@ -233,6 +492,7 @@
       "blocks": {
         "image_text_block_4ww8NY": {
           "type": "image_text_block",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Hero_Image_1_61838a34-35b5-4663-887c-5728f89c296b.jpg",
             "title": "With Magokoro Spirit / 真心をこめて",
@@ -244,8 +504,8 @@
         "image_text_block_pRcbFd": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/26SS_web_lookbook_10..jpg",
-            "title": "Meet our Manufacture",
+            "image": "shopify://shop_images/meet_our_manufactuers.jpg",
+            "title": "Meet Our Manufacturers",
             "description": "",
             "button_url": "#",
             "button_label": "OUR INTERVIEW WITH CEO"
@@ -254,7 +514,7 @@
         "image_text_block_t6a8P7": {
           "type": "image_text_block",
           "settings": {
-            "image": "shopify://shop_images/26SS_web_lookbook_1_6ad95a15-38ea-48fd-a51e-3a3d22a76724.jpg",
+            "image": "shopify://shop_images/store_image_1.jpg",
             "title": "Our Stores",
             "description": "",
             "button_url": "shopify://pages/our-history",
@@ -272,7 +532,7 @@
         "section_title": "",
         "section_description": "",
         "section_header_alignment": "center",
-        "blocks_per_row": "3",
+        "blocks_per_row": "2",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
         "section_padding_top_mobile": 0,
@@ -289,8 +549,11 @@
   "order": [
     "slideshow_3jibRi",
     "editorial_content_WRzmHw",
+    "slideshow_8zgijL",
     "editorial_content_AfFPR8",
+    "slideshow_dgWnAJ",
     "editorial_content_4xFiff",
+    "slideshow_WaHVe9",
     "editorial_content_bheXRP",
     "editorial_content_PDFJrQ",
     "image_text_blocks_gWxH4J"
